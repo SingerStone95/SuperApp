@@ -21,6 +21,11 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <data
+                    android:host="superapp"
+                    android:path="/main"
+                    android:scheme="app" />
+
             </intent-filter>
         </activity>
         <activity android:name=".KotlinActivity" />
