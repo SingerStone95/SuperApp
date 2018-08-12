@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements ILife {
         patches = (LinkedList<diff_match_patch.Patch>) dmp.patch_fromText(patchesStr);
         Object[] results = dmp.patch_apply(patches, commonStr);
         L.e("results[0]------------>" + results[0]);
-        new View(this).postDelayed(new Runnable() {
+        /*new View(this).postDelayed(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements ILife {
                     e.printStackTrace();
                 }
             }
-        }, 3000);
+        }, 3000);*/
         PriorityBlockingQueue<Runnable> queue = new PriorityBlockingQueue<Runnable>();
     }
 

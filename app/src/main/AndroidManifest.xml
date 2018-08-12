@@ -16,13 +16,17 @@
         android:theme="@style/SupperAppTheme">
         <activity
             android:name=".MainActivity"
+            android:launchMode="singleTask"
             android:hardwareAccelerated="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
                 <data
                     android:host="superapp"
+                    android:port="1024"
                     android:path="/main"
                     android:scheme="app" />
 
