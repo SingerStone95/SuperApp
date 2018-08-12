@@ -3,6 +3,6 @@
 
 ## 如何运行?
 
-- 主目录执行 npm install (初始化RN依赖木块)
+- 主目录执行 npm install (初始化RN依赖模块)
 - 执行gradle脚本 uploadArchives (把自定义gradle插件publish到本地)
 - sync gradle
