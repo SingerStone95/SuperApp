@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <singerstone.com.superapp.TouchEvent.EventViewGroup
+        android:id="@+id/g_view"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:background="@color/colorPrimaryDark"
+        android:nestedScrollingEnabled="true">
+
+          <singerstone.com.superapp.TouchEvent.TouchEventView
+                android:id="@+id/t_view"
+              android:background="@color/primary"
+                android:layout_width="match_parent"
+                android:layout_height="90dp" />
+
+    </singerstone.com.superapp.TouchEvent.EventViewGroup>
+
+</LinearLayout>

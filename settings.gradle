@@ -1,0 +1,1 @@
+include ':app', ':app.me', ':app.pluginrn', ':lib.base', ':processors', ':annotations', ':inject', ':supergradle', ':LeetCode'

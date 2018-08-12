@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Wave">
+        <attr name="color" format="color"/>
+        <attr name="text" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="ThumbUpView">
+        <attr name="count" format="integer"/>
+    </declare-styleable>
+</resources>

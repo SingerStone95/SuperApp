@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="singerstone.com.superapp.ServiceIPC.ServiceIPCActivity">
+    <TextView
+        android:id="@+id/tv_start"
+        android:text="开启服务"
+
+        android:layout_width="80dp"
+        android:layout_height="60dp" />
+    <TextView
+        android:id="@+id/tv_stop"
+        android:text="停止服务"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+      />
+
+    <TextView
+        android:id="@+id/tv_bind"
+        android:text="绑定服务"
+        android:layout_width="80dp"
+        android:layout_height="60dp"/>
+
+    <TextView
+        android:id="@+id/tv_unbind"
+        android:text="解绑服务"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_show"
+        android:layout_marginTop="20dp"
+        android:hint="远程服务数据"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

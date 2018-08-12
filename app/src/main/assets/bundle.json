@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "bundles": [
+    {
+      "uri": "me",
+      "pkg": "singerstone.com.appme"
+    },
+    {
+      "uri": "rn",
+      "pkg": "singerstone.com.apppluginrn"
+    },
+    {
+      "pkg": "singerstone.com.libbase"
+    }
+  ]
+}

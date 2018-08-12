@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+    <!--组合View-->
+    <singerstone.com.superapp.circlepkprogressView.CirclepkAnimationView
+        android:id="@+id/circle_progress_animation_view"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:clipChildren="false">
+    </singerstone.com.superapp.circlepkprogressView.CirclepkAnimationView>
+
+    <Button
+        android:id="@+id/btn"
+        android:text="无所谓"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_alignParentRight="true"
+        android:layout_width="48dp"
+        android:layout_height="48dp">
+
+        <ImageView
+            android:id="@+id/img_gift"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/faceeli_ic_pkscenen_gift"
+            />
+        <singerstone.com.superapp.circlepkprogressView.SendGiftCoodingView
+            android:id="@+id/sgcv"
+            android:clickable="true"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+
+    <singerstone.com.superapp.circlepkprogressView.AnimationCircleView
+        android:id="@+id/av_anim"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
+</RelativeLayout>

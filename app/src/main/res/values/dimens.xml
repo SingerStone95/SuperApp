@@ -1,0 +1,161 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--common-->
+    <!--长文本（大按钮上的文字）-->
+    <dimen name="long_text_button_fnt">18sp</dimen>
+    <!--长文本（提示文字）-->
+    <dimen name="long_text_tips_fnt">16sp</dimen>
+    <!--短文本（导航栏文字）-->
+    <dimen name="short_text_navigation_fnt">14sp</dimen>
+    <!--标题（缩略图视频主播名字）-->
+    <!--内容-->
+    <dimen name="common_content_fnt">12sp</dimen>
+    <!--公屏名字-->
+    <dimen name="channel_chat_name_fnt">14sp</dimen>
+    <!--公屏内容-->
+    <dimen name="channel_chat_text_fnt">15sp</dimen>
+    <!--聊天字体-->
+    <dimen name="im_chat_text_fnt">16sp</dimen>
+    <!--聊天字体间距-->
+    <dimen name="im_chat_text_padding">9dp</dimen>
+
+    <dimen name="dialog_msg_min_height">50dp</dimen>
+    <!--对话框信息文字-->
+    <!--对话框按钮文字-->
+    <dimen name="dialog_btn_text_fnt">16sp</dimen>
+    <!--对话框标题文字-->
+    <dimen name="dialog_title_text_fnt">16sp</dimen>
+    <!--带头像列表高度-->
+    <dimen name="list_item_with_portrait_height">60dp</dimen>
+    <!--设置和“我”的高度-->
+    <!--导航条高度-->
+    <dimen name="navigation_bar_height">48dp</dimen>
+    <!--common end-->
+
+    <dimen name="common_margin">10dp</dimen>
+    <dimen name="top_header_height">48dp</dimen>
+    <dimen name="med_fnt">16sp</dimen>
+
+    <dimen name="normal_btn_height">50dp</dimen>
+
+    <!-- START - SMS CODE REGISTRATION -->
+    <!-- START - SMS CODE REGISTRATION -->
+    <dimen name="sms_code_registration_text_size_tiny">10sp</dimen>
+    <dimen name="sms_code_registration_text_size_small">12sp</dimen>
+    <dimen name="sms_code_registration_text_size_mid">13sp</dimen>
+    <dimen name="sms_code_registration_text_size_large">14sp</dimen>
+    <dimen name="sms_code_registration_space_margin_large">67dp</dimen>
+    <dimen name="sms_code_registration_space_margin_normal">50dp</dimen>
+    <dimen name="sms_code_registration_margin_large">19dp</dimen>
+    <dimen name="sms_code_registration_margin_mid">17dp</dimen>
+    <dimen name="sms_code_registration_margin_normal">16dp</dimen>
+    <dimen name="sms_code_registration_margin_small">12dp</dimen>
+    <dimen name="sms_code_registration_margin_tiny">1dp</dimen>
+    <dimen name="sms_code_registration_padding_normal">17dp</dimen>
+    <dimen name="sms_code_registration_padding_small">11dp</dimen>
+    <dimen name="sms_code_registration_padding_tiny">6dp</dimen>
+    <dimen name="sms_code_registration_button_height_normal">44dp</dimen>
+    <dimen name="sms_code_registration_button_height_small">40dp</dimen>
+    <dimen name="big_fnt">17sp</dimen>
+
+
+    <dimen name="about_version_top">76dp</dimen>
+
+
+    <dimen name="channel_chat_item_margin_left">12dp</dimen>
+    <dimen name="channel_chat_item_margin">6dp</dimen>
+    <dimen name="channel_chat_item_message_margin">0dp</dimen>
+
+    <dimen name="title_height">44dp</dimen>
+    <dimen name="content_fnt">20sp</dimen>
+
+    <dimen name="nav_height">40dp</dimen>
+
+    <!-- 私聊的功能-->
+    <dimen name="private_chat_leftname_margin">12dp</dimen>
+    <dimen name="private_chat_message_tip_text">18sp</dimen>
+
+
+    <!--IM 功能 一些公用的 标识-->
+    <!-- 列表中图片的高宽值 -->
+    <dimen name="normal_photo_width">46dp</dimen>
+
+    <dimen name="min_Height">60dp</dimen>
+
+    <dimen name="im_chat_item_message_margin_of_status">-47dp</dimen>
+    <dimen name="im_chat_item_message_margin_bottom">7dp</dimen>
+    <dimen name="im_chat_item_portrait_margin">9dp</dimen>
+    <dimen name="im_chat_item_message_bubble_margin_bottom">20dp</dimen>
+
+    <!--搜索-->
+    <dimen name="search_tag_offset">15dp</dimen>
+    <dimen name="search_text_padding">16dp</dimen>
+    <!--end-->
+
+    <dimen name="channel_chat_item_icon_margin_right">-10dp</dimen>
+
+    <!--手游语音-->
+    <dimen name="gamevoice_title_margin_left">12dip</dimen>
+    <dimen name="gamevoice_title_margin_right">12dip</dimen>
+
+
+    <!-- 所有圆角-->
+    <dimen name="radius_full_btn">5dp</dimen>
+    <dimen name="radius_half_btn">4dp</dimen>
+    <dimen name="radius_small_btn">3dp</dimen>
+
+    <!--语音球-->
+    <dimen name="mini_radius">2dp</dimen>
+    <dimen name="mini_line_size">1dp</dimen>
+    <dimen name="mini_warning_title_height">25dp</dimen>
+    <dimen name="mini_surround_padding">2dp</dimen>
+    <dimen name="mini_common_padding">5dp</dimen>
+    <dimen name="mini_title_size">14sp</dimen>
+    <dimen name="mini_common_text_size">10sp</dimen>
+    <dimen name="mini_item_text_size">12sp</dimen>
+    <dimen name="mini_input_height">20dp</dimen>
+    <dimen name="mini_channel_item_height">30dp</dimen>
+    <!--guess game-->
+
+    <!--顶部栏-->
+    <dimen name="pei_action_bar_icon_padding">16dp</dimen>
+    <dimen name="pei_action_bar_text_padding">16dp</dimen>
+    <dimen name="pei_action_bar_height">48dp</dimen>
+    <dimen name="pei_action_bar_icon_width">48dp</dimen>
+    <dimen name="pei_action_bar_margin_left">15dp</dimen>
+    <dimen name="pei_action_bar_margin_righ">15dp</dimen>
+    <dimen name="dimen_12_sp">12sp</dimen>
+    <dimen name="dimen_10_dp">10dp</dimen>
+    <dimen name="dimen_30_dp">30dp</dimen>
+    <dimen name="room_bottom_icon_size">41dp</dimen>
+    <dimen name="room_bottom_container_size">43dp</dimen>
+    <dimen name="room_bottom_wait_size_width">67dp</dimen>
+    <dimen name="room_bottom_wait_size_height">29dp</dimen>
+
+    <dimen name="setting_item_height">50dp</dimen>
+
+    <!--圆形滑动-->
+    <dimen name="cm_min_margins">5dp</dimen>
+    <dimen name="cm_circle_min_radius">50dp</dimen>
+    <dimen name="cm_menu_center_icon_size">32dp</dimen>
+    <dimen name="cm_prelollipop_additional_margin">10dp</dimen>
+    <dimen name="cm_main_shadow_size">30dp</dimen>
+
+    <dimen name="order_category_item_width">92dp</dimen>
+    <dimen name="order_category_item_height">29dp</dimen>
+    <dimen name="order_category_margin">40dp</dimen>
+
+    <dimen name="sp_14">14sp</dimen>
+    <dimen name="sp_16">16sp</dimen>
+    <dimen name="sp_18">18sp</dimen>
+    <dimen name="sp_20">20sp</dimen>
+    <dimen name="sp_22">22sp</dimen>
+    <dimen name="sp_24">24sp</dimen>
+    <dimen name="sp_26">26sp</dimen>
+    <dimen name="sp_28">28sp</dimen>
+    <dimen name="sp_30">30sp</dimen>
+
+</resources>

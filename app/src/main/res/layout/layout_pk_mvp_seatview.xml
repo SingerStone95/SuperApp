@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:background="@drawable/bkg_pk_mvp_seat"
+    >
+
+    <LinearLayout
+        android:id="@+id/lv_seat_us"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="4dp"
+        android:orientation="horizontal"
+        >
+
+        <RelativeLayout
+            android:id="@+id/rv_us_4"
+            android:layout_width="28dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            >
+
+            <android.support.v4.widget.CircleImageView
+                android:id="@+id/iv_pk_head_us_4"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@drawable/bkg_head_out_us_nobody"
+                android:src="@drawable/pk_mvp_seat_nobody"
+                />
+
+            <TextView
+                android:id="@+id/tv_pk_rank_us_4"
+                android:layout_width="16dp"
+                android:layout_height="13dp"
+                android:layout_below="@id/iv_pk_head_us_4"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-10dp"
+                android:background="@drawable/bkg_pk_mvp_number_us"
+                android:gravity="center_horizontal"
+                android:text="4"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rv_us_3"
+            android:layout_width="28dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            >
+
+            <android.support.v4.widget.CircleImageView
+                android:id="@+id/iv_pk_head_us_3"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@drawable/bkg_head_out_us_nobody"
+                android:src="@drawable/pk_mvp_seat_nobody"
+                />
+
+            <TextView
+                android:id="@+id/tv_pk_rank_us_3"
+                android:layout_width="16dp"
+                android:layout_height="13dp"
+                android:layout_below="@id/iv_pk_head_us_3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-10dp"
+                android:background="@drawable/bkg_pk_mvp_number_us"
+                android:gravity="center_horizontal"
+                android:text="3"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rv_us_2"
+            android:layout_width="28dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            >
+
+            <android.support.v4.widget.CircleImageView
+                android:id="@+id/iv_pk_head_us_2"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@drawable/bkg_head_out_us_nobody"
+                android:src="@drawable/pk_mvp_seat_nobody"
+                />
+
+            <TextView
+                android:id="@+id/tv_pk_rank_us_2"
+                android:layout_width="16dp"
+                android:layout_height="13dp"
+                android:layout_below="@id/iv_pk_head_us_2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-10dp"
+                android:background="@drawable/bkg_pk_mvp_number_us"
+                android:gravity="center_horizontal"
+                android:text="2"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rv_us_1"
+            android:layout_width="33dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            >
+
+            <android.support.v4.widget.CircleImageView
+                android:id="@+id/iv_pk_head_us_1"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:background="@drawable/bkg_head_out_us_nobody"
+                android:src="@drawable/pk_mvp_seat_nobody"
+                />
+
+            <TextView
+                android:id="@+id/tv_pk_rank_us_1"
+                android:layout_width="16dp"
+                android:layout_height="13dp"
+                android:layout_below="@id/iv_pk_head_us_1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-10dp"
+                android:background="@drawable/bkg_pk_mvp_number_us"
+                android:gravity="center_horizontal"
+                android:text="1"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lv_seat_them"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="4dp"
+        android:orientation="horizontal"
+        >
+
+        <RelativeLayout
+            android:id="@+id/rv_them_1"
+            android:layout_width="33dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            >
+
+            <android.support.v4.widget.CircleImageView
+                android:id="@+id/iv_pk_head_them_1"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:background="@drawable/bkg_head_out_us_nobody"
+                android:src="@drawable/pk_mvp_seat_nobody"
+                />
+
+            <TextView
+                android:layout_width="16dp"
+                android:layout_height="13dp"
+                android:layout_below="@id/iv_pk_head_them_1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-10dp"
+                android:background="@drawable/bkg_pk_mvp_number_us"
+                android:gravity="center_horizontal"
+                android:text="1"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rv_them_2"
+            android:layout_width="28dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="10dp"
+
+            >
+
+            <android.support.v4.widget.CircleImageView
+                android:id="@+id/iv_pk_head_them_2"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@drawable/bkg_head_out_us_nobody"
+                android:src="@drawable/pk_mvp_seat_nobody"
+                />
+
+            <TextView
+                android:layout_width="16dp"
+                android:layout_height="13dp"
+                android:layout_below="@id/iv_pk_head_them_2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-10dp"
+                android:background="@drawable/bkg_pk_mvp_number_us"
+                android:gravity="center_horizontal"
+                android:text="2"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rv_them_3"
+            android:layout_width="28dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="10dp"
+            >
+
+            <android.support.v4.widget.CircleImageView
+                android:id="@+id/iv_pk_head_them_3"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@drawable/bkg_head_out_us_nobody"
+                android:src="@drawable/pk_mvp_seat_nobody"
+                />
+
+            <TextView
+                android:layout_width="16dp"
+                android:layout_height="13dp"
+                android:layout_below="@id/iv_pk_head_them_3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-10dp"
+                android:background="@drawable/bkg_pk_mvp_number_us"
+                android:gravity="center_horizontal"
+                android:text="3"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rv_them_4"
+            android:layout_width="28dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="10dp"
+            >
+
+            <android.support.v4.widget.CircleImageView
+                android:id="@+id/iv_pk_head_them_4"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@drawable/bkg_head_out_us_nobody"
+                android:src="@drawable/pk_mvp_seat_nobody"
+                />
+
+            <TextView
+                android:layout_width="16dp"
+                android:layout_height="13dp"
+                android:layout_below="@id/iv_pk_head_them_4"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-10dp"
+                android:background="@drawable/bkg_pk_mvp_number_us"
+                android:gravity="center_horizontal"
+                android:text="4"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="22dp"
+        android:layout_height="14dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/pk_mvp"
+        android:scaleType="center" />
+</RelativeLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/song_boss_marque_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:background="@color/yellow"
+        android:gravity="center_vertical"
+        >
+
+        <singerstone.com.superapp.Marquee.MarqueeLayout
+            android:id="@+id/song_boss_marque"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:background="@color/red">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+        </singerstone.com.superapp.Marquee.MarqueeLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/img_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gv_animation"
+        android:layout_width="300dp"
+        android:layout_height="300dp" />
+
+</LinearLayout>

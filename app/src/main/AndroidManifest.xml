@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="singerstone.com.superapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+
+    <application
+        android:name=".SuperApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/laboratory"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/laboratory"
+        android:supportsRtl="true"
+        android:theme="@style/SupperAppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:hardwareAccelerated="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".KotlinActivity" />
+        <activity android:name=".TestActivity" />
+
+        <service
+            android:name=".Accessbility.AutoAccessbility"
+            android:enabled="true"
+            android:exported="true"
+            android:label="自动点击"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/check_accessibility_config" />
+        </service>
+
+        <activity android:name=".ReactNative.RNActivity">
+            <intent-filter>
+                <action android:name="com.singerstone.rnactivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ServiceIPC.ServiceIPCActivity" />
+
+        <service
+            android:name=".ServiceIPC.IPCService"
+            android:enabled="true"
+            android:process="com.singerstone.remote.ipcremote"
+            >
+            <intent-filter>
+                <action android:name="com.singerstone.supperapp.remote" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".keeplive.KeepLiveActivity"
+            />
+
+        <service
+            android:name=".keeplive.LiveService"
+            android:enabled="true"
+            ></service>
+    </application>
+
+</manifest>

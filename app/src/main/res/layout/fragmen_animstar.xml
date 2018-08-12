@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#AB82FF"
+    android:clipChildren="false"
+    android:orientation="vertical">
+
+    <singerstone.com.superapp.Star.StarViewContainer
+        android:id="@+id/view_container"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bkg"
+        android:clipChildren="false"
+        android:visibility="gone">
+        <ImageView
+            android:id="@+id/flash"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/flash"
+            android:visibility="gone" />
+        <ImageView
+            android:id="@+id/flash_light_in"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            android:src="@mipmap/light_in" />
+        <ImageView
+            android:id="@+id/flash_light_out"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="5dp"
+            android:visibility="gone"
+            android:src="@mipmap/light_out" />
+    </singerstone.com.superapp.Star.StarViewContainer>
+    <singerstone.com.superapp.text.TextContainer
+        android:id="@+id/text_container"
+        android:layout_below="@id/view_container"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-25dp"
+        android:visibility="gone"
+        android:layout_width="300dp"
+        android:layout_height="50dp">
+    </singerstone.com.superapp.text.TextContainer>
+
+    <Button
+        android:id="@+id/send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="send" />
+</RelativeLayout>
