@@ -2,7 +2,6 @@ package singerstone.com.inject;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.ActivityManagerNative;
 import android.app.Fragment;
 import android.os.Build;
 import android.util.ArrayMap;

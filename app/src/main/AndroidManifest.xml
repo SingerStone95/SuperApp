@@ -5,6 +5,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+    <!-- 添加快捷方式 -->
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <!-- 移除快捷方式 -->
+    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
+    <!-- 查询快捷方式 -->
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
 
     <application
         android:name=".SuperApp"
@@ -16,18 +22,26 @@
         android:theme="@style/SupperAppTheme">
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTask"
-            android:hardwareAccelerated="true">
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.VIEW" />
+                <!--  <data
+                      android:host="superapp"
+                      android:port="1024"
+                      android:path="/main"
+                      android:scheme="app" />-->
+            </intent-filter>
+            <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="superapp"
-                    android:port="1024"
                     android:path="/main"
+                    android:port="1024"
                     android:scheme="app" />
 
             </intent-filter>
@@ -62,21 +76,17 @@
         <service
             android:name=".ServiceIPC.IPCService"
             android:enabled="true"
-            android:process="com.singerstone.remote.ipcremote"
-            >
+            android:process="com.singerstone.remote.ipcremote">
             <intent-filter>
                 <action android:name="com.singerstone.supperapp.remote" />
             </intent-filter>
         </service>
 
-        <activity
-            android:name=".keeplive.KeepLiveActivity"
-            />
+        <activity android:name=".keeplive.KeepLiveActivity" />
 
         <service
             android:name=".keeplive.LiveService"
-            android:enabled="true"
-            ></service>
+            android:enabled="true"></service>
     </application>
 
 </manifest>

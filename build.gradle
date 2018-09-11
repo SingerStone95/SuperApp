@@ -11,7 +11,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0'
-        classpath 'net.wequick.tools.build:gradle-small:1.2.0-beta3'
+        classpath 'net.wequick.tools.build:gradle-small:1.5.0-beta2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'com.singerstone.plugin:supergradle:1.0.0'
@@ -37,6 +37,6 @@ apply plugin: 'net.wequick.small'
 apply plugin: 'com.singerstone.supergradle'
 small {
     buildToAssets = true
-    aarVersion = '1.2.0-beta3'
+    aarVersion = '1.5.0-beta2'
 }
 
