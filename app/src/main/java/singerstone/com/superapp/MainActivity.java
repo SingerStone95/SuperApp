@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements ILife {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        L.e("MainActivity onCreate!"+getIntent().getStringExtra("test"));
         setContentView(R.layout.activity_main);
         setFragment(MainFragment.newInstance());
         startService(new Intent(MainActivity.this, LiveService.class));
@@ -54,7 +55,8 @@ public class MainActivity extends AppCompatActivity implements ILife {
             }
         }, 3000);*/
         PriorityBlockingQueue<Runnable> queue = new PriorityBlockingQueue<Runnable>();
-        addShortcut(this,"test");
+        //addShortcut(this,"test");
+        L.i("current device: "+Rom.isMiui());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
@@ -104,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements ILife {
 
     @Override
     protected void onNewIntent(Intent intent) {
-        L.e("MainActivity onNewIntent!");
+        L.e("MainActivity onNewIntent!，extra:"+intent.getStringExtra("test"));
         super.onNewIntent(intent);
     }
 

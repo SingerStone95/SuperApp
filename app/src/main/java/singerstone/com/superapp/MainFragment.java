@@ -34,6 +34,7 @@ import singerstone.com.superapp.https.HttpsTestFragment;
 import singerstone.com.superapp.inke.InkeFragment;
 import singerstone.com.superapp.like.LikeViewFragment;
 import singerstone.com.superapp.opengl.OpenGlFragment;
+import singerstone.com.superapp.qqlive.QQLiveTestFragment;
 import singerstone.com.superapp.socketretrofit.Singerstone;
 import singerstone.com.superapp.socketretrofit.SocketService;
 import singerstone.com.superapp.treeholeview.TreeholeViewFragment;
@@ -152,6 +153,8 @@ public class MainFragment extends BaseFragment {
                     case 18:
                         ((MainActivity) getActivity()).setFragmentAddToBackStack(new OpenGlFragment());
                         break;
+                    case 19:
+                        ((MainActivity) getActivity()).setFragmentAddToBackStack(QQLiveTestFragment.newInstance());
                     default:
                         break;
                 }
@@ -180,6 +183,7 @@ public class MainFragment extends BaseFragment {
         items.add(new ToolItem(R.drawable.default_tool, "Small插件化测试"));
         items.add(new ToolItem(R.drawable.default_tool, "Https双向验证"));
         items.add(new ToolItem(R.drawable.default_tool, "OpenGl瞎搞几下"));
+        items.add(new ToolItem(R.drawable.default_tool, "腾讯视频测试"));
     }
 
     class Test {

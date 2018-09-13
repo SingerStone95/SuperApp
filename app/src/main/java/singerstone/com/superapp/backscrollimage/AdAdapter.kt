@@ -44,9 +44,9 @@ class AdAdapter : RecyclerView.Adapter<AdAdapter.AdHolder> {
 
 
     class AdHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
-        var title = itemView?.findViewById(R.id.id_tv_title) as TextView
-        var desc = itemView?.findViewById(R.id.id_tv_desc) as TextView
-        var image = itemView?.findViewById(R.id.id_iv_ad) as AdImageView
+        var title = itemView?.findViewById<TextView?>(R.id.id_tv_title) as TextView
+        var desc = itemView?.findViewById<TextView?>(R.id.id_tv_desc) as TextView
+        var image = itemView?.findViewById<AdImageView?>(R.id.id_iv_ad) as AdImageView
         fun setVisible(id: Int, visible: Boolean) {
             when (id) {
                 R.id.id_tv_title -> {
