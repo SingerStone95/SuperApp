@@ -3,6 +3,8 @@ package singerstone.com.superapp.qqlive;
 import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.app.PendingIntent;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ShortcutInfo;
@@ -29,6 +31,8 @@ import singerstone.com.superapp.R;
 import singerstone.com.superapp.utils.Device;
 import singerstone.com.superapp.utils.L;
 
+import static android.content.Context.CLIPBOARD_SERVICE;
+
 public class QQLiveTestFragment extends Fragment {
     @BindView(R.id.btn_add_shortcut)
     public Button btnAddShort;
@@ -41,6 +45,8 @@ public class QQLiveTestFragment extends Fragment {
     public Button btnAddCan;
     @BindView(R.id.btn_remove_can)
     public Button btnRemoveCan;
+    @BindView(R.id.btn_get_clipboard)
+    public Button btnGetClipboard;
 
     public static String TITLE_SHORTCUT = "test";
 
@@ -61,7 +67,7 @@ public class QQLiveTestFragment extends Fragment {
             public void onClick(View v) {
                 L.i("version:--->>" + Device.getVersionName(getActivity()));
                 if (Device.getVersionName(getActivity()) < Build.VERSION_CODES.O) {
-                    installShortCut(TITLE_SHORTCUT, R.drawable.faceeli_ic_pkscenen_gift, intent);
+                    installShortCut(TITLE_SHORTCUT, R.mipmap.ic_launcher, intent);
                 } else {
                     addShortCut(getActivity());
                 }
@@ -88,14 +94,39 @@ public class QQLiveTestFragment extends Fragment {
         btnAddCan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                long time = stringToDate("2018-9-14 18:51:00", "yyyy-MM-dd HH:mm:ss").getTime();
-                CalendarReminderUtils.addCalendarEventAuto(getActivity(), "watch movie", "8.00 watch movie", time, 1);
+                long time = stringToDate("2018-9-17 16:22:00", "yyyy-MM-dd HH:mm:ss").getTime();
+                CalendarReminderUtils.addCalendarEventWithAction(getActivity(), "watch movie", "8.00 watch movie", "www.baidu.com ",
+                        "txvideo://v.qq.com/VideoDetailActivity?vid=s0020ghdx11", time, 1);
+                // CalendarReminderUtils.addCalendarEventManual(getActivity(), "134", "2334", time);
+                //Calendar2.addCalendarEvent(getActivity(), "111", "22", time, 1);
             }
         });
         btnRemoveCan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CalendarReminderUtils.deleteCalendarEvent(getActivity(), "watch movie");
+                if (CalendarReminderUtils.hasCalendarEvent(getActivity(), "watch movie", "8.00 watch movie")) {
+                    CalendarReminderUtils.deleteCalendarEvent(getActivity(), "watch movie", "8.00 watch movie");
+                } else {
+                    Toast.makeText(getActivity(), "no event yet!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        btnGetClipboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
+
+                //写文本
+                ClipData clipWrite = ClipData.newPlainText("txvideo", "");
+                clipboard.setPrimaryClip(clipWrite);
+                //读文本
+                ClipData clipRead = clipboard.getPrimaryClip();
+                if (clipRead == null || clipRead.getItemCount() == 0)
+                    return; // ... whatever; just don't go to next line
+                String t = clipRead.getItemAt(0).getText().toString();
+
+
+                Toast.makeText(getActivity(), t, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -152,6 +183,8 @@ public class QQLiveTestFragment extends Fragment {
     }
 
 
+    @TargetApi(Build.VERSION_CODES.O)
+    @RequiresApi(api = Build.VERSION_CODES.N_MR1)
     public static void addShortCut(Context context) {
         ShortcutManager shortcutManager = (ShortcutManager) context.getSystemService(Context.SHORTCUT_SERVICE);
 

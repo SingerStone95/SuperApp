@@ -10,6 +10,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -28,7 +29,10 @@ public class MainActivity extends AppCompatActivity implements ILife {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        L.e("MainActivity onCreate!"+getIntent().getStringExtra("test"));
+        if (getIntent().getData() != null) {
+            String myCustomUri = getIntent().getStringExtra(CalendarContract.EXTRA_CUSTOM_APP_URI);
+            L.e("MainActivity onCreate!   " + myCustomUri+"  "+getIntent().getDataString());
+        }
         setContentView(R.layout.activity_main);
         setFragment(MainFragment.newInstance());
         startService(new Intent(MainActivity.this, LiveService.class));
@@ -56,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements ILife {
         }, 3000);*/
         PriorityBlockingQueue<Runnable> queue = new PriorityBlockingQueue<Runnable>();
         //addShortcut(this,"test");
-        L.i("current device: "+Rom.isMiui());
+        L.i("current device: " + Rom.isMiui());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
@@ -106,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements ILife {
 
     @Override
     protected void onNewIntent(Intent intent) {
-        L.e("MainActivity onNewIntent!，extra:"+intent.getStringExtra("test"));
+        L.e("MainActivity onNewIntent!，extra:" + intent.getStringExtra("test"));
         super.onNewIntent(intent);
     }
 
@@ -131,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements ILife {
 // TODO: 2017/6/25 发送广播
             cx.sendBroadcast(shortcut);
             L.i("add shortcut success!");
-        }catch (Exception e){
+        } catch (Exception e) {
             L.e("add shortcut failed!");
         }
     }

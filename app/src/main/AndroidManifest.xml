@@ -31,23 +31,15 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-                <action android:name="android.intent.action.VIEW" />
-                <!--  <data
-                      android:host="superapp"
-                      android:port="1024"
-                      android:path="/main"
-                      android:scheme="app" />-->
+
             </intent-filter>
             <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data
                     android:host="superapp"
-                    android:path="/main"
-                    android:port="1024"
                     android:scheme="app" />
-
             </intent-filter>
             <intent-filter>
                 <action android:name="android.provider.calendar.action.HANDLE_CUSTOM_EVENT" />
