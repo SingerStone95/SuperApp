@@ -95,7 +95,7 @@ public class CalendarReminderUtils {
         }
         L.e("add calendar event success!");
         //事件提醒的设定
-        if (reminderTime == DONT_REMIND) {
+        if (reminderTime <= DONT_REMIND) {
             return;
         }
         ContentValues values = new ContentValues();
@@ -157,7 +157,7 @@ public class CalendarReminderUtils {
             return;
         }
         //事件提醒的设定
-        if (reminderTime == DONT_REMIND) {
+        if (reminderTime <= DONT_REMIND) {
             return;
         }
         ContentValues values = new ContentValues();
@@ -223,7 +223,7 @@ public class CalendarReminderUtils {
      * @param context
      * @param title       标题
      * @param description 描述
-     * @return
+     * @return 同步返回
      */
     public static boolean hasCalendarEvent(Context context, String title, String description) {
         if (context == null) {

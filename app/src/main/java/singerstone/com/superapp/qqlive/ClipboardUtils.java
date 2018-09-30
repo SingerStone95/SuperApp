@@ -3,7 +3,6 @@ package singerstone.com.superapp.qqlive;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 
@@ -19,7 +18,7 @@ public class ClipboardUtils {
      * @param context
      * @return
      */
-    public static String getClipboardText(@NonNull Context context) {
+    public static String getClipboardText(Context context) {
         if (context == null) {
             return "";
         }
@@ -38,7 +37,7 @@ public class ClipboardUtils {
      * @param context
      * @param text    可以是空串，不可是NULL
      */
-    public static void writeTextToClipboard(@NonNull Context context, @NonNull String text) {
+    public static void writeTextToClipboard(Context context, String text) {
         if (context == null || text == null) {
             return;
         }
