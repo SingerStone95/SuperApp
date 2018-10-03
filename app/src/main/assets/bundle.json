@@ -6,10 +6,6 @@
       "pkg": "singerstone.com.appme"
     },
     {
-      "uri": "rn",
-      "pkg": "singerstone.com.apppluginrn"
-    },
-    {
       "pkg": "singerstone.com.libbase"
     }
   ]
