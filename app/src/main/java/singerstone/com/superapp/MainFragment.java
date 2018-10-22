@@ -2,6 +2,7 @@ package singerstone.com.superapp;
 
 
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -38,6 +39,7 @@ import singerstone.com.superapp.qqlive.QQLiveTestFragment;
 import singerstone.com.superapp.socketretrofit.Singerstone;
 import singerstone.com.superapp.socketretrofit.SocketService;
 import singerstone.com.superapp.treeholeview.TreeholeViewFragment;
+import singerstone.com.superapp.utils.L;
 import singerstone.com.superapp.waveeffect.WaveFragment;
 
 /**
@@ -75,7 +77,7 @@ public class MainFragment extends BaseFragment {
     private void initView(View view) {
         rv_tools = (RecyclerView) view.findViewById(R.id.rv_tools);
         ViewInject.inject(this, rv_tools);
-        rv_tools.setLayoutManager(new LinearLayoutManager(getActivity()));//第一个参数 //线性
+        rv_tools.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));//第一个参数 //线性
         toolAdapter = new ToolAdapter(getActivity(), items);
         rv_tools.setAdapter(toolAdapter);// 第二个参数
         rv_tools.addItemDecoration(new DividerGridItemDecoration(getActivity()));//第三个参数（上面定义的diver）
@@ -160,36 +162,82 @@ public class MainFragment extends BaseFragment {
                 }
             }
         });
+        rv_tools.addOnScrollListener(scrollListener);
+
     }
 
     private void initData() {
         items = new ArrayList<>();
-        items.add(new ToolItem(R.drawable.default_tool, "满天星，打赏效果"));
-        items.add(new ToolItem(R.drawable.default_tool, "水滴拉伸几何展示"));
-        items.add(new ToolItem(R.drawable.default_tool, "仿Retrofit实现Socket收发请求"));
-        items.add(new ToolItem(R.drawable.default_tool, "百度波浪进度条"));
-        items.add(new ToolItem(R.drawable.default_tool, "VIEW事件传递LOG"));
-        items.add(new ToolItem(R.drawable.default_tool, "Kotlin界面"));
-        items.add(new ToolItem(R.drawable.default_tool, "手Y PK条View"));
-        items.add(new ToolItem(R.drawable.default_tool, "Accessbility模拟点击"));
-        items.add(new ToolItem(R.drawable.default_tool, "跑马灯View"));
-        items.add(new ToolItem(R.drawable.default_tool, "ReactNative"));
-        items.add(new ToolItem(R.drawable.default_tool, "手Y树洞踢人UI"));
-        items.add(new ToolItem(R.drawable.default_tool, "积分器UI，点赞效果"));
-        items.add(new ToolItem(R.drawable.default_tool, "Service通信（IPC）"));
-        items.add(new ToolItem(R.drawable.default_tool, "仿知乎广告背景图"));
-        items.add(new ToolItem(R.drawable.default_tool, "电子书翻页效果"));
-        items.add(new ToolItem(R.drawable.default_tool, "映客答题接口测试"));
-        items.add(new ToolItem(R.drawable.default_tool, "Small插件化测试"));
-        items.add(new ToolItem(R.drawable.default_tool, "Https双向验证"));
-        items.add(new ToolItem(R.drawable.default_tool, "OpenGl瞎搞几下"));
-        items.add(new ToolItem(R.drawable.default_tool, "腾讯视频测试"));
+        int index = 0;
+        items.add(new ToolItem(R.drawable.default_tool, "满天星，打赏效果" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "水滴拉伸几何展示" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "仿Retrofit实现Socket收发请求" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "百度波浪进度条" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "VIEW事件传递LOG" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "Kotlin界面" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "手Y PK条View" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "Accessbility模拟点击" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "跑马灯View" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "ReactNative" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "手Y树洞踢人UI" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "积分器UI，点赞效果" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "Service通信（IPC）" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "仿知乎广告背景图" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "电子书翻页效果" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "映客答题接口测试" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "Small插件化测试" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "Https双向验证" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "OpenGl瞎搞几下" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "腾讯视频测试" + index++));
     }
 
-    class Test {
-        public void test() {
+    private RecyclerView.OnScrollListener scrollListener = new RecyclerView.OnScrollListener() {
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                LinearLayoutManager linearManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                int firstItemPosition = linearManager.findFirstVisibleItemPosition();
+                int lastItemPosition = linearManager.findLastVisibleItemPosition();
+                View firstView = linearManager.findViewByPosition(firstItemPosition);
+                View lastView = linearManager.findViewByPosition(lastItemPosition);
+                //只需要检测第一个和最后一个可见的Item，中间的默认全部可见
+                if (getVisibilityPercents(firstView) > 50) {
 
+                }
+                if (getVisibilityPercents(lastView) > 50) {
+
+                }
+                L.i("onScrollStateChanged", firstItemPosition + " " + lastItemPosition + "，" + getVisibilityPercents(firstView) + "   " + getVisibilityPercents(lastView));
+            }
         }
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+            L.i("onScrolled :" + dx + " " + dy);
+        }
+    };
+
+    /**
+     * 判断当前View展示的百分比
+     *
+     * @param view
+     * @return
+     */
+    public int getVisibilityPercents(View view) {
+        if (view == null) {
+            L.e("view==null");
+            return 0;
+        }
+        Rect rect = new Rect();
+        view.getLocalVisibleRect(rect);
+        int height = view.getHeight();
+        int width = view.getWidth();
+        int percents;
+        percents = (rect.right - rect.left) * (rect.bottom - rect.top) * 100 / (width * height);
+        return percents;
     }
+
 }
 

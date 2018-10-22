@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import singerstone.com.superapp.waveeffect.DebugTextView;
+
 /**
  * Created by chenbinhao on 2017/7/5.
  * YY:909075276
@@ -35,6 +37,7 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ToolHolder> {
     public void onBindViewHolder(final ToolHolder holder, final int position) {
         holder.tv_tool.setText(items.get(position).getText());
         holder.iv_tool.setBackgroundResource(items.get(position).getResourseId());
+        holder.tv_tool.index = position;
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,14 +64,14 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ToolHolder> {
 
     public class ToolHolder extends RecyclerView.ViewHolder {
         public ImageView iv_tool;
-        public TextView tv_tool;
+        public DebugTextView tv_tool;
         public View itemView;
 
         public ToolHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
             this.iv_tool = (ImageView) itemView.findViewById(R.id.iv_tool);
-            this.tv_tool = (TextView) itemView.findViewById(R.id.tv_tool);
+            this.tv_tool = (DebugTextView) itemView.findViewById(R.id.tv_tool);
         }
     }
 

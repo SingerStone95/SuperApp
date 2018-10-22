@@ -1,5 +1,6 @@
 package singerstone.com.superapp.qqlive;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.app.PendingIntent;
@@ -7,15 +8,23 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
+import android.graphics.Color;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.content.ContextCompat;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.ParseException;
@@ -54,23 +63,32 @@ public class QQLiveTestFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_qqlive_test_fragment, container, false);
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
+        final ViewGroup view = (ViewGroup) inflater.inflate(R.layout.layout_qqlive_test_fragment, container, false);
         final Intent intent = new Intent(getActivity(), MainActivity.class);
         ViewInject.inject(this, view);
         btnAddShort.setOnClickListener(new View.OnClickListener() {
             @TargetApi(Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
+
+                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(getActivity(), "no", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getActivity(), "yes", Toast.LENGTH_SHORT).show();
+                }
                 L.i("version:--->>" + Device.getVersionName(getActivity()));
                 if (Device.getVersionName(getActivity()) < Build.VERSION_CODES.O) {
                     installShortCut(TITLE_SHORTCUT, R.mipmap.ic_launcher, intent);
                 } else {
                     addShortCut(getActivity());
                 }
+
+
             }
         });
-        L.e(btnAddShort.length()+"   <<<<<<<<");
+        L.e(btnAddShort.length() + "   <<<<<<<<");
         btnFindShortcut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,10 +143,62 @@ public class QQLiveTestFragment extends Fragment {
 
 
                 Toast.makeText(getActivity(), t, Toast.LENGTH_SHORT).show();
+                //showBubbleOnShare(getActivity(), "和小伙伴们一起来学习吧", btnGetClipboard, 3000);
+
+                final View contentView = LayoutInflater.from(getActivity()).inflate(R.layout.layout_pop_window_bubble, null);
+                contentView.measure(makeDropDownMeasureSpec(view.getMeasuredWidth()), makeDropDownMeasureSpec(view.getMeasuredHeight()));
+                L.i(contentView.getMeasuredWidth() + "---" + contentView.getMeasuredHeight());
+                view.addView(contentView);
+                new Handler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        L.i(contentView.getWidth() + "");
+                    }
+                });
+
             }
         });
 
         return view;
+    }
+
+
+    /**
+     * 在分享ICON上显示气泡，纯文字
+     *
+     * @param text 文案
+     */
+    private void showBubbleOnShare(Context context, String text, View anchorView, long delayTime) {
+     /*   View contentView = LayoutInflater.from(context).inflate(R.layout.layout_pop_window_bubble, null);
+        TextView tvTips = contentView.findViewById(R.id.tv_tips);
+        tvTips.setText(text);
+        PopupWindow popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, false);
+        int[] location = new int[2];
+        anchorView.getLocationOnScreen(location);
+        L.e(" location0:" + location[0] + "  location1:" + location[1]);
+        contentView.measure(makeDropDownMeasureSpec(popupWindow.getWidth()), makeDropDownMeasureSpec(popupWindow.getHeight()));
+        L.i(contentView.getMeasuredWidth() + "---" + contentView.getMeasuredHeight());
+        popupWindow.showAtLocation(anchorView, Gravity.TOP, location[0],
+                location[1]);*/
+        View contentView = LayoutInflater.from(context).inflate(R.layout.layout_pop_window_bubble, null);
+        TextView tvTips = contentView.findViewById(R.id.tv_tips);
+        tvTips.setText(text);
+        RelativePopupWindow popupWindow = new RelativePopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, false);
+        popupWindow.showOnAnchor(anchorView, RelativePopupWindow.VerticalPosition.ABOVE, RelativePopupWindow.HorizontalPosition.ALIGN_RIGHT);
+
+    }
+
+    private static int makeDropDownMeasureSpec(int measureSpec) {
+        return View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(measureSpec), View.MeasureSpec.UNSPECIFIED);
+    }
+
+    private static int getDropDownMeasureSpecMode(int measureSpec) {
+        switch (measureSpec) {
+            case ViewGroup.LayoutParams.WRAP_CONTENT:
+                return View.MeasureSpec.UNSPECIFIED;
+            default:
+                return View.MeasureSpec.EXACTLY;
+        }
     }
 
     public static Date stringToDate(String strTime, String formatType) {
