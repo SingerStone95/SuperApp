@@ -119,43 +119,33 @@ public class MainFragment extends BaseFragment {
                         ((MainActivity) getActivity()).setFragmentAddToBackStack(MarqueeFragment.newInstance());
                         break;
                     case 9:
-                        /**
-                         * 显示启动
-                         */
-                        //startActivity(new Intent(getActivity(), RNActivity.class));
-                        /**
-                         * 隐示启动
-                         */
-                        Small.openUri("rn", getActivity());
-                        break;
-                    case 10:
                         ((MainActivity) getActivity()).setFragmentAddToBackStack(TreeholeViewFragment.newInstance());
                         break;
-                    case 11:
+                    case 10:
                         ((MainActivity) getActivity()).setFragmentAddToBackStack(LikeViewFragment.newInstance());
                         break;
-                    case 12:
+                    case 11:
                         startActivity(new Intent(getActivity(), ServiceIPCActivity.class));
                         break;
-                    case 13:
+                    case 12:
                         ((MainActivity) getActivity()).setFragmentAddToBackStack(FragmentScrollImage.newInstance());
                         break;
-                    case 14:
+                    case 13:
                         ((MainActivity) getActivity()).setFragmentAddToBackStack(BookFragment.newInstance());
                         break;
-                    case 15:
+                    case 14:
                         ((MainActivity) getActivity()).setFragmentAddToBackStack(InkeFragment.newInstance());
                         break;
-                    case 16:
+                    case 15:
                         Small.openUri("me", getActivity());
                         break;
-                    case 17:
+                    case 16:
                         ((MainActivity) getActivity()).setFragmentAddToBackStack(HttpsTestFragment.newInstance());
                         break;
-                    case 18:
+                    case 17:
                         ((MainActivity) getActivity()).setFragmentAddToBackStack(new OpenGlFragment());
                         break;
-                    case 19:
+                    case 18:
                         ((MainActivity) getActivity()).setFragmentAddToBackStack(QQLiveTestFragment.newInstance());
                     default:
                         break;
@@ -178,7 +168,6 @@ public class MainFragment extends BaseFragment {
         items.add(new ToolItem(R.drawable.default_tool, "手Y PK条View" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "Accessbility模拟点击" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "跑马灯View" + index++));
-        items.add(new ToolItem(R.drawable.default_tool, "ReactNative" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "手Y树洞踢人UI" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "积分器UI，点赞效果" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "Service通信（IPC）" + index++));

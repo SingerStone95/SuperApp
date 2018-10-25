@@ -11,24 +11,21 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
-import android.graphics.Color;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import singerstone.com.annotations.BindView;
@@ -75,7 +72,7 @@ public class QQLiveTestFragment extends Fragment {
                 if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)
                         != PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(getActivity(), "no", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     Toast.makeText(getActivity(), "yes", Toast.LENGTH_SHORT).show();
                 }
                 L.i("version:--->>" + Device.getVersionName(getActivity()));
@@ -159,6 +156,14 @@ public class QQLiveTestFragment extends Fragment {
             }
         });
 
+        ArrayList<String> list = new ArrayList<>();
+        list.add("1");
+        list.add("1");
+        list.add("1");
+        list.add("1");
+        list.add("1");
+        L.i(list.toString());
+        L.i(list.toString());
         return view;
     }
 

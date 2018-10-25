@@ -13,16 +13,21 @@ class SuperPlugin implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
-        println(">>>>>>>>>>>>>>>> start super gradle >>>>>>>>>>>>>>>>")
+        println(">>>>>>>>>>>>>>>> start super gradle <<<<<<<<<<<<<<<<<<")
         mProject=project
         def sp = project.gradle.startParameter
         def p = sp.projectDir
         for (task in sp.taskNames){
             println(task)
         }
-        println(p.getAbsolutePath())
+        if (p==null){
+            println("sp.projectDir is null!")
+        }else {
+            println(p.getAbsolutePath())
+        }
         createExtension()
         createTask()
+        println(">>>>>>>>>>>>>>>> end super gradle <<<<<<<<<<<<<<<<<<")
     }
 
     void createExtension(){

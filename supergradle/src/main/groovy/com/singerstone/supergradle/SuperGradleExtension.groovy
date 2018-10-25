@@ -4,7 +4,7 @@ import org.gradle.api.Project
 
 class SuperGradleExtension{
     Project mProject
-    String auchor = 'unknown'
+    String auchor = 'auchor:singerstone'
     public SuperGradleExtension(Project project) {
         this.mProject = project
     }

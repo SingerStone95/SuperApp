@@ -65,13 +65,6 @@
                 android:resource="@xml/check_accessibility_config" />
         </service>
 
-        <activity android:name=".ReactNative.RNActivity">
-            <intent-filter>
-                <action android:name="com.singerstone.rnactivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
         <activity android:name=".ServiceIPC.ServiceIPCActivity" />
 
         <service
