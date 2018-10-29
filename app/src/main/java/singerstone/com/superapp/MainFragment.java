@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -51,7 +52,7 @@ import singerstone.com.superapp.waveeffect.WaveFragment;
 public class MainFragment extends BaseFragment {
 
     @BindView(R.id.rv_tools)
-    RecyclerView rv_tools;
+    SuperScrollRecyclerView rv_tools;
     ArrayList<ToolItem> items;
     ToolAdapter toolAdapter;
 
@@ -75,12 +76,17 @@ public class MainFragment extends BaseFragment {
     }
 
     private void initView(View view) {
-        rv_tools = (RecyclerView) view.findViewById(R.id.rv_tools);
+        rv_tools = (SuperScrollRecyclerView) view.findViewById(R.id.rv_tools);
         ViewInject.inject(this, rv_tools);
-        rv_tools.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));//第一个参数 //线性
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
+        //3.给GridLayoutManager设置滑动的方向
+        gridLayoutManager.setOrientation(GridLayoutManager.HORIZONTAL);
+        //4.为recyclerView设置布局管理器
+        rv_tools.setLayoutManager(gridLayoutManager);
         toolAdapter = new ToolAdapter(getActivity(), items);
         rv_tools.setAdapter(toolAdapter);// 第二个参数
         rv_tools.addItemDecoration(new DividerGridItemDecoration(getActivity()));//第三个参数（上面定义的diver）
+
         toolAdapter.setOnItemClickListener(new ToolAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position, View itemView) {
@@ -89,6 +95,7 @@ public class MainFragment extends BaseFragment {
                         ((MainActivity) getActivity()).setFragmentAddToBackStack(StarFragment.newInstance());
                         break;
                     case 1:
+
                         ((MainActivity) getActivity()).setFragmentAddToBackStack(BezierPaopaoFragment.newInstance());
                         break;
                     case 2:
