@@ -2,6 +2,7 @@ package singerstone.com.superapp;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,20 +22,26 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ToolHolder> {
     private Context mContext;
     private ArrayList<ToolItem> items;
     private OnItemClickListener listener;
+    private int mItemWidthWidth;
 
     public ToolAdapter(Context context, ArrayList<ToolItem> items) {
         this.mContext = context;
         this.items = items;
+        DisplayMetrics dm = context.getResources().getDisplayMetrics();
+        mItemWidthWidth = dm.widthPixels / 2;
     }
 
     @Override
     public ToolHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ToolHolder toolHolder = new ToolHolder(LayoutInflater.from(mContext).inflate(R.layout.layout_tool_item, null));
+        //这种写法能保证xml中的layoutparam有效
+        View rootView = LayoutInflater.from(mContext).inflate(R.layout.layout_tool_item, parent, false);
+        ToolHolder toolHolder = new ToolHolder(rootView);
         return toolHolder;
     }
 
     @Override
     public void onBindViewHolder(final ToolHolder holder, final int position) {
+        holder.itemView.getLayoutParams().width = mItemWidthWidth;
         holder.tv_tool.setText(items.get(position).getText());
         holder.iv_tool.setBackgroundResource(items.get(position).getResourseId());
         holder.tv_tool.index = position;

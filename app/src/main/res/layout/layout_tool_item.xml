@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="300dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:background="@color/lightyellow">
 
     <ImageView
         android:id="@+id/iv_tool"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
         android:layout_marginLeft="5dp"
         android:src="@drawable/default_tool" />
 
     <singerstone.com.superapp.waveeffect.DebugTextView
         android:id="@+id/tv_tool"
         android:layout_width="match_parent"
-        android:layout_centerVertical="true"
-        android:gravity="center"
-        android:layout_height="50dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_toRightOf="@id/iv_tool"/>
-</RelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_tool"
+       android:layout_gravity="center_vertical"
+        android:gravity="center" />
+</LinearLayout>

@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,7 @@ import singerstone.com.superapp.socketretrofit.Singerstone;
 import singerstone.com.superapp.socketretrofit.SocketService;
 import singerstone.com.superapp.treeholeview.TreeholeViewFragment;
 import singerstone.com.superapp.utils.L;
+import singerstone.com.superapp.waveeffect.MySnapHelper;
 import singerstone.com.superapp.waveeffect.WaveFragment;
 
 /**
@@ -78,21 +80,19 @@ public class MainFragment extends BaseFragment {
     private void initView(View view) {
         rv_tools = (SuperScrollRecyclerView) view.findViewById(R.id.rv_tools);
         ViewInject.inject(this, rv_tools);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
-        //3.给GridLayoutManager设置滑动的方向
-        gridLayoutManager.setOrientation(GridLayoutManager.HORIZONTAL);
-        //4.为recyclerView设置布局管理器
-        rv_tools.setLayoutManager(gridLayoutManager);
+        final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 3, LinearLayoutManager.HORIZONTAL, false);
+        layoutManager.setOrientation(GridLayoutManager.HORIZONTAL);
+        rv_tools.setLayoutManager(layoutManager);
         toolAdapter = new ToolAdapter(getActivity(), items);
         rv_tools.setAdapter(toolAdapter);// 第二个参数
-        rv_tools.addItemDecoration(new DividerGridItemDecoration(getActivity()));//第三个参数（上面定义的diver）
-
+        new MySnapHelper().attachToRecyclerView(rv_tools);
         toolAdapter.setOnItemClickListener(new ToolAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position, View itemView) {
                 switch (position) {
                     case 0:
-                        ((MainActivity) getActivity()).setFragmentAddToBackStack(StarFragment.newInstance());
+                        //((MainActivity) getActivity()).setFragmentAddToBackStack(StarFragment.newInstance());
+                        findStartView(layoutManager,OrientationHelper.createHorizontalHelper(layoutManager));
                         break;
                     case 1:
 
@@ -161,9 +161,25 @@ public class MainFragment extends BaseFragment {
         });
         rv_tools.addOnScrollListener(scrollListener);
 
+
+
     }
 
-    private void initData() {
+    private void findStartView(RecyclerView.LayoutManager layoutManager,
+                               OrientationHelper helper) {
+        int childCount = layoutManager.getChildCount();
+
+        View closestChild = null;
+        int startest = Integer.MAX_VALUE;
+
+        for (int i = 0; i < childCount; i++) {
+            final View child = layoutManager.getChildAt(i);
+            int childStart = helper.getDecoratedStart(child);
+            L.i("child"+i+"  "+childStart);
+        }
+    }
+
+        private void initData() {
         items = new ArrayList<>();
         int index = 0;
         items.add(new ToolItem(R.drawable.default_tool, "满天星，打赏效果" + index++));
