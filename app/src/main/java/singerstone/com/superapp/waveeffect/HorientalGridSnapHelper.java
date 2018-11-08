@@ -4,8 +4,8 @@ import android.graphics.PointF;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.view.View;
 
 import singerstone.com.superapp.utils.L;
@@ -16,7 +16,7 @@ import singerstone.com.superapp.utils.L;
  * date   : 2018/10/30下午7:45
  * desc   :
  */
-public class HorientalGridSnapHelper extends PagerSnapHelper {
+public class HorientalGridSnapHelper extends SnapHelper {
 
     private OrientationHelper mHorizontalHelper;
     private int mRowCount = 0;
