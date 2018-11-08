@@ -3,11 +3,9 @@ package singerstone.com.superapp.waveeffect;
 import android.graphics.PointF;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SnapHelper;
 import android.view.View;
 
 import singerstone.com.superapp.utils.L;
@@ -18,14 +16,18 @@ import singerstone.com.superapp.utils.L;
  * date   : 2018/10/30下午7:45
  * desc   :
  */
-public class MySnapHelper extends PagerSnapHelper {
+public class HorientalGridSnapHelper extends PagerSnapHelper {
 
     private OrientationHelper mHorizontalHelper;
-
+    private int mRowCount = 0;
 
     @Override
     public void attachToRecyclerView(@Nullable RecyclerView recyclerView) throws IllegalStateException {
         super.attachToRecyclerView(recyclerView);
+    }
+
+    public HorientalGridSnapHelper(int rowCount) {
+        this.mRowCount = rowCount;
     }
 
     /**
@@ -38,13 +40,13 @@ public class MySnapHelper extends PagerSnapHelper {
     @Nullable
     @Override
     public int[] calculateDistanceToFinalSnap(@NonNull RecyclerView.LayoutManager layoutManager, @NonNull View targetView) {
-        L.i("MySnapHelper : invoke calculateDistanceToFinalSnap " + targetView);
         int[] out = new int[2];
         if (layoutManager.canScrollHorizontally()) {
             out[0] = distanceToStart(targetView, getHorizontalHelper(layoutManager));
         } else {
             out[0] = 0;
         }
+        L.i("HorientalGridSnapHelper : invoke calculateDistanceToFinalSnap return:" + out);
         return out;
     }
 
@@ -62,7 +64,7 @@ public class MySnapHelper extends PagerSnapHelper {
     @Override
     public View findSnapView(RecyclerView.LayoutManager layoutManager) {
         View view = findCloseLeftView(layoutManager, OrientationHelper.createHorizontalHelper(layoutManager));
-        L.i("MySnapHelper : invoke findSnapView：" + view);
+        L.i("HorientalGridSnapHelper : invoke findSnapView");
         return view;
     }
 
@@ -72,25 +74,19 @@ public class MySnapHelper extends PagerSnapHelper {
         if (childCount == 0) {
             return null;
         }
-
         View closestChild = null;
         final int left;
         if (layoutManager.getClipToPadding()) {
-            //center = helper.getStartAfterPadding() + helper.getTotalSpace() / 2;
             left = helper.getStartAfterPadding();
         } else {
-            //center = helper.getEnd() / 2;
             left = 0;
         }
         int absClosest = Integer.MAX_VALUE;
 
         for (int i = 0; i < childCount; i++) {
             final View child = layoutManager.getChildAt(i);
-            // int childCenter = helper.getDecoratedStart(child)
-            //         + (helper.getDecoratedMeasurement(child) / 2);
             int childLeft = helper.getDecoratedStart(child);
             int absDistance = Math.abs(childLeft - left);
-            /** if child center is closer than previous closest, set it as closest  **/
             if (absDistance < absClosest) {
                 absClosest = absDistance;
                 closestChild = child;
@@ -117,9 +113,8 @@ public class MySnapHelper extends PagerSnapHelper {
         if (mStartMostChildView == null) {
             return RecyclerView.NO_POSITION;
         }
-        final int centerPosition = layoutManager.getPosition(mStartMostChildView);
-        L.i("findTargetSnapPosition  centerPosition:" + centerPosition);
-        if (centerPosition == RecyclerView.NO_POSITION) {
+        final int leftPosition = layoutManager.getPosition(mStartMostChildView);
+        if (leftPosition == RecyclerView.NO_POSITION) {
             return RecyclerView.NO_POSITION;
         }
         final boolean forwardDirection;
@@ -137,9 +132,11 @@ public class MySnapHelper extends PagerSnapHelper {
                 reverseLayout = vectorForEnd.x < 0 || vectorForEnd.y < 0;
             }
         }
-        return reverseLayout
-                ? (forwardDirection ? centerPosition - 3 : centerPosition)
-                : (forwardDirection ? centerPosition + 3 : centerPosition);
+        int result = reverseLayout
+                ? (forwardDirection ? leftPosition - mRowCount : leftPosition)
+                : (forwardDirection ? leftPosition + mRowCount : leftPosition);
+        L.i("HorientalGridSnapHelper findTargetSnapPosition  leftPosition:" + leftPosition + "   result:" + result);
+        return result;
     }
 
     /**
@@ -156,15 +153,11 @@ public class MySnapHelper extends PagerSnapHelper {
         if (childCount == 0) {
             return null;
         }
-
         View closestChild = null;
         int startest = Integer.MAX_VALUE;
-
         for (int i = 0; i < childCount; i++) {
             final View child = layoutManager.getChildAt(i);
             int childStart = helper.getDecoratedStart(child);
-
-            /** if child is more to start than previous closest, set it as closest  **/
             if (childStart < startest) {
                 startest = childStart;
                 closestChild = child;

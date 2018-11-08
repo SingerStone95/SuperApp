@@ -5,6 +5,11 @@
     <singerstone.com.superapp.SuperScrollRecyclerView
         android:id="@+id/rv_tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
     </singerstone.com.superapp.SuperScrollRecyclerView>
+    <Button
+        android:id="@+id/btn_test"
+        android:text="test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>
