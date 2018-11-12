@@ -13,10 +13,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Test.test();
+        testmerge();
         testmerge2();
     }
 
     private void testmerge2() {
         Log.i("312", "1233");
     }
+
+    private void testmerge() {
+        Log.i("123", "123");
+    }
+
 }
