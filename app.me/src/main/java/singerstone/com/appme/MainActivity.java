@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
         Test.test();
         testmerge();
         testmerge2();
+        test3();
+        test4();
     }
 
     private void testmerge2() {
@@ -25,4 +27,11 @@ public class MainActivity extends AppCompatActivity {
         Log.i("123", "123");
     }
 
+    private void test3() {
+
+    }
+
+    private void test4() {
+
+    }
 }
