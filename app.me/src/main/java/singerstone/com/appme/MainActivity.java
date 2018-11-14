@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
         testmerge2();
         test5();
         test6();
+        test3();
+        test4();
     }
 
     private void testmerge2() {
@@ -35,4 +37,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    private void test3() {
+
+    }
+
+    private void test4() {
+
+    }
 }
