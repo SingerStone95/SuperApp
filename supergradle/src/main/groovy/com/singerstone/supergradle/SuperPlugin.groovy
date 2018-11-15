@@ -9,7 +9,6 @@ class SuperPlugin implements Plugin<Project> {
     Project mProject
     SuperPlugin(){
         println("SuperPlugin")
-        println("SuperPlugin")
     }
 
     @Override
