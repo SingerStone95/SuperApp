@@ -1,44 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/color_nickname_yellow">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_nickname_yellow"
+    android:orientation="vertical">
+
     <Button
         android:id="@+id/btn_add_shortcut"
-        android:text="添加快捷方式"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:text="添加快捷方式" />
+
     <Button
         android:id="@+id/btn_find_shortcut"
-        android:text="查询快捷方式"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:text="查询快捷方式" />
+
     <Button
         android:id="@+id/btn_remove_shortcut"
-        android:text="删除快捷方式"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:text="删除快捷方式" />
+
     <Button
         android:id="@+id/btn_add_can"
-        android:text="添加日历"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:text="添加日历" />
+
     <Button
         android:id="@+id/btn_remove_can"
-        android:text="删除日历"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:text="删除日历" />
+
     <Button
         android:id="@+id/btn_get_clipboard"
-        android:text="获取剪切板"
-        android:layout_gravity="center"
-        android:layout_marginRight="0dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:layout_gravity="center"
+        android:layout_marginRight="0dp"
+        android:text="获取剪切板" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/v_animator"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        android:background="@color/orange"
+        android:gravity="center"
+       />
+</RelativeLayout>
 </LinearLayout>

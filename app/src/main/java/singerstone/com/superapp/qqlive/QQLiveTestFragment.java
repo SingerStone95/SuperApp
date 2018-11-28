@@ -1,6 +1,10 @@
 package singerstone.com.superapp.qqlive;
 
 import android.Manifest;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.TypeEvaluator;
+import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.app.PendingIntent;
@@ -11,6 +15,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
+import android.graphics.Point;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
@@ -51,6 +56,9 @@ public class QQLiveTestFragment extends Fragment {
     public Button btnRemoveCan;
     @BindView(R.id.btn_get_clipboard)
     public Button btnGetClipboard;
+
+    @BindView(R.id.v_animator)
+    public TextView vAnimator;
 
     public static String TITLE_SHORTCUT = "test";
 
@@ -152,21 +160,60 @@ public class QQLiveTestFragment extends Fragment {
                         L.i(contentView.getWidth() + "");
                     }
                 });
-
             }
         });
 
-        ArrayList<String> list = new ArrayList<>();
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        list.add("1");
-        L.i(list.toString());
-        L.i(list.toString());
+        vAnimator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playAnimation(v);
+            }
+        });
         return view;
     }
 
+    private void playAnimation(final View v) {
+        /*ObjectAnimator animatorX = ObjectAnimator.ofFloat(v, "scaleX", 0.5f, 1.1f, 1);
+        ObjectAnimator animatorY = ObjectAnimator.ofFloat(v, "scaleY", 0.5f, 1.1f, 1);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.play(animatorX).with(animatorY);
+        animatorSet.setDuration(500);
+        animatorSet.start();*/
+        int width = v.getWidth();
+        int height = v.getHeight();
+        PointLinearTypeEvaluator evaluator = new PointLinearTypeEvaluator();
+        Point start = new Point(0, 0);
+        //Point mid = new Point((int) (width * 1.2), (int) (height * 1.2));
+        Point end = new Point(width, height);
+        ValueAnimator animator = ValueAnimator.ofObject(evaluator, start, end);
+        animator.setDuration(500);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                Point point = (Point) animation.getAnimatedValue();
+                v.getLayoutParams().width = point.x;
+                v.getLayoutParams().height = point.y;
+               // L.i(point.x + " " + point.y);
+                v.requestLayout();
+            }
+        });
+        animator.start();
+    }
+
+    /**
+     * 线性变化
+     */
+    public static class PointLinearTypeEvaluator implements TypeEvaluator<Point> {
+
+        @Override
+        public Point evaluate(float fraction, Point startValue, Point endValue) {
+            Point result = new Point(0, 0);
+            L.i(startValue.x + " " + startValue.y+" && "+endValue.y+" "+endValue.y);
+            result.x = (int) ((endValue.x - startValue.x) * fraction);
+            result.y = (int) ((endValue.y - startValue.y) * fraction);
+            return result;
+        }
+    }
 
     /**
      * 在分享ICON上显示气泡，纯文字
