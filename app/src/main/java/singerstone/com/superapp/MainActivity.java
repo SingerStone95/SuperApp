@@ -15,10 +15,12 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.PriorityBlockingQueue;
 
+import singerstone.com.superapp.aidl.User;
 import singerstone.com.superapp.keeplive.LiveService;
 import singerstone.com.superapp.utils.L;
 
@@ -31,36 +33,15 @@ public class MainActivity extends AppCompatActivity implements ILife {
         super.onCreate(savedInstanceState);
         if (getIntent().getData() != null) {
             String myCustomUri = getIntent().getStringExtra(CalendarContract.EXTRA_CUSTOM_APP_URI);
-            L.e("MainActivity onCreate!   " + myCustomUri+"  "+getIntent().getDataString());
+            L.e("MainActivity onCreate!   " + myCustomUri + "  " + getIntent().getDataString());
         }
         setContentView(R.layout.activity_main);
         setFragment(MainFragment.newInstance());
         startService(new Intent(MainActivity.this, LiveService.class));
-        Log.i("info", getApplication().getApplicationInfo().nativeLibraryDir);
+        ArrayList<String> arrayList=new ArrayList<>();
+        arrayList.add("one");
+        arrayList.add("two");
 
-
-        String commonStr = "I am";
-        String text1 = "I am a coder";
-        diff_match_patch dmp = new diff_match_patch();
-        LinkedList<diff_match_patch.Diff> diffs = dmp.diff_main(commonStr, text1);
-        LinkedList<diff_match_patch.Patch> patches = dmp.patch_make(diffs);
-        String patchesStr = dmp.patch_toText(patches);
-        patches = (LinkedList<diff_match_patch.Patch>) dmp.patch_fromText(patchesStr);
-        Object[] results = dmp.patch_apply(patches, commonStr);
-        L.e("results[0]------------>" + results[0]);
-        /*new View(this).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, 3000);*/
-        PriorityBlockingQueue<Runnable> queue = new PriorityBlockingQueue<Runnable>();
-        //addShortcut(this,"test");
-        L.i("current device: " + Rom.isMiui());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
@@ -87,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements ILife {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     public void setFragment(Fragment fragment) {
-
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.replace(R.id.layout_content, fragment);

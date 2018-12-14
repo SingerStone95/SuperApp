@@ -10,7 +10,9 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -25,6 +27,7 @@ import singerstone.com.annotations.BindView;
 import singerstone.com.inject.ViewInject;
 import singerstone.com.superapp.Accessbility.AccessbilityFragmrnt;
 import singerstone.com.superapp.BezierPaopao.BezierPaopaoFragment;
+import singerstone.com.superapp.Dialog.FlexibleFragmentDialog;
 import singerstone.com.superapp.Marquee.MarqueeFragment;
 import singerstone.com.superapp.ServiceIPC.ServiceIPCActivity;
 import singerstone.com.superapp.Star.StarFragment;
@@ -51,7 +54,7 @@ import singerstone.com.superapp.waveeffect.WaveFragment;
  */
 
 @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
-public class MainFragment extends BaseFragment {
+public class MainFragment extends BaseFragment implements GestureDetector.OnGestureListener {
 
     @BindView(R.id.rv_tools)
     public SuperScrollRecyclerView rv_tools;
@@ -59,6 +62,8 @@ public class MainFragment extends BaseFragment {
     public Button btnTest;
     ArrayList<ToolItem> items;
     ToolAdapter toolAdapter;
+
+    GestureDetector gestureDetector;
 
     int position = 0;
 
@@ -94,7 +99,9 @@ public class MainFragment extends BaseFragment {
             public void onItemClick(int position, View itemView) {
                 switch (position) {
                     case 0:
-                        ((MainActivity) getActivity()).setFragmentAddToBackStack(StarFragment.newInstance());
+                       // ((MainActivity) getActivity()).setFragmentAddToBackStack(StarFragment.newInstance());
+                        FlexibleFragmentDialog dialog=new FlexibleFragmentDialog();
+                        dialog.show(getFragmentManager(),"FlexibleFragmentDialog");
                         break;
                     case 1:
 
@@ -166,7 +173,15 @@ public class MainFragment extends BaseFragment {
         btnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rv_tools.scrollToPosition(position+3);
+                rv_tools.scrollToPosition(position + 3);
+            }
+        });
+        gestureDetector = new GestureDetector(getActivity(), this);
+        rv_tools.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                gestureDetector.onTouchEvent(event);
+                return false;
             }
         });
     }
@@ -244,5 +259,38 @@ public class MainFragment extends BaseFragment {
         return percents;
     }
 
+    @Override
+    public boolean onDown(MotionEvent e) {
+        L.i("GestureDetector onDown");
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+        L.i("GestureDetector onShowPress");
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        L.i("GestureDetector onSingleTapUp");
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        L.i("GestureDetector onScroll");
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+        L.i("GestureDetector onLongPress");
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        L.i("GestureDetector onFling "+velocityX);
+        return false;
+    }
 }
 
