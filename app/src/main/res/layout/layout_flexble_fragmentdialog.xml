@@ -3,22 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/rl_root"
         android:layout_width="300dp"
-        android:layout_height="350dp">
+        android:layout_height="350dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center" />
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.2" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingMultiplier="1.2" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_choose_items"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/tv_title" />
+            android:layout_height="match_parent" />
 
-    </RelativeLayout>
+    </LinearLayout>
 </RelativeLayout>

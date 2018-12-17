@@ -10,6 +10,8 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
+import android.text.SpannableStringBuilder;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -28,6 +30,7 @@ import singerstone.com.inject.ViewInject;
 import singerstone.com.superapp.Accessbility.AccessbilityFragmrnt;
 import singerstone.com.superapp.BezierPaopao.BezierPaopaoFragment;
 import singerstone.com.superapp.Dialog.FlexibleFragmentDialog;
+import singerstone.com.superapp.Dialog.IDialogItem;
 import singerstone.com.superapp.Marquee.MarqueeFragment;
 import singerstone.com.superapp.ServiceIPC.ServiceIPCActivity;
 import singerstone.com.superapp.Star.StarFragment;
@@ -43,6 +46,7 @@ import singerstone.com.superapp.opengl.OpenGlFragment;
 import singerstone.com.superapp.qqlive.QQLiveTestFragment;
 import singerstone.com.superapp.socketretrofit.Singerstone;
 import singerstone.com.superapp.socketretrofit.SocketService;
+import singerstone.com.superapp.treeholeview.SpannableStringUtils;
 import singerstone.com.superapp.treeholeview.TreeholeViewFragment;
 import singerstone.com.superapp.utils.L;
 import singerstone.com.superapp.waveeffect.HorientalGridSnapHelper;
@@ -99,9 +103,29 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
             public void onItemClick(int position, View itemView) {
                 switch (position) {
                     case 0:
-                       // ((MainActivity) getActivity()).setFragmentAddToBackStack(StarFragment.newInstance());
-                        FlexibleFragmentDialog dialog=new FlexibleFragmentDialog();
-                        dialog.show(getFragmentManager(),"FlexibleFragmentDialog");
+                        // ((MainActivity) getActivity()).setFragmentAddToBackStack(StarFragment.newInstance());
+                        FlexibleFragmentDialog dialog = new FlexibleFragmentDialog();
+                        ArrayList<IDialogItem> items = new ArrayList<>();
+                        for (int i = 0; i < 10; i++) {
+                            final int finalI = i;
+                            items.add(new IDialogItem() {
+                                @Override
+                                public CharSequence getText() {
+                                    SpannableStringBuilder title = SpannableStringUtils.getBuilder("标题").setBold().setForegroundColor(getResources().getColor(R.color.yellow)).setAlign(Layout.Alignment.ALIGN_CENTER)
+                                            .append("\n")
+                                            .append("第" + finalI + "行")
+                                            .create();
+                                    return title;
+                                }
+
+                                @Override
+                                public FlexibleFragmentDialog.OnDialogItemClickListener getClickListener() {
+                                    return null;
+                                }
+                            });
+                        }
+                        dialog.setDialogItemData(items);
+                        dialog.show(getFragmentManager(), "FlexibleFragmentDialog");
                         break;
                     case 1:
 
@@ -289,7 +313,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        L.i("GestureDetector onFling "+velocityX);
+        L.i("GestureDetector onFling " + velocityX);
         return false;
     }
 }

@@ -10,20 +10,19 @@ import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
-import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import singerstone.com.superapp.R;
-import singerstone.com.superapp.treeholeview.SpannableStringUtils;
 import singerstone.com.superapp.utils.DimentionUtils;
 
 
@@ -43,14 +42,17 @@ public class FlexibleFragmentDialog extends DialogFragment {
     private int mHeight = DEFULT_HEIGHT;
     private int mTitleHeight = DEFAULT_TITLE_HEIGHT;
     private CharSequence mTitleText; //支持SpanableString富文本
+    private CharSequence mContentText;
     private int mTitleBackgroundColor = Color.parseColor("#d6ab56");
     private int mContentBackgroundColor = Color.WHITE;
 
-    private List<DialogChooseItem> mChooseItems = new ArrayList<>();
+    private List<IDialogItem> mChooseItems = new ArrayList<>();
 
-    private RelativeLayout mContainer;
+    private LinearLayout mContainer;
     private TextView mTvTitle;
+    private TextView mTvContent;
     private RecyclerView mRecyclerView;
+    private DialogItemAdapter mAdapter;
 
 
     public FlexibleFragmentDialog setBackgroundColor(@ColorInt int color) {
@@ -93,6 +95,11 @@ public class FlexibleFragmentDialog extends DialogFragment {
         return this;
     }
 
+    public FlexibleFragmentDialog setContentText(CharSequence mContentText) {
+        this.mContentText = mContentText;
+        return this;
+    }
+
     public FlexibleFragmentDialog setTitleBackgroundColor(@ColorInt int mTitleBackgroundColor) {
         this.mTitleBackgroundColor = mTitleBackgroundColor;
         return this;
@@ -100,6 +107,12 @@ public class FlexibleFragmentDialog extends DialogFragment {
 
     public FlexibleFragmentDialog setContentBackgroundColor(@ColorInt int mContentBackgroundColor) {
         this.mContentBackgroundColor = mContentBackgroundColor;
+        return this;
+    }
+
+    public FlexibleFragmentDialog setDialogItemData(List<IDialogItem> data) {
+        this.mChooseItems.clear();
+        this.mChooseItems.addAll(data);
         return this;
     }
 
@@ -116,6 +129,7 @@ public class FlexibleFragmentDialog extends DialogFragment {
         initDialog();
         initView(rootView);
         initConfig();
+        initData();
         return rootView;
     }
 
@@ -136,37 +150,76 @@ public class FlexibleFragmentDialog extends DialogFragment {
 
     private void initView(View rootView) {
         mTvTitle = rootView.findViewById(R.id.tv_title);
+        mTvContent = rootView.findViewById(R.id.tv_content);
         mRecyclerView = rootView.findViewById(R.id.rv_choose_items);
         mContainer = rootView.findViewById(R.id.rl_root);
-
     }
 
     private void initConfig() {
         mTvTitle.setBackgroundColor(mTitleBackgroundColor);
+        mTvContent.setBackgroundColor(mContentBackgroundColor);
         mRecyclerView.setBackgroundColor(mContentBackgroundColor);
         mContainer.getLayoutParams().width = DimentionUtils.dip2px(getActivity(), mWidth);
         mContainer.getLayoutParams().height = DimentionUtils.dip2px(getActivity(), mHeight);
         mTvTitle.getLayoutParams().height = DimentionUtils.dip2px(getActivity(), mTitleHeight);
-        // mTvTitle.setText(mTitleText);
-        SpannableStringBuilder title = SpannableStringUtils.getBuilder("标题").setBold().setForegroundColor(getResources().getColor(R.color.yellow)).setAlign(Layout.Alignment.ALIGN_CENTER)
-                .append("\n")
-                .append("第二行")
-                .create();
-        mTvTitle.setText(title);
+        if (mTitleText != null && !"".equals(mTitleText)) {
+            mTvTitle.setText(mTitleText);
+        } else {
+            mTvTitle.setVisibility(View.GONE);
+        }
+        if (mContentText != null && !mContentText.equals("")) {
+            mTvContent.setText(mContentText);
+        } else {
+            mTvContent.setVisibility(View.GONE);
+        }
     }
+
+    private void initData() {
+        if (mChooseItems.size() > 0) {
+            mAdapter = new DialogItemAdapter(getActivity());
+            LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            DividerItemDecoration decoration = new DividerItemDecoration(getActivity(), LinearLayout.VERTICAL);
+            mRecyclerView.setLayoutManager(layoutManager);
+            mRecyclerView.setAdapter(mAdapter);
+            mRecyclerView.addItemDecoration(decoration);
+            mAdapter.setData(mChooseItems);
+            mAdapter.setListener(mListener);
+        }
+    }
+
+    private DialogItemAdapter.OnItemClickListener mListener = new DialogItemAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(int position, IDialogItem item) {
+            if (item.getClickListener() != null) {
+                item.getClickListener().onDialogItemClick(FlexibleFragmentDialog.this);
+            }
+        }
+    };
 
     @Override
     public void show(FragmentManager manager, String tag) {
-        FragmentTransaction ft = manager.beginTransaction();
-        ft.add(this, tag);
-        ft.commitAllowingStateLoss();
+        try {
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.add(this, tag);
+            ft.commitAllowingStateLoss();
+        } catch (Throwable t) {
+
+        }
     }
 
     @Override
     public void dismiss() {
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.remove(this);
-        ft.commitAllowingStateLoss();
+        try {
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.remove(this);
+            ft.commitAllowingStateLoss();
+        } catch (Throwable t) {
+
+        }
     }
 
+    public interface OnDialogItemClickListener {
+        void onDialogItemClick(DialogFragment dialog);
+    }
 }
