@@ -45,4 +45,5 @@
         <item name="android:backgroundDimAmount">0.5</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
     </style>
+
 </resources>

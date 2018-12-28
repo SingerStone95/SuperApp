@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
@@ -33,7 +32,6 @@ import singerstone.com.superapp.Dialog.FlexibleFragmentDialog;
 import singerstone.com.superapp.Dialog.IDialogItem;
 import singerstone.com.superapp.Marquee.MarqueeFragment;
 import singerstone.com.superapp.ServiceIPC.ServiceIPCActivity;
-import singerstone.com.superapp.Star.StarFragment;
 import singerstone.com.superapp.TouchEvent.TouchEventFragment;
 import singerstone.com.superapp.backscrollimage.FragmentScrollImage;
 import singerstone.com.superapp.base.BaseFragment;
@@ -49,7 +47,6 @@ import singerstone.com.superapp.socketretrofit.SocketService;
 import singerstone.com.superapp.treeholeview.SpannableStringUtils;
 import singerstone.com.superapp.treeholeview.TreeholeViewFragment;
 import singerstone.com.superapp.utils.L;
-import singerstone.com.superapp.waveeffect.HorientalGridSnapHelper;
 import singerstone.com.superapp.waveeffect.WaveFragment;
 
 /**
@@ -67,7 +64,6 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
     ArrayList<ToolItem> items;
     ToolAdapter toolAdapter;
 
-    GestureDetector gestureDetector;
 
     int position = 0;
 
@@ -92,12 +88,13 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
 
     private void initView(View view) {
         ViewInject.inject(this, view);
-        final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 3, LinearLayoutManager.HORIZONTAL, false);
-        layoutManager.setOrientation(GridLayoutManager.HORIZONTAL);
+       /* final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 3, LinearLayoutManager.HORIZONTAL, false);
+        layoutManager.setOrientation(GridLayoutManager.HORIZONTAL);*/
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rv_tools.setLayoutManager(layoutManager);
         toolAdapter = new ToolAdapter(getActivity(), items);
         rv_tools.setAdapter(toolAdapter);// 第二个参数
-        new HorientalGridSnapHelper(3).attachToRecyclerView(rv_tools);
+        //new HorientalGridSnapHelper(3).attachToRecyclerView(rv_tools);
         toolAdapter.setOnItemClickListener(new ToolAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position, View itemView) {
@@ -193,19 +190,10 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
             }
         });
         rv_tools.addOnScrollListener(scrollListener);
-
         btnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 rv_tools.scrollToPosition(position + 3);
-            }
-        });
-        gestureDetector = new GestureDetector(getActivity(), this);
-        rv_tools.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                gestureDetector.onTouchEvent(event);
-                return false;
             }
         });
     }
@@ -260,6 +248,16 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
             L.i("onScrolled :" + dx + " " + dy);
+            RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+            if (layoutManager instanceof LinearLayoutManager) {
+                int lastCompletelyVisibleItemPosition = ((LinearLayoutManager) layoutManager).findLastCompletelyVisibleItemPosition();
+                if (layoutManager.getItemCount() - 1 == lastCompletelyVisibleItemPosition) {
+                    L.i("onScrolled : scroller to bottom");
+                }
+            } else {
+                throw new RuntimeException("Unsupported LayoutManager.");
+            }
+
         }
     };
 

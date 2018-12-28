@@ -37,20 +37,20 @@ public class SuperScrollRecyclerView extends RecyclerView {
 
     @Override
     public boolean fling(int velocityX, int velocityY) {
-        L.i("ddddbug0 velocityX:" + velocityX + "  velocityY:" + velocityY);
+//        L.i("ddddbug0 velocityX:" + velocityX + "  velocityY:" + velocityY);
         return super.fling(velocityX, velocityY);
     }
 
     private RecyclerView.OnScrollListener mScrollListener = new OnScrollListener() {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-            L.i("ddddbug1 newState:" + newState);
+//            L.i("ddddbug1 newState:" + newState);
         }
 
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             totalScrollX = totalScrollX + dx;
-            L.i("ddddbug2 onScrolled totalScrollX:" + computeHorizontalScrollOffset());
+//            L.i("ddddbug2 onScrolled totalScrollX:" + computeHorizontalScrollOffset());
         }
     };
 }

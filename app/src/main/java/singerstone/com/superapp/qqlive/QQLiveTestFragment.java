@@ -21,10 +21,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
+import android.text.SpannableStringBuilder;
+import android.text.style.ClickableSpan;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +44,8 @@ import singerstone.com.annotations.BindView;
 import singerstone.com.inject.ViewInject;
 import singerstone.com.superapp.MainActivity;
 import singerstone.com.superapp.R;
+import singerstone.com.superapp.flowtext.FlowTextView;
+import singerstone.com.superapp.treeholeview.SpanUtils;
 import singerstone.com.superapp.utils.Device;
 import singerstone.com.superapp.utils.L;
 
@@ -60,7 +69,17 @@ public class QQLiveTestFragment extends Fragment {
     @BindView(R.id.v_animator)
     public TextView vAnimator;
 
+    @BindView(R.id.ftv)
+    public FlowTextView ftv;
+
+    @BindView(R.id.rtt)
+    public RetractableTextView rtt;
+    TextView messageView;
+    ImageView thumbnailView;
     public static String TITLE_SHORTCUT = "test";
+
+    @BindView(R.id.tv_sub_title)
+    public TextView tvSubTitle;
 
     public static QQLiveTestFragment newInstance() {
         QQLiveTestFragment fragment = new QQLiveTestFragment();
@@ -169,7 +188,36 @@ public class QQLiveTestFragment extends Fragment {
                 playAnimation(v);
             }
         });
+        //60
+        vAnimator.setText("很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长");
+        L.e("-----》" + vAnimator.getText().length());
+
+        thumbnailView = (ImageView) view.findViewById(R.id.thumbnail_view);
+        messageView = (TextView) view.findViewById(R.id.message_view);
+        String text = "很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长";
+        // messageView.setText(builder);
+        tvSubTitle.setText("");
+
+        ftv.setText("很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长");
+        // messageView.setText(text);
+ /*       messageView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                String text = "很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长";
+                int height = thumbnailView.getMeasuredHeight();
+                int width = thumbnailView.getMeasuredWidth();
+                float textLineHeight = messageView.getPaint().getTextSize();
+                int lines = (int) Math.ceil(height / textLineHeight);
+                FlowTextHelper.tryFlowText(text, messageView,width,lines);
+            }
+        });
+        rtt.setText(text);*/
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     private void playAnimation(final View v) {
@@ -179,7 +227,7 @@ public class QQLiveTestFragment extends Fragment {
         animatorSet.play(animatorX).with(animatorY);
         animatorSet.setDuration(500);
         animatorSet.start();*/
-        int width = v.getWidth();
+        /*int width = v.getWidth();
         int height = v.getHeight();
         PointLinearTypeEvaluator evaluator = new PointLinearTypeEvaluator();
         Point start = new Point(0, 0);
@@ -197,7 +245,10 @@ public class QQLiveTestFragment extends Fragment {
                 v.requestLayout();
             }
         });
-        animator.start();
+        animator.start();*/
+        ScaleAnimation animation = new ScaleAnimation(0, 1, 0, 1, Animation.RELATIVE_TO_PARENT, 1f, Animation.RELATIVE_TO_PARENT, 0f);
+        animation.setDuration(3000);
+        v.startAnimation(animation);
     }
 
     /**
@@ -208,7 +259,7 @@ public class QQLiveTestFragment extends Fragment {
         @Override
         public Point evaluate(float fraction, Point startValue, Point endValue) {
             Point result = new Point(0, 0);
-            L.i(startValue.x + " " + startValue.y+" && "+endValue.y+" "+endValue.y);
+            L.i(startValue.x + " " + startValue.y + " && " + endValue.y + " " + endValue.y);
             result.x = (int) ((endValue.x - startValue.x) * fraction);
             result.y = (int) ((endValue.y - startValue.y) * fraction);
             return result;

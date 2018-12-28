@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Layout;
 import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -55,7 +56,12 @@ public class TreeholeViewFragment extends BaseFragment {
         SpannableStringBuilder s = SpannableStringUtils.getBuilder("123456").setBold().setForegroundColor(getResources().getColor(R.color.yellow)).setAlign(Layout.Alignment.ALIGN_CENTER)
                 .append("center").setResourceId(R.drawable.frame_anonymous_follow_liveroom)
                 .append("1231231").create();
-        tv.setText(s);
+        SpannableStringBuilder spannable = new SpanUtils().append("a12432")
+                .append("2233333")
+                .setBold()
+                .setForegroundColor(getResources().getColor(R.color.yellow))
+                .create();
+        tv.setText(spannable);
 
         tv.setOnTouchListener(new View.OnTouchListener() {
             @Override

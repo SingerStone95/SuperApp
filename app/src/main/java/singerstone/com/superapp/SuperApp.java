@@ -18,6 +18,8 @@ public class SuperApp extends Application {
 
     RefWatcher refWatcher;
 
+    public static Application application;
+
     public SuperApp() {
         Small.preSetUp(this);
         Small.setLoadFromAssets(BuildConfig.LOAD_FROM_ASSETS);
@@ -31,6 +33,7 @@ public class SuperApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        application = this;
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
             // You should not init your app in this process.
