@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
 android {
     compileSdkVersion 26
     buildToolsVersion '26.0.0'
@@ -13,11 +14,26 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk {
-            abiFilters "armeabi","armeabi-v7a", "x86"
+            abiFilters "armeabi", "armeabi-v7a", "x86"
         }
         packagingOptions {
             exclude "lib/arm64-v8a/libimagepipeline.so"
         }
+      /*  jackOptions {
+            enabled true
+        }
+        compileOptions {
+
+            sourceCompatibility JavaVersion.VERSION_1_8
+
+            targetCompatibility JavaVersion.VERSION_1_8
+
+        }*/
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
     }
 
     // 一定放在buildTypes上面，否则不生效
@@ -69,9 +85,8 @@ android {
     }
 
 
-
 }
-task doSomeRightThing{
+task doSomeRightThing {
     println(">>>>>>>>>>>>>>>app gradle insert task<<<<<<<<<<<<<<<<<<<<<")
 }
 

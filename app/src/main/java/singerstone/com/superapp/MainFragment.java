@@ -95,98 +95,95 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         toolAdapter = new ToolAdapter(getActivity(), items);
         rv_tools.setAdapter(toolAdapter);// 第二个参数
         //new HorientalGridSnapHelper(3).attachToRecyclerView(rv_tools);
-        toolAdapter.setOnItemClickListener(new ToolAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position, View itemView) {
-                switch (position) {
-                    case 0:
-                        // ((MainActivity) getActivity()).setFragmentAddToBackStack(StarFragment.newInstance());
-                        FlexibleFragmentDialog dialog = new FlexibleFragmentDialog();
-                        ArrayList<IDialogItem> items = new ArrayList<>();
-                        for (int i = 0; i < 10; i++) {
-                            final int finalI = i;
-                            items.add(new IDialogItem() {
-                                @Override
-                                public CharSequence getText() {
-                                    SpannableStringBuilder title = SpannableStringUtils.getBuilder("标题").setBold().setForegroundColor(getResources().getColor(R.color.yellow)).setAlign(Layout.Alignment.ALIGN_CENTER)
-                                            .append("\n")
-                                            .append("第" + finalI + "行")
-                                            .create();
-                                    return title;
-                                }
+        toolAdapter.setOnItemClickListener((position, itemView) -> {
+            switch (position) {
+                case 0:
+                    // ((MainActivity) getActivity()).setFragmentAddToBackStack(StarFragment.newInstance());
+                    FlexibleFragmentDialog dialog = new FlexibleFragmentDialog();
+                    ArrayList<IDialogItem> items = new ArrayList<>();
+                    for (int i = 0; i < 10; i++) {
+                        final int finalI = i;
+                        items.add(new IDialogItem() {
+                            @Override
+                            public CharSequence getText() {
+                                SpannableStringBuilder title = SpannableStringUtils.getBuilder("标题").setBold().setForegroundColor(getResources().getColor(R.color.yellow)).setAlign(Layout.Alignment.ALIGN_CENTER)
+                                        .append("\n")
+                                        .append("第" + finalI + "行")
+                                        .create();
+                                return title;
+                            }
 
+                            @Override
+                            public FlexibleFragmentDialog.OnDialogItemClickListener getClickListener() {
+                                return null;
+                            }
+                        });
+                    }
+                    dialog.setDialogItemData(items);
+                    dialog.show(getFragmentManager(), "FlexibleFragmentDialog");
+                    break;
+                case 1:
+
+                    ((MainActivity) getActivity()).setFragmentAddToBackStack(BezierPaopaoFragment.newInstance());
+                    break;
+                case 2:
+                    Singerstone.getInstance().create(SocketService.class).commit2("cbh", "hello")
+                            .subscribe(new Consumer<String>() {
                                 @Override
-                                public FlexibleFragmentDialog.OnDialogItemClickListener getClickListener() {
-                                    return null;
+                                public void accept(String s) throws Exception {
+                                    Toast.makeText(getActivity(), s, Toast.LENGTH_LONG);
                                 }
                             });
-                        }
-                        dialog.setDialogItemData(items);
-                        dialog.show(getFragmentManager(), "FlexibleFragmentDialog");
-                        break;
-                    case 1:
-
-                        ((MainActivity) getActivity()).setFragmentAddToBackStack(BezierPaopaoFragment.newInstance());
-                        break;
-                    case 2:
-                        Singerstone.getInstance().create(SocketService.class).commit2("cbh", "hello")
-                                .subscribe(new Consumer<String>() {
-                                    @Override
-                                    public void accept(String s) throws Exception {
-                                        Toast.makeText(getActivity(), s, Toast.LENGTH_LONG);
-                                    }
-                                });
-                        break;
-                    case 3:
-                        ((MainActivity) getActivity()).setFragmentAddToBackStack(WaveFragment.newInstance());
-                        break;
-                    case 4:
-                        ((MainActivity) getActivity()).setFragmentAddToBackStack(TouchEventFragment.newInstance());
-                        break;
-                    case 5:
-                        startActivity(new Intent(getActivity(), KotlinActivity.class));
-                        break;
-                    case 6:
-                        ((MainActivity) getActivity()).setFragmentAddToBackStack(PKAnimationFragment.newInstance());
-                        break;
-                    case 7:
-                        ((MainActivity) getActivity()).setFragmentAddToBackStack(AccessbilityFragmrnt.newInstance());
-                        break;
-                    case 8:
-                        ((MainActivity) getActivity()).setFragmentAddToBackStack(MarqueeFragment.newInstance());
-                        break;
-                    case 9:
-                        ((MainActivity) getActivity()).setFragmentAddToBackStack(TreeholeViewFragment.newInstance());
-                        break;
-                    case 10:
-                        ((MainActivity) getActivity()).setFragmentAddToBackStack(LikeViewFragment.newInstance());
-                        break;
-                    case 11:
-                        startActivity(new Intent(getActivity(), ServiceIPCActivity.class));
-                        break;
-                    case 12:
-                        ((MainActivity) getActivity()).setFragmentAddToBackStack(FragmentScrollImage.newInstance());
-                        break;
-                    case 13:
-                        ((MainActivity) getActivity()).setFragmentAddToBackStack(BookFragment.newInstance());
-                        break;
-                    case 14:
-                        ((MainActivity) getActivity()).setFragmentAddToBackStack(InkeFragment.newInstance());
-                        break;
-                    case 15:
-                        Small.openUri("me", getActivity());
-                        break;
-                    case 16:
-                        ((MainActivity) getActivity()).setFragmentAddToBackStack(HttpsTestFragment.newInstance());
-                        break;
-                    case 17:
-                        ((MainActivity) getActivity()).setFragmentAddToBackStack(new OpenGlFragment());
-                        break;
-                    case 18:
-                        ((MainActivity) getActivity()).setFragmentAddToBackStack(QQLiveTestFragment.newInstance());
-                    default:
-                        break;
-                }
+                    break;
+                case 3:
+                    ((MainActivity) getActivity()).setFragmentAddToBackStack(WaveFragment.newInstance());
+                    break;
+                case 4:
+                    ((MainActivity) getActivity()).setFragmentAddToBackStack(TouchEventFragment.newInstance());
+                    break;
+                case 5:
+                    startActivity(new Intent(getActivity(), KotlinActivity.class));
+                    break;
+                case 6:
+                    ((MainActivity) getActivity()).setFragmentAddToBackStack(PKAnimationFragment.newInstance());
+                    break;
+                case 7:
+                    ((MainActivity) getActivity()).setFragmentAddToBackStack(AccessbilityFragmrnt.newInstance());
+                    break;
+                case 8:
+                    ((MainActivity) getActivity()).setFragmentAddToBackStack(MarqueeFragment.newInstance());
+                    break;
+                case 9:
+                    ((MainActivity) getActivity()).setFragmentAddToBackStack(TreeholeViewFragment.newInstance());
+                    break;
+                case 10:
+                    ((MainActivity) getActivity()).setFragmentAddToBackStack(LikeViewFragment.newInstance());
+                    break;
+                case 11:
+                    startActivity(new Intent(getActivity(), ServiceIPCActivity.class));
+                    break;
+                case 12:
+                    ((MainActivity) getActivity()).setFragmentAddToBackStack(FragmentScrollImage.newInstance());
+                    break;
+                case 13:
+                    ((MainActivity) getActivity()).setFragmentAddToBackStack(BookFragment.newInstance());
+                    break;
+                case 14:
+                    ((MainActivity) getActivity()).setFragmentAddToBackStack(InkeFragment.newInstance());
+                    break;
+                case 15:
+                    Small.openUri("me", getActivity());
+                    break;
+                case 16:
+                    ((MainActivity) getActivity()).setFragmentAddToBackStack(HttpsTestFragment.newInstance());
+                    break;
+                case 17:
+                    ((MainActivity) getActivity()).setFragmentAddToBackStack(new OpenGlFragment());
+                    break;
+                case 18:
+                    ((MainActivity) getActivity()).setFragmentAddToBackStack(QQLiveTestFragment.newInstance());
+                default:
+                    break;
             }
         });
         rv_tools.addOnScrollListener(scrollListener);
