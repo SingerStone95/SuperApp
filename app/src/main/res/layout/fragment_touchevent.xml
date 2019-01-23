@@ -11,12 +11,92 @@
         android:background="@color/colorPrimaryDark"
         android:nestedScrollingEnabled="true">
 
-          <singerstone.com.superapp.TouchEvent.TouchEventView
-                android:id="@+id/t_view"
-              android:background="@color/primary"
-                android:layout_width="match_parent"
-                android:layout_height="90dp" />
+        <singerstone.com.superapp.TouchEvent.TouchEventView
+            android:id="@+id/t_view"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="@color/primary" />
 
     </singerstone.com.superapp.TouchEvent.EventViewGroup>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <singerstone.com.superapp.TouchEvent.GetFocusScrollView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@color/grey">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="400dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:text="文字"
+                        android:textSize="60sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:text="文字"
+                        android:textSize="60sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:text="文字"
+                        android:textSize="60sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:text="文字"
+                        android:textSize="60sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:text="文字"
+                        android:textSize="60sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:text="文字"
+                        android:textSize="60sp" />
+
+                </LinearLayout>
+            </singerstone.com.superapp.TouchEvent.GetFocusScrollView>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@color/darkgray">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:text="文字"
+                        android:textSize="60sp" />
+                </FrameLayout>
+            </ScrollView>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -37,21 +37,15 @@ public class TouchEventFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_touchevent, container, false);
 
-        g_view = (EventViewGroup) view.findViewById(R.id.g_view);
-        g_view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "click_viewgroup", Toast.LENGTH_SHORT).show();
-                L.e("click_viewgroup");
-            }
+        g_view = view.findViewById(R.id.g_view);
+        g_view.setOnClickListener(v -> {
+            Toast.makeText(getActivity(), "click_viewgroup", Toast.LENGTH_SHORT).show();
+            L.e("click_viewgroup");
         });
-        t_view = (TouchEventView) view.findViewById(R.id.t_view);
-        t_view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "click_view", Toast.LENGTH_SHORT).show();
-                L.e("click_view");
-            }
+        t_view = view.findViewById(R.id.t_view);
+        t_view.setOnClickListener(v -> {
+            Toast.makeText(getActivity(), "click_view", Toast.LENGTH_SHORT).show();
+            L.e("click_view");
         });
         return view;
     }
