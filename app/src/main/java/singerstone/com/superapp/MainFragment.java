@@ -1,6 +1,7 @@
 package singerstone.com.superapp;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Build;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 
 import net.wequick.small.Small;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 
 import io.reactivex.functions.Consumer;
@@ -83,7 +86,27 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         initData();
         initView(view);
+        L.i(getTotalRam(getActivity()));
         return view;
+    }
+
+    public static String getTotalRam(Context context){//GB
+        String path = "/proc/meminfo";
+        String firstLine = null;
+        int totalRam = 0 ;
+        try{
+            FileReader fileReader = new FileReader(path);
+            BufferedReader br = new BufferedReader(fileReader,8192);
+            firstLine = br.readLine().split("\\s+")[1];
+            br.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        if(firstLine != null){
+            totalRam = (int)Math.ceil((new Float(Float.valueOf(firstLine) / (1024 * 1024)).doubleValue()));
+        }
+
+        return totalRam + "GB";//返回1GB/2GB/3GB/4GB
     }
 
     private void initView(View view) {
@@ -128,12 +151,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
                     break;
                 case 2:
                     Singerstone.getInstance().create(SocketService.class).commit2("cbh", "hello")
-                            .subscribe(new Consumer<String>() {
-                                @Override
-                                public void accept(String s) throws Exception {
-                                    Toast.makeText(getActivity(), s, Toast.LENGTH_LONG);
-                                }
-                            });
+                            .subscribe(s -> Toast.makeText(getActivity(), s, Toast.LENGTH_LONG));
                     break;
                 case 3:
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(WaveFragment.newInstance());
@@ -187,12 +205,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
             }
         });
         rv_tools.addOnScrollListener(scrollListener);
-        btnTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rv_tools.scrollToPosition(position + 3);
-            }
-        });
+        btnTest.setOnClickListener(v -> rv_tools.scrollToPosition(position + 3));
     }
 
 
@@ -224,6 +237,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
+            L.i("onScrollStateChanged:>>>>>>>>>>>>>>" + newState);
             if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                 LinearLayoutManager linearManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 int firstItemPosition = linearManager.findFirstVisibleItemPosition();
