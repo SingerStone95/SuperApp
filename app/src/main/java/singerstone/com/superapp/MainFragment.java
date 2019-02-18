@@ -4,6 +4,7 @@ package singerstone.com.superapp;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,6 +25,7 @@ import net.wequick.small.Small;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.net.URI;
 import java.util.ArrayList;
 
 import io.reactivex.functions.Consumer;
@@ -90,20 +92,20 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         return view;
     }
 
-    public static String getTotalRam(Context context){//GB
+    public static String getTotalRam(Context context) {//GB
         String path = "/proc/meminfo";
         String firstLine = null;
-        int totalRam = 0 ;
-        try{
+        int totalRam = 0;
+        try {
             FileReader fileReader = new FileReader(path);
-            BufferedReader br = new BufferedReader(fileReader,8192);
+            BufferedReader br = new BufferedReader(fileReader, 8192);
             firstLine = br.readLine().split("\\s+")[1];
             br.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        if(firstLine != null){
-            totalRam = (int)Math.ceil((new Float(Float.valueOf(firstLine) / (1024 * 1024)).doubleValue()));
+        if (firstLine != null) {
+            totalRam = (int) Math.ceil((new Float(Float.valueOf(firstLine) / (1024 * 1024)).doubleValue()));
         }
 
         return totalRam + "GB";//返回1GB/2GB/3GB/4GB
@@ -190,7 +192,9 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(InkeFragment.newInstance());
                     break;
                 case 15:
-                    Small.openUri("me", getActivity());
+                    // Small.openUri("me", getActivity());
+                    Uri uri = Uri.parse("content://com.singerstone.provider");
+                    getActivity().getContentResolver().call(uri, "test", null, null);
                     break;
                 case 16:
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(HttpsTestFragment.newInstance());

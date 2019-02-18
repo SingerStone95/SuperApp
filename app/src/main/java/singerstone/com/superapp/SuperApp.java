@@ -8,6 +8,8 @@ import com.squareup.leakcanary.RefWatcher;
 
 import net.wequick.small.Small;
 
+import singerstone.com.superapp.utils.L;
+
 
 /**
  * Created by chenbinhao on 2017/9/18.
@@ -33,6 +35,7 @@ public class SuperApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        L.e("SuperApp:onCreate");
         application = this;
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
