@@ -1,1 +1,1 @@
-include ':app', ':app.me', ':lib.base', ':processors', ':annotations', ':inject', ':supergradle', ':LeetCode'
+include ':app', ':app.me', ':lib.base', ':processors', ':annotations', ':inject', ':supergradle', ':LeetCode', ':aartest'

@@ -21,6 +21,10 @@ buildscript { //脚本的配置
 
 allprojects { //项目的配置
     repositories {
+        maven {//本地Maven仓库地址
+            url uri("$rootDir/MavenLocal")
+
+        }
         mavenCentral()
         google()
         jcenter()
