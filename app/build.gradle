@@ -89,6 +89,7 @@ android {
 task doSomeRightThing {
     println(">>>>>>>>>>>>>>>app gradle insert task<<<<<<<<<<<<<<<<<<<<<")
 }
+apply plugin: 'com.singerstone.supergradle'
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')

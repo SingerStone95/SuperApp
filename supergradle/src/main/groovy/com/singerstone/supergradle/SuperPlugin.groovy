@@ -1,8 +1,8 @@
 package com.singerstone.supergradle
 
+import com.android.build.gradle.AppExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import com.singerstone.supergradle.SuperConfig
 
 class SuperPlugin implements Plugin<Project> {
 
@@ -13,26 +13,42 @@ class SuperPlugin implements Plugin<Project> {
         println("SuperPlugin")
     }
 
+    @SuppressWarnings("NullableProblems")
     @Override
     void apply(Project project) {
         println(">>>>>>>>>>>>>>>> start super gradle <<<<<<<<<<<<<<<<<<")
         mProject = project
-        println(project.rootDir)
-        println(project.projectDir)
-        def sp = project.gradle.startParameter
+        printAppInfo()
+        addExtension()
+        createTask()
+        printManifestInfo()
+        ASM()
+        println(">>>>>>>>>>>>>>>> end super gradle <<<<<<<<<<<<<<<<<<")
+
+
+    }
+
+    void ASM() {
+        AppExtension appExtension = (AppExtension) mProject.getProperties().get("android")
+        println(mProject.getProperties())
+        //appExtension.registerTransform(new SpuerTrasform(), Collections.EMPTY_LIST)
+    }
+
+    void printAppInfo() {
+        println("mProject.rootDir=" + mProject.rootDir)
+        println("mProject.projectDir=" + mProject.projectDir)
+
+        def sp = mProject.gradle.startParameter
         def p = sp.projectDir
         for (task in sp.taskNames) {
-            println(task)
+            println("task:" + task)
         }
         if (p == null) {
             println("sp.projectDir is null!")
         } else {
-            println(p.getAbsolutePath())
+            println("p.getAbsolutePath()=" + p.getAbsolutePath())
         }
-        addExtension()
-        createTask()
-       // printManifestInfo()
-        println(">>>>>>>>>>>>>>>> end super gradle <<<<<<<<<<<<<<<<<<")
+
     }
 
     void printManifestInfo() {

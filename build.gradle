@@ -35,9 +35,12 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 apply plugin: 'net.wequick.small'
-apply plugin: 'com.singerstone.supergradle'
+
 small {
     buildToAssets = true
     aarVersion = '1.5.0-beta2'
 }
+/*xiaoqingwa {
+
+}*/
 
