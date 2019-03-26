@@ -104,6 +104,11 @@ public class AnnotatedClass {
             }
         }
 
+        /**
+         *
+         * public class QQLiveTestFragment$$ViewInject implements Inject<QQLiveTestFragment> {
+         * }
+         */
         //generaClass
         TypeSpec injectClass = TypeSpec.classBuilder(mTypeElement.getSimpleName() + "$$ViewInject")
                 .addModifiers(Modifier.PUBLIC)
