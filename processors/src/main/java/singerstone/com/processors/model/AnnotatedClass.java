@@ -7,7 +7,6 @@ import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.annotation.processing.Filer;
@@ -46,37 +45,14 @@ public class AnnotatedClass {
         mMethods.add(method);
     }
 
-    private void generateTest(Filer mFiler) {
-        MethodSpec.Builder injectMethod = MethodSpec.methodBuilder("inject")
-                .addModifiers(Modifier.PUBLIC)
-                .addAnnotation(Override.class)
-                .addParameter(TypeName.get(mTypeElement.asType()), "host", Modifier.FINAL)
-                .addParameter(TypeName.OBJECT, "source");
-        for (BindViewField field : mFields) {
-            // find views
-            injectMethod.addStatement("host.$N = ($T)(((android.view.View)source).findViewById($L))",
-                    field.getFieldName(),
-                    ClassName.get(field.getFieldType()), field.getResId());
-        }
-        //generaClass
-        TypeSpec injectClass = TypeSpec.classBuilder(mTypeElement.getSimpleName() + "$$ViewInjectTest")
-                .addModifiers(Modifier.PUBLIC)
-                .addSuperinterface(ParameterizedTypeName.get(TypeUtil.INJETTest, TypeName.get(mTypeElement.asType())))
-                .addMethod(injectMethod.build())
-                .build();
-
-        String packgeName = mElementUtils.getPackageOf(mTypeElement).getQualifiedName().toString();
-        System.out.println("generateFile  " + packgeName);
-        try {
-            JavaFile.builder(packgeName, injectClass).build().writeTo(mFiler);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     public JavaFile generateFile(Filer mFiler) {
-        generateTest(mFiler);
+
+        /**
+         *   @Override
+         *   public void inject(final MainFragment host, Object source, Provider provider) {
+         *
+         *   }
+         */
         //generateMethod
         MethodSpec.Builder injectMethod = MethodSpec.methodBuilder("inject")
                 .addModifiers(Modifier.PUBLIC)
@@ -85,12 +61,30 @@ public class AnnotatedClass {
                 .addParameter(TypeName.OBJECT, "source")
                 .addParameter(TypeUtil.PROVIDER, "provider");
 
+        /**
+         *  host.rv_tools = (SuperScrollRecyclerView)(provider.findView(source, 2131492978));
+         *
+         */
         for (BindViewField field : mFields) {
             // find views
             injectMethod.addStatement("host.$N = ($T)(provider.findView(source, $L))",
                     field.getFieldName(),
-                    ClassName.get(field.getFieldType()), field.getResId());
+                    ClassName.get(field.getFieldType()),
+                    field.getResId());
         }
+
+        /**
+         *
+         * View.OnClickListener listener = new View.OnClickListener() {
+         *       @Override
+         *       public void onClick(View view) {
+         *         host.clickSubTitle();
+         *       }
+         *     } ;
+         *     provider.findView(source, 2131493035).setOnClickListener(listener);
+         *
+         *
+         */
 
         for (OnClickMethod method : mMethods) {
             TypeSpec listener = TypeSpec.anonymousClassBuilder("")
@@ -110,6 +104,11 @@ public class AnnotatedClass {
             }
         }
 
+        /**
+         *
+         * public class QQLiveTestFragment$$ViewInject implements Inject<QQLiveTestFragment> {
+         * }
+         */
         //generaClass
         TypeSpec injectClass = TypeSpec.classBuilder(mTypeElement.getSimpleName() + "$$ViewInject")
                 .addModifiers(Modifier.PUBLIC)

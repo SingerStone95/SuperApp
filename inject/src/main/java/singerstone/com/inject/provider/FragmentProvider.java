@@ -1,7 +1,5 @@
 package singerstone.com.inject.provider;
 
-import android.app.Fragment;
-import android.content.Context;
 import android.view.View;
 
 /**
@@ -9,11 +7,6 @@ import android.view.View;
  */
 
 public class FragmentProvider implements Provider {
-    @Override
-    public Context getContext(Object object) {
-        return ((Fragment) object).getActivity();
-    }
-
     @Override
     public View findView(Object object, int id) {
         return ((View) object).findViewById(id);

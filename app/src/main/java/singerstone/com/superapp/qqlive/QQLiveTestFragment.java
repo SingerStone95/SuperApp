@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import singerstone.com.annotations.BindView;
+import singerstone.com.annotations.OnClick;
 import singerstone.com.inject.ViewInject;
 import singerstone.com.superapp.MainActivity;
 import singerstone.com.superapp.R;
@@ -84,6 +85,11 @@ public class QQLiveTestFragment extends Fragment {
     public static QQLiveTestFragment newInstance() {
         QQLiveTestFragment fragment = new QQLiveTestFragment();
         return fragment;
+    }
+
+    @OnClick(R.id.tv_sub_title)
+    public void clickSubTitle(){
+
     }
 
     @Override
