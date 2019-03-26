@@ -22,13 +22,11 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ToolHolder> {
     private Context mContext;
     private ArrayList<ToolItem> items;
     private OnItemClickListener listener;
-    private int mItemWidthWidth;
 
     public ToolAdapter(Context context, ArrayList<ToolItem> items) {
         this.mContext = context;
         this.items = items;
         DisplayMetrics dm = context.getResources().getDisplayMetrics();
-        mItemWidthWidth = dm.widthPixels / 2;
     }
 
     @Override
@@ -41,7 +39,6 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ToolHolder> {
 
     @Override
     public void onBindViewHolder(final ToolHolder holder, final int position) {
-        holder.itemView.getLayoutParams().width = mItemWidthWidth;
         holder.tv_tool.setText(items.get(position).getText());
         holder.iv_tool.setBackgroundResource(items.get(position).getResourseId());
         holder.tv_tool.index = position;

@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
@@ -113,9 +114,8 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
 
     private void initView(View view) {
         ViewInject.inject(this, view);
-       /* final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 3, LinearLayoutManager.HORIZONTAL, false);
-        layoutManager.setOrientation(GridLayoutManager.HORIZONTAL);*/
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2, LinearLayoutManager.VERTICAL, false);
+        //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rv_tools.setLayoutManager(layoutManager);
         toolAdapter = new ToolAdapter(getActivity(), items);
         rv_tools.setAdapter(toolAdapter);// 第二个参数

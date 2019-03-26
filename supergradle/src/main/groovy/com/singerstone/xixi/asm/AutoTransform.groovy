@@ -8,6 +8,7 @@ import com.singerstone.xixi.GlobalConfig
 import com.singerstone.xixi.bean.AutoClassFilter
 import com.singerstone.xixi.util.AutoMatchUtil
 import com.singerstone.xixi.util.AutoTextUtil
+import com.singerstone.xixi.util.Logger
 import groovy.io.FileType
 import org.apache.commons.codec.digest.DigestUtils
 import org.apache.commons.io.FileUtils
@@ -17,8 +18,7 @@ import java.util.jar.JarEntry
 import java.util.jar.JarFile
 import java.util.jar.JarOutputStream
 import java.util.zip.ZipEntry
-import com.singerstone.xixi.util.*
-import com.singerstone.xixi.*
+
 /**
  * 自动埋点追踪，遍历所有文件更换字节码
  */
