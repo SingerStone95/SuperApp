@@ -40,7 +40,4 @@ small {
     buildToAssets = true
     aarVersion = '1.5.0-beta2'
 }
-/*xiaoqingwa {
-
-}*/
 

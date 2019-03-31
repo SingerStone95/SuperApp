@@ -40,6 +40,9 @@ class PluginEntry implements Plugin<Project> {
      * 对build.gradle配置参数及自定义内容进行解析
      */
     static void analysiUserConfig() {
+        /**
+         * 获取xiaoqingwa的配置
+         */
         List<Map<String, Object>> matchDataList = GlobalConfig.getParams().matchData
         List<AutoClassFilter> autoClassFilterList = new ArrayList<>()
 

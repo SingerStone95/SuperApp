@@ -96,7 +96,7 @@ public class AutoTransform extends Transform {
         /**
          * 打印提示信息
          */
-        printCopyRight()
+        // printCopyRight()
 
         //开始计算消耗的时间
         Logger.info("||=======================================================================================================")
@@ -113,14 +113,14 @@ public class AutoTransform extends Transform {
             /**
              * 遍历jar
              */
-            input.jarInputs.each { JarInput jarInput ->
-                String destName = jarInput.file.name
-                /** 截取文件路径的md5值重命名输出文件,因为可能同名,会覆盖*/
+            /*     input.jarInputs.each { JarInput jarInput ->
+                     String destName = jarInput.file.name
+                     *//** 截取文件路径的md5值重命名输出文件,因为可能同名,会覆盖*//*
                 def hexName = DigestUtils.md5Hex(jarInput.file.absolutePath).substring(0, 8)
                 if (destName.endsWith(".jar")) {
                     destName = destName.substring(0, destName.length() - 4)
                 }
-                /** 获得输出文件*/
+                *//** 获得输出文件*//*
                 File dest = outputProvider.getContentLocation(destName + "_" + hexName, jarInput.contentTypes, jarInput.scopes, Format.JAR)
                 Logger.info("||-->开始遍历特定jar ${dest.absolutePath}")
                 def modifiedJar = modifyJarFile(jarInput.file, context.getTemporaryDir())
@@ -129,14 +129,16 @@ public class AutoTransform extends Transform {
                     modifiedJar = jarInput.file
                 }
                 FileUtils.copyFile(modifiedJar, dest)
-            }
+            }*/
             /**
              * 遍历目录
              */
             input.directoryInputs.each { DirectoryInput directoryInput ->
                 File dest = outputProvider.getContentLocation(directoryInput.name, directoryInput.contentTypes, directoryInput.scopes, Format.DIRECTORY)
                 Logger.info("||-->开始遍历特定目录  ${dest.absolutePath}")
+                //SuperApp/app/build/intermediates/classes/debug
                 File dir = directoryInput.file
+                Logger.info(dir.getAbsolutePath())
                 if (dir) {
                     HashMap<String, File> modifyMap = new HashMap<>()
                     dir.traverse(type: FileType.FILES, nameFilter: ~/.*\.class/) {
@@ -147,7 +149,7 @@ public class AutoTransform extends Transform {
                                 modifyMap.put(classFile.absolutePath.replace(dir.absolutePath, ""), modified)
                             }
                     }
-                    FileUtils.copyDirectory(directoryInput.file, dest)
+                    FileUtils.copyDirectory(dir, dest)
                     modifyMap.entrySet().each {
                         Map.Entry<String, File> en ->
                             File target = new File(dest.absolutePath + en.getKey())
