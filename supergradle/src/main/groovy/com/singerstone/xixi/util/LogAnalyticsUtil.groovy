@@ -21,6 +21,7 @@ public class LogAnalyticsUtil implements Opcodes {
         targetFragmentClass.add('android/support/v4/app/Fragment')
         targetFragmentClass.add('android/support/v4/app/ListFragment')
         targetFragmentClass.add('android/support/v4/app/DialogFragment')
+        targetFragmentClass.add('android/app/Fragment')
 
         /**
          * For AndroidX Fragment

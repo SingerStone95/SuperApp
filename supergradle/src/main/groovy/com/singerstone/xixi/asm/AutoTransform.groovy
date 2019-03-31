@@ -104,9 +104,9 @@ public class AutoTransform extends Transform {
         Logger.info("||=======================================================================================================")
         def startTime = System.currentTimeMillis()
 
-        if (Logger.isDebug()) {
+       /* if (Logger.isDebug()) {
             printlnJarAndDir(inputs)
-        }
+        }*/
 
         /**遍历输入文件*/
         inputs.each { TransformInput input ->
@@ -135,21 +135,18 @@ public class AutoTransform extends Transform {
              */
             input.directoryInputs.each { DirectoryInput directoryInput ->
                 File dest = outputProvider.getContentLocation(directoryInput.name, directoryInput.contentTypes, directoryInput.scopes, Format.DIRECTORY)
-                Logger.info("||-->开始遍历特定目录  ${dest.absolutePath}")
-                //SuperApp/app/build/intermediates/classes/debug
-                File dir = directoryInput.file
-                Logger.info(dir.getAbsolutePath())
-                if (dir) {
+                File srcDir = directoryInput.file  //SuperApp/app/build/intermediates/classes/debug
+                if (srcDir) {
                     HashMap<String, File> modifyMap = new HashMap<>()
-                    dir.traverse(type: FileType.FILES, nameFilter: ~/.*\.class/) {
+                    srcDir.traverse(type: FileType.FILES, nameFilter: ~/.*\.class/) {
                         File classFile ->
-                            File modified = modifyClassFile(dir, classFile, context.getTemporaryDir())
+                            File modified = modifyClassFile(srcDir, classFile, context.getTemporaryDir())
                             if (modified != null) {
                                 //key为相对路径
-                                modifyMap.put(classFile.absolutePath.replace(dir.absolutePath, ""), modified)
+                                modifyMap.put(classFile.absolutePath.replace(srcDir.absolutePath, ""), modified)
                             }
                     }
-                    FileUtils.copyDirectory(dir, dest)
+                    FileUtils.copyDirectory(srcDir, dest) //build\intermediates\transforms\AutoTrack\debug\folders\1\1\bbe24caec6165e3b53aef7fbf19549514e15f422
                     modifyMap.entrySet().each {
                         Map.Entry<String, File> en ->
                             File target = new File(dest.absolutePath + en.getKey())
@@ -236,8 +233,12 @@ public class AutoTransform extends Transform {
         File modified = null
         FileOutputStream outputStream = null
         try {
+            //去掉绝对路径获取类名
             String className = AutoTextUtil.path2ClassName(classFile.absolutePath.replace(dir.absolutePath + File.separator, ""))
-//            Logger.info("File:className:" + className)
+            Logger.info("classFile.absolutePath:" + classFile.absolutePath)
+            Logger.info("dir.absolutePath + File.separator:" + dir.absolutePath + File.separator)
+            Logger.info("File:className:" + className)
+            //过滤R文件
             if (AutoMatchUtil.isShouldModifyClass(className)) {
                 byte[] sourceClassBytes = IOUtils.toByteArray(new FileInputStream(classFile))
                 byte[] modifiedClassBytes = AutoModify.modifyClasses(className, sourceClassBytes)

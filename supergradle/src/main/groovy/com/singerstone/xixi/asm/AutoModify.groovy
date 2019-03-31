@@ -17,9 +17,9 @@ public class AutoModify {
         try {
             classBytesCode = modifyClass(srcByteCode)
             //调试模式下再遍历一遍看修改的方法情况
-//            if (Logger.isDebug()) {
-//                seeModifyMethod(classBytesCode)
-//            }
+           /* if (Logger.isDebug()) {
+                seeModifyMethod(classBytesCode)
+            }*/
             return classBytesCode
         } catch (Exception e) {
             e.printStackTrace()
@@ -34,9 +34,9 @@ public class AutoModify {
      */
     private static byte[] modifyClass(byte[] srcClass) throws IOException {
         ClassWriter classWriter = new ClassWriter(ClassWriter.COMPUTE_MAXS)
-        ClassVisitor adapter = new AutoClassVisitor(classWriter)
+        ClassVisitor visitor = new AutoClassVisitor(classWriter)
         ClassReader cr = new ClassReader(srcClass)
-        cr.accept(adapter, ClassReader.EXPAND_FRAMES)
+        cr.accept(visitor, ClassReader.EXPAND_FRAMES)
         return classWriter.toByteArray()
     }
     /**

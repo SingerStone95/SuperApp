@@ -50,8 +50,8 @@ public class AutoClassVisitor extends ClassVisitor {
         mInterfaces = interfaces
         mSuperName = superName
         // 打印调试信息
-        Logger.info("\n||---开始扫描类：${mClassName}")
-        Logger.info("||---类详情：version=${version};\taccess=${Logger.accCode2String(access)};\tname=${name};\tsignature=${signature};\tsuperName=${superName};\tinterfaces=${interfaces.toArrayString()}")
+        //Logger.info("\n||---开始扫描类：${mClassName}")
+        //Logger.info("||---类详情：version=${version};\taccess=${Logger.accCode2String(access)};\tname=${name};\tsignature=${signature};\tsuperName=${superName};\tinterfaces=${interfaces.toArrayString()}")
 
         super.visit(version, access, name, signature, superName, interfaces)
     }
@@ -74,13 +74,15 @@ public class AutoClassVisitor extends ClassVisitor {
     @Override
     MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
 
-        MethodVisitor methodVisitor = cv.visitMethod(access, name, desc, signature, exceptions)
-        MethodVisitor adapter = null
+
+        Logger.info("visitMethod onece" )
+        MethodVisitor methodVisitor = super.visitMethod(access,name,desc,signature,exceptions)
+        MethodVisitor visitor = null
 
         // 1、采集日志SDK埋点检测
         if (GlobalConfig.isOpenLogTrack) {
             MethodVisitor logMethodVisitor = new LogMethodVisitor(methodVisitor, access, name, desc, mSuperName, mClassName, mInterfaces, visitedFragMethods)
-            adapter = logMethodVisitor
+            visitor = logMethodVisitor
         }
 
         // 2、用户在build.gradle自定义的MethodVisitor
@@ -89,17 +91,17 @@ public class AutoClassVisitor extends ClassVisitor {
             AutoClassFilter filter ->
                 if (AutoMatchUtil.isShouldModifyCustomMethod(filter, mClassName, name, desc, mInterfaces)) {
                     MethodVisitor userMethodVisitor
-                    if (adapter == null) {
+                    if (visitor == null) {
                         userMethodVisitor = getSettingMethodVisitor(filter, methodVisitor, access, name, desc)
                     } else {
-                        userMethodVisitor = getSettingMethodVisitor(filter, adapter, access, name, desc)
+                        userMethodVisitor = getSettingMethodVisitor(filter, visitor, access, name, desc)
                     }
-                    adapter = userMethodVisitor
+                    visitor = userMethodVisitor
                 }
         }
 
-        if (adapter != null) {
-            return adapter
+        if (visitor != null) {
+            return visitor
         }
         return methodVisitor
     }
@@ -109,11 +111,12 @@ public class AutoClassVisitor extends ClassVisitor {
      */
     @Override
     void visitEnd() {
+        Logger.info("yogachen "+mSuperName+" "+GlobalConfig.isOpenLogTrack.toString()+"  "+LogAnalyticsUtil.isInstanceOfFragment(mSuperName).toString())
         if (GlobalConfig.isOpenLogTrack && LogAnalyticsUtil.isInstanceOfFragment(mSuperName)) {
             MethodVisitor mv
             // 添加剩下的方法，确保super.onHiddenChanged(hidden);等先被调用
             Iterator<Map.Entry<String, LogMethodCell>> iterator = LogHookConfig.sFragmentMethods.entrySet().iterator()
-//            Logger.info("visitedFragMethods:" + visitedFragMethods)
+            Logger.info("visitedFragMethods:" + visitedFragMethods)
             while (iterator.hasNext()) {
                 Map.Entry<String, LogMethodCell> entry = iterator.next()
                 String key = entry.getKey()

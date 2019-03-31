@@ -5,6 +5,7 @@ import org.objectweb.asm.*
 import org.objectweb.asm.commons.AdviceAdapter
 import com.singerstone.xixi.util.*
 import com.singerstone.xixi.*
+
 /**
  * 针对日志采集sdk埋点的方法进行修改
  */
@@ -51,7 +52,7 @@ public class LogMethodVisitor extends AdviceAdapter {
     @Override
     protected void onMethodEnter() {
         super.onMethodEnter()
-
+        Logger.info("onMethodEnter"+this.hashCode()+" "+methodVisitor.hashCode())
         if (isAutoTrackIgnoreTrackOnClick) {
             return
         }
@@ -96,8 +97,8 @@ public class LogMethodVisitor extends AdviceAdapter {
          */
         if (LogAnalyticsUtil.isInstanceOfFragment(superName)) {
             LogMethodCell logMethodCell = LogHookConfig.sFragmentMethods.get(methodNameDesc)
-//            Log.info("fragment:methodNameDesc:" + methodNameDesc)
-//            Log.info("fragment:logMethodCell:" + logMethodCell)
+            Logger.info("fragment:methodNameDesc:" + methodNameDesc)
+            Logger.info("fragment:logMethodCell:" + logMethodCell)
             if (logMethodCell != null) {
                 visitedFragMethods.add(methodNameDesc)
                 LogAnalyticsUtil.visitMethodWithLoadedParams(methodVisitor, Opcodes.INVOKESTATIC, LogHookConfig.LOG_ANALYTICS_BASE, logMethodCell.agentName, logMethodCell.agentDesc, logMethodCell.paramsStart, logMethodCell.paramsCount, logMethodCell.opcodes)
