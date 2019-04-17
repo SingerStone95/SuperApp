@@ -1,8 +1,8 @@
 package singerstone.com.superapp.keeplive;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Window;
@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import singerstone.com.superapp.R;
 import singerstone.com.superapp.utils.L;
 
-public class KeepLiveActivity extends AppCompatActivity {
+public class KeepLiveActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -22,14 +22,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import net.wequick.small.Small;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.net.URI;
 import java.util.ArrayList;
 
-import io.reactivex.functions.Consumer;
 import singerstone.com.annotations.BindView;
 import singerstone.com.inject.ViewInject;
 import singerstone.com.superapp.Accessbility.AccessbilityFragmrnt;
@@ -162,7 +158,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(TouchEventFragment.newInstance());
                     break;
                 case 5:
-                    startActivity(new Intent(getActivity(), KotlinActivity.class));
+
                     break;
                 case 6:
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(PKAnimationFragment.newInstance());

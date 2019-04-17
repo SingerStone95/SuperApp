@@ -1,14 +1,14 @@
 package singerstone.com.superapp;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 import singerstone.com.superapp.circlepkprogressView.CirclepkAnimationView;
 import singerstone.com.superapp.circlepkprogressView.PKCoolingLayer;
 
-public class TestActivity extends AppCompatActivity {
+public class TestActivity extends Activity {
     CirclepkAnimationView circlepkAnimationView;
     int count = 0;
     Button btn;

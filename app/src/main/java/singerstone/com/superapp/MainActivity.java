@@ -12,19 +12,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.PriorityBlockingQueue;
 
-import singerstone.com.superapp.aidl.User;
 import singerstone.com.superapp.keeplive.LiveService;
 import singerstone.com.superapp.utils.L;
 
-public class MainActivity extends AppCompatActivity implements ILife {
+public class MainActivity extends Activity implements ILife {
 
 
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)

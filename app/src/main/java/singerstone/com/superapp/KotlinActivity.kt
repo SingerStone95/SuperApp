@@ -1,11 +1,11 @@
 package singerstone.com.superapp
 
+import android.app.Activity
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import singerstone.com.superapp.utils.L
 
-class KotlinActivity : AppCompatActivity() {
+class KotlinActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -8,12 +8,12 @@ buildscript { //脚本的配置
             url uri("$rootDir/MavenLocal")
 
         }
+        google()
+        // google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
-        classpath 'net.wequick.tools.build:gradle-small:1.5.0-beta2'
+        classpath 'com.android.tools.build:gradle:3.1.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'me.tatarka:gradle-retrolambda:3.2.5'
         classpath 'com.singerstone.plugin:supergradle:1.0.0'
     }
@@ -34,10 +34,5 @@ allprojects { //项目的配置
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-apply plugin: 'net.wequick.small'
 
-small {
-    buildToAssets = true
-    aarVersion = '1.5.0-beta2'
-}
 

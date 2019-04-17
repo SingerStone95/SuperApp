@@ -6,7 +6,6 @@ import android.content.Context;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
-import net.wequick.small.Small;
 
 import singerstone.com.superapp.utils.L;
 
@@ -23,8 +22,7 @@ public class SuperApp extends Application {
     public static Application application;
 
     public SuperApp() {
-        Small.preSetUp(this);
-        Small.setLoadFromAssets(BuildConfig.LOAD_FROM_ASSETS);
+
     }
 
     public static RefWatcher getRefWatcher(Context context) {

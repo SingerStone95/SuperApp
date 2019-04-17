@@ -4,8 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
+import android.widget.ImageView;
 
 import singerstone.com.superapp.utils.L;
 
@@ -13,7 +13,7 @@ import singerstone.com.superapp.utils.L;
  * Created by zhanghongyang01 on 17/11/23.
  */
 
-public class AdImageView extends AppCompatImageView {
+public class AdImageView extends ImageView {
     Context mContext;
 
 

@@ -1,5 +1,6 @@
 package singerstone.com.superapp.ServiceIPC;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -7,7 +8,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,7 +18,7 @@ import singerstone.com.superapp.aidl.IUserAddListener;
 import singerstone.com.superapp.aidl.User;
 import singerstone.com.superapp.utils.L;
 
-public class ServiceIPCActivity extends AppCompatActivity {
+public class ServiceIPCActivity extends Activity {
 
     @BindView(R.id.tv_start)
     TextView tv_start;

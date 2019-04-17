@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
 android {
     compileSdkVersion 26
@@ -19,16 +18,16 @@ android {
         packagingOptions {
             exclude "lib/arm64-v8a/libimagepipeline.so"
         }
-      /*  jackOptions {
-            enabled true
-        }
-        compileOptions {
+        /*  jackOptions {
+              enabled true
+          }
+          compileOptions {
 
-            sourceCompatibility JavaVersion.VERSION_1_8
+              sourceCompatibility JavaVersion.VERSION_1_8
 
-            targetCompatibility JavaVersion.VERSION_1_8
+              targetCompatibility JavaVersion.VERSION_1_8
 
-        }*/
+          }*/
     }
 
     compileOptions {
@@ -104,11 +103,15 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    // 仅在debug包启用BlockCanary进行卡顿监控和提示的话，可以这么用
+    debugCompile 'com.github.markzhai:blockcanary-android:1.5.0'
+    releaseCompile 'com.github.markzhai:blockcanary-no-op:1.5.0'
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
     compile project(':annotations')
-    apt project(':processors')
-    compile project(':inject')
+    annotationProcessor project(':processors')
+    compile project(path: ':inject', configuration: 'default')
+    //compile project(':inject')
 }
 repositories {
     mavenCentral()
