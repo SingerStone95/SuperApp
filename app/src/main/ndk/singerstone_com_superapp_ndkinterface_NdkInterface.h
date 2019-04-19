@@ -12,7 +12,7 @@ extern "C" {
  * Method:    getServiceName
  * Signature: ()Ljava/lang/String;
  */
-JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterface_getServiceName(JNIEnv *, jclass);
+JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterface_getServiceName(JNIEnv *env, jobject obj);
 
 #ifdef __cplusplus
 }
