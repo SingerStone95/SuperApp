@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.0'
 
 
     defaultConfig {
@@ -39,7 +38,7 @@ uploadArchives {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:26.0.0'
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    compile 'com.singerstone.plugin:supergradle:1.0.0'
+    api 'com.android.support:appcompat-v7:26.0.0'
+    api 'com.squareup.okhttp3:okhttp:3.4.1'
+    api 'com.singerstone.plugin:supergradle:1.0.0'
 }

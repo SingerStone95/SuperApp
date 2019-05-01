@@ -1,10 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'me.tatarka.retrolambda'
+
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.0'
     defaultConfig {
         applicationId "singerstone.com.superapp"
         minSdkVersion 16
@@ -80,26 +79,26 @@ task doSomeRightThing {
 apply plugin: 'com.singerstone.supergradle'
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    compile 'com.android.support:recyclerview-v7:25.1.0'
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-    compile 'io.reactivex.rxjava2:rxjava:2.0.1'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    api 'com.android.support:recyclerview-v7:25.1.0'
+    api 'com.squareup.retrofit2:retrofit:2.1.0'
+    api 'com.squareup.retrofit2:converter-gson:2.1.0'
+    api 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    api 'com.squareup.okhttp3:okhttp:3.4.1'
+    api 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    api 'io.reactivex.rxjava2:rxjava:2.0.1'
+    api 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    api 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
+    api 'com.github.bumptech.glide:glide:3.7.0'
     // 仅在debug包启用BlockCanary进行卡顿监控和提示的话，可以这么用
-    debugCompile 'com.github.markzhai:blockcanary-android:1.5.0'
-    releaseCompile 'com.github.markzhai:blockcanary-no-op:1.5.0'
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
-    compile project(':annotations')
+    debugApi 'com.github.markzhai:blockcanary-android:1.5.0'
+    releaseApi 'com.github.markzhai:blockcanary-no-op:1.5.0'
+    debugApi 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+    api project(':annotations')
     annotationProcessor project(':processors')
-    compile project(path: ':inject', configuration: 'default')
+    api project(path: ':inject', configuration: 'default')
     //compile project(':inject')
 }
 repositories {
