@@ -15,6 +15,14 @@ extern "C" {
 JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterface_getServiceName
   (JNIEnv *, jclass);
 
+/*
+ * Class:     singerstone_com_superapp_ndkinterface_NdkInterface
+ * Method:    genCrash
+ * Signature: ()Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterface_genCrash
+  (JNIEnv *, jclass);
+
 #ifdef __cplusplus
 }
 #endif

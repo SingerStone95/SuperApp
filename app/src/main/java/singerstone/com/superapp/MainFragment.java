@@ -42,6 +42,7 @@ import singerstone.com.superapp.circlepkprogressView.PKAnimationFragment;
 import singerstone.com.superapp.https.HttpsTestFragment;
 import singerstone.com.superapp.inke.InkeFragment;
 import singerstone.com.superapp.like.LikeViewFragment;
+import singerstone.com.superapp.ndkinterface.CrashLib;
 import singerstone.com.superapp.ndkinterface.NdkInterface;
 import singerstone.com.superapp.opengl.OpenGlFragment;
 import singerstone.com.superapp.qqlive.QQLiveTestFragment;
@@ -160,7 +161,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
                     break;
                 case 5:
                     Toast.makeText(getActivity(), NdkInterface.getServiceName(), Toast.LENGTH_LONG).show();
-
+                    NdkInterface.genCrash();
                     break;
                 case 6:
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(PKAnimationFragment.newInstance());

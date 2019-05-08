@@ -1,16 +1,5 @@
 package singerstone.com.superapp.qqlive;
-/**
- * @author onawei
- * 用于类似简介可点击展开/收起的textview
- * <com.tencent.qqlive.views.RetractableTextView
- * xmlns:qqlive="http://schemas.android.com/apk/res-auto"
- * android:layout_width="match_parent"
- * android:layout_height="wrap_content"
- * android:maxLines="6"
- * qqlive:showMaxLines="5"
- * qqlive:isRecover="true"
- * qqlive:drawableToggle="@drawable/video_arrow_down_n"/>
- */
+
 
 import android.content.Context;
 import android.content.res.TypedArray;
