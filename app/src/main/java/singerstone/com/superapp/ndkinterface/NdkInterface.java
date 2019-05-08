@@ -2,7 +2,7 @@ package singerstone.com.superapp.ndkinterface;
 
 public class NdkInterface {
     static {
-        System.loadLibrary("superndk");   //defaultConfig.ndk.moduleName
+        System.loadLibrary("NdkInterface");
     }
     public static native String getServiceName();
 }

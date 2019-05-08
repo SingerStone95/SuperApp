@@ -46,8 +46,7 @@ android {
     }
     sourceSets {
         main {
-            jni.srcDirs = ['src/main/ndk']
-            jniLibs.srcDirs=['libs']
+            jniLibs.srcDirs=['src/main/libs']
         }
     }
     buildTypes {
