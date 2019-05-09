@@ -220,7 +220,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         items.add(new ToolItem(R.drawable.default_tool, "仿Retrofit实现Socket收发请求" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "百度波浪进度条" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "VIEW事件传递LOG" + index++));
-        items.add(new ToolItem(R.drawable.default_tool, "Kotlin界面" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "测试捕获native crash" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "手Y PK条View" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "Accessbility模拟点击" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "跑马灯View" + index++));
