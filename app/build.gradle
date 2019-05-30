@@ -12,7 +12,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk {
-            abiFilters "armeabi-v7a", "x86"
+            abiFilters "armeabi","armeabi-v7a", "x86","x86_64"
         }
     }
 
@@ -72,11 +72,18 @@ android {
 
 
 }
+//这样定义的task会在配置的时候执行
 task doSomeRightThing {
     println(">>>>>>>>>>>>>>>app gradle insert task<<<<<<<<<<<<<<<<<<<<<")
 }
+//上面那句等同于这一句
+println(">>>>>>>>>>>>>>>app gradle insert task<<<<<<<<<<<<<<<<<<<<<")
+//这样定义能保证需要执行再执行
+task doSomeLeftThing <<{
+    println(">>>>>>>>>>>>>>>app gradle insert task<<<<<<<<<<<<<<<<<<<<<")
+}
 apply plugin: 'com.singerstone.supergradle'
-
+apply from: 'fat-aar.gradle'
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
@@ -90,6 +97,7 @@ dependencies {
     api 'io.reactivex.rxjava2:rxandroid:2.0.1'
     api 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
     api 'com.github.bumptech.glide:glide:3.7.0'
+    api 'com.tencent.mars:mars-xlog:1.0.6'
     // 仅在debug包启用BlockCanary进行卡顿监控和提示的话，可以这么用
     debugApi 'com.github.markzhai:blockcanary-android:1.5.0'
     releaseApi 'com.github.markzhai:blockcanary-no-op:1.5.0'
