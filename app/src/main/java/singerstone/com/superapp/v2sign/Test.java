@@ -6,12 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 
-import com.tencent.yybutil.apkchannel.v2.ApkSignatureSchemeV2Verifier.SignatureNotFoundException;
 
 public class Test {
 
     private static String suffix = ".apk";
-    
+
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         String file = "testfile/app-debug";
@@ -29,7 +28,7 @@ public class Test {
         /**
          * 测试中文渠道支持
          */
-        testChannelTool(target , "中文渠道号");
+        testChannelTool(target, "中文渠道号");
         /**
          * 测试长渠道号改短渠道号
          */
@@ -44,20 +43,20 @@ public class Test {
          */
         testChannelToolInnerFunction(target, 0xaabbccdd, "andy-test-inner-func");
     }
-    
-    private static void nioTransferCopy(File source, File target) {  
-        FileChannel in = null;  
-        FileChannel out = null;  
-        FileInputStream inStream = null;  
-        FileOutputStream outStream = null;  
-        try {  
-            inStream = new FileInputStream(source);  
-            outStream = new FileOutputStream(target);  
-            in = inStream.getChannel();  
-            out = outStream.getChannel();  
-            in.transferTo(0, in.size(), out);  
-        } catch (IOException e) {  
-            e.printStackTrace();  
+
+    private static void nioTransferCopy(File source, File target) {
+        FileChannel in = null;
+        FileChannel out = null;
+        FileInputStream inStream = null;
+        FileOutputStream outStream = null;
+        try {
+            inStream = new FileInputStream(source);
+            outStream = new FileOutputStream(target);
+            in = inStream.getChannel();
+            out = outStream.getChannel();
+            in.transferTo(0, in.size(), out);
+        } catch (IOException e) {
+            e.printStackTrace();
         } finally {
             try {
                 inStream.close();
@@ -75,13 +74,13 @@ public class Test {
                 // TODO: handle exception
             }
             try {
-                out.close(); 
+                out.close();
             } catch (Exception e2) {
                 // TODO: handle exception
             }
-        }  
+        }
     }
-    
+
     private static String testChannelTool(String source, String channelValue) {
         String target = source + "_" + channelValue;
         nioTransferCopy(new File(source + suffix), new File(target + suffix));
@@ -89,16 +88,12 @@ public class Test {
             ApkSignatureV2ChannelTool.wirteChannel(target + suffix, channelValue);
             String channel = ApkSignatureV2ChannelTool.readChannel(target + suffix);
             System.out.println(target + suffix + " channel is " + channel);
-        } catch (IOException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        } catch (SignatureNotFoundException e1) {
-            // TODO Auto-generated catch block
+        } catch (Exception e1) {
             e1.printStackTrace();
         }
         return target;
     }
-    
+
     private static String testChannelToolInnerFunction(String source, int id, String value) {
         String target = source + "_" + value;
         nioTransferCopy(new File(source + suffix), new File(target + suffix));
@@ -106,14 +101,10 @@ public class Test {
             ApkSignatureV2ChannelTool.updateApkWithPair(target + suffix, id, value);
             String channel = ApkSignatureV2ChannelTool.readPairValueWithId(target + suffix, id);
             System.out.println(target + suffix + " channel is " + channel);
-        } catch (IOException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        } catch (SignatureNotFoundException e1) {
-            // TODO Auto-generated catch block
+        } catch (Exception e1) {
             e1.printStackTrace();
         }
         return target;
     }
-    
+
 }

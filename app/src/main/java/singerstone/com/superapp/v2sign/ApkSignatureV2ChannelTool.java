@@ -24,7 +24,7 @@ public class ApkSignatureV2ChannelTool {
      * @throws IOException
      * @throws SignatureNotFoundException
      */
-    public static void wirteChannel(String apkFile, String channel) throws IOException, SignatureNotFoundException {
+    public static void wirteChannel(String apkFile, String channel) throws Exception {
         updateApkWithPair(apkFile, YYB_CHANNEL_BLOCK_ID, channel);
     }
     
@@ -35,7 +35,7 @@ public class ApkSignatureV2ChannelTool {
      * @throws IOException 
      * @throws SignatureNotFoundException 按 V2 签名方式没有找到渠道号（1.非V2签名包，2.V2签名包，但未打渠道号）
      */
-    public static String readChannel(String apkFile) throws IOException, SignatureNotFoundException {
+    public static String readChannel(String apkFile) throws Exception {
         return readPairValueWithId(apkFile, YYB_CHANNEL_BLOCK_ID);
     }
 
@@ -51,7 +51,7 @@ public class ApkSignatureV2ChannelTool {
      * @throws IOException 
      * @throws SignatureNotFoundException
      */
-    static void updateApkWithPair(String apkFile, int id, String value) throws IOException, SignatureNotFoundException {
+    static void updateApkWithPair(String apkFile, int id, String value) throws Exception {
         try (RandomAccessFile apk = new RandomAccessFile(apkFile, "rw")) {
             Pair<ByteBuffer, Long> eocdAndOffsetInFile = ApkSignatureSchemeV2Verifier.getEocd(apk);
             ByteBuffer eocd = eocdAndOffsetInFile.first;
@@ -98,7 +98,7 @@ public class ApkSignatureV2ChannelTool {
      * @throws IOException IO异常
      * @throws SignatureNotFoundException 非V2签名包，或者V2签名包但 APK Signing Block 中没 id，会抛出这个异常
      */
-    static String readPairValueWithId(String apkFile, int id) throws IOException, SignatureNotFoundException {
+    static String readPairValueWithId(String apkFile, int id) throws Exception {
         try (RandomAccessFile apk = new RandomAccessFile(apkFile, "r")) {
             Pair<ByteBuffer, Long> eocdAndOffsetInFile = ApkSignatureSchemeV2Verifier.getEocd(apk);
             ByteBuffer eocd = eocdAndOffsetInFile.first;
