@@ -206,6 +206,7 @@ public class ApkSignatureV2ChannelTool {
         newApkSigningBlock.putLong(newSize);
         
         newApkSigningBlock.position(0);
+        //设置新的边界
         newApkSigningBlock.limit((int)newSize + 8);
         
         return Pair.create(newApkSigningBlock, changeSize);

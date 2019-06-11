@@ -12,8 +12,14 @@ public class Test {
     private static String suffix = ".apk";
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        String file = "testfile/app-debug";
+        System.out.println(System.getProperty("user.dir"));
+        String apkDir = System.getProperty("user.dir") +
+                File.separator + "app" +
+                File.separator + "build" +
+                File.separator + "outputs" +
+                File.separator + "apk" +
+                File.separator + "debug";
+        String file = apkDir + File.separator + "app-debug";
         try {
             System.out.println(file + suffix + " isSignatureV2Apk = " + ApkSignatureV2ChannelTool.isSignatureV2Apk(file + suffix));
         } catch (IOException e) {

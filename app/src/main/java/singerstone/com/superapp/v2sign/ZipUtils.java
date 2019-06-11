@@ -28,7 +28,7 @@ import java.nio.ByteOrder;
  */
 abstract class ZipUtils {
     private ZipUtils() {}
-    private static final int ZIP_EOCD_REC_MIN_SIZE = 22;
+    private static final int ZIP_EOCD_REC_MIN_SIZE = 22; //这个22就是不包含coment的内容长度
     private static final int ZIP_EOCD_REC_SIG = 0x06054b50;
     private static final int ZIP_EOCD_CENTRAL_DIR_SIZE_FIELD_OFFSET = 12;
     private static final int ZIP_EOCD_CENTRAL_DIR_OFFSET_FIELD_OFFSET = 16;
@@ -103,12 +103,12 @@ abstract class ZipUtils {
             return null;
         }
         // Lower maxCommentSize if the file is too small.
-        maxCommentSize = (int) Math.min(maxCommentSize, fileSize - ZIP_EOCD_REC_MIN_SIZE);
+        maxCommentSize = (int) Math.min(maxCommentSize, fileSize - ZIP_EOCD_REC_MIN_SIZE);//fileSize - ZIP_EOCD_REC_MIN_SIZE 是假设zip文件只包含文件EOCD
         ByteBuffer buf = ByteBuffer.allocate(ZIP_EOCD_REC_MIN_SIZE + maxCommentSize);
         buf.order(ByteOrder.LITTLE_ENDIAN);
-        long bufOffsetInFile = fileSize - buf.capacity();
-        zip.seek(bufOffsetInFile);
-        zip.readFully(buf.array(), buf.arrayOffset(), buf.capacity());
+        long bufOffsetInFile = fileSize - buf.capacity(); //maxCommentSize==0的情况下，buf.capacity()==22，即是没有comment的情况；
+        zip.seek(bufOffsetInFile); //移动到EOCD的头部（当然，如果有comment内容这里就不是真正的头部）
+        zip.readFully(buf.array(), buf.arrayOffset(), buf.capacity()); //读取22个字节；或者读取22+65535个字节
         int eocdOffsetInBuf = findZipEndOfCentralDirectoryRecord(buf);
         if (eocdOffsetInBuf == -1) {
             // No EoCD record found in the buffer
@@ -127,6 +127,7 @@ abstract class ZipUtils {
      * <p>NOTE: Byte order of {@code zipContents} must be little-endian.
      */
     private static int findZipEndOfCentralDirectoryRecord(ByteBuffer zipContents) {
+
         assertByteOrderLittleEndian(zipContents);
         // ZIP End of Central Directory (EOCD) record is located at the very end of the ZIP archive.
         // The record can be identified by its 4-byte signature/magic which is located at the very
@@ -144,10 +145,10 @@ abstract class ZipUtils {
         int maxCommentLength = Math.min(archiveSize - ZIP_EOCD_REC_MIN_SIZE, UINT16_MAX_VALUE);
         int eocdWithEmptyCommentStartPosition = archiveSize - ZIP_EOCD_REC_MIN_SIZE;
         for (int expectedCommentLength = 0; expectedCommentLength < maxCommentLength;
-                expectedCommentLength++) {
-            int eocdStartPos = eocdWithEmptyCommentStartPosition - expectedCommentLength;
+                expectedCommentLength++) { //从0-UINT16_MAX_VALUE一次尝试comment的length
+            int eocdStartPos = eocdWithEmptyCommentStartPosition - expectedCommentLength; //尝试找到EOCD的头部
             if (zipContents.getInt(eocdStartPos) == ZIP_EOCD_REC_SIG) {
-                int actualCommentLength =
+                int actualCommentLength = //读取comment的size再校验一次
                         getUnsignedInt16(
                                 zipContents, eocdStartPos + ZIP_EOCD_COMMENT_LENGTH_FIELD_OFFSET);
                 if (actualCommentLength == expectedCommentLength) {
