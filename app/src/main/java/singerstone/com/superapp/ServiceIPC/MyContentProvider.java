@@ -54,6 +54,22 @@ public class MyContentProvider extends ContentProvider {
     @Override
     public Bundle call(@NonNull String method, @Nullable String arg, @Nullable Bundle extras) {
         L.e("MyContentProvider:" + method);
-        return super.call(method, arg, extras);
+        Bundle result = new Bundle();
+        result.putString("result", "success!");
+        return result;
     }
 }
+/**
+
+ //把下面这个代码复制到一个新的APP就可以测试
+ Bundle result = null;
+ // 与manifest中定义的authorities相对应
+ Uri providerUri = Uri.parse("content://" + "com.singerstone.provider");
+ try {
+ Bundle bundle = getApplication().getContentResolver().call(providerUri,
+ "get_user_token", null, null);
+ log.setText(bundle.getString("result"));
+ } catch (Exception e) {
+ e.printStackTrace();
+ }
+ */

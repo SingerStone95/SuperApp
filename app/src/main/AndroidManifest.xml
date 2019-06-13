@@ -87,6 +87,7 @@
         <provider
             android:name="singerstone.com.superapp.ServiceIPC.MyContentProvider"
             android:authorities="com.singerstone.provider"
+            android:exported="true"
             android:process=":provider"/>
     </application>
 
