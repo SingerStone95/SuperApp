@@ -7,11 +7,6 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.view.GestureDetector;
@@ -21,6 +16,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -42,7 +43,6 @@ import singerstone.com.superapp.circlepkprogressView.PKAnimationFragment;
 import singerstone.com.superapp.https.HttpsTestFragment;
 import singerstone.com.superapp.inke.InkeFragment;
 import singerstone.com.superapp.like.LikeViewFragment;
-import singerstone.com.superapp.ndkinterface.CrashLib;
 import singerstone.com.superapp.ndkinterface.NdkInterface;
 import singerstone.com.superapp.opengl.OpenGlFragment;
 import singerstone.com.superapp.qqlive.QQLiveTestFragment;
@@ -112,7 +112,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
 
     private void initView(View view) {
         ViewInject.inject(this, view);
-        final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2, LinearLayoutManager.VERTICAL, false);
+        final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2, RecyclerView.VERTICAL, false);
         //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rv_tools.setLayoutManager(layoutManager);
         toolAdapter = new ToolAdapter(getActivity(), items);

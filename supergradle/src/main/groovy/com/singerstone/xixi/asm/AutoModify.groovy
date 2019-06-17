@@ -3,8 +3,7 @@ package com.singerstone.xixi.asm
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.ClassWriter
-import com.singerstone.xixi.util.*
-import com.singerstone.xixi.*
+
 /**
  * Author:xishuang
  * Date:2018.01.08

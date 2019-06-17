@@ -1,10 +1,7 @@
 package singerstone.com.superapp.qqlive;
 
 import android.Manifest;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.animation.TypeEvaluator;
-import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.app.PendingIntent;
@@ -20,14 +17,9 @@ import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.content.ContextCompat;
-import android.text.SpannableStringBuilder;
-import android.text.style.ClickableSpan;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
@@ -35,9 +27,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import singerstone.com.annotations.BindView;
@@ -46,7 +39,6 @@ import singerstone.com.inject.ViewInject;
 import singerstone.com.superapp.MainActivity;
 import singerstone.com.superapp.R;
 import singerstone.com.superapp.flowtext.FlowTextView;
-import singerstone.com.superapp.treeholeview.SpanUtils;
 import singerstone.com.superapp.utils.Device;
 import singerstone.com.superapp.utils.L;
 

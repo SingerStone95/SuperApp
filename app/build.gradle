@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
     defaultConfig {
         applicationId "singerstone.com.superapp"
         minSdkVersion 16
@@ -12,7 +12,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk {
-            abiFilters "armeabi","armeabi-v7a", "x86","x86_64"
+            abiFilters "armeabi", "armeabi-v7a", "x86", "x86_64"
         }
     }
 
@@ -46,8 +46,8 @@ android {
     }
     sourceSets {
         main {
-            jniLibs.srcDirs=['libs']
-            aidl.srcDirs=['src/main/AIDL']
+            jniLibs.srcDirs = ['libs']
+            aidl.srcDirs = ['src/main/AIDL']
         }
     }
     buildTypes {
@@ -80,7 +80,7 @@ task doSomeRightThing {
 //上面那句等同于这一句
 println(">>>>>>>>>>>>>>>app gradle insert task<<<<<<<<<<<<<<<<<<<<<")
 //这样定义能保证需要执行再执行
-task doSomeLeftThing <<{
+task doSomeLeftThing << {
     println(">>>>>>>>>>>>>>>app gradle insert task<<<<<<<<<<<<<<<<<<<<<")
 }
 apply plugin: 'com.singerstone.supergradle'
@@ -88,7 +88,6 @@ apply from: 'fat-aar.gradle'
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    api 'com.android.support:recyclerview-v7:25.1.0'
     api 'com.squareup.retrofit2:retrofit:2.1.0'
     api 'com.squareup.retrofit2:converter-gson:2.1.0'
     api 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
@@ -99,6 +98,7 @@ dependencies {
     api 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
     api 'com.github.bumptech.glide:glide:3.7.0'
     api 'com.tencent.mars:mars-xlog:1.0.6'
+    api 'androidx.viewpager2:viewpager2:1.0.0-alpha05'
     // 仅在debug包启用BlockCanary进行卡顿监控和提示的话，可以这么用
     debugApi 'com.github.markzhai:blockcanary-android:1.5.0'
     releaseApi 'com.github.markzhai:blockcanary-no-op:1.5.0'

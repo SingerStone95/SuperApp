@@ -15,12 +15,12 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
-import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import singerstone.com.superapp.R;
 

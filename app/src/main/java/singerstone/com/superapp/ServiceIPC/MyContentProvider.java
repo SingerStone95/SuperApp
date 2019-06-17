@@ -5,8 +5,10 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import singerstone.com.superapp.utils.L;
 

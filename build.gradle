@@ -8,6 +8,9 @@ buildscript { //脚本的配置
             url uri("$rootDir/MavenLocal")
 
         }
+        maven {
+            url "https://jitpack.io"
+        }
         google()
         // google()
     }

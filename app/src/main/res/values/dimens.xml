@@ -60,11 +60,7 @@
     <dimen name="sms_code_registration_button_height_normal">44dp</dimen>
     <dimen name="sms_code_registration_button_height_small">40dp</dimen>
     <dimen name="big_fnt">17sp</dimen>
-
-
     <dimen name="about_version_top">76dp</dimen>
-
-
     <dimen name="channel_chat_item_margin_left">12dp</dimen>
     <dimen name="channel_chat_item_margin">6dp</dimen>
     <dimen name="channel_chat_item_message_margin">0dp</dimen>
