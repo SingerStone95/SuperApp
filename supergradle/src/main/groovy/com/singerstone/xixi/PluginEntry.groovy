@@ -16,7 +16,7 @@ class PluginEntry implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
-        /*project.extensions.create('xiaoqingwa', AutoSettingParams)
+     /*   project.extensions.create('xiaoqingwa', AutoSettingParams)
         GlobalConfig.setProject(project)
         println(GlobalConfig.getParams().name)
 

@@ -213,6 +213,9 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         btnTest.setOnClickListener(v -> rv_tools.scrollToPosition(position + 3));
     }
 
+    /**
+     * S事实
+     */
 
     private void initData() {
         items = new ArrayList<>();
