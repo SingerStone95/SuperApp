@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply from: '../config/quality.gradle'
 
 android {
     compileSdkVersion 28
@@ -83,6 +84,12 @@ println(">>>>>>>>>>>>>>>app gradle insert task<<<<<<<<<<<<<<<<<<<<<")
 task doSomeLeftThing << {
     println(">>>>>>>>>>>>>>>app gradle insert task<<<<<<<<<<<<<<<<<<<<<")
 }
+project.tasks.whenTaskAdded { Task theTask ->
+    if (theTask.name == 'assembleDebug'||theTask.name == 'assembleRelease') {
+        theTask.dependsOn(check)
+    }
+}
+
 apply plugin: 'com.singerstone.supergradle'
 apply from: 'fat-aar.gradle'
 dependencies {

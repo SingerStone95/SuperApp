@@ -46,39 +46,6 @@ public class AutoTransform extends Transform {
         return false
     }
 
-    /**
-     * 打印提示信息
-     */
-    static void printCopyRight() {
-        println()
-        println '#######################################################################'
-        println '##########                                                    '
-        println '##########         欢迎使用 Luffy® (' + VERSION + ')无埋点编译插件'
-        println '##########           使用过程中碰到任何问题请联系数据中心          '
-        println '##########                                                    '
-        println '#######################################################################'
-        println '##########                                                    '
-        println '##########                      插件配置参数                    '
-        println '##########                                                    '
-        println '##########                 -isDebug:' + GlobalConfig.getParams().isDebug
-        println '##########                 -isOpenLogTrack:' + GlobalConfig.getParams().isOpenLogTrack
-        println '##########                 -exclude:' + GlobalConfig.exclude
-        println '##########                 -include:' + GlobalConfig.include
-        List<AutoClassFilter> autoClassFilterList = GlobalConfig.getAutoClassFilter()
-        autoClassFilterList.each {
-            AutoClassFilter filter ->
-                println '##########                                                    '
-                println '##########                 -methodName:' + filter.MethodName
-                println '##########                 -methodDes:' + filter.MethodDes
-                println '##########                 -className:' + filter.ClassName
-                println '##########                 -interfaceName:' + filter.InterfaceName
-                println '##########                 -isAnnotation:' + filter.isAnnotation
-        }
-        println '##########                                                    '
-        println '##########                                                    '
-        println '#######################################################################'
-        println()
-    }
 
     @Override
     public void transform(
