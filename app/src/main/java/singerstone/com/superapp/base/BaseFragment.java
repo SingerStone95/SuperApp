@@ -1,6 +1,6 @@
 package singerstone.com.superapp.base;
 
-import android.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import com.squareup.leakcanary.RefWatcher;
 

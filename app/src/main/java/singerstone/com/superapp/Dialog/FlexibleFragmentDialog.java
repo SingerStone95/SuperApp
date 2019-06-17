@@ -1,8 +1,5 @@
 package singerstone.com.superapp.Dialog;
 
-import android.app.DialogFragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.ShapeDrawable;
@@ -17,6 +14,9 @@ import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +28,7 @@ import singerstone.com.superapp.R;
 import singerstone.com.superapp.utils.DimentionUtils;
 
 
-public class FlexibleFragmentDialog extends DialogFragment {
+public class FlexibleFragmentDialog extends androidx.fragment.app.DialogFragment {
 
     private static int DEFAULT_CORNERRADIUS = 15; //dp
     private static int DEFAULt_WIDTH = 300;
@@ -121,7 +121,7 @@ public class FlexibleFragmentDialog extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.TransparentDialog);
+        setStyle(STYLE_NO_TITLE, R.style.TransparentDialog);
     }
 
     @Nullable
@@ -202,7 +202,7 @@ public class FlexibleFragmentDialog extends DialogFragment {
     @Override
     public void show(FragmentManager manager, String tag) {
         try {
-            FragmentTransaction ft = manager.beginTransaction();
+            androidx.fragment.app.FragmentTransaction ft = manager.beginTransaction();
             ft.add(this, tag);
             ft.commitAllowingStateLoss();
         } catch (Throwable t) {

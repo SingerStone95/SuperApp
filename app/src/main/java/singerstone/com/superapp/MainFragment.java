@@ -51,6 +51,7 @@ import singerstone.com.superapp.socketretrofit.SocketService;
 import singerstone.com.superapp.treeholeview.SpannableStringUtils;
 import singerstone.com.superapp.treeholeview.TreeholeViewFragment;
 import singerstone.com.superapp.utils.L;
+import singerstone.com.superapp.viewpager2.ViewPager2Fragment;
 import singerstone.com.superapp.waveeffect.WaveFragment;
 
 /**
@@ -146,7 +147,6 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
                     dialog.show(getFragmentManager(), "FlexibleFragmentDialog");
                     break;
                 case 1:
-
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(BezierPaopaoFragment.newInstance());
                     break;
                 case 2:
@@ -199,10 +199,12 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(HttpsTestFragment.newInstance());
                     break;
                 case 17:
-                    ((MainActivity) getActivity()).setFragmentAddToBackStack(new OpenGlFragment());
+                   // ((MainActivity) getActivity()).setFragmentAddToBackStack(new OpenGlFragment());
                     break;
                 case 18:
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(QQLiveTestFragment.newInstance());
+                case 19:
+                    ((MainActivity) getActivity()).setFragmentAddToBackStack(ViewPager2Fragment.newInstance());
                 default:
                     break;
             }
@@ -234,6 +236,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         items.add(new ToolItem(R.drawable.default_tool, "Https双向验证" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "OpenGl瞎搞几下" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "腾讯视频测试" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "ViewPager2测试" + index++));
     }
 
     private RecyclerView.OnScrollListener scrollListener = new RecyclerView.OnScrollListener() {

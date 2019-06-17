@@ -25,12 +25,14 @@ class OpenGlFragment : BaseFragment(), View.OnClickListener {
     var ilike: ILike? = null
 
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var rootView = inflater?.inflate(R.layout.fragment_layout_opengl, null)
         return rootView
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
     }
@@ -64,14 +66,14 @@ class OpenGlFragment : BaseFragment(), View.OnClickListener {
     }
 
     fun listenNaVigationBar() {
-        activity.getContentResolver().registerContentObserver(Settings.System.getUriFor
+        activity!!.getContentResolver().registerContentObserver(Settings.System.getUriFor
         ("navigationbar_is_min"), true, mNavigationStatusObserver)
     }
 
 
     private val mNavigationStatusObserver = object : ContentObserver(Handler()) {
         override fun onChange(selfChange: Boolean) {
-            val navigationBarIsMin = Settings.System.getInt(activity.getContentResolver(),
+            val navigationBarIsMin = Settings.System.getInt(activity!!.getContentResolver(),
                     "navigationbar_is_min", 0)
             if (navigationBarIsMin == 1) {
                 L.i("navigationbar dismissing!")

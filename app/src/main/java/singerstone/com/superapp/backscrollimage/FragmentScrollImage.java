@@ -1,8 +1,6 @@
 package singerstone.com.superapp.backscrollimage;
 
-import android.app.Fragment;
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import singerstone.com.superapp.R;
+import singerstone.com.superapp.base.BaseFragment;
 import singerstone.com.superapp.utils.L;
 
 /**
@@ -22,7 +21,7 @@ import singerstone.com.superapp.utils.L;
  * YY:909075276
  */
 
-public class FragmentScrollImage extends Fragment {
+public class FragmentScrollImage extends BaseFragment {
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
 

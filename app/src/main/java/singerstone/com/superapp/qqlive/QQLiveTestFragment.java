@@ -38,13 +38,14 @@ import singerstone.com.annotations.OnClick;
 import singerstone.com.inject.ViewInject;
 import singerstone.com.superapp.MainActivity;
 import singerstone.com.superapp.R;
+import singerstone.com.superapp.base.BaseFragment;
 import singerstone.com.superapp.flowtext.FlowTextView;
 import singerstone.com.superapp.utils.Device;
 import singerstone.com.superapp.utils.L;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 
-public class QQLiveTestFragment extends Fragment {
+public class QQLiveTestFragment extends BaseFragment {
     @BindView(R.id.btn_add_shortcut)
     public Button btnAddShort;
     @BindView(R.id.btn_remove_shortcut)
