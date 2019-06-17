@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ListView
-import kotlinx.android.synthetic.main.fragment_layout_opengl.*
+import android.widget.TextView
 import singerstone.com.superapp.R
 import singerstone.com.superapp.base.BaseFragment
 import singerstone.com.superapp.utils.DimentionUtils
@@ -23,13 +23,15 @@ import singerstone.com.superapp.utils.L
 class OpenGlFragment : BaseFragment(), View.OnClickListener {
 
     var ilike: ILike? = null
-
+    var tv_getScreenWH: TextView? = null
+    var lvTest: ListView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var rootView = inflater?.inflate(R.layout.fragment_layout_opengl, null)
+        tv_getScreenWH?.findViewById<TextView>(R.id.tv_getScreenWH)
+        lvTest?.findViewById<ListView>(R.id.lvTest)
         return rootView
     }
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,7 +40,7 @@ class OpenGlFragment : BaseFragment(), View.OnClickListener {
     }
 
     fun initView() {
-        tv_getScreenWH.text = "获取屏幕数据"
+        tv_getScreenWH?.text = "获取屏幕数据"
 
         listenNaVigationBar()
 
@@ -54,10 +56,10 @@ class OpenGlFragment : BaseFragment(), View.OnClickListener {
                 L.i("nothing!")
             }
         }
-        lvTest.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+        lvTest?.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
 
         }
-        ilike=object :ILike{
+        ilike = object : ILike {
             override fun play(name: String, age: Int) {
 
             }
