@@ -15,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.lang.reflect.Field;
 
 import singerstone.com.superapp.R;
+import singerstone.com.superapp.utils.L;
 import singerstone.com.superapp.utils.ReflectUtils;
 
 /**
@@ -52,6 +53,18 @@ public class ViewPager2Fragment extends Fragment {
         }
         initView();
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        L.i("yogachen", "old code!");
+        Object o = null;
+        o.toString();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     private void initView() {

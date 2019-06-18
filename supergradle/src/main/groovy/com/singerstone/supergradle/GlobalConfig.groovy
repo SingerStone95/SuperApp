@@ -23,7 +23,7 @@ public class GlobalConfig {
     }
 
     static com.singerstone.supergradle.bean.AutoSettingParams getParams() {
-        return project.xiaoqingwa
+        return project.supergradle
     }
 
     static void setAutoClassFilter(List<AutoClassFilter> filter) {

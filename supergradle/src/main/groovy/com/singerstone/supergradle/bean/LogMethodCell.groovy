@@ -28,4 +28,18 @@ public class LogMethodCell {
         this.paramsCount = paramsCount
         this.opcodes = opcodes
     }
+
+    @Override
+    public String toString() {
+        return "LogMethodCell{" +
+                "name='" + name + '\'' +
+                ", desc='" + desc + '\'' +
+                ", parent='" + parent + '\'' +
+                ", agentName='" + agentName + '\'' +
+                ", agentDesc='" + agentDesc + '\'' +
+                ", paramsStart=" + paramsStart +
+                ", paramsCount=" + paramsCount +
+                ", opcodes=" + opcodes +
+                '}';
+    }
 }

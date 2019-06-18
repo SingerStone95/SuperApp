@@ -11,7 +11,7 @@ public class LogHookConfig {
     /**
      * 日志采集埋点入口类
      */
-    public static final String LOG_ANALYTICS_BASE = "com/mmc/lamandys/liba_datapick/AutoTrackHelper"
+    public static final String LOG_ANALYTICS_BASE = "singerstone/com/superapp/trace/AutoTrackHelper"
 
 
     public final
@@ -125,7 +125,6 @@ public class LogHookConfig {
                 0, 2,
                 [Opcodes.ALOAD, Opcodes.ALOAD]))
 
-        // Todo: 扩展
     }
 
     /**

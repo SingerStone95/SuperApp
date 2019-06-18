@@ -4,6 +4,7 @@ import com.android.annotations.NonNull
 import com.android.annotations.Nullable
 import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
+import com.singerstone.supergradle.util.Logger
 import groovy.io.FileType
 import org.apache.commons.codec.digest.DigestUtils
 import org.apache.commons.io.FileUtils
@@ -59,7 +60,6 @@ public class AutoTransform extends Transform {
          * 打印提示信息
          */
         // printCopyRight()
-
         //开始计算消耗的时间
         com.singerstone.supergradle.util.Logger.info("||=======================================================================================================")
         com.singerstone.supergradle.util.Logger.info("||                                                 开始计时                                               ")
@@ -75,14 +75,14 @@ public class AutoTransform extends Transform {
             /**
              * 遍历jar
              */
-            /*     input.jarInputs.each { JarInput jarInput ->
+                 input.jarInputs.each { JarInput jarInput ->
                      String destName = jarInput.file.name
-                     *//** 截取文件路径的md5值重命名输出文件,因为可能同名,会覆盖*//*
+                     // 截取文件路径的md5值重命名输出文件,因为可能同名,会覆盖
                 def hexName = DigestUtils.md5Hex(jarInput.file.absolutePath).substring(0, 8)
                 if (destName.endsWith(".jar")) {
                     destName = destName.substring(0, destName.length() - 4)
                 }
-                *//** 获得输出文件*//*
+                // 获得输出文件
                 File dest = outputProvider.getContentLocation(destName + "_" + hexName, jarInput.contentTypes, jarInput.scopes, Format.JAR)
                 Logger.info("||-->开始遍历特定jar ${dest.absolutePath}")
                 def modifiedJar = modifyJarFile(jarInput.file, context.getTemporaryDir())
@@ -91,7 +91,7 @@ public class AutoTransform extends Transform {
                     modifiedJar = jarInput.file
                 }
                 FileUtils.copyFile(modifiedJar, dest)
-            }*/
+            }
             /**
              * 遍历目录
              */

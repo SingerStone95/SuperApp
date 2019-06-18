@@ -44,7 +44,8 @@ public class LogMethodVisitor extends AdviceAdapter {
     void visitEnd() {
         super.visitEnd()
         if (isHasTracked) {
-            visitAnnotation("Lcom/mmc/lamandys/liba_datapick/AutoDataInstrumented;", false)
+            //
+            visitAnnotation("Lsingerstone/com/annotations/AutoDataInstrumented;", false)
             Logger.info("||Hooked method: ${methodName}${methodDesc}")
         }
         Logger.info("||结束扫描方法：${methodName}")
@@ -93,11 +94,12 @@ public class LogMethodVisitor extends AdviceAdapter {
         String methodNameDesc = methodName + methodDesc
 
         /**
-         * Fragment
-         * 目前支持 android/support/v4/app/ListFragment 和 android/support/v4/app/Fragment
+         * Fragment 生命周期Hook
+         *
+         * 目前支持 android/support/v4/app/ListFragment 和 androidx/fragment/app/Fragment
          */
         if (LogAnalyticsUtil.isInstanceOfFragment(superName)) {
-            LogMethodCell logMethodCell = LogHookConfig.sFragmentMethods.get(methodNameDesc)
+            LogMethodCell logMethodCell = LogHookConfig.sFragmentMethods.get(methodNameDesc) //找到对应的hook方法
             Logger.info("fragment:methodNameDesc:" + methodNameDesc)
             Logger.info("fragment:logMethodCell:" + logMethodCell)
             if (logMethodCell != null) {
@@ -191,17 +193,17 @@ public class LogMethodVisitor extends AdviceAdapter {
      */
     @Override
     AnnotationVisitor visitAnnotation(String s, boolean b) {
-        if (s == 'Lcom/mmc/lamandys/liba_datapick/AutoTrackDataViewOnClick;') {
+        if (s == 'Lsingerstone/com/annotations/AutoTrackDataViewOnClick;') {
             isAutoTrackViewOnClickAnnotation = true
             Logger.info("||发现 ${methodName}${methodDesc} 有注解 @AutoTrackDataViewOnClick")
         }
 
-        if (s == 'Lcom/mmc/lamandys/liba_datapick/AutoIgnoreTrackDataOnClick;') {
+        if (s == 'Lsingerstone/com/annotations/AutoIgnoreTrackDataOnClick;') {
             isAutoTrackIgnoreTrackOnClick = true
             Logger.info("||发现 ${methodName}${methodDesc} 有注解 @AutoIgnoreTrackDataOnClick")
         }
 
-        if (s == 'Lcom/mmc/lamandys/liba_datapick/AutoDataInstrumented;') {
+        if (s == 'Lsingerstone/com/annotations/AutoDataInstrumented;') {
             isHasInstrumented = true
         }
 
