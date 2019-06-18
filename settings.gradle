@@ -1,17 +1,16 @@
 include ':app', ':processors', ':annotations', ':inject', ':supergradle', ':LeetCode'
 
-// 在初始化前就已经调用了 buildStarted 方法,所以在初始化阶段无法回调的到.
-gradle.buildStarted {
-    println 'buildStarted......'
-}
 // 1.初始化阶段
 gradle.settingsEvaluated {
     println '初始化阶段 settingsEvaluated'
 }
-gradle.projectsLoaded  {
+gradle.projectsLoaded {
     println '初始化阶段 projectsLoaded'
 }
-// 2.配置阶段
-gradle.beforeProject {
-    println '配置阶段 beforeProject --- in settings.gradle'
+ //2.配置阶段
+gradle.beforeProject { project ->
+    println '配置阶段前，配置:' + project
+}
+gradle.afterProject { project ->
+    println '配置阶段后，配置:' + project
 }

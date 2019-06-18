@@ -1,10 +1,11 @@
-package com.singerstone.xixi.asm
+package com.singerstone.supergradle.asm
 
-import com.singerstone.xixi.bean.LogMethodCell
+import com.singerstone.supergradle.LogHookConfig
+import com.singerstone.supergradle.bean.LogMethodCell
+import com.singerstone.supergradle.util.LogAnalyticsUtil
+import com.singerstone.supergradle.util.Logger
 import org.objectweb.asm.*
 import org.objectweb.asm.commons.AdviceAdapter
-import com.singerstone.xixi.util.*
-import com.singerstone.xixi.*
 
 /**
  * 针对日志采集sdk埋点的方法进行修改

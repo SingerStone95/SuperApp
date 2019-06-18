@@ -1,4 +1,4 @@
-package com.singerstone.xixi.util
+package com.singerstone.supergradle.util
 
 import jdk.internal.org.objectweb.asm.Opcodes
 import org.objectweb.asm.MethodVisitor

@@ -1,4 +1,4 @@
-package com.singerstone.xixi.bean
+package com.singerstone.supergradle.bean
 
 public class LogMethodCell {
     // 原方法名

@@ -1,11 +1,11 @@
-package com.singerstone.xixi.bean
+package com.singerstone.supergradle.bean
 
 /**
  * 用于build.gradle中的参数传递
  */
 public class AutoSettingParams {
 
-    String name = 'Luffy字节码插件'
+    String name = 'Singerstone字节码插件'
     /**
      * 是否是Debug模式进行日志打印
      */

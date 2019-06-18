@@ -1,12 +1,15 @@
-package com.singerstone.xixi.asm
+package com.singerstone.supergradle.asm
 
-import com.singerstone.xixi.bean.AutoClassFilter
-import com.singerstone.xixi.bean.LogMethodCell
+import com.singerstone.supergradle.GlobalConfig
+import com.singerstone.supergradle.LogHookConfig
+import com.singerstone.supergradle.bean.AutoClassFilter
+import com.singerstone.supergradle.bean.LogMethodCell
+import com.singerstone.supergradle.util.AutoMatchUtil
+import com.singerstone.supergradle.util.LogAnalyticsUtil
+import com.singerstone.supergradle.util.Logger
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
-import com.singerstone.xixi.util.*
-import com.singerstone.xixi.*
 
 /**
  * Author:xishuang
@@ -111,7 +114,7 @@ public class AutoClassVisitor extends ClassVisitor {
      */
     @Override
     void visitEnd() {
-        Logger.info("yogachen "+mSuperName+" "+GlobalConfig.isOpenLogTrack.toString()+"  "+LogAnalyticsUtil.isInstanceOfFragment(mSuperName).toString())
+        Logger.info("yogachen "+mSuperName+" "+GlobalConfig.isOpenLogTrack.toString()+"  "+ LogAnalyticsUtil.isInstanceOfFragment(mSuperName).toString())
         if (GlobalConfig.isOpenLogTrack && LogAnalyticsUtil.isInstanceOfFragment(mSuperName)) {
             MethodVisitor mv
             // 添加剩下的方法，确保super.onHiddenChanged(hidden);等先被调用

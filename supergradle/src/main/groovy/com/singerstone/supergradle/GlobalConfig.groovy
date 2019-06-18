@@ -1,7 +1,7 @@
-package com.singerstone.xixi
+package com.singerstone.supergradle
 
-import com.singerstone.xixi.bean.AutoClassFilter
-import com.singerstone.xixi.bean.AutoSettingParams
+
+import com.singerstone.supergradle.bean.AutoClassFilter
 import org.gradle.api.Project
 
 /**
@@ -22,7 +22,7 @@ public class GlobalConfig {
         return project
     }
 
-    static AutoSettingParams getParams() {
+    static com.singerstone.supergradle.bean.AutoSettingParams getParams() {
         return project.xiaoqingwa
     }
 

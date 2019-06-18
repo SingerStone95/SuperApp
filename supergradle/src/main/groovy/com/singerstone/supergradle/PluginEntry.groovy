@@ -1,13 +1,12 @@
-package com.singerstone.xixi
+package com.singerstone.supergradle
 
-import com.android.build.gradle.AppExtension
+
 import com.android.build.gradle.BaseExtension
-import com.singerstone.xixi.asm.AutoTransform
-import com.singerstone.xixi.bean.AutoClassFilter
-import com.singerstone.xixi.bean.*
+import com.singerstone.supergradle.asm.AutoTransform
+import com.singerstone.supergradle.bean.AutoClassFilter
+import com.singerstone.supergradle.util.AutoTextUtil
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import com.singerstone.xixi.util.*
 
 /**
  * 插件入口

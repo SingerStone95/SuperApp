@@ -1,4 +1,4 @@
-package com.singerstone.xixi.asm
+package com.singerstone.supergradle.asm
 
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassVisitor

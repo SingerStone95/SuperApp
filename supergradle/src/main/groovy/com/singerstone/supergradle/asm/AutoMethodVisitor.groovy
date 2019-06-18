@@ -1,15 +1,12 @@
-package com.singerstone.xixi.asm
+package com.singerstone.supergradle.asm
 
-
+import com.singerstone.supergradle.util.Logger
 import org.objectweb.asm.AnnotationVisitor
 import org.objectweb.asm.Attribute
 import org.objectweb.asm.Label
 import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
 import org.objectweb.asm.commons.AdviceAdapter
-import com.singerstone.xixi.util.*
-import com.singerstone.xixi.*
-
 
 public class AutoMethodVisitor extends AdviceAdapter {
 

@@ -92,7 +92,6 @@ ext.gradleApiVersion = gradleVersionStr.substring(0, gradleVersionStr.lastIndexO
 println "Gradle version: " + gradleVersionStr;
 
 afterEvaluate {
-    println(">>>>>>>>+yogachen")
     // the list of dependency must be reversed to use the right overlay order.
     def dependencies = new ArrayList(configurations.embedded.resolvedConfiguration.firstLevelModuleDependencies)
     dependencies.reverseEach {

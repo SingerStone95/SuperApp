@@ -1,6 +1,6 @@
-package com.singerstone.xixi
+package com.singerstone.supergradle
 
-import com.singerstone.xixi.bean.LogMethodCell
+import com.singerstone.supergradle.bean.LogMethodCell
 import jdk.internal.org.objectweb.asm.Opcodes
 
 /**
