@@ -44,7 +44,6 @@ import singerstone.com.superapp.https.HttpsTestFragment;
 import singerstone.com.superapp.inke.InkeFragment;
 import singerstone.com.superapp.like.LikeViewFragment;
 import singerstone.com.superapp.ndkinterface.NdkInterface;
-import singerstone.com.superapp.opengl.OpenGlFragment;
 import singerstone.com.superapp.qqlive.QQLiveTestFragment;
 import singerstone.com.superapp.socketretrofit.Singerstone;
 import singerstone.com.superapp.socketretrofit.SocketService;
