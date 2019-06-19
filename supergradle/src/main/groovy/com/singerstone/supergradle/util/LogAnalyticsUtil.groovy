@@ -5,15 +5,8 @@ import org.objectweb.asm.MethodVisitor
 
 public class LogAnalyticsUtil implements Opcodes {
     private static final HashSet<String> targetFragmentClass = new HashSet()
-    private static final HashSet<String> targetMenuMethodDesc = new HashSet()
 
     static {
-        /**
-         * Menu
-         */
-        targetMenuMethodDesc.add("onContextItemSelected(Landroid/view/MenuItem;)Z")
-        targetMenuMethodDesc.add("onOptionsItemSelected(Landroid/view/MenuItem;)Z")
-        targetMenuMethodDesc.add("onNavigationItemSelected(Landroid/view/MenuItem;)Z")
 
         /**
          * Fragment
@@ -47,9 +40,6 @@ public class LogAnalyticsUtil implements Opcodes {
         return (access & ACC_STATIC) != 0
     }
 
-    static boolean isTargetMenuMethodDesc(String nameDesc) {
-        return targetMenuMethodDesc.contains(nameDesc)
-    }
 
     static boolean isTargetFragmentClass(String className) {
         return targetFragmentClass.contains(className)

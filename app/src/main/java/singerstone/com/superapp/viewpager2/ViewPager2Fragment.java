@@ -58,8 +58,6 @@ public class ViewPager2Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         L.i("yogachen", "old code!");
-        Object o = null;
-        o.toString();
     }
 
     @Override

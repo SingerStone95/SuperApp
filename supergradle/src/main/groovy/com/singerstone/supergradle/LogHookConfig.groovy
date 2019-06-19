@@ -26,38 +26,7 @@ public class LogHookConfig {
                 '(Landroid/view/View;)V',
                 1, 1,
                 [Opcodes.ALOAD]))
-        sInterfaceMethods.put('onCheckedChanged(Landroid/widget/CompoundButton;Z)V', new LogMethodCell(
-                'onCheckedChanged',
-                '(Landroid/widget/CompoundButton;Z)V',
-                'android/widget/CompoundButton$OnCheckedChangeListener',
-                'trackViewOnClick',
-                '(Landroid/view/View;)V',
-                1, 1,
-                [Opcodes.ALOAD]))
-        sInterfaceMethods.put('onRatingChanged(Landroid/widget/RatingBar;FZ)V', new LogMethodCell(
-                'onRatingChanged',
-                '(Landroid/widget/RatingBar;FZ)V',
-                'android/widget/RatingBar$OnRatingBarChangeListener',
-                'trackViewOnClick',
-                '(Landroid/view/View;)V',
-                1, 1,
-                [Opcodes.ALOAD]))
-        sInterfaceMethods.put('onStopTrackingTouch(Landroid/widget/SeekBar;)V', new LogMethodCell(
-                'onStopTrackingTouch',
-                '(Landroid/widget/SeekBar;)V',
-                'android/widget/SeekBar$OnSeekBarChangeListener',
-                'trackViewOnClick',
-                '(Landroid/view/View;)V',
-                1, 1,
-                [Opcodes.ALOAD]))
-        sInterfaceMethods.put('onCheckedChanged(Landroid/widget/RadioGroup;I)V', new LogMethodCell(
-                'onCheckedChanged',
-                '(Landroid/widget/RadioGroup;I)V',
-                'android/widget/RadioGroup$OnCheckedChangeListener',
-                'trackRadioGroup',
-                '(Landroid/widget/RadioGroup;I)V',
-                1, 2,
-                [Opcodes.ALOAD, Opcodes.ILOAD]))
+
         sInterfaceMethods.put('onClick(Landroid/content/DialogInterface;I)V', new LogMethodCell(
                 'onClick',
                 '(Landroid/content/DialogInterface;I)V',
@@ -74,56 +43,7 @@ public class LogHookConfig {
                 '(Landroid/widget/AdapterView;Landroid/view/View;I)V',
                 1, 3,
                 [Opcodes.ALOAD, Opcodes.ALOAD, Opcodes.ILOAD]))
-        sInterfaceMethods.put('onItemSelected(Landroid/widget/AdapterView;Landroid/view/View;IJ)V', new LogMethodCell(
-                'onItemSelected',
-                '(Landroid/widget/AdapterView;Landroid/view/View;IJ)V',
-                'android/widget/AdapterView$OnItemSelectedListener',
-                'trackListView',
-                '(Landroid/widget/AdapterView;Landroid/view/View;I)V',
-                1, 3,
-                [Opcodes.ALOAD, Opcodes.ALOAD, Opcodes.ILOAD]))
-        sInterfaceMethods.put('onGroupClick(Landroid/widget/ExpandableListView;Landroid/view/View;IJ)Z', new LogMethodCell(
-                'onGroupClick',
-                '(Landroid/widget/ExpandableListView;Landroid/view/View;IJ)Z',
-                'android/widget/ExpandableListView$OnGroupClickListener',
-                'trackExpandableListViewOnGroupClick',
-                '(Landroid/widget/ExpandableListView;Landroid/view/View;I)V',
-                1, 3,
-                [Opcodes.ALOAD, Opcodes.ALOAD, Opcodes.ILOAD]))
-        sInterfaceMethods.put('onChildClick(Landroid/widget/ExpandableListView;Landroid/view/View;IIJ)Z', new LogMethodCell(
-                'onChildClick',
-                '(Landroid/widget/ExpandableListView;Landroid/view/View;IIJ)Z',
-                'android/widget/ExpandableListView$OnChildClickListener',
-                'trackExpandableListViewOnChildClick',
-                '(Landroid/widget/ExpandableListView;Landroid/view/View;II)V',
-                1, 4,
-                [Opcodes.ALOAD, Opcodes.ALOAD, Opcodes.ILOAD, Opcodes.ILOAD]))
-        sInterfaceMethods.put('onTabChanged(Ljava/lang/String;)V', new LogMethodCell(
-                'onTabChanged',
-                '(Ljava/lang/String;)V',
-                'android/widget/TabHost$OnTabChangeListener',
-                'trackTabHost',
-                '(Ljava/lang/String;)V',
-                1, 1,
-                [Opcodes.ALOAD]))
 
-        sInterfaceMethods.put('onNavigationItemSelected(Landroid/view/MenuItem;)Z', new LogMethodCell(
-                'onNavigationItemSelected',
-                '(Landroid/view/MenuItem;)Z',
-                'android/support/design/widget/NavigationView$OnNavigationItemSelectedListener',
-                'trackMenuItem',
-                '(Ljava/lang/Object;Landroid/view/MenuItem;)V',
-                0, 2,
-                [Opcodes.ALOAD, Opcodes.ALOAD]))
-
-        sInterfaceMethods.put('onTabSelected(Landroid/support/design/widget/TabLayout$Tab;)V', new LogMethodCell(
-                'onTabSelected',
-                '(Landroid/support/design/widget/TabLayout$Tab;)V',
-                'android/support/design/widget/TabLayout$OnTabSelectedListener',
-                'trackTabLayoutSelected',
-                '(Ljava/lang/Object;Ljava/lang/Object;)V',
-                0, 2,
-                [Opcodes.ALOAD, Opcodes.ALOAD]))
 
     }
 
@@ -182,38 +102,7 @@ public class LogHookConfig {
                 '(Landroid/view/View;)V',
                 1, 1,
                 [Opcodes.ALOAD]))
-        sLambdaMethods.put('(Landroid/widget/CompoundButton;Z)V', new LogMethodCell(
-                'onCheckedChanged',
-                '(Landroid/widget/CompoundButton;Z)V',
-                'android/widget/CompoundButton$OnCheckedChangeListener',
-                'trackViewOnClick',
-                '(Landroid/view/View;)V',
-                1, 1,
-                [Opcodes.ALOAD]))
-        sLambdaMethods.put('(Landroid/widget/RatingBar;FZ)V', new LogMethodCell(
-                'onRatingChanged',
-                '(Landroid/widget/RatingBar;FZ)V',
-                'android/widget/RatingBar$OnRatingBarChangeListener',
-                'trackViewOnClick',
-                '(Landroid/view/View;)V',
-                1, 1,
-                [Opcodes.ALOAD]))
-        sLambdaMethods.put('(Landroid/widget/SeekBar;)V', new LogMethodCell(
-                'onStopTrackingTouch',
-                '(Landroid/widget/SeekBar;)V',
-                'android/widget/SeekBar$OnSeekBarChangeListener',
-                'trackViewOnClick',
-                '(Landroid/view/View;)V',
-                1, 1,
-                [Opcodes.ALOAD]))
-        sLambdaMethods.put('(Landroid/widget/RadioGroup;I)V', new LogMethodCell(
-                'onCheckedChanged',
-                '(Landroid/widget/RadioGroup;I)V',
-                'android/widget/RadioGroup$OnCheckedChangeListener',
-                'trackRadioGroup',
-                '(Landroid/widget/RadioGroup;I)V',
-                1, 2,
-                [Opcodes.ALOAD, Opcodes.ILOAD]))
+
         sLambdaMethods.put('(Landroid/content/DialogInterface;I)V', new LogMethodCell(
                 'onClick',
                 '(Landroid/content/DialogInterface;I)V',
@@ -230,56 +119,7 @@ public class LogHookConfig {
                 '(Landroid/widget/AdapterView;Landroid/view/View;I)V',
                 1, 3,
                 [Opcodes.ALOAD, Opcodes.ALOAD, Opcodes.ILOAD]))
-        sLambdaMethods.put('(Landroid/widget/AdapterView;Landroid/view/View;IJ)V', new LogMethodCell(
-                'onItemSelected',
-                '(Landroid/widget/AdapterView;Landroid/view/View;IJ)V',
-                'android/widget/AdapterView$OnItemSelectedListener',
-                'trackListView',
-                '(Landroid/widget/AdapterView;Landroid/view/View;I)V',
-                1, 3,
-                [Opcodes.ALOAD, Opcodes.ALOAD, Opcodes.ILOAD]))
-        sLambdaMethods.put('(Landroid/widget/ExpandableListView;Landroid/view/View;IJ)Z', new LogMethodCell(
-                'onGroupClick',
-                '(Landroid/widget/ExpandableListView;Landroid/view/View;IJ)Z',
-                'android/widget/ExpandableListView$OnGroupClickListener',
-                'trackExpandableListViewOnGroupClick',
-                '(Landroid/widget/ExpandableListView;Landroid/view/View;I)V',
-                1, 3,
-                [Opcodes.ALOAD, Opcodes.ALOAD, Opcodes.ILOAD]))
-        sLambdaMethods.put('(Landroid/widget/ExpandableListView;Landroid/view/View;IIJ)Z', new LogMethodCell(
-                'onChildClick',
-                '(Landroid/widget/ExpandableListView;Landroid/view/View;IIJ)Z',
-                'android/widget/ExpandableListView$OnChildClickListener',
-                'trackExpandableListViewOnChildClick',
-                '(Landroid/widget/ExpandableListView;Landroid/view/View;II)V',
-                1, 4,
-                [Opcodes.ALOAD, Opcodes.ALOAD, Opcodes.ILOAD, Opcodes.ILOAD]))
-        sLambdaMethods.put('(Ljava/lang/String;)V', new LogMethodCell(
-                'onTabChanged',
-                '(Ljava/lang/String;)V',
-                'android/widget/TabHost$OnTabChangeListener',
-                'trackTabHost',
-                '(Ljava/lang/String;)V',
-                1, 1,
-                [Opcodes.ALOAD]))
 
-        sLambdaMethods.put('(Landroid/view/MenuItem;)Z', new LogMethodCell(
-                'onNavigationItemSelected',
-                '(Landroid/view/MenuItem;)Z',
-                'android/support/design/widget/NavigationView$OnNavigationItemSelectedListener',
-                'trackMenuItem',
-                '(Ljava/lang/Object;Landroid/view/MenuItem;)V',
-                0, 2,
-                [Opcodes.ALOAD, Opcodes.ALOAD]))
-
-        sLambdaMethods.put('(Landroid/support/design/widget/TabLayout$Tab;)V', new LogMethodCell(
-                'onTabSelected',
-                '(Landroid/support/design/widget/TabLayout$Tab;)V',
-                'android/support/design/widget/TabLayout$OnTabSelectedListener',
-                'trackTabLayoutSelected',
-                '(Ljava/lang/Object;Ljava/lang/Object;)V',
-                0, 2,
-                [Opcodes.ALOAD, Opcodes.ALOAD]))
 
         // Todo: 扩展
     }

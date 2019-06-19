@@ -32,7 +32,7 @@ public class LogMethodVisitor extends AdviceAdapter {
         this.className = className
         this.interfaces = interfaces
         this.visitedFragMethods = visitedFragMethods
-        Logger.info("||开始扫描方法：${Logger.accCode2String(access)} ${methodName}${desc}")
+        // Logger.info("||开始扫描方法：${Logger.accCode2String(access)} ${methodName}${desc}")
     }
 
     boolean isAutoTrackViewOnClickAnnotation = false
@@ -44,17 +44,15 @@ public class LogMethodVisitor extends AdviceAdapter {
     void visitEnd() {
         super.visitEnd()
         if (isHasTracked) {
-            //
             visitAnnotation("Lsingerstone/com/annotations/AutoDataInstrumented;", false)
-            Logger.info("||Hooked method: ${methodName}${methodDesc}")
+            Logger.info("Hooked method: ${className} ${methodName} ${methodDesc}")
         }
-        Logger.info("||结束扫描方法：${methodName}")
+        //Logger.info("||结束扫描方法：${methodName}")
     }
 
     @Override
     protected void onMethodEnter() {
         super.onMethodEnter()
-        Logger.info("onMethodEnter"+this.hashCode()+" "+methodVisitor.hashCode())
         if (isAutoTrackIgnoreTrackOnClick) {
             return
         }
@@ -99,10 +97,10 @@ public class LogMethodVisitor extends AdviceAdapter {
          * 目前支持 android/support/v4/app/ListFragment 和 androidx/fragment/app/Fragment
          */
         if (LogAnalyticsUtil.isInstanceOfFragment(superName)) {
-            LogMethodCell logMethodCell = LogHookConfig.sFragmentMethods.get(methodNameDesc) //找到对应的hook方法
-            Logger.info("fragment:methodNameDesc:" + methodNameDesc)
-            Logger.info("fragment:logMethodCell:" + logMethodCell)
+            LogMethodCell logMethodCell = LogHookConfig.sFragmentMethods.get(methodNameDesc)
+            //找到对应的hook方法
             if (logMethodCell != null) {
+                Logger.info("try hook fragment:methodNameDesc:" + methodNameDesc + "   fragment:logMethodCell:" + logMethodCell)
                 visitedFragMethods.add(methodNameDesc)
                 LogAnalyticsUtil.visitMethodWithLoadedParams(methodVisitor, Opcodes.INVOKESTATIC, LogHookConfig.LOG_ANALYTICS_BASE, logMethodCell.agentName, logMethodCell.agentDesc, logMethodCell.paramsStart, logMethodCell.paramsCount, logMethodCell.opcodes)
                 isHasTracked = true
@@ -110,59 +108,8 @@ public class LogMethodVisitor extends AdviceAdapter {
         }
 
         /**
-         * Menu
-         * 目前支持 onContextItemSelected(MenuItem item)、onOptionsItemSelected(MenuItem item)
+         * hook接口 click
          */
-        if (LogAnalyticsUtil.isTargetMenuMethodDesc(methodNameDesc)) {
-            methodVisitor.visitVarInsn(ALOAD, 0)
-            methodVisitor.visitVarInsn(ALOAD, 1)
-            methodVisitor.visitMethodInsn(INVOKESTATIC, LogHookConfig.LOG_ANALYTICS_BASE, "trackMenuItem", "(Ljava/lang/Object;Landroid/view/MenuItem;)V", false)
-            isHasTracked = true
-            return
-        }
-
-        if (methodNameDesc == 'onDrawerOpened(Landroid/view/View;)V') {
-            methodVisitor.visitVarInsn(ALOAD, 1)
-            methodVisitor.visitMethodInsn(INVOKESTATIC, LogHookConfig.LOG_ANALYTICS_BASE, "trackDrawerOpened", "(Landroid/view/View;)V", false)
-            isHasTracked = true
-            return
-        } else if (methodNameDesc == 'onDrawerClosed(Landroid/view/View;)V') {
-            methodVisitor.visitVarInsn(ALOAD, 1)
-            methodVisitor.visitMethodInsn(INVOKESTATIC, LogHookConfig.LOG_ANALYTICS_BASE, "trackDrawerClosed", "(Landroid/view/View;)V", false)
-            isHasTracked = true
-            return
-        }
-
-        if (className == 'android/databinding/generated/callback/OnClickListener') {
-            if (methodNameDesc == 'onClick(Landroid/view/View;)V') {
-                methodVisitor.visitVarInsn(ALOAD, 1)
-                methodVisitor.visitMethodInsn(INVOKESTATIC, LogHookConfig.LOG_ANALYTICS_BASE, "trackViewOnClick", "(Landroid/view/View;)V", false)
-                isHasTracked = true
-                return
-            }
-        }
-
-        if (className.startsWith('android') || className.startsWith('androidx')) {
-            return
-        }
-
-        if (methodNameDesc == 'onItemSelected(Landroid/widget/AdapterView;Landroid/view/View;IJ)V' || methodNameDesc == "onListItemClick(Landroid/widget/ListView;Landroid/view/View;IJ)V") {
-            methodVisitor.visitVarInsn(ALOAD, 1)
-            methodVisitor.visitVarInsn(ALOAD, 2)
-            methodVisitor.visitVarInsn(ILOAD, 3)
-            methodVisitor.visitMethodInsn(INVOKESTATIC, LogHookConfig.LOG_ANALYTICS_BASE, "trackListView", "(Landroid/widget/AdapterView;Landroid/view/View;I)V", false)
-            isHasTracked = true
-            return
-        }
-
-        if (isAutoTrackViewOnClickAnnotation) {
-            if (methodDesc == '(Landroid/view/View;)V') {
-                methodVisitor.visitVarInsn(ALOAD, 1)
-                methodVisitor.visitMethodInsn(INVOKESTATIC, LogHookConfig.LOG_ANALYTICS_BASE, "trackViewOnClick", "(Landroid/view/View;)V", false)
-                isHasTracked = true
-                return
-            }
-        }
 
         if (interfaces != null && interfaces.length > 0) {
             LogMethodCell logMethodCell = LogHookConfig.sInterfaceMethods.get(methodNameDesc)
@@ -173,24 +120,21 @@ public class LogMethodVisitor extends AdviceAdapter {
             }
         }
 
-        if (!isHasTracked) {
-            if (methodNameDesc == 'onClick(Landroid/view/View;)V') {
-                methodVisitor.visitVarInsn(ALOAD, 1)
-                methodVisitor.visitMethodInsn(INVOKESTATIC, LogHookConfig.LOG_ANALYTICS_BASE, "trackViewOnClick", "(Landroid/view/View;)V", false)
-                isHasTracked = true
-            }
-        }
     }
 
-    /**
-     * 该方法是当扫描器扫描到类注解声明时进行调用
-     * @param s 注解的类型。它使用的是（“L” + “类型路径” + “;”）形式表述
-     * @param b 表示的是，该注解是否在 JVM 中可见
-     * 1.RetentionPolicy.SOURCE：声明注解只保留在 Java 源程序中，在编译 Java 类时注解信息不会被写入到 Class。如果使用的是这个配置 ASM 也将无法探测到这个注解。
-     * 2.RetentionPolicy.CLASS：声明注解仅保留在 Class 文件中，JVM 运行时并不会处理它，这意味着 ASM 可以在 visitAnnotation 时候探测到它，但是通过Class 反射无法获取到注解信息。
-     * 3.RetentionPolicy.RUNTIME：这是最常用的一种声明，ASM 可以探测到这个注解，同时 Java 反射也可以取得注解的信息。所有用到反射获取的注解都会用到这个配置，就是这个原因。
-     * @return
-     */
+    @Override
+    protected void onMethodExit(int opcode) {
+        super.onMethodExit(opcode)
+    }
+/**
+ * 该方法是当扫描器扫描到类注解声明时进行调用
+ * @param s 注解的类型。它使用的是（“L” + “类型路径” + “;”）形式表述
+ * @param b 表示的是，该注解是否在 JVM 中可见
+ * 1.RetentionPolicy.SOURCE：声明注解只保留在 Java 源程序中，在编译 Java 类时注解信息不会被写入到 Class。如果使用的是这个配置 ASM 也将无法探测到这个注解。
+ * 2.RetentionPolicy.CLASS：声明注解仅保留在 Class 文件中，JVM 运行时并不会处理它，这意味着 ASM 可以在 visitAnnotation 时候探测到它，但是通过Class 反射无法获取到注解信息。
+ * 3.RetentionPolicy.RUNTIME：这是最常用的一种声明，ASM 可以探测到这个注解，同时 Java 反射也可以取得注解的信息。所有用到反射获取的注解都会用到这个配置，就是这个原因。
+ * @return
+ */
     @Override
     AnnotationVisitor visitAnnotation(String s, boolean b) {
         if (s == 'Lsingerstone/com/annotations/AutoTrackDataViewOnClick;') {
@@ -209,4 +153,5 @@ public class LogMethodVisitor extends AdviceAdapter {
 
         return super.visitAnnotation(s, b)
     }
+
 }

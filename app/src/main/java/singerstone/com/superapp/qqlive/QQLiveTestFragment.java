@@ -3,7 +3,6 @@ package singerstone.com.superapp.qqlive;
 import android.Manifest;
 import android.animation.TypeEvaluator;
 import android.annotation.TargetApi;
-import android.app.Fragment;
 import android.app.PendingIntent;
 import android.content.ClipData;
 import android.content.ClipboardManager;
