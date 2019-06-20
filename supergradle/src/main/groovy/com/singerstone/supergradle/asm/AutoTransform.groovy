@@ -1,14 +1,10 @@
-package com.singerstone.xixi.asm
+package com.singerstone.supergradle.asm
 
 import com.android.annotations.NonNull
 import com.android.annotations.Nullable
 import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
-import com.singerstone.xixi.GlobalConfig
-import com.singerstone.xixi.bean.AutoClassFilter
-import com.singerstone.xixi.util.AutoMatchUtil
-import com.singerstone.xixi.util.AutoTextUtil
-import com.singerstone.xixi.util.Logger
+import com.singerstone.supergradle.util.Logger
 import groovy.io.FileType
 import org.apache.commons.codec.digest.DigestUtils
 import org.apache.commons.io.FileUtils
@@ -59,35 +55,20 @@ public class AutoTransform extends Transform {
         if (!incremental) {
             outputProvider.deleteAll()
         }
-
-        /**
-         * 打印提示信息
-         */
-        // printCopyRight()
-
-        //开始计算消耗的时间
-        Logger.info("||=======================================================================================================")
-        Logger.info("||                                                 开始计时                                               ")
-        Logger.info("||=======================================================================================================")
         def startTime = System.currentTimeMillis()
-
-       /* if (Logger.isDebug()) {
-            printlnJarAndDir(inputs)
-        }*/
-
         /**遍历输入文件*/
         inputs.each { TransformInput input ->
             /**
              * 遍历jar
              */
-            /*     input.jarInputs.each { JarInput jarInput ->
-                     String destName = jarInput.file.name
-                     *//** 截取文件路径的md5值重命名输出文件,因为可能同名,会覆盖*//*
+            input.jarInputs.each { JarInput jarInput ->
+                String destName = jarInput.file.name
+                // 截取文件路径的md5值重命名输出文件,因为可能同名,会覆盖
                 def hexName = DigestUtils.md5Hex(jarInput.file.absolutePath).substring(0, 8)
                 if (destName.endsWith(".jar")) {
                     destName = destName.substring(0, destName.length() - 4)
                 }
-                *//** 获得输出文件*//*
+                // 获得输出文件path
                 File dest = outputProvider.getContentLocation(destName + "_" + hexName, jarInput.contentTypes, jarInput.scopes, Format.JAR)
                 Logger.info("||-->开始遍历特定jar ${dest.absolutePath}")
                 def modifiedJar = modifyJarFile(jarInput.file, context.getTemporaryDir())
@@ -96,7 +77,7 @@ public class AutoTransform extends Transform {
                     modifiedJar = jarInput.file
                 }
                 FileUtils.copyFile(modifiedJar, dest)
-            }*/
+            }
             /**
              * 遍历目录
              */
@@ -113,7 +94,8 @@ public class AutoTransform extends Transform {
                                 modifyMap.put(classFile.absolutePath.replace(srcDir.absolutePath, ""), modified)
                             }
                     }
-                    FileUtils.copyDirectory(srcDir, dest) //build\intermediates\transforms\AutoTrack\debug\folders\1\1\bbe24caec6165e3b53aef7fbf19549514e15f422
+                    FileUtils.copyDirectory(srcDir, dest)
+                    //build\intermediates\transforms\AutoTrack\debug\folders\1\1\bbe24caec6165e3b53aef7fbf19549514e15f422
                     modifyMap.entrySet().each {
                         Map.Entry<String, File> en ->
                             File target = new File(dest.absolutePath + en.getKey())
@@ -131,9 +113,7 @@ public class AutoTransform extends Transform {
 
         //计算耗时
         def cost = (System.currentTimeMillis() - startTime) / 1000
-        Logger.info("||=======================================================================================================")
-        Logger.info("||                                       计时结束:费时${cost}秒                                           ")
-        Logger.info("||=======================================================================================================")
+        Logger.info("计时结束:费时${cost}秒")
     }
 
     /**
@@ -177,7 +157,7 @@ public class AutoTransform extends Transform {
             if (entryName.endsWith(".class")) {
                 className = entryName.replace("/", ".").replace(".class", "")
 //                Logger.info("Jar:className:" + className)
-                if (AutoMatchUtil.isShouldModifyClass(className)) {
+                if (com.singerstone.supergradle.util.AutoMatchUtil.isShouldModifyClass(className)) {
                     modifiedClassBytes = AutoModify.modifyClasses(className, sourceClassBytes)
                 }
             }
@@ -201,12 +181,12 @@ public class AutoTransform extends Transform {
         FileOutputStream outputStream = null
         try {
             //去掉绝对路径获取类名
-            String className = AutoTextUtil.path2ClassName(classFile.absolutePath.replace(dir.absolutePath + File.separator, ""))
-            Logger.info("classFile.absolutePath:" + classFile.absolutePath)
-            Logger.info("dir.absolutePath + File.separator:" + dir.absolutePath + File.separator)
-            Logger.info("File:className:" + className)
+            String className = com.singerstone.supergradle.util.AutoTextUtil.path2ClassName(classFile.absolutePath.replace(dir.absolutePath + File.separator, ""))
+            com.singerstone.supergradle.util.Logger.info("classFile.absolutePath:" + classFile.absolutePath)
+            com.singerstone.supergradle.util.Logger.info("dir.absolutePath + File.separator:" + dir.absolutePath + File.separator)
+            com.singerstone.supergradle.util.Logger.info("File:className:" + className)
             //过滤R文件
-            if (AutoMatchUtil.isShouldModifyClass(className)) {
+            if (com.singerstone.supergradle.util.AutoMatchUtil.isShouldModifyClass(className)) {
                 byte[] sourceClassBytes = IOUtils.toByteArray(new FileInputStream(classFile))
                 byte[] modifiedClassBytes = AutoModify.modifyClasses(className, sourceClassBytes)
                 if (modifiedClassBytes) {
@@ -248,11 +228,11 @@ public class AutoTransform extends Transform {
                 classPaths.add(directoryInput.file.absolutePath)
                 buildTypes = directoryInput.file.name
                 productFlavors = directoryInput.file.parentFile.name
-                Logger.info("||项目class目录：${directoryInput.file.absolutePath}")
+                com.singerstone.supergradle.util.Logger.info("||项目class目录：${directoryInput.file.absolutePath}")
             }
             input.jarInputs.each { JarInput jarInput ->
                 classPaths.add(jarInput.file.absolutePath)
-                Logger.info("||项目jar包：${jarInput.file.absolutePath}")
+                com.singerstone.supergradle.util.Logger.info("||项目jar包：${jarInput.file.absolutePath}")
             }
         }
     }

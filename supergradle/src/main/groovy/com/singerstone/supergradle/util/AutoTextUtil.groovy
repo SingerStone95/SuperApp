@@ -1,4 +1,4 @@
-package com.singerstone.xixi.util
+package com.singerstone.supergradle.util
 
 
 public class AutoTextUtil {

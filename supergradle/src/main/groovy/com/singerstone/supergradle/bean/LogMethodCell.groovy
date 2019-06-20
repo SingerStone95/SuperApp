@@ -1,4 +1,4 @@
-package com.singerstone.xixi.bean
+package com.singerstone.supergradle.bean
 
 public class LogMethodCell {
     // 原方法名
@@ -27,5 +27,19 @@ public class LogMethodCell {
         this.paramsStart = paramsStart
         this.paramsCount = paramsCount
         this.opcodes = opcodes
+    }
+
+    @Override
+    public String toString() {
+        return "LogMethodCell{" +
+                "name='" + name + '\'' +
+                ", desc='" + desc + '\'' +
+                ", parent='" + parent + '\'' +
+                ", agentName='" + agentName + '\'' +
+                ", agentDesc='" + agentDesc + '\'' +
+                ", paramsStart=" + paramsStart +
+                ", paramsCount=" + paramsCount +
+                ", opcodes=" + opcodes +
+                '}';
     }
 }

@@ -1,13 +1,14 @@
-package com.singerstone.xixi
+package com.singerstone.supergradle
 
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.BaseExtension
-import com.singerstone.xixi.asm.AutoTransform
-import com.singerstone.xixi.bean.AutoClassFilter
-import com.singerstone.xixi.bean.*
+import com.singerstone.supergradle.asm.AutoTransform
+import com.singerstone.supergradle.bean.AutoClassFilter
+import com.singerstone.supergradle.bean.AutoSettingParams
+import com.singerstone.supergradle.util.AutoTextUtil
+import com.singerstone.supergradle.util.Logger
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import com.singerstone.xixi.util.*
 
 /**
  * 插件入口
@@ -16,19 +17,17 @@ class PluginEntry implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
-     /*   project.extensions.create('xiaoqingwa', AutoSettingParams)
+        project.extensions.create('supergradle', AutoSettingParams)
         GlobalConfig.setProject(project)
         println(GlobalConfig.getParams().name)
-
         //使用Transform实行遍历
         def android = project.extensions.getByType(AppExtension)
         registerTransform(android)
-
         project.afterEvaluate {
             Logger.setDebug(true)
             // 用户配置解析
             analysiUserConfig()
-        }*/
+        }
     }
 
     def static registerTransform(BaseExtension android) {
@@ -41,7 +40,7 @@ class PluginEntry implements Plugin<Project> {
      */
     static void analysiUserConfig() {
         /**
-         * 获取xiaoqingwa的配置
+         * 获取supergradle的配置
          */
         List<Map<String, Object>> matchDataList = GlobalConfig.getParams().matchData
         List<AutoClassFilter> autoClassFilterList = new ArrayList<>()

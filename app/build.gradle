@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply from: '../config/quality.gradle'
-
+//apply from: '../config/quality.gradle'
+apply plugin: 'com.singerstone.supergradle'
+apply from: 'fat-aar.gradle'
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -78,19 +79,56 @@ task doSomeRightThing {
     println(">>>>>>>>>>>>>>>app gradle insert task<<<<<<<<<<<<<<<<<<<<<")
 }
 //上面那句等同于这一句
-println(">>>>>>>>>>>>>>>app gradle insert task<<<<<<<<<<<<<<<<<<<<<")
+println(">>>>>>>>>>>>>>>app gradle ⭐️ insert task<<<<<<<<<<<<<<<<<<<<<")
+
 //这样定义能保证需要执行再执行
-task doSomeLeftThing << {
+task doSomeLeftThing doLast {
     println(">>>>>>>>>>>>>>>app gradle insert task<<<<<<<<<<<<<<<<<<<<<")
 }
-project.tasks.whenTaskAdded { Task theTask ->
-    if (theTask.name == 'assembleDebug'||theTask.name == 'assembleRelease') {
-        theTask.dependsOn(check)
+task t1 {
+    println 't1 configuration'
+    doLast {
+        println 't1 execute doLast'
+    }
+    doFirst {
+        println 't1 execute doFirst'
     }
 }
 
-apply plugin: 'com.singerstone.supergradle'
-apply from: 'fat-aar.gradle'
+// 2.配置阶段
+gradle.projectsEvaluated { project ->
+    println '配置阶段 projectsEvaluated' + project
+}
+gradle.taskGraph.whenReady {
+    println '配置阶段 whenReady'
+}
+// 3.执行阶段
+gradle.taskGraph.beforeTask { task ->
+    println "执行阶段 beforeTask" + task
+}
+gradle.taskGraph.afterTask { task ->
+    println "执行阶段 afterTask " + task
+}
+// 4.build结束
+gradle.buildFinished {
+    println '构建结束 buildFinished'
+}
+
+project.beforeEvaluate {
+    println '配置阶段 beforeEvaluate'
+}
+
+project.afterEvaluate {
+    println '配置阶段 afterEvaluate'
+}
+
+project.tasks.whenTaskAdded { Task theTask ->
+    println('add task->' + theTask.getName())
+    if (theTask.name == 'assembleDebug' || theTask.name == 'assembleRelease') {
+        //theTask.dependsOn(check)
+    }
+}
+
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"

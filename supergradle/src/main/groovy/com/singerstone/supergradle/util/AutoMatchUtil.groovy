@@ -1,9 +1,4 @@
-package com.singerstone.xixi.util
-
-import com.singerstone.xixi.GlobalConfig
-import com.singerstone.xixi.bean.AutoClassFilter
-
-
+package com.singerstone.supergradle.util
 /**
  * Author :xishuang
  * Date :2018-12-04
@@ -27,7 +22,7 @@ public class AutoMatchUtil {
         }
 
         // 1、用户自定义的优先通过
-        Iterator<String> includeIterator = GlobalConfig.include.iterator()
+        Iterator<String> includeIterator = com.singerstone.supergradle.GlobalConfig.include.iterator()
         while (includeIterator.hasNext()) {
             String packageName = includeIterator.next()
 
@@ -37,7 +32,7 @@ public class AutoMatchUtil {
         }
 
         // 2、不允许通过的包，包括用户自定义的
-        Iterator<String> iterator = GlobalConfig.exclude.iterator()
+        Iterator<String> iterator = com.singerstone.supergradle.GlobalConfig.exclude.iterator()
         while (iterator.hasNext()) {
             String packageName = iterator.next()
             if (className.startsWith(packageName)) {
@@ -64,7 +59,7 @@ public class AutoMatchUtil {
      * @param interfaces 扫描到的接口数组
      *
      */
-    static boolean isShouldModifyCustomMethod(AutoClassFilter filter, String className, String methodName
+    static boolean isShouldModifyCustomMethod(com.singerstone.supergradle.bean.AutoClassFilter filter, String className, String methodName
                                               , String methodDesc, String[] interfaces) {
 
         // 1、自定义方法如果需要注解的话就得每个方法都得进行遍历操作

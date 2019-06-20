@@ -1,4 +1,4 @@
-package com.singerstone.xixi.util
+package com.singerstone.supergradle.util
 
 
 import java.lang.reflect.Array

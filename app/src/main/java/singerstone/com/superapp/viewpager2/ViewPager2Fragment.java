@@ -8,10 +8,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import java.lang.reflect.Field;
+
 import singerstone.com.superapp.R;
+import singerstone.com.superapp.utils.L;
+import singerstone.com.superapp.utils.ReflectUtils;
 
 /**
  * author : yogachen
@@ -38,12 +43,30 @@ public class ViewPager2Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_view_pager2, container, false);
         viewPager2 = view.findViewById(R.id.vp2);
 
+        Field field = ReflectUtils.getField(ViewPager2.class, "mRecyclerView");
+        field.setAccessible(true);
+        try {
+            RecyclerView recyclerView = (RecyclerView) field.get(viewPager2);
+            recyclerView.setItemViewCacheSize(0);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
         initView();
         return view;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        L.i("yogachen", "old code!");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
     private void initView() {
-        viewPager2.setOffscreenPageLimit(1);
+        // viewPager2.setOffscreenPageLimit(-1);
         adapter = new FragmentStateAdapter(this) {
             @NonNull
             @Override

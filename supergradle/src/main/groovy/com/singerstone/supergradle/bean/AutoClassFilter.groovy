@@ -1,4 +1,4 @@
-package com.singerstone.xixi.bean
+package com.singerstone.supergradle.bean
 
 /**
  * 用户自定义的功能
