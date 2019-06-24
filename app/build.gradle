@@ -143,6 +143,7 @@ dependencies {
     api 'com.github.bumptech.glide:glide:3.7.0'
     api 'com.tencent.mars:mars-xlog:1.0.6'
     api 'androidx.viewpager2:viewpager2:1.0.0-alpha05'
+    compile 'org.javassist:javassist:3.25.0-GA'
     // 仅在debug包启用BlockCanary进行卡顿监控和提示的话，可以这么用
     debugApi 'com.github.markzhai:blockcanary-android:1.5.0'
     releaseApi 'com.github.markzhai:blockcanary-no-op:1.5.0'

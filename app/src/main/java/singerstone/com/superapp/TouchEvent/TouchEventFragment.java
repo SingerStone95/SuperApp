@@ -48,7 +48,16 @@ public class TouchEventFragment extends BaseFragment {
             Toast.makeText(getActivity(), "click_view", Toast.LENGTH_SHORT).show();
             L.e("click_view");
         });
+        t_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                L.e("click_view");
+            }
+        });
         return view;
+    }
+    public static void test4(){
+
     }
 
 }
