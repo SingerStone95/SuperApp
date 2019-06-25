@@ -1,0 +1,17 @@
+apply plugin: 'maven-publish'
+
+publishing {
+    repositories {
+        mavenLocal()
+    }
+}
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifact "${project.buildDir}/outputs/aar/${project.name}-release.aar"
+            groupId ''
+            artifactId ''
+            version ''
+        }
+    }
+}

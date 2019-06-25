@@ -3,6 +3,7 @@
 buildscript { //脚本的配置
     ext.kotlin_version = '1.1.3-2'
     repositories {
+        mavenLocal()
         jcenter()
         maven {//本地Maven仓库地址
             url uri("$rootDir/MavenLocal")
@@ -16,9 +17,11 @@ buildscript { //脚本的配置
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath "com.github.dcendents:android-maven-gradle-plugin:1.5"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'me.tatarka:gradle-retrolambda:3.2.5'
         classpath 'com.singerstone.plugin:supergradle:1.0.0'
+        classpath ("com.geektime.systrace:systrace-gradle-plugin:1.0") { changing = true }
     }
 }
 

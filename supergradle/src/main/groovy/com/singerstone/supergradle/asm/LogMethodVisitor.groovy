@@ -60,7 +60,7 @@ public class LogMethodVisitor extends AdviceAdapter {
         /**
          * 在 android.gradle 的 3.2.1 版本中，针对 view 的 setOnClickListener 方法 的 lambda 表达式做特殊处理。
          */
-        if (methodName.trim().startsWith('lambda$') && LogAnalyticsUtil.isPrivate(access) && LogAnalyticsUtil.isSynthetic(access)) {
+        if (methodName.trim().startsWith('lambda$') && LogAnalyticsUtil.isPrivate(access) && LogAnalyticsUtil.isSynthetic(access)) { //private static lambda$XXX
             LogMethodCell logMethodCell = LogHookConfig.sLambdaMethods.get(desc)
             if (logMethodCell != null) {
                 int paramStart = logMethodCell.paramsStart

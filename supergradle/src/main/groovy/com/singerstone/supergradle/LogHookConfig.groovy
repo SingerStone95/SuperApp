@@ -46,7 +46,41 @@ public class LogHookConfig {
 
 
     }
+    /**
+     * android.gradle 3.2.1 版本中，针对 Lambda 表达式处理
+     */
+    public final
+    static HashMap<String, LogMethodCell> sLambdaMethods = new HashMap<>()
 
+    static {
+        sLambdaMethods.put('(Landroid/view/View;)V', new LogMethodCell(
+                'onClick',
+                '(Landroid/view/View;)V',
+                'android/view/View$OnClickListener',
+                'trackViewOnClick',
+                '(Landroid/view/View;)V',
+                1, 1,
+                [Opcodes.ALOAD]))
+
+        sLambdaMethods.put('(Landroid/content/DialogInterface;I)V', new LogMethodCell(
+                'onClick',
+                '(Landroid/content/DialogInterface;I)V',
+                'android/content/DialogInterface$OnClickListener',
+                'trackDialog',
+                '(Landroid/content/DialogInterface;I)V',
+                1, 2,
+                [Opcodes.ALOAD, Opcodes.ILOAD]))
+        sLambdaMethods.put('(Landroid/widget/AdapterView;Landroid/view/View;IJ)V', new LogMethodCell(
+                'onItemClick',
+                '(Landroid/widget/AdapterView;Landroid/view/View;IJ)V',
+                'android/widget/AdapterView$OnItemClickListener',
+                'trackListView',
+                '(Landroid/widget/AdapterView;Landroid/view/View;I)V',
+                1, 3,
+                [Opcodes.ALOAD, Opcodes.ALOAD, Opcodes.ILOAD]))
+
+
+    }
     /**
      * Fragment中的方法
      */
@@ -87,40 +121,5 @@ public class LogHookConfig {
                 [Opcodes.ALOAD, Opcodes.ALOAD, Opcodes.ALOAD]))
     }
 
-    /**
-     * android.gradle 3.2.1 版本中，针对 Lambda 表达式处理
-     */
-    public final
-    static HashMap<String, LogMethodCell> sLambdaMethods = new HashMap<>()
 
-    static {
-        sLambdaMethods.put('(Landroid/view/View;)V', new LogMethodCell(
-                'onClick',
-                '(Landroid/view/View;)V',
-                'android/view/View$OnClickListener',
-                'trackViewOnClick',
-                '(Landroid/view/View;)V',
-                1, 1,
-                [Opcodes.ALOAD]))
-
-        sLambdaMethods.put('(Landroid/content/DialogInterface;I)V', new LogMethodCell(
-                'onClick',
-                '(Landroid/content/DialogInterface;I)V',
-                'android/content/DialogInterface$OnClickListener',
-                'trackDialog',
-                '(Landroid/content/DialogInterface;I)V',
-                1, 2,
-                [Opcodes.ALOAD, Opcodes.ILOAD]))
-        sLambdaMethods.put('(Landroid/widget/AdapterView;Landroid/view/View;IJ)V', new LogMethodCell(
-                'onItemClick',
-                '(Landroid/widget/AdapterView;Landroid/view/View;IJ)V',
-                'android/widget/AdapterView$OnItemClickListener',
-                'trackListView',
-                '(Landroid/widget/AdapterView;Landroid/view/View;I)V',
-                1, 3,
-                [Opcodes.ALOAD, Opcodes.ALOAD, Opcodes.ILOAD]))
-
-
-        // Todo: 扩展
-    }
 }

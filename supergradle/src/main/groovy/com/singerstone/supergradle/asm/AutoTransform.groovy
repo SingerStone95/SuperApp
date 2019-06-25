@@ -4,6 +4,8 @@ import com.android.annotations.NonNull
 import com.android.annotations.Nullable
 import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
+import com.singerstone.supergradle.util.AutoMatchUtil
+import com.singerstone.supergradle.util.AutoTextUtil
 import com.singerstone.supergradle.util.Logger
 import groovy.io.FileType
 import org.apache.commons.codec.digest.DigestUtils
@@ -181,12 +183,12 @@ public class AutoTransform extends Transform {
         FileOutputStream outputStream = null
         try {
             //去掉绝对路径获取类名
-            String className = com.singerstone.supergradle.util.AutoTextUtil.path2ClassName(classFile.absolutePath.replace(dir.absolutePath + File.separator, ""))
-            com.singerstone.supergradle.util.Logger.info("classFile.absolutePath:" + classFile.absolutePath)
-            com.singerstone.supergradle.util.Logger.info("dir.absolutePath + File.separator:" + dir.absolutePath + File.separator)
-            com.singerstone.supergradle.util.Logger.info("File:className:" + className)
+            String className = AutoTextUtil.path2ClassName(classFile.absolutePath.replace(dir.absolutePath + File.separator, ""))
+            Logger.info("classFile.absolutePath:" + classFile.absolutePath)
+            Logger.info("dir.absolutePath + File.separator:" + dir.absolutePath + File.separator)
+            Logger.info("File:className:" + className)
             //过滤R文件
-            if (com.singerstone.supergradle.util.AutoMatchUtil.isShouldModifyClass(className)) {
+            if (AutoMatchUtil.isShouldModifyClass(className)) {
                 byte[] sourceClassBytes = IOUtils.toByteArray(new FileInputStream(classFile))
                 byte[] modifiedClassBytes = AutoModify.modifyClasses(className, sourceClassBytes)
                 if (modifiedClassBytes) {
@@ -228,11 +230,11 @@ public class AutoTransform extends Transform {
                 classPaths.add(directoryInput.file.absolutePath)
                 buildTypes = directoryInput.file.name
                 productFlavors = directoryInput.file.parentFile.name
-                com.singerstone.supergradle.util.Logger.info("||项目class目录：${directoryInput.file.absolutePath}")
+                Logger.info("||项目class目录：${directoryInput.file.absolutePath}")
             }
             input.jarInputs.each { JarInput jarInput ->
                 classPaths.add(jarInput.file.absolutePath)
-                com.singerstone.supergradle.util.Logger.info("||项目jar包：${jarInput.file.absolutePath}")
+                Logger.info("||项目jar包：${jarInput.file.absolutePath}")
             }
         }
     }
