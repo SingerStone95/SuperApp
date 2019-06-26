@@ -6,20 +6,20 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
 
+import android.support.annotation.ColorInt;
+import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ import singerstone.com.superapp.R;
 import singerstone.com.superapp.utils.DimentionUtils;
 
 
-public class FlexibleFragmentDialog extends androidx.fragment.app.DialogFragment {
+public class FlexibleFragmentDialog extends DialogFragment {
 
     private static int DEFAULT_CORNERRADIUS = 15; //dp
     private static int DEFAULt_WIDTH = 300;
@@ -202,7 +202,7 @@ public class FlexibleFragmentDialog extends androidx.fragment.app.DialogFragment
     @Override
     public void show(FragmentManager manager, String tag) {
         try {
-            androidx.fragment.app.FragmentTransaction ft = manager.beginTransaction();
+            FragmentTransaction ft = manager.beginTransaction();
             ft.add(this, tag);
             ft.commitAllowingStateLoss();
         } catch (Throwable t) {

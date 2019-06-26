@@ -3,10 +3,11 @@ package singerstone.com.superapp.backscrollimage;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import androidx.annotation.Nullable;
+
 
 import singerstone.com.superapp.utils.L;
 

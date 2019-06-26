@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vp2"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_cominglist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></androidx.viewpager2.widget.ViewPager2>
+        android:layout_height="150dp" />
 </LinearLayout>

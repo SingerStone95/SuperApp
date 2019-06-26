@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:lineSpacingMultiplier="1.2" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_choose_items"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

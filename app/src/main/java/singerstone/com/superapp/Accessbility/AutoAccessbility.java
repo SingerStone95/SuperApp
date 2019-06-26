@@ -4,10 +4,11 @@ package singerstone.com.superapp.Accessbility;
 import android.accessibilityservice.AccessibilityService;
 import android.annotation.TargetApi;
 import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import androidx.annotation.RequiresApi;
+
 
 import singerstone.com.superapp.utils.L;
 

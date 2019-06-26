@@ -1,6 +1,7 @@
 package singerstone.com.superapp.treeholeview;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -11,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
+
 
 import singerstone.com.superapp.R;
 import singerstone.com.superapp.base.BaseFragment;

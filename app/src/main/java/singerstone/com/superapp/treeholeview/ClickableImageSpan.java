@@ -6,10 +6,11 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.text.style.ImageSpan;
 import android.view.View;
 
-import androidx.annotation.NonNull;
+
 
 public abstract class ClickableImageSpan extends ImageSpan {
     public static final String TAG = "ClickableImageSpan";

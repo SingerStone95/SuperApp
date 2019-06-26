@@ -5,7 +5,6 @@ dependencies {
     compile project(':annotations')
     compile 'com.google.auto.service:auto-service:1.0-rc2'
     compile 'com.squareup:javapoet:1.7.0'
-    api 'androidx.viewpager2:viewpager2:1.0.0-alpha05'
 }
 
 sourceCompatibility = "1.7"

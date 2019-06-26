@@ -4,12 +4,13 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.RelativeLayout;
 
-import androidx.annotation.RequiresApi;
+
 
 /**
  * Created by chenbinhao on 2017/7/3.

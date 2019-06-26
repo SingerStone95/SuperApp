@@ -2,13 +2,11 @@ package singerstone.com.superapp.javassist;
 
 import javassist.ClassPool;
 import javassist.CtClass;
-import javassist.CtMethod;
 import javassist.NotFoundException;
 import javassist.bytecode.AttributeInfo;
 import javassist.bytecode.BootstrapMethodsAttribute;
 import javassist.bytecode.ClassFile;
 import javassist.bytecode.ConstPool;
-import javassist.bytecode.MethodInfo;
 
 public class ClassProcess {
     public static void main(String[] args) {

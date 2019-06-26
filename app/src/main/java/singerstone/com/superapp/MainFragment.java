@@ -7,6 +7,11 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.view.GestureDetector;
@@ -16,12 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -49,8 +48,8 @@ import singerstone.com.superapp.socketretrofit.Singerstone;
 import singerstone.com.superapp.socketretrofit.SocketService;
 import singerstone.com.superapp.treeholeview.SpannableStringUtils;
 import singerstone.com.superapp.treeholeview.TreeholeViewFragment;
+import singerstone.com.superapp.upcoming.UpComingFragment;
 import singerstone.com.superapp.utils.L;
-import singerstone.com.superapp.viewpager2.ViewPager2Fragment;
 import singerstone.com.superapp.waveeffect.WaveFragment;
 
 /**
@@ -198,12 +197,16 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(HttpsTestFragment.newInstance());
                     break;
                 case 17:
-                   // ((MainActivity) getActivity()).setFragmentAddToBackStack(new OpenGlFragment());
+                    // ((MainActivity) getActivity()).setFragmentAddToBackStack(new OpenGlFragment());
                     break;
                 case 18:
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(QQLiveTestFragment.newInstance());
+                    break;
                 case 19:
-                    ((MainActivity) getActivity()).setFragmentAddToBackStack(ViewPager2Fragment.newInstance());
+                    //((MainActivity) getActivity()).setFragmentAddToBackStack(ViewPager2Fragment.newInstance());
+                    break;
+                case 20:
+                    ((MainActivity) getActivity()).setFragmentAddToBackStack(UpComingFragment.newInstance());
                 default:
                     break;
             }
@@ -239,6 +242,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         items.add(new ToolItem(R.drawable.default_tool, "OpenGl瞎搞几下" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "腾讯视频测试" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "ViewPager2测试" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "即将上映demo" + index++));
     }
 
     private RecyclerView.OnScrollListener scrollListener = new RecyclerView.OnScrollListener() {

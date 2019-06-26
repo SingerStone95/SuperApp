@@ -8,11 +8,12 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.CalendarContract;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,17 +35,17 @@ public class MainActivity extends FragmentActivity implements ILife {
         setContentView(R.layout.activity_main);
         setFragment(MainFragment.newInstance());
         startService(new Intent(MainActivity.this, LiveService.class));
-        ArrayList<String> arrayList=new ArrayList<>();
+        ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("one");
         arrayList.add("two");
 
     }
 
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
-    public void setFragmentAddToBackStack(androidx.fragment.app.Fragment fragment) {
+    public void setFragmentAddToBackStack(Fragment fragment) {
 
-        androidx.fragment.app.FragmentManager fm =  getSupportFragmentManager();
-        androidx.fragment.app.FragmentTransaction transaction = fm.beginTransaction();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
         transaction.replace(R.id.layout_content, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
@@ -65,7 +66,7 @@ public class MainActivity extends FragmentActivity implements ILife {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     public void setFragment(Fragment fragment) {
-        androidx.fragment.app.FragmentManager fm =  getSupportFragmentManager();
+        FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.replace(R.id.layout_content, fragment);
         transaction.commit();
