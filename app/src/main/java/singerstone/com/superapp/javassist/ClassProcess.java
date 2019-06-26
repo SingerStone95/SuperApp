@@ -10,6 +10,7 @@ import javassist.NotFoundException;
 import javassist.bytecode.AttributeInfo;
 import javassist.bytecode.BootstrapMethodsAttribute;
 import javassist.bytecode.ClassFile;
+import javassist.bytecode.ConstPool;
 
 public class ClassProcess {
     public static void main(String[] args) {
@@ -19,7 +20,10 @@ public class ClassProcess {
                 System.out.println(method.getName());
             }*/
 
-            ClassFile classFile = ctClass.getClassFile();
+            findBootstrapMethods(ctClass);
+            return;
+
+           /* ClassFile classFile = ctClass.getClassFile();
             for (AttributeInfo attributeInfo : classFile.getAttributes()) {
                 if (attributeInfo instanceof BootstrapMethodsAttribute) {
                     BootstrapMethodsAttribute bootstrapMethodsAttribute = (BootstrapMethodsAttribute) attributeInfo;
@@ -35,7 +39,7 @@ public class ClassProcess {
 
                     break;
                 }
-            }
+            }*/
 
         } catch (NotFoundException e) {
             e.printStackTrace();
@@ -54,7 +58,9 @@ public class ClassProcess {
                 Map<Integer, MethodRecord> methodRecordMap = new HashMap<>();
                 for (BootstrapMethodsAttribute.BootstrapMethod method : methods) {
                     for (int arg : method.arguments) {
-
+                        if (classFile.getConstPool().getTag(arg) == ConstPool.CONST_MethodHandle) {
+                            System.out.println(">>>" + arg);
+                        }
 
                     }
                 }
@@ -63,11 +69,5 @@ public class ClassProcess {
         return null;
     }
 
-    private static Class getMethodHandleInfoClass() {
-        try {
-            return Class.forName("javassist.bytecode.ConstPool.MethodHandleInfo");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+
 }
