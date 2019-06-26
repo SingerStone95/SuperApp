@@ -1,6 +1,5 @@
 package singerstone.com.superapp.javassist;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +10,6 @@ import javassist.NotFoundException;
 import javassist.bytecode.AttributeInfo;
 import javassist.bytecode.BootstrapMethodsAttribute;
 import javassist.bytecode.ClassFile;
-import javassist.bytecode.ConstPool;
 
 public class ClassProcess {
     public static void main(String[] args) {
@@ -55,10 +53,21 @@ public class ClassProcess {
                 }
                 Map<Integer, MethodRecord> methodRecordMap = new HashMap<>();
                 for (BootstrapMethodsAttribute.BootstrapMethod method : methods) {
-                    System.out.println("bsmMethod = " + method.methodRef + ", " + Arrays.toString(method.arguments));
+                    for (int arg : method.arguments) {
+
+
+                    }
                 }
             }
         }
         return null;
+    }
+
+    private static Class getMethodHandleInfoClass() {
+        try {
+            return Class.forName("javassist.bytecode.ConstPool.MethodHandleInfo");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
