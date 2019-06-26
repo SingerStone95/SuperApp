@@ -2,6 +2,7 @@ package singerstone.com.superapp.javassist;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import javassist.ClassPool;
 import javassist.CtClass;
@@ -21,8 +22,8 @@ public class JavassistDemo {
                 attributes) {
             if (attributeInfo instanceof BootstrapMethodsAttribute) {
                 BootstrapMethodsAttribute.BootstrapMethod[] methods = ((BootstrapMethodsAttribute) attributeInfo).getMethods();
-                for (BootstrapMethodsAttribute.BootstrapMethod method: methods
-                     ) {
+                for (BootstrapMethodsAttribute.BootstrapMethod method : methods
+                ) {
                     System.out.println("bsmMethod = " + method.methodRef + ", " + Arrays.toString(method.arguments));
                 }
             }
@@ -34,5 +35,6 @@ public class JavassistDemo {
             System.out.println("methodInfo = " + methodInfo);
         }
     }
+
 
 }

@@ -1,5 +1,10 @@
 package singerstone.com.superapp.javassist;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.NotFoundException;
@@ -17,8 +22,6 @@ public class ClassProcess {
             }*/
 
             ClassFile classFile = ctClass.getClassFile();
-            ConstPool constPool = classFile.getConstPool();
-            constPool.getClassName();
             for (AttributeInfo attributeInfo : classFile.getAttributes()) {
                 if (attributeInfo instanceof BootstrapMethodsAttribute) {
                     BootstrapMethodsAttribute bootstrapMethodsAttribute = (BootstrapMethodsAttribute) attributeInfo;
@@ -39,5 +42,23 @@ public class ClassProcess {
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    private static Map<Integer, MethodRecord> findBootstrapMethods(CtClass ctClass) {
+        ClassFile classFile = ctClass.getClassFile();
+        List<AttributeInfo> attributes = classFile.getAttributes();
+        for (AttributeInfo attributeInfo : attributes) {
+            if (attributeInfo instanceof BootstrapMethodsAttribute) {
+                BootstrapMethodsAttribute.BootstrapMethod[] methods = ((BootstrapMethodsAttribute) attributeInfo).getMethods();
+                if (methods.length == 0) {
+                    return null;
+                }
+                Map<Integer, MethodRecord> methodRecordMap = new HashMap<>();
+                for (BootstrapMethodsAttribute.BootstrapMethod method : methods) {
+                    System.out.println("bsmMethod = " + method.methodRef + ", " + Arrays.toString(method.arguments));
+                }
+            }
+        }
+        return null;
     }
 }
