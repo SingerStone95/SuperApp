@@ -1,11 +1,14 @@
 package singerstone.com.superapp.upcoming;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 import com.bumptech.glide.Glide;
@@ -34,12 +37,17 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
 
     @Override
     public void onBindViewHolder(@NonNull ComingViewHolder holder, int position) {
-        Glide.with(holder.itemView.getContext()).load(mData.get(position)).into(holder.mImageView);
+        Glide.with(holder.itemView.getContext()).load(mData.get(position % mData.size())).into(holder.mImageView);
+        holder.mTvIndex.setText("" + position % mData.size());
+    /*    if (position % 2 == 0) {
+            holder.itemView.getLayoutParams().width = dp2px(holder.itemView.getContext(), 400);
+            holder.mImageView.getLayoutParams().width = dp2px(holder.itemView.getContext(), 400);
+        }*/
     }
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return Integer.MAX_VALUE;
     }
 
     public void setData(List<String> data) {
@@ -50,10 +58,17 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
     public static class ComingViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView mImageView;
+        private TextView mTvIndex;
 
         public ComingViewHolder(@NonNull View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.iv_poster);
+            mTvIndex = itemView.findViewById(R.id.tv_index);
         }
+    }
+
+    public static int dp2px(Context context, float dpVal) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dpVal, context.getResources().getDisplayMetrics());
     }
 }
