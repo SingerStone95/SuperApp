@@ -6,5 +6,7 @@ package singerstone.com.superapp.javassist;
  * desc   :
  */
 public class MethodRecord {
-    public String methodName;
+    public String methodRefName;
+    public String methodRefType;
+    public String methodClassName;
 }
