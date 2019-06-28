@@ -131,16 +131,21 @@ public class UpComingFragment extends BaseFragment {
         int left = theSecondView.getLeft();
         int offset = left - UpCommingSizeConst.getLeftOffeset(getActivity());
         mRecyclerUpComing.smoothScrollBy(offset, 0);
-        ViewGroup.LayoutParams layoutParams = theSecondView.getLayoutParams();
+       /* ViewGroup.LayoutParams layoutParams = theSecondView.getLayoutParams();
         if (layoutParams != null) {
             layoutParams.width = UpCommingSizeConst.getBigPosterWidth(getActivity());
         }
         theSecondView.requestLayout();
+        */
+        playAnimator(theSecondView);
     }
 
     private void playAnimator(View view) {
-        if (view.getLayoutParams().width == dp2px(getActivity(), 200)) return;
-        ValueAnimator valueAnimator = ValueAnimator.ofInt(100, 200)
+        int currentWidth = view.getLayoutParams().width;
+        if (currentWidth >= UpCommingSizeConst.getMidPosterWidth(view.getContext()) || currentWidth >= UpCommingSizeConst.getBasePosterHeight(view.getContext())) {
+            return;
+        }
+        ValueAnimator valueAnimator = ValueAnimator.ofInt(currentWidth, UpCommingSizeConst.getBigPosterWidth(view.getContext()))
                 .setDuration(300);
         valueAnimator.removeAllUpdateListeners();
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -149,7 +154,7 @@ public class UpComingFragment extends BaseFragment {
                 if (view == null || view.getLayoutParams() == null) {
                     return;
                 }
-                view.getLayoutParams().width = dp2px(getActivity(), (int) animation.getAnimatedValue());
+                view.getLayoutParams().width = (int) animation.getAnimatedValue();
                 view.requestLayout();
 
             }
