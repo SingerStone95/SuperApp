@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import singerstone.com.superapp.R;
+import singerstone.com.superapp.utils.DimentionUtils;
 
 /**
  * author : yogachen
@@ -38,11 +40,10 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
     @Override
     public void onBindViewHolder(@NonNull ComingViewHolder holder, int position) {
         Glide.with(holder.itemView.getContext()).load(mData.get(position % mData.size())).into(holder.mImageView);
+        int width = UpCommingSizeConst.getBasePosterWidth(holder.itemView.getContext());
         holder.mTvIndex.setText("" + position % mData.size());
-    /*    if (position % 2 == 0) {
-            holder.itemView.getLayoutParams().width = dp2px(holder.itemView.getContext(), 400);
-            holder.mImageView.getLayoutParams().width = dp2px(holder.itemView.getContext(), 400);
-        }*/
+        holder.itemView.getLayoutParams().width = width;
+        holder.mRlRoot.getLayoutParams().height = (int) (width * 1.41);
     }
 
     @Override
@@ -57,18 +58,25 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
 
     public static class ComingViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView mImageView;
-        private TextView mTvIndex;
+        public RelativeLayout mRlRoot;
+        public ImageView mImageView;
+        public TextView mTvIndex;
 
         public ComingViewHolder(@NonNull View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.iv_poster);
             mTvIndex = itemView.findViewById(R.id.tv_index);
+            mRlRoot = itemView.findViewById(R.id.rl_root);
         }
     }
 
     public static int dp2px(Context context, float dpVal) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 dpVal, context.getResources().getDisplayMetrics());
+    }
+
+    @Override
+    public void onViewRecycled(ComingViewHolder holder) {
+        super.onViewRecycled(holder);
     }
 }
