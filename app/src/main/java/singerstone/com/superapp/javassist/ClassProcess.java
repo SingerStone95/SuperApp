@@ -25,14 +25,25 @@ public class ClassProcess {
 
             int methodSize = methodMap.size();
             int constSize = constPool.getSize();
-            for (int i = 1; i < constSize - 1; i++) {
+            int breakFlagCount = 0; //提前终止循环计数
+            for (int i = 1; breakFlagCount < methodSize && i < constSize - 1; i++) {
                 if (constPool.getTag(i) == ConstPool.CONST_InvokeDynamic) {
                     int key = constPool.getInvokeDynamicBootstrap(i);
+                    MethodRecord record = methodMap.get(key);
+                    if (record == null) {
+                        continue;
+                    }
+                    breakFlagCount++;
                     int nameAndTypeIndex = constPool.getInvokeDynamicNameAndType(i);
                     //NameAndTypeInfo
-                    String methoedName = "";
-                    String methodType = constPool.getInvokeDynamicType(nameAndTypeIndex);
-                    System.out.println(key + " " + methoedName + " " + methodType);
+                    int methodNameIndex = constPool.getNameAndTypeName(nameAndTypeIndex);
+                    String methodName = constPool.getUtf8Info(methodNameIndex);
+                    int methodDescriptorIndex = constPool.getNameAndTypeDescriptor(nameAndTypeIndex);
+                    String methodDescriptor = constPool.getUtf8Info(methodDescriptorIndex);
+                    record.interfaceMethodName = methodName;
+                    record.interfaceClassName = methodDescriptor;
+                    //System.out.println(key + " " + methodName + " " + methodDescriptor);
+                    System.out.println(record);
                 }
             }
 
@@ -68,8 +79,8 @@ public class ClassProcess {
                             methodRecord.methodRefType = methodRefType;
                             methodRecordMap.put(key, methodRecord);
                         }
-                        key++;
                     }
+                    key++;
                 }
                 return methodRecordMap;
             }
