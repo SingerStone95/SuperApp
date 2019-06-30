@@ -1,14 +1,16 @@
 package singerstone.com.superapp.TouchEvent;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 
 
 import singerstone.com.superapp.R;
@@ -55,9 +57,24 @@ public class TouchEventFragment extends BaseFragment {
                 L.e("click_view");
             }
         });
+        RecyclerView.OnScrollListener listener = new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        };
+        Dialog.OnClickListener listener1 = (dialogInterface, i) -> {
+
+        };
         return view;
     }
-    public static void test4(){
+
+    public static void test4() {
 
     }
 

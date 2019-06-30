@@ -72,7 +72,7 @@ public class ClassProcess {
                             String methodRefName = constPool.getMethodrefName(methodHandleIndex);
                             String methodRefType = constPool.getMethodrefType(methodHandleIndex);
                             String methodClassName = constPool.getMethodrefClassName(methodHandleIndex);
-                            System.out.println(methodRefName + " " + methodRefType + " " + methodClassName);
+                            //System.out.println(methodRefName + " " + methodRefType + " " + methodClassName);
                             MethodRecord methodRecord = new MethodRecord();
                             methodRecord.methodClassName = methodClassName;
                             methodRecord.methodRefName = methodRefName;

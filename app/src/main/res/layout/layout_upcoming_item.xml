@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="100dp"
-    android:layout_height="match_parent"
-    android:background="@color/grey"
-    android:gravity="center_vertical"
-    android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_root"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
 
-    <RelativeLayout
-        android:id="@+id/rl_root"
+    <ImageView
+        android:id="@+id/iv_poster"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
 
-        <ImageView
-            android:id="@+id/iv_poster"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY" />
-
-        <TextView
-            android:id="@+id/tv_index"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:textColor="@color/black"
-            android:textSize="30sp" />
-    </RelativeLayout>
-</LinearLayout>
+    <TextView
+        android:id="@+id/tv_index"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+</RelativeLayout>

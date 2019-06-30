@@ -37,6 +37,8 @@ public class UpComingFragment extends BaseFragment {
     private RecyclerView mRecyclerUpComing;
     private ComingAdapter comingAdapter;
 
+    private boolean mFromDrag = false;
+
     public UpComingFragment() {
 
     }
@@ -70,43 +72,52 @@ public class UpComingFragment extends BaseFragment {
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                    mFromDrag = true;
                     L.e("SCROLL_STATE_DRAGGING");
+                    IGalleryAnimation galleryAnimation0 = (IGalleryAnimation) mRecyclerUpComing.getChildAt(0);
+                    if (galleryAnimation0 != null) {
+                        galleryAnimation0.changeToSmall();
+                    }
+
+                    IGalleryAnimation galleryAnimation2 = (IGalleryAnimation) mRecyclerUpComing.getChildAt(2);
+                    if (galleryAnimation2 != null) {
+                        galleryAnimation2.changeToSmall();
+                    }
+                    IGalleryAnimation galleryAnimation3 = (IGalleryAnimation) mRecyclerUpComing.getChildAt(3);
+                    if (galleryAnimation3 != null) {
+                        galleryAnimation3.changeToSmall();
+                    }
+                    mRecyclerUpComing.requestLayout();
                 }
-
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-            /*        LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mRecyclerUpComing.getLayoutManager();
-                    int position = linearLayoutManager.findFirstVisibleItemPosition();
-                    L.e("position=" + (position % data.size()));
-
-                    View currentView = linearLayoutManager.findViewByPosition(position);
-                    if (currentView != null) {
-                        playAnimator(currentView);
+                    if (!mFromDrag) {
+                        return;
                     }
-                    View preView = linearLayoutManager.findViewByPosition(position - 1);
-                    if (preView != null) {
-                        ViewGroup.LayoutParams layoutParams = preView.getLayoutParams();
-                        if (layoutParams != null) {
-                            preView.getLayoutParams().width = dp2px(getActivity(), 100);
-                        }
-                    }
-                    View afterView = linearLayoutManager.findViewByPosition(position + 1);
-                    if (afterView != null) {
-                        ViewGroup.LayoutParams layoutParams = afterView.getLayoutParams();
-                        if (layoutParams != null) {
-                            afterView.getLayoutParams().width = dp2px(getActivity(), 100);
-                        }
-                    }
-                    View afterView2 = linearLayoutManager.findViewByPosition(position + 2);
-                    if (afterView2 != null) {
-                        ViewGroup.LayoutParams layoutParams = afterView2.getLayoutParams();
-                        if (layoutParams != null) {
-                            afterView2.getLayoutParams().width = dp2px(getActivity(), 100);
-                        }
-                    }
-                    mRecyclerUpComing.requestLayout();*/
+                    mFromDrag = false;
                     //移动
-                    L.i("childsize=" + mRecyclerUpComing.getChildCount());
-                    doResizeView();
+                    IGalleryAnimation galleryAnimation0 = (IGalleryAnimation) mRecyclerUpComing.getChildAt(0);
+                    if (galleryAnimation0 != null) {
+                        galleryAnimation0.changeToMid();
+                    }
+                    IGalleryAnimation galleryAnimation1 = (IGalleryAnimation) mRecyclerUpComing.getChildAt(1);
+                    if (galleryAnimation1 != null) {
+                        galleryAnimation1.changeToBig();
+                    }
+                    IGalleryAnimation galleryAnimation2 = (IGalleryAnimation) mRecyclerUpComing.getChildAt(2);
+                    if (galleryAnimation2 != null) {
+                        galleryAnimation2.changeToMid();
+                    }
+                    IGalleryAnimation galleryAnimation3 = (IGalleryAnimation) mRecyclerUpComing.getChildAt(3);
+                    if (galleryAnimation3 != null) {
+                        galleryAnimation3.changeToSmall();
+                    }
+                    mRecyclerUpComing.requestLayout();
+                    new Handler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            adjustPosition();
+                        }
+                    });
 
                 }
             }
@@ -116,33 +127,20 @@ public class UpComingFragment extends BaseFragment {
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                doResizeView();
-            }
-        }, 0);
         return view;
     }
 
-    private void doResizeView() {
+    private void adjustPosition() {
         View theSecondView = mRecyclerUpComing.getChildAt(1);
         int left = theSecondView.getLeft();
         int offset = left - UpCommingSizeConst.getLeftOffeset(getActivity());
         mRecyclerUpComing.smoothScrollBy(offset, 0);
-       /* ViewGroup.LayoutParams layoutParams = theSecondView.getLayoutParams();
-        if (layoutParams != null) {
-            layoutParams.width = UpCommingSizeConst.getBigPosterWidth(getActivity());
-        }
-        theSecondView.requestLayout();
-        */
-        playAnimator(theSecondView);
     }
+
 
     private void playAnimator(View view) {
         int currentWidth = view.getLayoutParams().width;
-        if (currentWidth >= UpCommingSizeConst.getMidPosterWidth(view.getContext()) || currentWidth >= UpCommingSizeConst.getBasePosterHeight(view.getContext())) {
+        if (currentWidth > UpCommingSizeConst.getMidPosterWidth(view.getContext()) || currentWidth > UpCommingSizeConst.getSmallPosterHeight(view.getContext())) {
             return;
         }
         ValueAnimator valueAnimator = ValueAnimator.ofInt(currentWidth, UpCommingSizeConst.getBigPosterWidth(view.getContext()))

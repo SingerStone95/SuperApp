@@ -33,17 +33,14 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
     @NonNull
     @Override
     public ComingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View rootView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_upcoming_item, parent, false);
+        View rootView = new UpComingItemView(parent.getContext());
         return new ComingViewHolder(rootView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ComingViewHolder holder, int position) {
-        Glide.with(holder.itemView.getContext()).load(mData.get(position % mData.size())).into(holder.mImageView);
-        int width = UpCommingSizeConst.getBasePosterWidth(holder.itemView.getContext());
-        holder.mTvIndex.setText("" + position % mData.size());
-        holder.itemView.getLayoutParams().width = width;
-        holder.mRlRoot.getLayoutParams().height = (int) (width * 1.41);
+        holder.upComingItemView.resetSize();
+        holder.upComingItemView.setData(mData.get(position % mData.size()),"" + position % mData.size());
     }
 
     @Override
@@ -57,16 +54,11 @@ public class ComingAdapter extends RecyclerView.Adapter<ComingAdapter.ComingView
     }
 
     public static class ComingViewHolder extends RecyclerView.ViewHolder {
-
-        public RelativeLayout mRlRoot;
-        public ImageView mImageView;
-        public TextView mTvIndex;
+        UpComingItemView upComingItemView;
 
         public ComingViewHolder(@NonNull View itemView) {
             super(itemView);
-            mImageView = itemView.findViewById(R.id.iv_poster);
-            mTvIndex = itemView.findViewById(R.id.tv_index);
-            mRlRoot = itemView.findViewById(R.id.rl_root);
+            upComingItemView = (UpComingItemView) itemView;
         }
     }
 
