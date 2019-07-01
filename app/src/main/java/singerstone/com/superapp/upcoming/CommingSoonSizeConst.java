@@ -9,7 +9,7 @@ import singerstone.com.superapp.utils.DimentionUtils;
  * date   : 2019-06-28
  * desc   :
  */
-public class UpCommingSizeConst {
+public class CommingSoonSizeConst {
     public static int sBaseWidth = 0;
 
     public static int sBaseHeight = 0;

@@ -1,6 +1,6 @@
 package singerstone.com.superapp.upcoming;
 
-public interface IGalleryAnimation {
+public interface IComingSoonItemAnimation {
     void changeToBig();
 
     void changeToMid();

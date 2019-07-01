@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javassist.ClassPool;
 import javassist.CtClass;
+import javassist.CtMethod;
 import javassist.NotFoundException;
 import javassist.bytecode.AttributeInfo;
 import javassist.bytecode.BootstrapMethodsAttribute;
@@ -45,6 +46,13 @@ public class ClassProcess {
                     //System.out.println(key + " " + methodName + " " + methodDescriptor);
                     System.out.println(record);
                 }
+            }
+            for (CtMethod ctMethod:ctClass.getDeclaredMethods()){
+                System.out.println(ctMethod.getLongName());
+                System.out.println(ctMethod.getName());
+            }
+            for (MethodRecord record:methodMap.values()){
+
             }
 
         } catch (NotFoundException e) {

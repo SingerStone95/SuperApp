@@ -2,7 +2,6 @@ package singerstone.com.superapp.upcoming;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
@@ -19,24 +18,24 @@ import com.bumptech.glide.Glide;
 
 import singerstone.com.superapp.R;
 
-public class UpComingItemView extends LinearLayout implements IGalleryAnimation {
+public class ComingSoonItemView extends LinearLayout implements IComingSoonItemAnimation {
 
     public RelativeLayout mRlRoot;
     public ImageView mImageView;
     public TextView mTvIndex;
-    private int uiState = IGalleryAnimation.STATE_MID;
+    private int uiState = IComingSoonItemAnimation.STATE_MID;
 
     public static final int TYPE_HEIGHT = 1;
     public static final int TYPE_WIDTH = 2;
 
     public static int ANIMATOR_DURATION = 300;
 
-    public UpComingItemView(Context context) {
+    public ComingSoonItemView(Context context) {
         super(context);
         initView();
     }
 
-    public UpComingItemView(Context context, @Nullable AttributeSet attrs) {
+    public ComingSoonItemView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initView();
     }
@@ -50,17 +49,17 @@ public class UpComingItemView extends LinearLayout implements IGalleryAnimation 
     }
 
     void initRootView() {
-        LayoutInflater.from(getContext()).inflate(R.layout.layout_upcoming_item, this);
-        setLayoutParams(new LinearLayoutCompat.LayoutParams(UpCommingSizeConst.getMidPosterWidth(getContext()), ViewGroup.LayoutParams.MATCH_PARENT));
+        LayoutInflater.from(getContext()).inflate(R.layout.layout_comingsoon_item, this);
+        setLayoutParams(new LinearLayoutCompat.LayoutParams(CommingSoonSizeConst.getSmallPosterWidth(getContext()), ViewGroup.LayoutParams.MATCH_PARENT));
         setGravity(Gravity.CENTER);
-        setBackgroundColor(Color.GREEN);
-        uiState = IGalleryAnimation.STATE_MID;
+        //setBackgroundColor(Color.GREEN);
+        uiState = IComingSoonItemAnimation.STATE_MID;
     }
 
     public void resetSize() {
-        setLayoutParams(new LinearLayoutCompat.LayoutParams(UpCommingSizeConst.getMidPosterWidth(getContext()), ViewGroup.LayoutParams.MATCH_PARENT));
-        mRlRoot.getLayoutParams().height = UpCommingSizeConst.getMidPosterHeight(getContext());
-        uiState = IGalleryAnimation.STATE_MID;
+        setLayoutParams(new LinearLayoutCompat.LayoutParams(CommingSoonSizeConst.getSmallPosterWidth(getContext()), ViewGroup.LayoutParams.MATCH_PARENT));
+        mRlRoot.getLayoutParams().height = CommingSoonSizeConst.getSmallPosterHeight(getContext());
+        uiState = IComingSoonItemAnimation.STATE_MID;
     }
 
     public void setData(String url, String position) {
@@ -71,28 +70,29 @@ public class UpComingItemView extends LinearLayout implements IGalleryAnimation 
 
     @Override
     public void changeToBig() {
-        if (uiState == IGalleryAnimation.STATE_BIG) return;
-        playAnimation(TYPE_HEIGHT, mRlRoot.getLayoutParams().height, UpCommingSizeConst.getBigPosterHeight(getContext()), mRlRoot);
-        // mRlRoot.getLayoutParams().height = UpCommingSizeConst.getBigPosterHeight(getContext());
-        playAnimation(TYPE_WIDTH, getLayoutParams().width, UpCommingSizeConst.getBigPosterWidth(getContext()), this);
-        //getLayoutParams().width = UpCommingSizeConst.getBigPosterWidth(getContext());
-        uiState = IGalleryAnimation.STATE_BIG;
+        if (uiState == IComingSoonItemAnimation.STATE_BIG) return;
+        playAnimation(TYPE_HEIGHT, mRlRoot.getLayoutParams().height, CommingSoonSizeConst.getBigPosterHeight(getContext()), mRlRoot);
+        // mRlRoot.getLayoutParams().height = CommingSoonSizeConst.getBigPosterHeight(getContext());
+        playAnimation(TYPE_WIDTH, getLayoutParams().width, CommingSoonSizeConst.getBigPosterWidth(getContext()), this);
+        //getLayoutParams().width = CommingSoonSizeConst.getBigPosterWidth(getContext());
+        uiState = IComingSoonItemAnimation.STATE_BIG;
     }
 
     @Override
     public void changeToMid() {
-        mRlRoot.getLayoutParams().height = UpCommingSizeConst.getMidPosterHeight(getContext());
-        getLayoutParams().width = UpCommingSizeConst.getMidPosterWidth(getContext());
-        uiState = IGalleryAnimation.STATE_MID;
+        mRlRoot.getLayoutParams().height = CommingSoonSizeConst.getMidPosterHeight(getContext());
+        getLayoutParams().width = CommingSoonSizeConst.getMidPosterWidth(getContext());
+        requestLayout();
+        uiState = IComingSoonItemAnimation.STATE_MID;
     }
 
     @Override
     public void changeToSmall() {
-        //playAnimation(TYPE_HEIGHT, mRlRoot.getLayoutParams().height, UpCommingSizeConst.getSmallPosterHeight(getContext()), mRlRoot);
-        mRlRoot.getLayoutParams().height = UpCommingSizeConst.getSmallPosterHeight(getContext());
-        getLayoutParams().width = UpCommingSizeConst.getMidPosterWidth(getContext());
-
-        uiState = IGalleryAnimation.STATE_SMALL;
+        //playAnimation(TYPE_HEIGHT, mRlRoot.getLayoutParams().height, CommingSoonSizeConst.getSmallPosterHeight(getContext()), mRlRoot);
+        mRlRoot.getLayoutParams().height = CommingSoonSizeConst.getSmallPosterHeight(getContext());
+        getLayoutParams().width = CommingSoonSizeConst.getSmallPosterWidth(getContext());
+        requestLayout();
+        uiState = IComingSoonItemAnimation.STATE_SMALL;
 
     }
 
