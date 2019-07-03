@@ -11,15 +11,17 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 
 import singerstone.com.superapp.Dialog.DialogItemAdapter;
+import singerstone.com.superapp.utils.L;
 
 public class Test {
-    void test(View view) {
+    void test(int in, long j, Object o) {
         ITest iTest = view1 -> view1.setVisibility(View.GONE);
         View.OnClickListener listener = v -> {
+            L.i(in + "" + j + o);
 
         };
         Dialog.OnClickListener listener1 = (dialogInterface, i) -> {
-
+            L.i(in + "" + j + o);
         };
         DialogItemAdapter.OnItemClickListener onItemClickListener = (position, item) -> {
 

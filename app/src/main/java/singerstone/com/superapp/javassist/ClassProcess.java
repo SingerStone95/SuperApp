@@ -1,5 +1,7 @@
 package singerstone.com.superapp.javassist;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,16 +49,34 @@ public class ClassProcess {
                     System.out.println(record);
                 }
             }
-            for (CtMethod ctMethod:ctClass.getDeclaredMethods()){
+            for (CtMethod ctMethod : ctClass.getDeclaredMethods()) {
                 System.out.println(ctMethod.getLongName());
-                System.out.println(ctMethod.getName());
+                if ("lambda$test$2".equals(ctMethod.getName())) {
+                    for (CtClass ctC : ctMethod.getParameterTypes()) {
+                        System.out.println(ctC.getName());
+                    }
+                    System.out.println(getParamsIndexs(ctMethod, 2));
+                }
             }
-            for (MethodRecord record:methodMap.values()){
 
-            }
 
         } catch (NotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Integer> getParamsIndexs(CtMethod ctMethod, int paramsSize) {
+        ArrayList<Integer> positions = new ArrayList<>();
+        try {
+            int allParamSize = ctMethod.getParameterTypes().length;
+            for (int position = allParamSize; positions.size() != paramsSize; position--) {
+                positions.add(position);
+            }
+            Collections.reverse(positions);
+            return positions;
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+            return positions;
         }
     }
 

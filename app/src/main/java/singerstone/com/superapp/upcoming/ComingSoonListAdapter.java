@@ -19,10 +19,12 @@ import java.util.List;
 public class ComingSoonListAdapter extends RecyclerView.Adapter<ComingSoonListAdapter.ComingViewHolder> {
 
 
-    List<String> mData = new ArrayList<>();
+    private List<String> mData = new ArrayList<>();
+    private OnItemClickListener mItemClickListener;
 
     @NonNull
     @Override
+
     public ComingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View rootView = new ComingSoonItemView(parent.getContext());
         return new ComingViewHolder(rootView);
@@ -30,8 +32,20 @@ public class ComingSoonListAdapter extends RecyclerView.Adapter<ComingSoonListAd
 
     @Override
     public void onBindViewHolder(@NonNull ComingViewHolder holder, int position) {
+        if (mData.size() == 0) {
+            return;
+        }
         holder.comingSoonItemView.resetSize();
-        holder.comingSoonItemView.setData(mData.get(position % mData.size()),"" + position % mData.size());
+        int realPosition = position % mData.size();
+        holder.comingSoonItemView.setData(mData.get(realPosition), "" + position % mData.size());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mItemClickListener != null) {
+                    mItemClickListener.onItemClick(realPosition);
+                }
+            }
+        });
     }
 
     @Override
@@ -58,8 +72,17 @@ public class ComingSoonListAdapter extends RecyclerView.Adapter<ComingSoonListAd
                 dpVal, context.getResources().getDisplayMetrics());
     }
 
+
     @Override
     public void onViewRecycled(ComingViewHolder holder) {
         super.onViewRecycled(holder);
+    }
+
+    public void setItemClickListener(OnItemClickListener mItemClickListener) {
+        this.mItemClickListener = mItemClickListener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
     }
 }

@@ -23,11 +23,13 @@ public class CommingSoonSizeConst {
 
     public static int sLeftOffset = 0;
 
+    public static int sCoverWidth = 0;
+
     public static int getSmallPosterWidth(Context context) {
         if (sBaseWidth != 0) {
             return sBaseWidth;
         }
-        sBaseWidth = (int) (DimentionUtils.getScreenWidth(context) * 0.23f);
+        sBaseWidth = (int) (DimentionUtils.getScreenWidth(context) * 0.23f) - getCoverWidth(context);
         return sBaseWidth;
     }
 
@@ -44,7 +46,7 @@ public class CommingSoonSizeConst {
         if (sBigPosterWidth != 0) {
             return sBigPosterWidth;
         }
-        return (int) (getSmallPosterWidth(context) * 2.82);
+        return (int) (getSmallPosterWidth(context) * 2.82) - getCoverWidth(context);
     }
 
     public static int getBigPosterHeight(Context context) {
@@ -58,7 +60,7 @@ public class CommingSoonSizeConst {
         if (sMidPosterWidth != 0) {
             return sMidPosterWidth;
         }
-        return (int) (getSmallPosterWidth(context) * 1.36);
+        return (int) (getSmallPosterWidth(context) * 1.36) - getCoverWidth(context);
     }
 
     public static int getMidPosterHeight(Context context) {
@@ -75,5 +77,11 @@ public class CommingSoonSizeConst {
         return (int) (getSmallPosterWidth(context) * 0.14);
     }
 
+    public static int getCoverWidth(Context context) {
+        if (sCoverWidth != 0) {
+            return sCoverWidth;
+        }
+        return (int) DimentionUtils.dip2px(context, 5);
+    }
 
 }

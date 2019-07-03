@@ -1,5 +1,7 @@
 package singerstone.com.superapp.upcoming;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -25,10 +27,12 @@ public class ComingSoonItemView extends LinearLayout implements IComingSoonItemA
     public TextView mTvIndex;
     private int uiState = IComingSoonItemAnimation.STATE_MID;
 
+    private AnimationEndCallback mCallback;
+
     public static final int TYPE_HEIGHT = 1;
     public static final int TYPE_WIDTH = 2;
 
-    public static int ANIMATOR_DURATION = 300;
+    public static int ANIMATOR_DURATION = 100;
 
     public ComingSoonItemView(Context context) {
         super(context);
@@ -96,15 +100,24 @@ public class ComingSoonItemView extends LinearLayout implements IComingSoonItemA
 
     }
 
+    @Override
+    public void registerAnimationEndListener(AnimationEndCallback callback) {
+        mCallback = callback;
+    }
+
     private void playAnimation(int type, int start, int end, View target) {
         ValueAnimator valueAnimator = ValueAnimator.ofInt(start, end)
                 .setDuration(ANIMATOR_DURATION);
         valueAnimator.removeAllUpdateListeners();
+        valueAnimator.removeAllListeners();
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 if (target == null || target.getLayoutParams() == null) {
                     return;
+                }
+                if (mCallback != null) {
+                    mCallback.onAnimationFraction(animation.getAnimatedFraction());
                 }
                 if (type == TYPE_HEIGHT) {
                     target.getLayoutParams().height = (int) animation.getAnimatedValue();
@@ -115,6 +128,16 @@ public class ComingSoonItemView extends LinearLayout implements IComingSoonItemA
 
             }
         });
+        valueAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                if (mCallback != null) {
+                    mCallback.onAnimationEnd();
+                }
+            }
+        });
         valueAnimator.start();
     }
+
 }
