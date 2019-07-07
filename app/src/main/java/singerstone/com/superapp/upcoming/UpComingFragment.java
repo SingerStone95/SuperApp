@@ -1,6 +1,7 @@
 package singerstone.com.superapp.upcoming;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -139,30 +140,34 @@ public class UpComingFragment extends BaseFragment {
         return view;
     }
 
-    private void adjustPosition() {
-        View theSecondView = mRecyclerUpComing.getChildAt(1);
+    private void adjustPosition(int childIndex) {
+        View theSecondView = mRecyclerUpComing.getChildAt(childIndex);
         int left = theSecondView.getLeft();
         int offset = left - CommingSoonSizeConst.getLeftOffeset(getActivity());
         mRecyclerUpComing.smoothScrollBy(offset, 0);
-        LinearLayoutManager layoutManager = (LinearLayoutManager) mRecyclerUpComing.getLayoutManager();
-        int firstPosition = layoutManager.findFirstVisibleItemPosition();
-        int lastPosition = layoutManager.findLastVisibleItemPosition();
-        L.i((firstPosition + 1) % 9 + "");
+    }
+
+    private void adjustPosition(View childView) {
+        //childView.setBackgroundColor(Color.GREEN);
+        int left = childView.getLeft();
+        int offset = left - CommingSoonSizeConst.getLeftOffeset(getActivity());
+        L.i("offset=" + offset + "   left=" + left);
+        mRecyclerUpComing.smoothScrollBy(offset, 0);
     }
 
 
     private void handleScrollEnd() {
         //移动
-        IComingSoonItemAnimation galleryAnimation0 = (IComingSoonItemAnimation) mRecyclerUpComing.getChildAt(0);
-        if (galleryAnimation0 != null) {
-            galleryAnimation0.changeToMid();
-        }
-        IComingSoonItemAnimation galleryAnimation1 = (IComingSoonItemAnimation) mRecyclerUpComing.getChildAt(1);
+        int childIndex = caculateAdjustChildIndex();
+        View adjustChildView = mRecyclerUpComing.getChildAt(childIndex);
+        IComingSoonItemAnimation galleryAnimation0 = (IComingSoonItemAnimation) mRecyclerUpComing.getChildAt(childIndex - 1);
+
+        IComingSoonItemAnimation galleryAnimation1 = (IComingSoonItemAnimation) mRecyclerUpComing.getChildAt(childIndex);
         if (galleryAnimation1 != null) {
             galleryAnimation1.registerAnimationEndListener(new AnimationEndCallback() {
                 @Override
                 public void onAnimationEnd() {
-
+                    adjustPosition(adjustChildView);
                 }
 
                 @Override
@@ -172,23 +177,36 @@ public class UpComingFragment extends BaseFragment {
             });
             galleryAnimation1.changeToBig();
         }
-
-        IComingSoonItemAnimation galleryAnimation2 = (IComingSoonItemAnimation) mRecyclerUpComing.getChildAt(2);
+        if (galleryAnimation0 != null) {
+            galleryAnimation0.changeToMid();
+        }
+        IComingSoonItemAnimation galleryAnimation2 = (IComingSoonItemAnimation) mRecyclerUpComing.getChildAt(childIndex + 1);
         if (galleryAnimation2 != null) {
             galleryAnimation2.changeToMid();
         }
-        IComingSoonItemAnimation galleryAnimation3 = (IComingSoonItemAnimation) mRecyclerUpComing.getChildAt(3);
+        IComingSoonItemAnimation galleryAnimation3 = (IComingSoonItemAnimation) mRecyclerUpComing.getChildAt(childIndex + 2);
         if (galleryAnimation3 != null) {
             galleryAnimation3.changeToSmall();
         }
-        new Handler().post(new Runnable() {
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                adjustPosition();
+
             }
-        });
+        }, 1000);
 
     }
+
+    private int caculateAdjustChildIndex() {
+        int firstChildRightDistance = mRecyclerUpComing.getChildAt(0).getRight();
+        int firstChildWidth = mRecyclerUpComing.getChildAt(0).getWidth();
+        if (firstChildRightDistance > (firstChildWidth / 2)) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
 
     public static int dp2px(Context context, float dpVal) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,

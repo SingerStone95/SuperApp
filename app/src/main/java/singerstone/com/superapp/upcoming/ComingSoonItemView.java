@@ -74,7 +74,12 @@ public class ComingSoonItemView extends LinearLayout implements IComingSoonItemA
 
     @Override
     public void changeToBig() {
-        if (uiState == IComingSoonItemAnimation.STATE_BIG) return;
+        if (uiState == IComingSoonItemAnimation.STATE_BIG) {
+            if (mCallback != null) {
+                mCallback.onAnimationEnd();
+            }
+            return;
+        }
         playAnimation(TYPE_HEIGHT, mRlRoot.getLayoutParams().height, CommingSoonSizeConst.getBigPosterHeight(getContext()), mRlRoot);
         // mRlRoot.getLayoutParams().height = CommingSoonSizeConst.getBigPosterHeight(getContext());
         playAnimation(TYPE_WIDTH, getLayoutParams().width, CommingSoonSizeConst.getBigPosterWidth(getContext()), this);
