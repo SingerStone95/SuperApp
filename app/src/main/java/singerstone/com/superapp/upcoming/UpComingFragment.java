@@ -1,7 +1,6 @@
 package singerstone.com.superapp.upcoming;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -56,6 +55,7 @@ public class UpComingFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_upcoming, container, false);
         mRecyclerUpComing = view.findViewById(R.id.rv_cominglist);
         btnSetData = view.findViewById(R.id.btn_set_date);
+        L.i("BigPosterWidth:" + CommingSoonSizeConst.getBigPosterWidth(getActivity()));
         btnSetData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,13 +160,12 @@ public class UpComingFragment extends BaseFragment {
         //移动
         int childIndex = caculateAdjustChildIndex();
         View adjustChildView = mRecyclerUpComing.getChildAt(childIndex);
-        IComingSoonItemAnimation galleryAnimation0 = (IComingSoonItemAnimation) mRecyclerUpComing.getChildAt(childIndex - 1);
-
         IComingSoonItemAnimation galleryAnimation1 = (IComingSoonItemAnimation) mRecyclerUpComing.getChildAt(childIndex);
         if (galleryAnimation1 != null) {
             galleryAnimation1.registerAnimationEndListener(new AnimationEndCallback() {
                 @Override
                 public void onAnimationEnd() {
+
                     adjustPosition(adjustChildView);
                 }
 
@@ -177,9 +176,7 @@ public class UpComingFragment extends BaseFragment {
             });
             galleryAnimation1.changeToBig();
         }
-        if (galleryAnimation0 != null) {
-            galleryAnimation0.changeToMid();
-        }
+
         IComingSoonItemAnimation galleryAnimation2 = (IComingSoonItemAnimation) mRecyclerUpComing.getChildAt(childIndex + 1);
         if (galleryAnimation2 != null) {
             galleryAnimation2.changeToMid();
@@ -188,12 +185,17 @@ public class UpComingFragment extends BaseFragment {
         if (galleryAnimation3 != null) {
             galleryAnimation3.changeToSmall();
         }
+        IComingSoonItemAnimation galleryAnimation0 = (IComingSoonItemAnimation) mRecyclerUpComing.getChildAt(childIndex - 1);
+        if (galleryAnimation0 != null) {
+            galleryAnimation0.changeToMid();
+        }
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
 
             }
-        }, 1000);
+        }, 0);
 
     }
 

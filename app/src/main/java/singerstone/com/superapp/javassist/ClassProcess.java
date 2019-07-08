@@ -1,7 +1,6 @@
 package singerstone.com.superapp.javassist;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,21 +50,46 @@ public class ClassProcess {
             }
             for (CtMethod ctMethod : ctClass.getDeclaredMethods()) {
                 System.out.println(ctMethod.getLongName());
-                if ("lambda$test$2".equals(ctMethod.getName())) {
+                if ("lambda$test$3".equals(ctMethod.getName())) {
                     for (CtClass ctC : ctMethod.getParameterTypes()) {
                         System.out.println(ctC.getName());
                     }
-                    System.out.println(getParamsIndexs(ctMethod, 2));
+                    System.out.println(Arrays.toString(getParamsIndexs(ctMethod, 2)));
                 }
             }
 
+            String format = "onItemClick($%d,$%d,$%d);}";
+            int[] arrays = new int[]{3, 2, 3, 4};
+            System.out.println(repleceArgsIndex(format, arrays, 0));
 
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    public static ArrayList<Integer> getParamsIndexs(CtMethod ctMethod, int paramsSize) {
+    private static int[] getParamsIndexs(CtMethod ctMethod, int paramsSize) throws NotFoundException {
+        if (paramsSize <= 0) {
+            return new int[0];
+        }
+        int indexs[] = new int[paramsSize];
+        int allParamSize = ctMethod.getParameterTypes().length;
+        int position = allParamSize;
+        for (int currentIndex = paramsSize - 1; currentIndex >= 0; currentIndex--) {
+            indexs[currentIndex] = position;
+            position--;
+        }
+        return indexs;
+    }
+
+    private static String repleceArgsIndex(String format, int arg[], int index) {
+        if (arg.length == index) {
+            return format;
+        }
+        String temp = format.replaceFirst("%d", arg[index] + "");
+        return repleceArgsIndex(temp, arg, ++index);
+    }
+
+  /*  public static ArrayList<Integer> getParamsIndexs(CtMethod ctMethod, int paramsSize) {
         ArrayList<Integer> positions = new ArrayList<>();
         try {
             int allParamSize = ctMethod.getParameterTypes().length;
@@ -78,7 +102,7 @@ public class ClassProcess {
             e.printStackTrace();
             return positions;
         }
-    }
+    }*/
 
     private static Map<Integer, MethodRecord> findBootstrapMethods(CtClass ctClass) {
 

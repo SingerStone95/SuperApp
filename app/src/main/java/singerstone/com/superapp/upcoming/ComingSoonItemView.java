@@ -82,7 +82,7 @@ public class ComingSoonItemView extends LinearLayout implements IComingSoonItemA
         }
         playAnimation(TYPE_HEIGHT, mRlRoot.getLayoutParams().height, CommingSoonSizeConst.getBigPosterHeight(getContext()), mRlRoot);
         // mRlRoot.getLayoutParams().height = CommingSoonSizeConst.getBigPosterHeight(getContext());
-        playAnimation(TYPE_WIDTH, getLayoutParams().width, CommingSoonSizeConst.getBigPosterWidth(getContext()), this);
+        playAnimation(TYPE_WIDTH, getLayoutParams().width, CommingSoonSizeConst.getBigPosterWidth(getContext()), this, mCallback);
         //getLayoutParams().width = CommingSoonSizeConst.getBigPosterWidth(getContext());
         uiState = IComingSoonItemAnimation.STATE_BIG;
     }
@@ -110,7 +110,11 @@ public class ComingSoonItemView extends LinearLayout implements IComingSoonItemA
         mCallback = callback;
     }
 
-    private void playAnimation(int type, int start, int end, View target) {
+    private void playAnimation(final int type, int start, int end, final View target) {
+        playAnimation(type, start, end, target, null);
+    }
+
+    private void playAnimation(final int type, int start, int end, final View target, final AnimationEndCallback callback) {
         ValueAnimator valueAnimator = ValueAnimator.ofInt(start, end)
                 .setDuration(ANIMATOR_DURATION);
         valueAnimator.removeAllUpdateListeners();
@@ -121,8 +125,8 @@ public class ComingSoonItemView extends LinearLayout implements IComingSoonItemA
                 if (target == null || target.getLayoutParams() == null) {
                     return;
                 }
-                if (mCallback != null) {
-                    mCallback.onAnimationFraction(animation.getAnimatedFraction());
+                if (callback != null) {
+                    callback.onAnimationFraction(animation.getAnimatedFraction());
                 }
                 if (type == TYPE_HEIGHT) {
                     target.getLayoutParams().height = (int) animation.getAnimatedValue();
@@ -137,8 +141,8 @@ public class ComingSoonItemView extends LinearLayout implements IComingSoonItemA
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                if (mCallback != null) {
-                    mCallback.onAnimationEnd();
+                if (callback != null) {
+                    callback.onAnimationEnd();
                 }
             }
         });

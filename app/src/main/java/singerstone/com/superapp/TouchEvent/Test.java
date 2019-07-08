@@ -2,6 +2,7 @@ package singerstone.com.superapp.TouchEvent;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AbsListView;
@@ -39,6 +40,7 @@ public class Test {
     }
 
     private static void test2(View view) {
+        String a;
         view.setVisibility(View.GONE);
     }
 }
