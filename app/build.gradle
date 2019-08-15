@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 //apply from: '../config/quality.gradle'
-//apply plugin: 'com.singerstone.supergradle'
+apply plugin: 'com.singerstone.supergradle'
 apply from: 'fat-aar.gradle'
 android {
     compileSdkVersion 28

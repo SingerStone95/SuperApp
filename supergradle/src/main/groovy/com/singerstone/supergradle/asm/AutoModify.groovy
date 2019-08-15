@@ -11,7 +11,7 @@ import org.objectweb.asm.ClassWriter
  */
 public class AutoModify {
 
-    static byte[] modifyClasses(String className, byte[] srcByteCode) {
+    static byte[] modifyClasses(byte[] srcByteCode) {
         byte[] classBytesCode = null
         try {
             classBytesCode = modifyClass(srcByteCode)

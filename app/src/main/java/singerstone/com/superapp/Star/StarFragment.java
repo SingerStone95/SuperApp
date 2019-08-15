@@ -41,7 +41,7 @@ public class StarFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragmen_animstar, container, false);
-        viewContainer = (StarViewContainer) view.findViewById(R.id.view_container);
+        viewContainer = view.findViewById(R.id.view_container);
         textContainer = (TextContainer) view.findViewById(R.id.text_container);
         btn_send = (Button) view.findViewById(R.id.send);
         btn_send.setOnClickListener(new View.OnClickListener() {

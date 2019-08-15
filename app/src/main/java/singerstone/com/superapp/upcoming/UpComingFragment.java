@@ -56,6 +56,8 @@ public class UpComingFragment extends BaseFragment {
         mRecyclerUpComing = view.findViewById(R.id.rv_cominglist);
         btnSetData = view.findViewById(R.id.btn_set_date);
         L.i("BigPosterWidth:" + CommingSoonSizeConst.getBigPosterWidth(getActivity()));
+        L.i("MidPosterWidth:" + CommingSoonSizeConst.getMidPosterWidth(getActivity()));
+        L.i("SmallPosterWidth:" + CommingSoonSizeConst.getSmallPosterWidth(getActivity()));
         btnSetData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +81,6 @@ public class UpComingFragment extends BaseFragment {
                 });
             }
         });
-        mRecyclerUpComing.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         //new StartSnapHelper().attachToRecyclerView(mRecyclerUpComing);
         //mRecyclerUpComing.setLayoutManager(new LooperLayoutManager());
         mSpaceDecor = new SpacesItemHorDecoration(dp2px(getActivity(), 5));
@@ -87,8 +88,23 @@ public class UpComingFragment extends BaseFragment {
         comingSoonListAdapter = new ComingSoonListAdapter();
         comingSoonListAdapter.setItemClickListener(new ComingSoonListAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(int position) {
-                L.i("click position =" + position);
+            public void onItemClick(int position, int realPosition) {
+                if (getCurrentFocusPos() != position) {
+                    LinearLayoutManager manager = (LinearLayoutManager) mRecyclerUpComing.getLayoutManager();
+                    View itemView = manager.findViewByPosition(position);
+                    if (itemView != null) {
+                        int left = itemView.getLeft();
+                        mRecyclerUpComing.smoothScrollBy(left - CommingSoonSizeConst.getLeftOffeset(getContext()), 0);
+                    }
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            handleScrollEnd();
+                        }
+                    }, 100);
+                    L.i("click item position=" + realPosition);
+                }
+
             }
         });
         mRecyclerUpComing.setAdapter(comingSoonListAdapter);
@@ -98,26 +114,7 @@ public class UpComingFragment extends BaseFragment {
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
-                    mFromDrag = true;
-                    //L.e("SCROLL_STATE_DRAGGING");
-                    if (!mHasAddDecoration) {
-                        mRecyclerUpComing.addItemDecoration(mSpaceDecor);
-                        mHasAddDecoration = true;
-                    }
-                    IComingSoonItemAnimation galleryAnimation0 = (IComingSoonItemAnimation) mRecyclerUpComing.getChildAt(0);
-                    if (galleryAnimation0 != null) {
-                        galleryAnimation0.changeToSmall();
-                    }
-
-                    IComingSoonItemAnimation galleryAnimation2 = (IComingSoonItemAnimation) mRecyclerUpComing.getChildAt(2);
-                    if (galleryAnimation2 != null) {
-                        galleryAnimation2.changeToSmall();
-
-                    }
-                    IComingSoonItemAnimation galleryAnimation3 = (IComingSoonItemAnimation) mRecyclerUpComing.getChildAt(3);
-                    if (galleryAnimation3 != null) {
-                        galleryAnimation3.changeToSmall();
-                    }
+                    handleDrag();
                 }
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     if (!mFromDrag) {
@@ -140,6 +137,11 @@ public class UpComingFragment extends BaseFragment {
         return view;
     }
 
+    private int getCurrentFocusPos() {
+        LinearLayoutManager manager = (LinearLayoutManager) mRecyclerUpComing.getLayoutManager();
+        return (manager.findFirstVisibleItemPosition() + 1);
+    }
+
     private void adjustPosition(int childIndex) {
         View theSecondView = mRecyclerUpComing.getChildAt(childIndex);
         int left = theSecondView.getLeft();
@@ -150,22 +152,50 @@ public class UpComingFragment extends BaseFragment {
     private void adjustPosition(View childView) {
         //childView.setBackgroundColor(Color.GREEN);
         int left = childView.getLeft();
+        int right = childView.getRight();
         int offset = left - CommingSoonSizeConst.getLeftOffeset(getActivity());
-        L.i("offset=" + offset + "   left=" + left);
-        mRecyclerUpComing.smoothScrollBy(offset, 0);
+        L.i("scroll 之前:offset=" + offset + "   left=" + left + "  right=" + right);
+        if (right < 0) {
+            mRecyclerUpComing.smoothScrollBy(offset - (CommingSoonSizeConst.getBigPosterWidth(getActivity()) - CommingSoonSizeConst.getSmallPosterWidth(getActivity())), 0);
+        } else {
+            mRecyclerUpComing.smoothScrollBy(offset, 0);
+        }
+    }
+
+    private void handleDrag() {
+        mFromDrag = true;
+        //L.e("SCROLL_STATE_DRAGGING");
+        if (!mHasAddDecoration) {
+            mRecyclerUpComing.addItemDecoration(mSpaceDecor);
+            mHasAddDecoration = true;
+        }
+        IComingSoonItemAnimation galleryAnimation0 = (IComingSoonItemAnimation) mRecyclerUpComing.getChildAt(0);
+        if (galleryAnimation0 != null) {
+            galleryAnimation0.changeToSmall();
+        }
+
+        IComingSoonItemAnimation galleryAnimation2 = (IComingSoonItemAnimation) mRecyclerUpComing.getChildAt(2);
+        if (galleryAnimation2 != null) {
+            galleryAnimation2.changeToSmall();
+
+        }
+        IComingSoonItemAnimation galleryAnimation3 = (IComingSoonItemAnimation) mRecyclerUpComing.getChildAt(3);
+        if (galleryAnimation3 != null) {
+            galleryAnimation3.changeToSmall();
+        }
     }
 
 
     private void handleScrollEnd() {
         //移动
         int childIndex = caculateAdjustChildIndex();
+        L.i("即将放大的的poster index=:" + childIndex);
         View adjustChildView = mRecyclerUpComing.getChildAt(childIndex);
         IComingSoonItemAnimation galleryAnimation1 = (IComingSoonItemAnimation) mRecyclerUpComing.getChildAt(childIndex);
         if (galleryAnimation1 != null) {
             galleryAnimation1.registerAnimationEndListener(new AnimationEndCallback() {
                 @Override
                 public void onAnimationEnd() {
-
                     adjustPosition(adjustChildView);
                 }
 
@@ -202,7 +232,7 @@ public class UpComingFragment extends BaseFragment {
     private int caculateAdjustChildIndex() {
         int firstChildRightDistance = mRecyclerUpComing.getChildAt(0).getRight();
         int firstChildWidth = mRecyclerUpComing.getChildAt(0).getWidth();
-        if (firstChildRightDistance > (firstChildWidth / 2)) {
+        if ((firstChildRightDistance > (firstChildWidth / 2)) && (firstChildRightDistance >= CommingSoonSizeConst.getSmallPosterWidth(getActivity()))) {
             return 0;
         } else {
             return 1;

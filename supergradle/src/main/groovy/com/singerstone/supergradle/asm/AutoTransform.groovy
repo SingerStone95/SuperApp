@@ -18,7 +18,11 @@ import java.util.jar.JarOutputStream
 import java.util.zip.ZipEntry
 
 /**
- * 自动埋点追踪，遍历所有文件更换字节码
+ * 自动埋点追踪，遍历所有文件更换字节码 然后生成systrace
+ *
+ * 进入Android/Sdk/platform-tools/systrace目录下
+ *
+ * python systrace.py -b 8000 -t 5 -o systrace.html
  */
 public class AutoTransform extends Transform {
 
@@ -64,17 +68,14 @@ public class AutoTransform extends Transform {
              * 遍历jar
              */
             input.jarInputs.each { JarInput jarInput ->
-                String destName = jarInput.file.name
-                // 截取文件路径的md5值重命名输出文件,因为可能同名,会覆盖
-                def hexName = DigestUtils.md5Hex(jarInput.file.absolutePath).substring(0, 8)
-                if (destName.endsWith(".jar")) {
-                    destName = destName.substring(0, destName.length() - 4)
-                }
                 // 获得输出文件path
-                File dest = outputProvider.getContentLocation(destName + "_" + hexName, jarInput.contentTypes, jarInput.scopes, Format.JAR)
-                Logger.info("||-->开始遍历特定jar ${dest.absolutePath}")
+                File dest = outputProvider.getContentLocation(jarInput.name, jarInput.contentTypes, jarInput.scopes, Format.JAR)
+                ///Users/yogachen/Documents/GitProj/SuperApp/app/build/intermediates/transforms/desugar/debug/1.jar
+                ///Users/yogachen/Documents/GitProj/SuperApp/app/build/intermediates/transforms/AutoTrack/debug/1.jar
+                ///Users/yogachen/Documents/GitProj/SuperApp/app/build/tmp/transformClassesWithAutoTrackForDebug
+                Logger.info("-->开始遍历特定jar ${jarInput.file.absolutePath}\n" + dest + "\n" + context.getTemporaryDir() + "<------")
+
                 def modifiedJar = modifyJarFile(jarInput.file, context.getTemporaryDir())
-                Logger.info("||-->结束遍历特定jar ${dest.absolutePath}")
                 if (modifiedJar == null) {
                     modifiedJar = jarInput.file
                 }
@@ -85,7 +86,10 @@ public class AutoTransform extends Transform {
              */
             input.directoryInputs.each { DirectoryInput directoryInput ->
                 File dest = outputProvider.getContentLocation(directoryInput.name, directoryInput.contentTypes, directoryInput.scopes, Format.DIRECTORY)
-                File srcDir = directoryInput.file  //SuperApp/app/build/intermediates/classes/debug
+                File srcDir = directoryInput.file
+                ///Users/yogachen/Documents/GitProj/SuperApp/app/build/intermediates/transforms/desugar/debug/2
+                ///Users/yogachen/Documents/GitProj/SuperApp/app/build/intermediates/transforms/AutoTrack/debug/42
+                Logger.info("-->开始遍历特定目录  ${srcDir.absolutePath}\n" + dest.absolutePath + "<------")
                 if (srcDir) {
                     HashMap<String, File> modifyMap = new HashMap<>()
                     srcDir.traverse(type: FileType.FILES, nameFilter: ~/.*\.class/) {
@@ -109,7 +113,7 @@ public class AutoTransform extends Transform {
                             en.getValue().delete()
                     }
                 }
-                Logger.info("||-->结束遍历特定目录  ${dest.absolutePath}")
+
             }
         }
 
@@ -136,6 +140,7 @@ public class AutoTransform extends Transform {
         def file = new JarFile(jarFile)
         /** 设置输出到的jar */
         def hexName = ""
+        //防止在temp里面重名
         if (nameHex) {
             hexName = DigestUtils.md5Hex(jarFile.absolutePath).substring(0, 8)
         }
@@ -159,8 +164,8 @@ public class AutoTransform extends Transform {
             if (entryName.endsWith(".class")) {
                 className = entryName.replace("/", ".").replace(".class", "")
 //                Logger.info("Jar:className:" + className)
-                if (com.singerstone.supergradle.util.AutoMatchUtil.isShouldModifyClass(className)) {
-                    modifiedClassBytes = AutoModify.modifyClasses(className, sourceClassBytes)
+                if (AutoMatchUtil.isShouldModifyClass(className)) {
+                    modifiedClassBytes = AutoModify.modifyClasses(sourceClassBytes)
                 }
             }
             if (modifiedClassBytes == null) {

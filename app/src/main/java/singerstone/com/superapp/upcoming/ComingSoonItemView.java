@@ -47,6 +47,7 @@ public class ComingSoonItemView extends LinearLayout implements IComingSoonItemA
     private void initView() {
         initRootView();
         mImageView = findViewById(R.id.iv_poster);
+        mImageView.setScaleType(ImageView.ScaleType.FIT_XY);
         mTvIndex = findViewById(R.id.tv_index);
         mRlRoot = findViewById(R.id.rl_root);
 
@@ -67,7 +68,9 @@ public class ComingSoonItemView extends LinearLayout implements IComingSoonItemA
     }
 
     public void setData(String url, String position) {
-        Glide.with(getContext()).load(url).into(mImageView);
+        Glide.with(getContext()).
+                load(url).
+                override(10, 10).into(mImageView);
         mTvIndex.setText(position);
     }
 
@@ -89,18 +92,27 @@ public class ComingSoonItemView extends LinearLayout implements IComingSoonItemA
 
     @Override
     public void changeToMid() {
-        mRlRoot.getLayoutParams().height = CommingSoonSizeConst.getMidPosterHeight(getContext());
-        getLayoutParams().width = CommingSoonSizeConst.getMidPosterWidth(getContext());
-        requestLayout();
+        if (uiState == IComingSoonItemAnimation.STATE_BIG) {
+            playAnimation(TYPE_HEIGHT, mRlRoot.getLayoutParams().height, CommingSoonSizeConst.getMidPosterHeight(getContext()), mRlRoot);
+            playAnimation(TYPE_WIDTH, getLayoutParams().width, CommingSoonSizeConst.getMidPosterWidth(getContext()), this);
+        } else {
+            mRlRoot.getLayoutParams().height = CommingSoonSizeConst.getMidPosterHeight(getContext());
+            getLayoutParams().width = CommingSoonSizeConst.getMidPosterWidth(getContext());
+            requestLayout();
+        }
         uiState = IComingSoonItemAnimation.STATE_MID;
     }
 
     @Override
     public void changeToSmall() {
-        //playAnimation(TYPE_HEIGHT, mRlRoot.getLayoutParams().height, CommingSoonSizeConst.getSmallPosterHeight(getContext()), mRlRoot);
-        mRlRoot.getLayoutParams().height = CommingSoonSizeConst.getSmallPosterHeight(getContext());
-        getLayoutParams().width = CommingSoonSizeConst.getSmallPosterWidth(getContext());
-        requestLayout();
+        if (uiState == IComingSoonItemAnimation.STATE_BIG) {
+            playAnimation(TYPE_HEIGHT, mRlRoot.getLayoutParams().height, CommingSoonSizeConst.getSmallPosterHeight(getContext()), mRlRoot);
+            playAnimation(TYPE_WIDTH, getLayoutParams().width, CommingSoonSizeConst.getSmallPosterWidth(getContext()), this);
+        } else {
+            mRlRoot.getLayoutParams().height = CommingSoonSizeConst.getSmallPosterHeight(getContext());
+            getLayoutParams().width = CommingSoonSizeConst.getSmallPosterWidth(getContext());
+            requestLayout();
+        }
         uiState = IComingSoonItemAnimation.STATE_SMALL;
 
     }

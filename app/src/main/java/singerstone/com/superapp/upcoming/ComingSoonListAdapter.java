@@ -42,7 +42,7 @@ public class ComingSoonListAdapter extends RecyclerView.Adapter<ComingSoonListAd
             @Override
             public void onClick(View v) {
                 if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(realPosition);
+                    mItemClickListener.onItemClick(position, realPosition);
                 }
             }
         });
@@ -83,6 +83,6 @@ public class ComingSoonListAdapter extends RecyclerView.Adapter<ComingSoonListAd
     }
 
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(int position, int realPosition);
     }
 }
