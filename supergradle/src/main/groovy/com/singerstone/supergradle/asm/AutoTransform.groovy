@@ -195,7 +195,7 @@ public class AutoTransform extends Transform {
             //过滤R文件
             if (AutoMatchUtil.isShouldModifyClass(className)) {
                 byte[] sourceClassBytes = IOUtils.toByteArray(new FileInputStream(classFile))
-                byte[] modifiedClassBytes = AutoModify.modifyClasses(className, sourceClassBytes)
+                byte[] modifiedClassBytes = AutoModify.modifyClasses(sourceClassBytes)
                 if (modifiedClassBytes) {
                     modified = new File(tempDir, className.replace('.', '') + '.class')
                     if (modified.exists()) {

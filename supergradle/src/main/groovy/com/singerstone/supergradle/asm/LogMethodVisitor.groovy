@@ -32,7 +32,6 @@ public class LogMethodVisitor extends AdviceAdapter {
         this.className = className
         this.interfaces = interfaces
         this.visitedFragMethods = visitedFragMethods
-        // Logger.info("||开始扫描方法：${Logger.accCode2String(access)} ${methodName}${desc}")
     }
 
     boolean isAutoTrackViewOnClickAnnotation = false
@@ -55,24 +54,6 @@ public class LogMethodVisitor extends AdviceAdapter {
         super.onMethodEnter()
         if (isAutoTrackIgnoreTrackOnClick) {
             return
-        }
-
-        /**
-         * 在 android.gradle 的 3.2.1 版本中，针对 view 的 setOnClickListener 方法 的 lambda 表达式做特殊处理。
-         */
-        if (methodName.trim().startsWith('lambda$') && LogAnalyticsUtil.isPrivate(access) && LogAnalyticsUtil.isSynthetic(access)) { //private static lambda$XXX
-            LogMethodCell logMethodCell = LogHookConfig.sLambdaMethods.get(desc)
-            if (logMethodCell != null) {
-                int paramStart = logMethodCell.paramsStart
-                if (LogAnalyticsUtil.isStatic(access)) {
-                    paramStart = paramStart - 1
-                }
-                LogAnalyticsUtil.visitMethodWithLoadedParams(methodVisitor, Opcodes.INVOKESTATIC, LogHookConfig.LOG_ANALYTICS_BASE,
-                        logMethodCell.agentName, logMethodCell.agentDesc,
-                        paramStart, logMethodCell.paramsCount, logMethodCell.opcodes)
-                isHasTracked = true
-                return
-            }
         }
 
         if (!(LogAnalyticsUtil.isPublic(access) && !LogAnalyticsUtil.isStatic(access))) {
