@@ -25,8 +25,9 @@ public class Qsort {
         int indexP = left;
         for (int i = left + 1; i <= right; i++) { //***indexP始终指向左边部分的最后一个***
             if (array[i] < valueP) {
-                Util.swip(array, i, indexP + 1);
                 indexP++;
+                Util.swip(array, i, indexP);
+
             }
         }
         Util.swip(array, indexP, left);

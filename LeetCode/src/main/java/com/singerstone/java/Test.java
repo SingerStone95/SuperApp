@@ -36,6 +36,7 @@ public class Test {
         printArray(n - 1, m, list);
     }
 
+
     private volatile int num = 1;
 
     private volatile int flag = 1;

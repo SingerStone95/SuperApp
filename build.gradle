@@ -21,7 +21,7 @@ buildscript { //脚本的配置
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'me.tatarka:gradle-retrolambda:3.2.5'
         classpath 'com.singerstone.plugin:supergradle:1.0.0'
-        classpath ("com.geektime.systrace:systrace-gradle-plugin:1.0") { changing = true }
+      //  classpath ("com.geektime.systrace:systrace-gradle-plugin:1.0") { changing = true }
     }
 }
 
