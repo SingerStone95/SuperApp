@@ -16,7 +16,7 @@ public class J2OcClassAndMethodListener extends Java8BaseListener {
 
     @Override
     public void enterPackageDeclaration(Java8Parser.PackageDeclarationContext ctx) {
-
+        super.enterPackageDeclaration(ctx);
     }
 
     @Override
@@ -25,10 +25,47 @@ public class J2OcClassAndMethodListener extends Java8BaseListener {
 
     }
 
+    @Override
+    public void enterIfThenElseStatement(Java8Parser.IfThenElseStatementContext ctx) {
+        System.out.println("enterIfThenElseStatement:" + ctx.getText());
+        super.enterIfThenElseStatement(ctx);
+
+    }
+
+    @Override
+    public void enterIfThenElseStatementNoShortIf(Java8Parser.IfThenElseStatementNoShortIfContext ctx) {
+        System.out.println("enterIfThenElseStatementNoShortIf:" + ctx.getText());
+        super.enterIfThenElseStatementNoShortIf(ctx);
+    }
+
+    @Override
+    public void enterIfThenStatement(Java8Parser.IfThenStatementContext ctx) {
+        System.out.println("enterIfThenStatement:" + ctx.getText());
+        super.enterIfThenStatement(ctx);
+    }
 
     @Override
     public void enterSingleTypeImportDeclaration(Java8Parser.SingleTypeImportDeclarationContext ctx) {
         super.enterSingleTypeImportDeclaration(ctx);
+    }
+
+
+    @Override
+    public void enterAssignment(Java8Parser.AssignmentContext ctx) {
+        System.out.println("enterAssignment:" + ctx.getText());
+        super.enterAssignment(ctx);
+    }
+
+    @Override
+    public void enterAssignmentExpression(Java8Parser.AssignmentExpressionContext ctx) {
+        System.out.println("enterAssignmentExpression:" + ctx.getText());
+        super.enterAssignmentExpression(ctx);
+    }
+
+    @Override
+    public void enterAssignmentOperator(Java8Parser.AssignmentOperatorContext ctx) {
+        System.out.println("enterAssignmentOperator:" + ctx.getText());
+        super.enterAssignmentOperator(ctx);
     }
 
     @Override
@@ -81,6 +118,13 @@ public class J2OcClassAndMethodListener extends Java8BaseListener {
     @Override
     public void enterBlock(Java8Parser.BlockContext ctx) {
         super.enterBlock(ctx);
+        System.out.println("enterBlock:" + ctx.getText());
+    }
+
+    @Override
+    public void exitBlock(Java8Parser.BlockContext ctx) {
+        super.exitBlock(ctx);
+        System.out.println("exitBlock:" + ctx.getText());
     }
 
     @Override
@@ -113,7 +157,6 @@ public class J2OcClassAndMethodListener extends Java8BaseListener {
         super.enterClassDeclaration(ctx);
     }
 
-
     @Override
     public void enterEnumDeclaration(Java8Parser.EnumDeclarationContext ctx) {
         super.enterEnumDeclaration(ctx);
@@ -140,6 +183,7 @@ public class J2OcClassAndMethodListener extends Java8BaseListener {
     @Override
     public void enterNormalInterfaceDeclaration(Java8Parser.NormalInterfaceDeclarationContext ctx) {
         super.enterNormalInterfaceDeclaration(ctx);
+        System.out.println("enterNormalInterfaceDeclaration:" + ctx.getText());
 
     }
 
@@ -153,6 +197,7 @@ public class J2OcClassAndMethodListener extends Java8BaseListener {
     @Override
     public void enterNormalClassDeclaration(Java8Parser.NormalClassDeclarationContext ctx) {
         super.enterNormalClassDeclaration(ctx);
+        System.out.println("enterNormalClassDeclaration:" + ctx.getText());
 
     }
 
@@ -171,7 +216,13 @@ public class J2OcClassAndMethodListener extends Java8BaseListener {
     @Override
     public void enterConstructorDeclaration(Java8Parser.ConstructorDeclarationContext ctx) {
         super.enterConstructorDeclaration(ctx);
+        System.out.println("enterConstructorDeclaration:" + ctx.getText());
+    }
 
+    @Override
+    public void enterConstructorBody(Java8Parser.ConstructorBodyContext ctx) {
+        super.enterConstructorBody(ctx);
+        System.out.println("enterConstructorBody:" + ctx.getText());
     }
 
     @Override
@@ -193,6 +244,7 @@ public class J2OcClassAndMethodListener extends Java8BaseListener {
     @Override
     public void enterMethodHeader(Java8Parser.MethodHeaderContext ctx) {
         super.enterMethodHeader(ctx);
+        System.out.println("enterMethodHeader:" + ctx.getText());
 
     }
 
@@ -205,12 +257,26 @@ public class J2OcClassAndMethodListener extends Java8BaseListener {
     @Override
     public void enterMethodBody(Java8Parser.MethodBodyContext ctx) {
         super.enterMethodBody(ctx);
+
+        System.out.println("enterMethodBody:" + ctx.getText());
     }
 
     @Override
     public void exitMethodBody(Java8Parser.MethodBodyContext ctx) {
         super.exitMethodBody(ctx);
 
+    }
+
+    @Override
+    public void enterStatementExpression(Java8Parser.StatementExpressionContext ctx) {
+        System.out.println("enterStatementExpression:" + ctx.getText());
+        super.enterStatementExpression(ctx);
+    }
+
+    @Override
+    public void exitStatementExpression(Java8Parser.StatementExpressionContext ctx) {
+        System.out.println("exitStatementExpression:" + ctx.getText());
+        super.exitStatementExpression(ctx);
     }
 
 
@@ -222,6 +288,7 @@ public class J2OcClassAndMethodListener extends Java8BaseListener {
     @Override
     public void enterFormalParameterList(Java8Parser.FormalParameterListContext ctx) {
         super.enterFormalParameterList(ctx);
+        System.out.println("enterFormalParameterList:" + ctx.getText());
 
 
     }
@@ -269,5 +336,23 @@ public class J2OcClassAndMethodListener extends Java8BaseListener {
     public void exitFieldDeclaration(Java8Parser.FieldDeclarationContext ctx) {
         super.exitFieldDeclaration(ctx);
     }
+
+    @Override
+    public void enterConstructorDeclarator(Java8Parser.ConstructorDeclaratorContext ctx) {
+        super.enterConstructorDeclarator(ctx);
+    }
+
+    @Override
+    public void exitConstructorDeclarator(Java8Parser.ConstructorDeclaratorContext ctx) {
+        super.exitConstructorDeclarator(ctx);
+    }
+
+    @Override
+    public void enterMethodInvocation(Java8Parser.MethodInvocationContext ctx) {
+        System.out.println("enterMethodInvocation" + ctx.getText());
+        super.enterMethodInvocation(ctx);
+
+    }
+
 }
 

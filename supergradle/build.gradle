@@ -31,6 +31,7 @@ uploadArchives {
             //本地的Maven地址设置为D:/repos
             pom.groupId = 'com.singerstone.plugin'
             pom.version = '1.0.0'
+            pom.name = 'supergradle'
             repository(url: uri("$rootDir/MavenLocal"))
         }
     }
