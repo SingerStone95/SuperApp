@@ -111,7 +111,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
 
     private void initView(View view) {
         ViewInject.inject(this, view);
-        final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2, RecyclerView.VERTICAL, false);
+        final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1, RecyclerView.VERTICAL, false);
         //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rv_tools.setLayoutManager(layoutManager);
         toolAdapter = new ToolAdapter(getActivity(), items);
