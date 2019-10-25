@@ -34,6 +34,7 @@ import singerstone.com.superapp.Dialog.FlexibleFragmentDialog;
 import singerstone.com.superapp.Dialog.IDialogItem;
 import singerstone.com.superapp.Marquee.MarqueeFragment;
 import singerstone.com.superapp.ServiceIPC.ServiceIPCActivity;
+import singerstone.com.superapp.Star.StarFragment;
 import singerstone.com.superapp.TouchEvent.TouchEventFragment;
 import singerstone.com.superapp.backscrollimage.FragmentScrollImage;
 import singerstone.com.superapp.base.BaseFragment;
@@ -43,6 +44,7 @@ import singerstone.com.superapp.https.HttpsTestFragment;
 import singerstone.com.superapp.inke.InkeFragment;
 import singerstone.com.superapp.like.LikeViewFragment;
 import singerstone.com.superapp.ndkinterface.NdkInterface;
+import singerstone.com.superapp.opengl.OpenGlFragment;
 import singerstone.com.superapp.qqlive.QQLiveTestFragment;
 import singerstone.com.superapp.socketretrofit.Singerstone;
 import singerstone.com.superapp.socketretrofit.SocketService;
@@ -120,29 +122,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         toolAdapter.setOnItemClickListener((position, itemView) -> {
             switch (position) {
                 case 0:
-                    // ((MainActivity) getActivity()).setFragmentAddToBackStack(StarFragment.newInstance());
-                    FlexibleFragmentDialog dialog = new FlexibleFragmentDialog();
-                    ArrayList<IDialogItem> items = new ArrayList<>();
-                    for (int i = 0; i < 10; i++) {
-                        final int finalI = i;
-                        items.add(new IDialogItem() {
-                            @Override
-                            public CharSequence getText() {
-                                SpannableStringBuilder title = SpannableStringUtils.getBuilder("标题").setBold().setForegroundColor(getResources().getColor(R.color.yellow)).setAlign(Layout.Alignment.ALIGN_CENTER)
-                                        .append("\n")
-                                        .append("第" + finalI + "行")
-                                        .create();
-                                return title;
-                            }
-
-                            @Override
-                            public FlexibleFragmentDialog.OnDialogItemClickListener getClickListener() {
-                                return null;
-                            }
-                        });
-                    }
-                    dialog.setDialogItemData(items);
-                    dialog.show(getFragmentManager(), "FlexibleFragmentDialog");
+                    ((MainActivity) getActivity()).setFragmentAddToBackStack(StarFragment.newInstance());
                     break;
                 case 1:
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(BezierPaopaoFragment.newInstance());
@@ -197,7 +177,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(HttpsTestFragment.newInstance());
                     break;
                 case 17:
-                    // ((MainActivity) getActivity()).setFragmentAddToBackStack(new OpenGlFragment());
+                     ((MainActivity) getActivity()).setFragmentAddToBackStack(new OpenGlFragment());
                     break;
                 case 18:
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(QQLiveTestFragment.newInstance());
