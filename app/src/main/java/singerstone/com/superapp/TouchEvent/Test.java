@@ -22,7 +22,7 @@ public class Test {
 
         };
         Dialog.OnClickListener listener1 = (dialogInterface, i) -> {
-            L.i(in + "" + j + o);
+            L.i(in + "" + j + o + in);
         };
         DialogItemAdapter.OnItemClickListener onItemClickListener = (position, item) -> {
 

@@ -50,7 +50,7 @@ public class ClassProcess {
             }
             for (CtMethod ctMethod : ctClass.getDeclaredMethods()) {
                 System.out.println(ctMethod.getLongName());
-                if ("lambda$test$3".equals(ctMethod.getName())) {
+                if ("lambda$test$2".equals(ctMethod.getName())) {
                     for (CtClass ctC : ctMethod.getParameterTypes()) {
                         System.out.println(ctC.getName());
                     }

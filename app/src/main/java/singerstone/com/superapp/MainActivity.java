@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.CalendarContract;
@@ -13,6 +14,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 
 
 import java.util.ArrayList;
@@ -31,6 +33,10 @@ public class MainActivity extends FragmentActivity implements ILife {
         if (getIntent().getData() != null) {
             String myCustomUri = getIntent().getStringExtra(CalendarContract.EXTRA_CUSTOM_APP_URI);
             L.e("MainActivity onCreate!   " + myCustomUri + "  " + getIntent().getDataString());
+        }
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
         setContentView(R.layout.activity_main);
         setFragment(MainFragment.newInstance());

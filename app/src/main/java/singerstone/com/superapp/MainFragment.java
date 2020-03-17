@@ -169,7 +169,6 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(InkeFragment.newInstance());
                     break;
                 case 15:
-                    // Small.openUri("me", getActivity());
                     Uri uri = Uri.parse("content://com.singerstone.provider");
                     getActivity().getContentResolver().call(uri, "test", null, null);
                     break;
@@ -183,7 +182,6 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(QQLiveTestFragment.newInstance());
                     break;
                 case 19:
-                    //((MainActivity) getActivity()).setFragmentAddToBackStack(ViewPager2Fragment.newInstance());
                     break;
                 case 20:
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(UpComingFragment.newInstance());

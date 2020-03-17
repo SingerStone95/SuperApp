@@ -1,17 +1,27 @@
 package singerstone.com.superapp.treeholeview;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Layout;
 import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 
 import singerstone.com.superapp.R;
@@ -53,52 +63,72 @@ public class TreeholeViewFragment extends BaseFragment {
         treeholeProgressView.setColorRes(R.color.treehole);
         tv = (TextView) view.findViewById(R.id.tv);
         SpannableStringUtils.context = getActivity().getApplicationContext();
-
+/*
         SpannableStringBuilder s = SpannableStringUtils.getBuilder("123456").setBold().setForegroundColor(getResources().getColor(R.color.yellow)).setAlign(Layout.Alignment.ALIGN_CENTER)
                 .append("center").setResourceId(R.drawable.frame_anonymous_follow_liveroom)
-                .append("1231231").create();
-        SpannableStringBuilder spannable = new SpanUtils().append("a12432")
-                .append("2233333")
-                .setBold()
-                .setForegroundColor(getResources().getColor(R.color.yellow))
-                .create();
-        tv.setText(spannable);
-
-        tv.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                CharSequence text = ((TextView) v).getText();
-                Spannable sText = Spannable.Factory.getInstance().newSpannable(text);
-                TextView widget = (TextView) v;
-
-                int action = event.getAction();
-                if (action == MotionEvent.ACTION_UP ||
-                        action == MotionEvent.ACTION_DOWN) {
-                    int x = (int) event.getX();
-                    int y = (int) event.getY();
-
-                    x -= widget.getTotalPaddingLeft();
-                    y -= widget.getTotalPaddingTop();
-
-                    x += widget.getScrollX();
-                    y += widget.getScrollY();
-
-                    Layout layout = widget.getLayout();
-                    int line = layout.getLineForVertical(y);
-                    int off = layout.getOffsetForHorizontal(line, x);
-
-                    CenterAlignImageSpan[] imageSpans = sText.getSpans(off, off, CenterAlignImageSpan.class);
-                    if (imageSpans.length != 0) {
-                        if (action == MotionEvent.ACTION_UP) {
-
-                        }
-                        return true;
+                .append("1231231").create();*/
+        SpannableStringBuilder spannable = new SpanUtils()
+                .append("直接到换行")
+                .setClickSpan(new PressableClickSpan() {
+                    @Override
+                    protected int getPressedColor() {
+                        return 0;
                     }
-                }
-                return false;
-            }
-        });
+
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        Toast.makeText(getActivity(), "发生了点击效果1", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setFontSize(dp2px(getActivity(), 22))
+                .setBold()
+                .setForegroundColor(getResources().getColor(R.color.green))
+                .append("直接到换行a12432直接到换行a12432直接到换行a12432直接到换行a12432直接到换行a12432直接到换行a12432直接到换行换行a12432直接到换行换行a12432直接到换行换行a12432直接到换行")
+                .setFontSize(dp2px(getActivity(), 20))
+                .setClickSpan(new PressableClickSpan() {
+                    @Override
+                    protected int getPressedColor() {
+                        return 0;
+                    }
+
+                    @Override
+                    public void onClick(@NonNull View widget) {
+                        Toast.makeText(getActivity(), "发生了点击效果12", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .create();
+
+        tv.setText(SpannableString.valueOf(spannable));
+        tv.setHighlightColor(Color.TRANSPARENT);
+      //  tv.setMovementMethod(LinkMovementMethod.getInstance());
+
         return view;
+    }
+
+    class MyClickText extends ClickableSpan {
+        private Context context;
+
+        public MyClickText(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        public void updateDrawState(@NonNull TextPaint ds) {
+            super.updateDrawState(ds);
+            ds.setUnderlineText(false);
+            ds.clearShadowLayer();
+
+        }
+
+        @Override
+        public void onClick(View widget) {
+            Toast.makeText(context, "发生了点击效果", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static int dp2px(Context context, float dpVal) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dpVal, context.getResources().getDisplayMetrics());
     }
 
 }
