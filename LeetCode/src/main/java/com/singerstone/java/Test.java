@@ -1,5 +1,6 @@
 package com.singerstone.java;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 /**
@@ -9,16 +10,23 @@ import java.util.ArrayList;
 
 public class Test {
     public static void main(String[] args) {
+        System.out.println(getFormatCount(1));
+        System.out.println(getFormatCount(10000));
+        System.out.println(getFormatCount(127000000));
+    }
 
-        Singleton s = Singleton.getSingletone();
-        System.out.println(s.a);
-        System.out.println(s.b);
-
-        Test test = new Test();
-       /* test.thread1.start();
-        test.thread2.start();
-        test.thread3.start();*/
-        test.printArray(1, 10, new ArrayList());
+    private static String getFormatCount(int count) {
+        if (count < 0) {
+            return "";
+        } else if (count < 10000) {
+            return String.valueOf(count);
+        } else if (count < 100000000) {
+            float showCount = new BigDecimal((float) count / 10000).setScale(1, BigDecimal.ROUND_DOWN).floatValue();
+            return showCount + "万";
+        } else {
+            float showCount = new BigDecimal((float) count / 100000000).setScale(1, BigDecimal.ROUND_DOWN).floatValue();
+            return showCount + "亿";
+        }
     }
 
     private void printArray(int n, int m, ArrayList list) {
