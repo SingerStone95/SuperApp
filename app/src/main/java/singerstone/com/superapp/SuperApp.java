@@ -38,7 +38,7 @@ public class SuperApp extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        String path = base.getFilesDir().getAbsolutePath();
+        String path = base.getExternalFilesDir("").getAbsolutePath();
         L.e("crash init path:" + path);
         CrashLib.breakpadInit(path);
     }

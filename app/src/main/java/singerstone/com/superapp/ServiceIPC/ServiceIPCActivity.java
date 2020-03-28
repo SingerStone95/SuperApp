@@ -48,7 +48,7 @@ public class ServiceIPCActivity extends Activity {
                 //启动远程服务
                 Intent intent = new Intent();
                 intent.setClass(ServiceIPCActivity.this, IPCService.class);
-                startService(intent);
+               // startService(intent);
                 bindService(intent, conn, BIND_AUTO_CREATE);
             }
         });

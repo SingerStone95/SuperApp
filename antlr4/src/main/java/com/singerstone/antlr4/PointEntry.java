@@ -14,7 +14,8 @@ import java.io.FileInputStream;
 
 public class PointEntry {
 
-    public static String sPath = "/Users/yogachen/Documents/GitProj/SuperApp/antlr4/src/main/java/com/singerstone/antlr4/javaFile";
+    public static String sPath = System.getProperty("user.dir")
+            +"/antlr4/src/main/java/com/singerstone/antlr4/javaFile/NormalClass.java";
 
     public static void main(String[] args) {
         File file = new File(sPath);
@@ -41,6 +42,7 @@ public class PointEntry {
                 CommonTokenStream tokens = new CommonTokenStream(lexer);
                 Java8Parser parser = new Java8Parser(tokens);
                 ParseTree tree = parser.compilationUnit();
+                System.out.print(tree);
                 ParseTreeWalker walker = new ParseTreeWalker();
                 J2OcClassAndMethodListener j2OcListener = new J2OcClassAndMethodListener();
                 walker.walk(j2OcListener, tree);
