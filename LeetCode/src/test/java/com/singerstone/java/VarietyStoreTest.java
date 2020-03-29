@@ -1,5 +1,7 @@
 package com.singerstone.java;
 
+import com.singerstone.java.base.Item;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;

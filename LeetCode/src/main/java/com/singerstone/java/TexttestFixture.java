@@ -1,5 +1,7 @@
 package com.singerstone.java;
 
+import com.singerstone.java.base.Item;
+
 public class TexttestFixture {
     public static void main(String[] args) {
         System.out.println("欢迎来到 8-12 便利店!");
@@ -18,7 +20,7 @@ public class TexttestFixture {
 
         VarietyStore app = new VarietyStore(items);
 
-        int days = 2;
+        int days = 20;
         if (args.length > 0) {
             days = Integer.parseInt(args[0]) + 1;
         }

@@ -1,4 +1,4 @@
-package com.singerstone.java;
+package com.singerstone.java.base;
 
 /**
  * @author jarenzhang

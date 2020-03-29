@@ -1,5 +1,7 @@
 package com.singerstone.java;
 
+import com.singerstone.java.base.Item;
+
 /**
  * 欢迎加入 8-12 便利店
  * @author connorlu
