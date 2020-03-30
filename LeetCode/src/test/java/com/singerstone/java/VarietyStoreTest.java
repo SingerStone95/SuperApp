@@ -6,6 +6,7 @@ import com.singerstone.java.impl.BananaPriceStrategy;
 import com.singerstone.java.impl.DiamondPriceStrategy;
 import com.singerstone.java.impl.MaoTaiPriceStrategy;
 import com.singerstone.java.impl.NormalPriceStrategy;
+import com.singerstone.java.impl.QiyiPriceStrategy;
 
 import org.junit.Test;
 
@@ -108,5 +109,29 @@ public class VarietyStoreTest {
             app.updateItems();
         }
         assertEquals(2, app.items[0].getPrice());
+    }
+
+    @Test
+    public void updaQiyiItems3(){
+        ItemSellWrapper[] items = new ItemSellWrapper[]{
+                new ItemSellWrapper(new Item("奇异果", 15, 20), new QiyiPriceStrategy())
+        };
+        BateVarietyStore app = new BateVarietyStore(items);
+        for (int i = 0; i < 3; i++) {
+            app.updateItems();
+        }
+        assertEquals(23, app.items[0].getPrice());
+    }
+
+    @Test
+    public void updaQiyiItems2(){
+        ItemSellWrapper[] items = new ItemSellWrapper[]{
+                new ItemSellWrapper(new Item("奇异果", 1, 20), new QiyiPriceStrategy())
+        };
+        BateVarietyStore app = new BateVarietyStore(items);
+        for (int i = 0; i < 2; i++) {
+            app.updateItems();
+        }
+        assertEquals(0, app.items[0].getPrice());
     }
 }
