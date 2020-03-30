@@ -1,5 +1,6 @@
 package com.singerstone.java;
 
+import com.singerstone.java.base.AbsSellPriceStrategy;
 import com.singerstone.java.base.Item;
 import com.singerstone.java.base.ItemSellWrapper;
 import com.singerstone.java.impl.BananaPriceStrategy;
@@ -8,19 +9,31 @@ import com.singerstone.java.impl.MaoTaiPriceStrategy;
 import com.singerstone.java.impl.NormalPriceStrategy;
 import com.singerstone.java.impl.QiyiPriceStrategy;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class BateTextTestFixture {
+    public static Map<String, AbsSellPriceStrategy> priceStrategyMap = new HashMap<>();
+
+    static {
+        priceStrategyMap.put("normal", new NormalPriceStrategy());
+        priceStrategyMap.put("maotai", new MaoTaiPriceStrategy());
+        priceStrategyMap.put("diamond", new DiamondPriceStrategy());
+        priceStrategyMap.put("qiyi", new QiyiPriceStrategy());
+        priceStrategyMap.put("banana", new BananaPriceStrategy());
+    }
 
     public static void main(String[] args) {
         ItemSellWrapper[] items = new ItemSellWrapper[]{
-                new ItemSellWrapper(new Item("面包", 10, 20), new NormalPriceStrategy()),
-                new ItemSellWrapper(new Item("茅台", 2, 0), new MaoTaiPriceStrategy()),
-                new ItemSellWrapper(new Item("方便面", 5, 7), new NormalPriceStrategy()),
-                new ItemSellWrapper(new Item("钻戒", 0, 80), new DiamondPriceStrategy()),
-                new ItemSellWrapper(new Item("钻戒", -1, 80), new DiamondPriceStrategy()),
-                new ItemSellWrapper(new Item("奇异果", 15, 20), new QiyiPriceStrategy()),
-                new ItemSellWrapper(new Item("奇异果", 10, 49), new QiyiPriceStrategy()),
-                new ItemSellWrapper(new Item("奇异果", 5, 49), new QiyiPriceStrategy()),
-                new ItemSellWrapper(new Item("香蕉", 3, 6), new BananaPriceStrategy())
+                new ItemSellWrapper(new Item("面包", 10, 20), priceStrategyMap.get("normal")),
+                new ItemSellWrapper(new Item("茅台", 2, 0), priceStrategyMap.get("maotai")),
+                new ItemSellWrapper(new Item("方便面", 5, 7), priceStrategyMap.get("normal")),
+                new ItemSellWrapper(new Item("钻戒", 0, 80), priceStrategyMap.get("diamond")),
+                new ItemSellWrapper(new Item("钻戒", -1, 80), priceStrategyMap.get("diamond")),
+                new ItemSellWrapper(new Item("奇异果", 15, 20), priceStrategyMap.get("qiyi")),
+                new ItemSellWrapper(new Item("奇异果", 10, 49), priceStrategyMap.get("qiyi")),
+                new ItemSellWrapper(new Item("奇异果", 5, 49), priceStrategyMap.get("qiyi")),
+                new ItemSellWrapper(new Item("香蕉", 3, 6), priceStrategyMap.get("banana"))
 
 
         };

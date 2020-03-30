@@ -6,12 +6,10 @@ public abstract class AbsSellPriceStrategy {
     public static int DEFAULT_MAX_PRICE = 50;
     public static int DEFAULT_MIN_PRICE = 0;
 
-    private Item mItem;
 
     void update(Item item) {
-        mItem = item;
         int oldPrice = item.price;
-        int newPrice = oldPrice + getPriceChangeCount();
+        int newPrice = oldPrice + getPriceChangeCount(item.sellDeadline);
         if (newPrice > getMaxPrice()) {
             newPrice = getMaxPrice();
         }
@@ -28,11 +26,9 @@ public abstract class AbsSellPriceStrategy {
 
     }
 
-    public int getItemDeadline() {
-        return mItem.sellDeadline;
-    }
 
-    public abstract int getPriceChangeCount();
+
+    public abstract int getPriceChangeCount(int deadline);
 
     protected int getChangeSellDeadline() {
         return DEFAULT_DEADLINE_CHANGE_COUNT;

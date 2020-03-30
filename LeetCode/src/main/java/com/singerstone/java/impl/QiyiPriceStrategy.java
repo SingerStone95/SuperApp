@@ -4,12 +4,12 @@ import com.singerstone.java.base.AbsSellPriceStrategy;
 
 public class QiyiPriceStrategy extends AbsSellPriceStrategy {
     @Override
-    public int getPriceChangeCount() {
-        if (getItemDeadline() > 10) {
+    public int getPriceChangeCount(int deadline) {
+        if (deadline > 10) {
             return 1;
-        } else if (getItemDeadline() > 5) {
+        } else if (deadline > 5) {
             return 2;
-        }else {
+        } else {
             return 3;
         }
     }
