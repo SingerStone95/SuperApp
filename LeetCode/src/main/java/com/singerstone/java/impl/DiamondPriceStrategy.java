@@ -14,7 +14,7 @@ public class DiamondPriceStrategy extends AbsSellPriceStrategy {
     }
 
     @Override
-    protected boolean needKeepPrice() {
-        return true;
+    protected boolean needLimitPrice() {
+        return false;
     }
 }
