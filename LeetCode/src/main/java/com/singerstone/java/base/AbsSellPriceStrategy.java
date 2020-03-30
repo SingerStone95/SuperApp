@@ -8,9 +8,10 @@ public abstract class AbsSellPriceStrategy {
 
 
     void update(Item item) {
+        //price
         int oldPrice = item.price;
         int newPrice = oldPrice + getPriceChangeCount(item.sellDeadline);
-        if (needLimitPrice()) {
+        if (needLimitPrice()) { //保值的物品不受最大最小限制
             if (newPrice > getMaxPrice()) {
                 newPrice = getMaxPrice();
             }
@@ -18,6 +19,7 @@ public abstract class AbsSellPriceStrategy {
                 newPrice = getMinPrice();
             }
         }
+        //deadline
         int oldDeadline = item.sellDeadline;
         int newDeadline = oldDeadline + getChangeSellDeadline();
         if (needPriceWhenDeadline() && newDeadline < 0) { //过期清零
