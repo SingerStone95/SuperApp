@@ -1,6 +1,11 @@
 package com.singerstone.java;
 
 import com.singerstone.java.base.Item;
+import com.singerstone.java.base.ItemSellWrapper;
+import com.singerstone.java.impl.BananaPriceStrategy;
+import com.singerstone.java.impl.DiamondPriceStrategy;
+import com.singerstone.java.impl.MaoTaiPriceStrategy;
+import com.singerstone.java.impl.NormalPriceStrategy;
 
 import org.junit.Test;
 
@@ -9,10 +14,99 @@ import static org.junit.Assert.*;
 public class VarietyStoreTest {
 
     @Test
-    public void updateItems() {
-        Item[] items = new Item[]{new Item("foo", 0, 0)};
-        VarietyStore app = new VarietyStore(items);
+    public void updateNormalItems1() {
+        ItemSellWrapper[] items = new ItemSellWrapper[]{
+                new ItemSellWrapper(new Item("面包", 10, 20), new NormalPriceStrategy())
+        };
+        BateVarietyStore app = new BateVarietyStore(items);
         app.updateItems();
-        assertEquals("fixme", app.items[0].name);
+        assertEquals(19, app.items[0].getPrice());
+    }
+
+    @Test
+    public void updateNormalItems20() {
+        ItemSellWrapper[] items = new ItemSellWrapper[]{
+                new ItemSellWrapper(new Item("面包", 10, 20), new NormalPriceStrategy())
+        };
+        BateVarietyStore app = new BateVarietyStore(items);
+        for (int i = 0; i < 20; i++) {
+            app.updateItems();
+        }
+        assertEquals(0, app.items[0].getPrice());
+    }
+
+    @Test
+    public void updateNormalItems19() {
+        ItemSellWrapper[] items = new ItemSellWrapper[]{
+                new ItemSellWrapper(new Item("面包", 10, 20), new NormalPriceStrategy())
+        };
+        BateVarietyStore app = new BateVarietyStore(items);
+        for (int i = 0; i < 19; i++) {
+            app.updateItems();
+        }
+        assertEquals(0, app.items[0].getPrice());
+    }
+
+    @Test
+    public void updateNormalItems5() {
+        ItemSellWrapper[] items = new ItemSellWrapper[]{
+                new ItemSellWrapper(new Item("面包", 10, 20), new NormalPriceStrategy())
+        };
+        BateVarietyStore app = new BateVarietyStore(items);
+        for (int i = 0; i < 5; i++) {
+            app.updateItems();
+        }
+        assertEquals(15, app.items[0].getPrice());
+    }
+
+    @Test
+    public void updateMaoTaiItems5() {
+        ItemSellWrapper[] items = new ItemSellWrapper[]{
+                new ItemSellWrapper(new Item("茅台", 10, 20), new MaoTaiPriceStrategy())
+        };
+        BateVarietyStore app = new BateVarietyStore(items);
+        for (int i = 0; i < 5; i++) {
+            app.updateItems();
+        }
+        assertEquals(25, app.items[0].getPrice());
+    }
+
+
+    @Test
+    public void updatDiamondItems4() {
+        ItemSellWrapper[] items = new ItemSellWrapper[]{
+                new ItemSellWrapper(new Item("钻石", 0, 80), new DiamondPriceStrategy())
+        };
+        BateVarietyStore app = new BateVarietyStore(items);
+        for (int i = 0; i < 4; i++) {
+            app.updateItems();
+        }
+        assertEquals(80, app.items[0].getPrice());
+    }
+
+
+    @Test
+    public void updaBananaItems4() {
+        ItemSellWrapper[] items = new ItemSellWrapper[]{
+                new ItemSellWrapper(new Item("香蕉", 3, 6), new BananaPriceStrategy())
+        };
+        BateVarietyStore app = new BateVarietyStore(items);
+        for (int i = 0; i < 4; i++) {
+            app.updateItems();
+        }
+        assertEquals(0, app.items[0].getPrice());
+    }
+
+
+    @Test
+    public void updaBananaItems2(){
+        ItemSellWrapper[] items = new ItemSellWrapper[]{
+                new ItemSellWrapper(new Item("香蕉", 3, 6), new BananaPriceStrategy())
+        };
+        BateVarietyStore app = new BateVarietyStore(items);
+        for (int i = 0; i < 2; i++) {
+            app.updateItems();
+        }
+        assertEquals(2, app.items[0].getPrice());
     }
 }

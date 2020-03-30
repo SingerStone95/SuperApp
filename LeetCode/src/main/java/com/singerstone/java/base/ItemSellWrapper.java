@@ -20,6 +20,10 @@ public class ItemSellWrapper<T extends AbsSellPriceStrategy> {
         mStrategy.update(mItem);
     }
 
+    public int getPrice() {
+        return mItem.price;
+    }
+
     @Override
     public String toString() {
         return mItem.toString();
