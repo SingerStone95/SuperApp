@@ -12,4 +12,9 @@ public class DiamondPriceStrategy extends AbsSellPriceStrategy {
     protected int getChangeSellDeadline() {
         return 0;
     }
+
+    @Override
+    protected boolean needKeepPrice() {
+        return true;
+    }
 }
