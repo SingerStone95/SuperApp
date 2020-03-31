@@ -24,17 +24,6 @@ public class VarietyStoreTest {
         assertEquals(19, app.items[0].getPrice());
     }
 
-    @Test
-    public void updateNormalItems20() {
-        ItemSellWrapper[] items = new ItemSellWrapper[]{
-                new ItemSellWrapper(new Item("面包", 10, 20), new NormalPriceStrategy())
-        };
-        BateVarietyStore app = new BateVarietyStore(items);
-        for (int i = 0; i < 20; i++) {
-            app.updateItems();
-        }
-        assertEquals(0, app.items[0].getPrice());
-    }
 
     @Test
     public void updateNormalItems19() {
@@ -129,9 +118,13 @@ public class VarietyStoreTest {
                 new ItemSellWrapper(new Item("奇异果", 1, 20), new QiyiPriceStrategy())
         };
         BateVarietyStore app = new BateVarietyStore(items);
+        VarietyStore appold=new VarietyStore(new Item[]{
+                new Item("奇异果", 1, 20)
+        });
         for (int i = 0; i < 2; i++) {
             app.updateItems();
+            appold.updateItems();
         }
-        assertEquals(0, app.items[0].getPrice());
+        assertEquals(appold.items[0].price, app.items[0].getPrice());
     }
 }
