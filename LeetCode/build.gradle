@@ -3,6 +3,12 @@ apply plugin: 'java-library'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'junit:junit:4.12'
+    implementation "org.mockito:mockito-core:2.8.9"
+
+    implementation "org.powermock:powermock-module-junit4:1.7.3"
+    implementation "org.powermock:powermock-module-junit4-rule:1.7.3"
+    implementation "org.powermock:powermock-api-mockito2:1.7.3" //注意这里是mockito2
+    implementation "org.powermock:powermock-classloading-xstream:1.7.3"
 }
 
 tasks.withType(JavaCompile) {
