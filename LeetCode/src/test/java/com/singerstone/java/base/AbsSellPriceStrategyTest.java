@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 public class AbsSellPriceStrategyTest {
 
     @Test
-    public void update_price_1() throws Exception {
+    public void update_price_1_limit_false() throws Exception {
         AbsSellPriceStrategy absSellPriceStrategy = PowerMockito.mock(AbsSellPriceStrategy.class);
         Item item = new Item("test", 2, 10);
         PowerMockito.doCallRealMethod().when(absSellPriceStrategy, "update", item);
@@ -27,7 +27,7 @@ public class AbsSellPriceStrategyTest {
     }
 
     @Test
-    public void update_price_2() throws Exception {
+    public void update_price_2_limit_false() throws Exception {
         AbsSellPriceStrategy absSellPriceStrategy = PowerMockito.mock(AbsSellPriceStrategy.class);
         Item item = new Item("test", 2, 10);
         PowerMockito.doCallRealMethod().when(absSellPriceStrategy, "update", item);
@@ -39,7 +39,7 @@ public class AbsSellPriceStrategyTest {
     }
 
     @Test
-    public void update_price_n1() throws Exception {
+    public void update_price_n1_limit_false() throws Exception {
         AbsSellPriceStrategy absSellPriceStrategy = PowerMockito.mock(AbsSellPriceStrategy.class);
         Item item = new Item("test", 2, 10);
         PowerMockito.doCallRealMethod().when(absSellPriceStrategy, "update", item);
