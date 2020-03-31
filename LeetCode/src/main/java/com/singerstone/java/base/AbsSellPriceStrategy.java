@@ -22,7 +22,7 @@ public abstract class AbsSellPriceStrategy {
         //deadline
         int oldDeadline = item.sellDeadline;
         int newDeadline = oldDeadline + getChangeSellDeadline();
-        if (needPriceWhenDeadline() && newDeadline < 0) { //过期清零
+        if (needClearPriceWhenDeadline() && newDeadline < 0) { //过期清零
             newPrice = 0;
         }
         item.price = newPrice;
@@ -45,7 +45,7 @@ public abstract class AbsSellPriceStrategy {
         return DEFAULT_MAX_PRICE;
     }
 
-    protected boolean needPriceWhenDeadline() {
+    protected boolean needClearPriceWhenDeadline() {
         return false;
     }
 

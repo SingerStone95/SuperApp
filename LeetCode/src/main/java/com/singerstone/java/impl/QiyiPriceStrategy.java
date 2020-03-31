@@ -16,7 +16,7 @@ public class QiyiPriceStrategy extends AbsSellPriceStrategy {
 
 
     @Override
-    protected boolean needPriceWhenDeadline() {
+    protected boolean needClearPriceWhenDeadline() {
         return true;
     }
 }
