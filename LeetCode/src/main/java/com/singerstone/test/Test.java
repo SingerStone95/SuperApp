@@ -1,5 +1,8 @@
 package com.singerstone.test;
 
+import com.singerstone.cas.SafeLinkedListStack;
+import com.singerstone.cas.Stack;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
@@ -10,9 +13,24 @@ import java.util.ArrayList;
 
 public class Test {
     public static void main(String[] args) {
-        System.out.println(getFormatCount(1));
+       /* System.out.println(getFormatCount(1));
         System.out.println(getFormatCount(10000));
-        System.out.println(getFormatCount(127000000));
+        System.out.println(getFormatCount(127000000));*/
+
+        Stack<Integer> stack = new SafeLinkedListStack<>();
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        stack.push(4);
+        System.out.println(stack.size());
+        System.out.println(stack.pop());
+        System.out.println(stack.peek());
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
+        System.out.println(stack.size());
+        System.out.println(stack.pop());
+        System.out.println(stack.size());
+
     }
 
     private static String getFormatCount(int count) {
