@@ -1,6 +1,9 @@
 package com.singerstone.cas;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class SafeLinkedListStack<E> implements Stack<E> {
+    AtomicBoolean lock = new AtomicBoolean(false);
 
     Node<E> mHead;
     int mSize;
@@ -23,9 +26,15 @@ public class SafeLinkedListStack<E> implements Stack<E> {
     @Override
     public void push(E e) {
         Node<E> newNode = new Node<>(e);
-        newNode.next = mHead.next;
-        mHead.next = newNode;
-        mSize++;
+        do {
+            if (lock.compareAndSet(false, true)) {
+                newNode.next = mHead.next;
+                mHead.next = newNode;
+                mSize++;
+                lock.set(false);
+                break;
+            }
+        } while (true);
     }
 
     @Override
@@ -33,11 +42,17 @@ public class SafeLinkedListStack<E> implements Stack<E> {
         if (isEmpty()) {
             throw new RuntimeException("Stank is Empty!");
         }
-        Node<E> p = mHead.next;
-        E result = p.element;
-        mHead.next = p.next;
-        mSize--;
-        return result;
+        do {
+            if (lock.compareAndSet(false, true)) {
+                Node<E> p = mHead.next;
+                E result = p.element;
+                mHead.next = p.next;
+                mSize--;
+                lock.set(false);
+                return result;
+            }
+        } while (true);
+
     }
 
     @Override
