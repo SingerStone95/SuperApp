@@ -11,6 +11,7 @@ import com.squareup.leakcanary.RefWatcher;
 import java.io.File;
 import java.io.IOException;
 
+import singerstone.com.superapp.log.LogModule;
 import singerstone.com.superapp.ndkinterface.CrashLib;
 import singerstone.com.superapp.utils.L;
 
@@ -41,6 +42,7 @@ public class SuperApp extends Application {
         String path = base.getExternalFilesDir("").getAbsolutePath();
         L.e("crash init path:" + path);
         CrashLib.breakpadInit(path);
+        LogModule.INSTANCE.init(this);
     }
 
     @Override

@@ -12,8 +12,6 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
-import android.text.SpannableStringBuilder;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -23,6 +21,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
@@ -30,8 +30,6 @@ import singerstone.com.annotations.BindView;
 import singerstone.com.inject.ViewInject;
 import singerstone.com.superapp.Accessbility.AccessbilityFragmrnt;
 import singerstone.com.superapp.BezierPaopao.BezierPaopaoFragment;
-import singerstone.com.superapp.Dialog.FlexibleFragmentDialog;
-import singerstone.com.superapp.Dialog.IDialogItem;
 import singerstone.com.superapp.Marquee.MarqueeFragment;
 import singerstone.com.superapp.ServiceIPC.ServiceIPCActivity;
 import singerstone.com.superapp.Star.StarFragment;
@@ -43,12 +41,14 @@ import singerstone.com.superapp.circlepkprogressView.PKAnimationFragment;
 import singerstone.com.superapp.https.HttpsTestFragment;
 import singerstone.com.superapp.inke.InkeFragment;
 import singerstone.com.superapp.like.LikeViewFragment;
+import singerstone.com.superapp.log.AppLog;
+import singerstone.com.superapp.log.LogConfig;
+import singerstone.com.superapp.log.LogUtil;
 import singerstone.com.superapp.ndkinterface.NdkInterface;
 import singerstone.com.superapp.opengl.OpenGlFragment;
 import singerstone.com.superapp.qqlive.QQLiveTestFragment;
 import singerstone.com.superapp.socketretrofit.Singerstone;
 import singerstone.com.superapp.socketretrofit.SocketService;
-import singerstone.com.superapp.treeholeview.SpannableStringUtils;
 import singerstone.com.superapp.treeholeview.TreeholeViewFragment;
 import singerstone.com.superapp.upcoming.UpComingFragment;
 import singerstone.com.superapp.utils.L;
@@ -176,12 +176,19 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(HttpsTestFragment.newInstance());
                     break;
                 case 17:
-                     ((MainActivity) getActivity()).setFragmentAddToBackStack(new OpenGlFragment());
+                    ((MainActivity) getActivity()).setFragmentAddToBackStack(new OpenGlFragment());
                     break;
                 case 18:
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(QQLiveTestFragment.newInstance());
                     break;
                 case 19:
+                    AppLog.i("yogachen", "xlog 的log");
+                    AppLog.flush(false);
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    AppLog.packLog(bos);
+                    String targetFilePath = LogConfig.getLogFolder() + File.separator + "log.zip";
+                    boolean result = LogUtil.write2File(bos.toByteArray(), targetFilePath);
+                    AppLog.i("yogachen", "result=" + result);
                     break;
                 case 20:
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(UpComingFragment.newInstance());
@@ -219,7 +226,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         items.add(new ToolItem(R.drawable.default_tool, "Https双向验证" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "OpenGl瞎搞几下" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "腾讯视频测试" + index++));
-        items.add(new ToolItem(R.drawable.default_tool, "ViewPager2测试" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "XLog测试" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "即将上映demo" + index++));
     }
 
