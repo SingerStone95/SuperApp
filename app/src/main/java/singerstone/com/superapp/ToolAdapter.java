@@ -42,12 +42,7 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ToolHolder> {
     @Override
     public void onBindViewHolder(final ToolHolder holder, final int position) {
         holder.tv_tool.setText(items.get(position).getText());
-        new Thread(  new Runnable(){
-            @Override
-            public void run() {
-                holder.iv_tool.setImageResource(items.get(position).getResourseId());
-            }
-        }).start();
+        new Thread(() -> holder.iv_tool.setImageResource(items.get(position).getResourseId())).start();
 
 
         holder.tv_tool.index = position;

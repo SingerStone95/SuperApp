@@ -42,6 +42,7 @@ public class SuperApp extends Application {
         String path = base.getExternalFilesDir("").getAbsolutePath();
         L.e("crash init path:" + path);
         CrashLib.breakpadInit(path);
+
         LogModule.INSTANCE.init(this);
     }
 
