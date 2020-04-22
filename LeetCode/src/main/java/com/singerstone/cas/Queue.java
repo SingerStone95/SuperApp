@@ -12,7 +12,7 @@ public interface Queue<E> {
 
     boolean isEmpty();
 
-    boolean offer(E var1);
+    void offer(E var1);
 
     E poll();
 }

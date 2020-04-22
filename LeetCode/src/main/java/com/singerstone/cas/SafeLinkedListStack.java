@@ -3,10 +3,10 @@ package com.singerstone.cas;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SafeLinkedListStack<E> implements Stack<E> {
-    AtomicBoolean lock = new AtomicBoolean(false);
+    private volatile AtomicBoolean lock = new AtomicBoolean(false);
 
     Node<E> mHead;
-    int mSize;
+    private volatile int mSize;
 
     public SafeLinkedListStack() {
         mHead = new Node(null);
@@ -15,12 +15,25 @@ public class SafeLinkedListStack<E> implements Stack<E> {
 
     @Override
     public int size() {
-        return mSize;
+        do {
+            if (lock.compareAndSet(false, true)) {
+                lock.set(false);
+                return mSize;
+            }
+        } while (true);
     }
 
     @Override
     public boolean isEmpty() {
-        return mSize == 0;
+        do {
+            if (lock.compareAndSet(false, true)) {
+                lock.set(false);
+                return mSize == 0;
+            }
+
+        } while (true);
+
+
     }
 
     @Override
