@@ -1,8 +1,9 @@
 package com.singerstone.test;
 
 import com.singerstone.cas.SafeLinkedListStack;
-
-import java.util.Stack;
+import com.singerstone.cas.SleepUtil;
+import com.singerstone.cas.Stack;
+import com.singerstone.cas.UnSafeLinkedListStack;
 
 /**
  * Created by chenbinhao on 2018/7/12.
@@ -11,44 +12,35 @@ import java.util.Stack;
 
 public class Test {
 
-    SafeLinkedListStack<Object> stack = new SafeLinkedListStack<>();
+    Stack<Integer> stack = new UnSafeLinkedListStack<>();
     //Stack<Integer> stack = new Stack<>();
 
 
     public static void main(String[] args) {
-
         new Test().test();
     }
 
     public void test() {
-
-        stack.push(1);
-        stack.push(2);
-        stack.push(3);
-        TestThread a = new TestThread("a");
-        TestThread b = new TestThread("b");
+        TestThread a = new TestThread("a", 1);
+        TestThread b = new TestThread("b", 2);
         a.start();
         b.start();
+        SleepUtil.sleep(1000);
+        System.out.println(stack);
 
     }
 
     class TestThread extends Thread {
+        int mNum;
 
-        public TestThread(String s) {
+        public TestThread(String s, int num) {
             super(s);
+            mNum = num;
         }
 
         @Override
         public void run() {
-            while (stack.size() != 0) {
-                try {
-                    sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                System.out.println(this.getName() + ":" + stack.pop());
-
-            }
+            stack.push(mNum);
         }
     }
 
