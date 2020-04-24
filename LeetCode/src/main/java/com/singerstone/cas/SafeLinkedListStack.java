@@ -41,7 +41,9 @@ public class SafeLinkedListStack<E> implements Stack<E> {
         Node<E> newNode = new Node<>(e);
         do {
             if (lock.compareAndSet(false, true)) {
+                SleepUtil.sleep(10); //强制切线程
                 newNode.next = mHead.next;
+                SleepUtil.sleep(50); //强制切线程
                 mHead.next = newNode;
                 mSize++;
                 lock.set(false);
@@ -75,6 +77,18 @@ public class SafeLinkedListStack<E> implements Stack<E> {
         }
         Node<E> p = mHead.next;
         E result = p.element;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        String result = "";
+        Node temp = mHead.next;
+        while (temp != null) {
+            result += temp.element;
+            temp = temp.next;
+
+        }
         return result;
     }
 }

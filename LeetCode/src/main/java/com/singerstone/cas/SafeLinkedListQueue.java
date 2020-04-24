@@ -55,4 +55,16 @@ public class SafeLinkedListQueue<E> implements Queue<E> {
             }
         } while (true);
     }
+
+    @Override
+    public String toString() {
+        String result = "";
+        Node temp = mHead.next;
+        while (temp != null) {
+            result += temp.element;
+            temp = temp.next;
+
+        }
+        return result;
+    }
 }
