@@ -36,7 +36,7 @@ set_source_files_properties(${BREAKPAD_ASM_SOURCES} PROPERTIES LANGUAGE C)
 
 include_directories(src src/common/android/include)
 
-add_library(Breakpad SHARED breakpad_lib.cc ${BREAKPAD_CC_SOURCES} ${BREAKPAD_ASM_SOURCES})
+add_library(Breakpad SHARED ${BREAKPAD_CC_SOURCES} ${BREAKPAD_ASM_SOURCES})
 
 target_link_libraries( # Specifies the target library.
         Breakpad

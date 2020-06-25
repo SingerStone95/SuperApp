@@ -13,7 +13,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk {
-            abiFilters "armeabi", "armeabi-v7a", "x86", "x86_64"
+            abiFilters "armeabi-v7a"
         }
     }
 
@@ -72,7 +72,13 @@ android {
         }
     }
 
-
+    externalNativeBuild {
+        ndkBuild {
+            path 'jni/Android.mk'
+            //cmake {
+            //    path 'NativeHook/jni/nh_air/jni/CMakeLists.txt'
+        }
+    }
 }
 //这样定义的task会在配置的时候执行
 task doSomeRightThing {
@@ -125,18 +131,9 @@ project.afterEvaluate {
 project.tasks.whenTaskAdded { Task theTask ->
     println('add task->' + theTask.getName())
     if (theTask.name == 'assembleDebug' || theTask.name == 'assembleRelease') {
-        //theTask.dependsOn(check)
     }
 }
 
-
-//apply plugin: 'com.geektime.systrace-plugin'
-/*systrace {
-    enable = true
-    baseMethodMapFile = "${project.buildDir}/systrace_output/Debug.methodmap"
-    blackListFile = "${project.projectDir}/blacklist/blackMethodList.txt"
-
-}*/
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
