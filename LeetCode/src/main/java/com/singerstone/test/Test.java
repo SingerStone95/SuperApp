@@ -1,48 +1,60 @@
 package com.singerstone.test;
 
-import com.singerstone.cas.SafeLinkedListStack;
-import com.singerstone.cas.SleepUtil;
-import com.singerstone.cas.Stack;
-import com.singerstone.cas.UnSafeLinkedListStack;
-
-/**
- * Created by chenbinhao on 2018/7/12.
- * YY:909075276
- */
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Test {
-
-    Stack<Integer> stack = new UnSafeLinkedListStack<>();
-    //Stack<Integer> stack = new Stack<>();
-
-
     public static void main(String[] args) {
-        new Test().test();
-    }
 
-    public void test() {
-        TestThread a = new TestThread("a", 1);
-        TestThread b = new TestThread("b", 2);
-        a.start();
-        b.start();
-        SleepUtil.sleep(1000);
-        System.out.println(stack);
+       int[] nums=new int[]{1,1,1,2,2,3,3,3,4,5};
+       new Test().removeDuplicates(nums);
+
+       System.out.println(nums);
 
     }
 
-    class TestThread extends Thread {
-        int mNum;
+    private static void handle(Bean a) {
+        a=new Bean();
+        a.a = "123";
+        a.b = 100;
+    }
 
-        public TestThread(String s, int num) {
-            super(s);
-            mNum = num;
-        }
+    public static class Bean {
+        public String a;
+        public int b;
 
         @Override
-        public void run() {
-            stack.push(mNum);
+        public String toString() {
+            return a + " " + b;
         }
     }
+        public int removeDuplicates ( int[] nums){
 
+            int i = 1, count = 1, length = nums.length;
+            while (i < length) {
+                if (nums[i] == nums[i - 1]) {
 
+                    count++;
+
+                    if (count > 2) {
+
+                        this.remove(nums, i);
+                        i--;
+
+                        length--;
+                    }
+                } else {
+                    count = 1;
+                }
+                i++;
+            }
+
+            return length;
+        }
+
+    void remove(int[] nums,int del){
+        for(int i=del;i<nums.length-1;i++){
+            nums[i]=nums[i+1];
+        }
+    }
 }

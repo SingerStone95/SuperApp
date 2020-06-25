@@ -1,3 +1,4 @@
+#需要使用ndk-17c版本编译,需要注意的是17版本开始就不再支持armeabi架构
 #Android.mk和Application.mk默认必须存放在名字为jni目录的文件夹下，因为ndk-build会到上一级目录查找jni目录
 #如果需要更改到当前路径，执行ndk-build -B V=1 NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=./Android.mk NDK_APPLICATION_MK=./Application.mk
 
