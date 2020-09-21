@@ -34,10 +34,10 @@ public class MainActivity extends FragmentActivity implements ILife {
             String myCustomUri = getIntent().getStringExtra(CalendarContract.EXTRA_CUSTOM_APP_URI);
             L.e("MainActivity onCreate!   " + myCustomUri + "  " + getIntent().getDataString());
         }
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+       /* getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
-        }
+        }*/
         setContentView(R.layout.activity_main);
         setFragment(MainFragment.newInstance());
         startService(new Intent(MainActivity.this, LiveService.class));

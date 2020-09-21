@@ -45,6 +45,7 @@ import singerstone.com.superapp.log.AppLog;
 import singerstone.com.superapp.log.LogConfig;
 import singerstone.com.superapp.log.LogUtil;
 import singerstone.com.superapp.ndkinterface.NdkInterface;
+import singerstone.com.superapp.ndktest.NDKFragment;
 import singerstone.com.superapp.opengl.OpenGlFragment;
 import singerstone.com.superapp.qqlive.QQLiveTestFragment;
 import singerstone.com.superapp.socketretrofit.Singerstone;
@@ -144,10 +145,13 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
                             .setFragmentAddToBackStack(TouchEventFragment.newInstance());
                     break;
                 case 5:
-                    Toast.makeText(getActivity(),
+                    /*Toast.makeText(getActivity(),
                             NdkInterface.genMallocOOM()
-                            , Toast.LENGTH_SHORT).show();
+                            , Toast.LENGTH_SHORT).show();*/
                     // NdkInterface.genCrash();
+
+                    ((MainActivity) getActivity())
+                            .setFragmentAddToBackStack(NDKFragment.newInstance());
                     break;
                 case 6:
                     ((MainActivity) getActivity())
@@ -231,7 +235,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         items.add(new ToolItem(R.drawable.default_tool, "仿Retrofit实现Socket收发请求" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "百度波浪进度条" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "VIEW事件传递LOG" + index++));
-        items.add(new ToolItem(R.drawable.default_tool, "测试捕获native crash" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "NDK测试" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "手Y PK条View" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "Accessbility模拟点击" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "跑马灯View" + index++));
