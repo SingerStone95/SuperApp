@@ -23,6 +23,15 @@ JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterfac
 JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterface_genCrash
   (JNIEnv *, jclass);
 
+JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterface_genMallocOOM
+  (JNIEnv *, jclass);
+
+
+JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterface_genMmapOOM
+  (JNIEnv *, jclass);
+
+
+
 #ifdef __cplusplus
 }
 #endif

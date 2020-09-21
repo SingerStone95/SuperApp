@@ -55,8 +55,7 @@ import singerstone.com.superapp.utils.L;
 import singerstone.com.superapp.waveeffect.WaveFragment;
 
 /**
- * Created by chenbinhao on 2017/7/5.
- * YY:909075276
+ * Created by chenbinhao on 2017/7/5. YY:909075276
  */
 
 @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
@@ -84,7 +83,8 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+            Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         initData();
         initView(view);
@@ -105,7 +105,8 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
             e.printStackTrace();
         }
         if (firstLine != null) {
-            totalRam = (int) Math.ceil((new Float(Float.valueOf(firstLine) / (1024 * 1024)).doubleValue()));
+            totalRam = (int) Math
+                    .ceil((new Float(Float.valueOf(firstLine) / (1024 * 1024)).doubleValue()));
         }
 
         return totalRam + "GB";//返回1GB/2GB/3GB/4GB
@@ -113,7 +114,8 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
 
     private void initView(View view) {
         ViewInject.inject(this, view);
-        final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1, RecyclerView.VERTICAL, false);
+        final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1,
+                RecyclerView.VERTICAL, false);
         //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rv_tools.setLayoutManager(layoutManager);
         toolAdapter = new ToolAdapter(getActivity(), items);
@@ -122,64 +124,80 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         toolAdapter.setOnItemClickListener((position, itemView) -> {
             switch (position) {
                 case 0:
-                    ((MainActivity) getActivity()).setFragmentAddToBackStack(StarFragment.newInstance());
+                    ((MainActivity) getActivity())
+                            .setFragmentAddToBackStack(StarFragment.newInstance());
                     break;
                 case 1:
-                    ((MainActivity) getActivity()).setFragmentAddToBackStack(BezierPaopaoFragment.newInstance());
+                    ((MainActivity) getActivity())
+                            .setFragmentAddToBackStack(BezierPaopaoFragment.newInstance());
                     break;
                 case 2:
                     Singerstone.getInstance().create(SocketService.class).commit2("cbh", "hello")
                             .subscribe(s -> Toast.makeText(getActivity(), s, Toast.LENGTH_LONG));
                     break;
                 case 3:
-                    ((MainActivity) getActivity()).setFragmentAddToBackStack(WaveFragment.newInstance());
+                    ((MainActivity) getActivity())
+                            .setFragmentAddToBackStack(WaveFragment.newInstance());
                     break;
                 case 4:
-                    ((MainActivity) getActivity()).setFragmentAddToBackStack(TouchEventFragment.newInstance());
+                    ((MainActivity) getActivity())
+                            .setFragmentAddToBackStack(TouchEventFragment.newInstance());
                     break;
                 case 5:
-                    Toast.makeText(getActivity(), NdkInterface.getServiceName(), Toast.LENGTH_LONG).show();
-                    NdkInterface.genCrash();
+                    Toast.makeText(getActivity(),
+                            NdkInterface.genMallocOOM()
+                            , Toast.LENGTH_SHORT).show();
+                    // NdkInterface.genCrash();
                     break;
                 case 6:
-                    ((MainActivity) getActivity()).setFragmentAddToBackStack(PKAnimationFragment.newInstance());
+                    ((MainActivity) getActivity())
+                            .setFragmentAddToBackStack(PKAnimationFragment.newInstance());
                     break;
                 case 7:
-                    ((MainActivity) getActivity()).setFragmentAddToBackStack(AccessbilityFragmrnt.newInstance());
+                    ((MainActivity) getActivity())
+                            .setFragmentAddToBackStack(AccessbilityFragmrnt.newInstance());
                     break;
                 case 8:
-                    ((MainActivity) getActivity()).setFragmentAddToBackStack(MarqueeFragment.newInstance());
+                    ((MainActivity) getActivity())
+                            .setFragmentAddToBackStack(MarqueeFragment.newInstance());
                     break;
                 case 9:
-                    ((MainActivity) getActivity()).setFragmentAddToBackStack(TreeholeViewFragment.newInstance());
+                    ((MainActivity) getActivity())
+                            .setFragmentAddToBackStack(TreeholeViewFragment.newInstance());
                     break;
                 case 10:
-                    ((MainActivity) getActivity()).setFragmentAddToBackStack(LikeViewFragment.newInstance());
+                    ((MainActivity) getActivity())
+                            .setFragmentAddToBackStack(LikeViewFragment.newInstance());
                     break;
                 case 11:
                     startActivity(new Intent(getActivity(), ServiceIPCActivity.class));
                     break;
                 case 12:
-                    ((MainActivity) getActivity()).setFragmentAddToBackStack(FragmentScrollImage.newInstance());
+                    ((MainActivity) getActivity())
+                            .setFragmentAddToBackStack(FragmentScrollImage.newInstance());
                     break;
                 case 13:
-                    ((MainActivity) getActivity()).setFragmentAddToBackStack(BookFragment.newInstance());
+                    ((MainActivity) getActivity())
+                            .setFragmentAddToBackStack(BookFragment.newInstance());
                     break;
                 case 14:
-                    ((MainActivity) getActivity()).setFragmentAddToBackStack(InkeFragment.newInstance());
+                    ((MainActivity) getActivity())
+                            .setFragmentAddToBackStack(InkeFragment.newInstance());
                     break;
                 case 15:
                     Uri uri = Uri.parse("content://com.singerstone.provider");
                     getActivity().getContentResolver().call(uri, "test", null, null);
                     break;
                 case 16:
-                    ((MainActivity) getActivity()).setFragmentAddToBackStack(HttpsTestFragment.newInstance());
+                    ((MainActivity) getActivity())
+                            .setFragmentAddToBackStack(HttpsTestFragment.newInstance());
                     break;
                 case 17:
                     ((MainActivity) getActivity()).setFragmentAddToBackStack(new OpenGlFragment());
                     break;
                 case 18:
-                    ((MainActivity) getActivity()).setFragmentAddToBackStack(QQLiveTestFragment.newInstance());
+                    ((MainActivity) getActivity())
+                            .setFragmentAddToBackStack(QQLiveTestFragment.newInstance());
                     break;
                 case 19:
                     AppLog.i("yogachen", "xlog 的log");
@@ -191,7 +209,8 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
                     AppLog.i("yogachen", "result=" + result);
                     break;
                 case 20:
-                    ((MainActivity) getActivity()).setFragmentAddToBackStack(UpComingFragment.newInstance());
+                    ((MainActivity) getActivity())
+                            .setFragmentAddToBackStack(UpComingFragment.newInstance());
                 default:
                     break;
             }
@@ -236,7 +255,8 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
             super.onScrollStateChanged(recyclerView, newState);
             L.i("onScrollStateChanged:>>>>>>>>>>>>>>" + newState);
             if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                LinearLayoutManager linearManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                LinearLayoutManager linearManager = (LinearLayoutManager) recyclerView
+                        .getLayoutManager();
                 int firstItemPosition = linearManager.findFirstVisibleItemPosition();
                 int lastItemPosition = linearManager.findLastVisibleItemPosition();
                 View firstView = linearManager.findViewByPosition(firstItemPosition);
@@ -248,7 +268,9 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
                 if (getVisibilityPercents(lastView) > 50) {
 
                 }
-                L.i("onScrollStateChanged", firstItemPosition + " " + lastItemPosition + "，" + getVisibilityPercents(firstView) + "   " + getVisibilityPercents(lastView));
+                L.i("onScrollStateChanged",
+                        firstItemPosition + " " + lastItemPosition + "，" + getVisibilityPercents(
+                                firstView) + "   " + getVisibilityPercents(lastView));
             }
         }
 
@@ -258,7 +280,8 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
             L.i("onScrolled :" + dx + " " + dy);
             RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
             if (layoutManager instanceof LinearLayoutManager) {
-                int lastCompletelyVisibleItemPosition = ((LinearLayoutManager) layoutManager).findLastCompletelyVisibleItemPosition();
+                int lastCompletelyVisibleItemPosition = ((LinearLayoutManager) layoutManager)
+                        .findLastCompletelyVisibleItemPosition();
                 if (layoutManager.getItemCount() - 1 == lastCompletelyVisibleItemPosition) {
                     L.i("onScrolled : scroller to bottom");
                 }

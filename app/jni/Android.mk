@@ -11,5 +11,6 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 LOCAL_MODULE := NdkInterface
 LOCAL_SRC_FILES := singerstone_com_superapp_ndkinterface_NdkInterface.c
+LOCAL_LDLIBS := -llog
 include $(BUILD_SHARED_LIBRARY)
 include $(LOCAL_PATH)/breakpad/Android.mk
