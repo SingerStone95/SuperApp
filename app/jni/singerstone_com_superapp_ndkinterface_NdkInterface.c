@@ -22,7 +22,7 @@ JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterfac
 
 JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterface_genMallocOOM(JNIEnv *env, jclass jz)
 {
-    for (int i = 0; i < 1000; i++)
+    for (int i = 0; i < 200; i++)
     {
         char *p = (char *)malloc(1024 * 1024 * sizeof(char));
         if (p == NULL)
@@ -46,8 +46,31 @@ JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterfac
 JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterface_genMmapOOM(JNIEnv *env, jclass jz)
 {
 
+    for (int i = 0; i < 1024*50; i++)
+    {
+        int N = 5; // Number of elements for the array
+        int *ptr = mmap(NULL, N * sizeof(int),
+                        PROT_READ | PROT_WRITE,
+                        MAP_PRIVATE | MAP_ANONYMOUS,
+                        0, 0);
+        if (ptr == MAP_FAILED)
+        {
+            __android_log_print(ANDROID_LOG_ERROR, "yogachen", "Mapping Failed\n");
+            return (*env)->NewStringUTF(env, "创建一个 mmap OOM");
+        }
+        else
+        {
+            __android_log_print(ANDROID_LOG_ERROR, "yogachen", "Mapping success\n");
+        }
 
+       /* int err = munmap(ptr, 10*sizeof(int));
 
+        if(err != 0){
+            __android_log_print(ANDROID_LOG_ERROR, "yogachen", "UnMapping Failed\n");
+            return (*env)->NewStringUTF(env, "创建一个 mmap OOM");
+        }*/
+
+    }
 
     return (*env)->NewStringUTF(env, "创建一个 mmap OOM");
 }
