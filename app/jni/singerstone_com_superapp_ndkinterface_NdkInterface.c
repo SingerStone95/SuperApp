@@ -4,6 +4,7 @@
 #include <jni.h>
 #include <stdlib.h>
 #include <android/log.h>
+#include <sys/mman.h>
 #include <string.h>
 #include "singerstone_com_superapp_ndkinterface_NdkInterface.h"
 
@@ -26,24 +27,27 @@ JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterfac
         char *p = (char *)malloc(1024 * 1024 * sizeof(char));
         if (p == NULL)
         {
-            __android_log_print(ANDROID_LOG_ERROR, "yogachen", "malloc failed!", "");
+            __android_log_print(ANDROID_LOG_ERROR, "yogachen", "malloc failed!");
         }
         else
         {
-            __android_log_print(ANDROID_LOG_ERROR, "yogachen", "malloc success %d!", p);
+            __android_log_print(ANDROID_LOG_ERROR, "yogachen", "malloc success %d!", (int)p);
             memset(p, 0, sizeof(char) * 1024 * 1024);
         }
     }
 
     //free(p);
 
-    __android_log_print(ANDROID_LOG_ERROR, "yogachen", "code is run here", "");
+    __android_log_print(ANDROID_LOG_ERROR, "yogachen", "code is run here");
 
     return (*env)->NewStringUTF(env, "创建一个 malloc OOM 3");
 }
 
 JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterface_genMmapOOM(JNIEnv *env, jclass jz)
 {
+
+
+
 
     return (*env)->NewStringUTF(env, "创建一个 mmap OOM");
 }
