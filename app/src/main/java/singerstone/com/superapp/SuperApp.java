@@ -43,7 +43,7 @@ public class SuperApp extends Application {
         L.e("crash init path:" + path);
         CrashLib.breakpadInit(path);
 
-        LogModule.INSTANCE.init(this);
+        //LogModule.INSTANCE.init(this);
     }
 
     @Override

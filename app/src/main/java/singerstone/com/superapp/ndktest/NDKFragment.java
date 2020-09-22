@@ -58,6 +58,12 @@ public class NDKFragment extends BaseFragment {
                         NdkInterface.genMmapOOM();
                     }
                 });
+        view.findViewById(R.id.btn_fd_oom).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         return view;
     }
 }
