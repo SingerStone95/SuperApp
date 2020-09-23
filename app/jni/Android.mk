@@ -6,6 +6,7 @@
 
 #生成.h文件的脚本 javah -classpath /Users/yogachen/Documents/GitProj/SuperApp/app/build/intermediates/classes （编译生成的class目录） -d jni singerstone.com.superapp.ndkinterface（接口文件的包名+类名，不要加后缀）
 
+#建议开发的时候直接把 jni 目录打开在 VS Code 中开发，AS无法格式化C++代码是很恼火的
 
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)

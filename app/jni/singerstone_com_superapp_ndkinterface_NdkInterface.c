@@ -46,7 +46,7 @@ JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterfac
 JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterface_genMmapOOM(JNIEnv *env, jclass jz)
 {
 
-    for (int i = 0; i < 1024*50; i++)
+    for (int i = 0; i < 1024 * 50; i++)
     {
         int N = 5; // Number of elements for the array
         int *ptr = mmap(NULL, N * sizeof(int),
@@ -63,13 +63,12 @@ JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterfac
             __android_log_print(ANDROID_LOG_ERROR, "yogachen", "Mapping success\n");
         }
 
-       /* int err = munmap(ptr, 10*sizeof(int));
+        /* int err = munmap(ptr, 10*sizeof(int));
 
         if(err != 0){
             __android_log_print(ANDROID_LOG_ERROR, "yogachen", "UnMapping Failed\n");
             return (*env)->NewStringUTF(env, "创建一个 mmap OOM");
         }*/
-
     }
 
     return (*env)->NewStringUTF(env, "创建一个 mmap OOM");
