@@ -47,7 +47,7 @@ android {
     }
     sourceSets {
         main {
-            jniLibs.srcDirs = ['libs']
+            jniLibs.srcDirs = ['libs', 'loglibs']
             aidl.srcDirs = ['src/main/AIDL']
             resources {
                 srcDir {

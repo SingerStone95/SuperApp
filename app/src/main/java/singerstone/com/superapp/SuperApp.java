@@ -17,8 +17,7 @@ import singerstone.com.superapp.utils.L;
 
 
 /**
- * Created by chenbinhao on 2017/9/18.
- * YY:909075276
+ * Created by chenbinhao on 2017/9/18. YY:909075276
  */
 
 public class SuperApp extends Application {
@@ -43,7 +42,7 @@ public class SuperApp extends Application {
         L.e("crash init path:" + path);
         CrashLib.breakpadInit(path);
 
-        //LogModule.INSTANCE.init(this);
+        LogModule.INSTANCE.init(this);
     }
 
     @Override
