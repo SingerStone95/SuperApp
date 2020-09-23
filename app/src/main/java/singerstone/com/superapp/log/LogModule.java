@@ -88,7 +88,7 @@ public class LogModule {
             }
         }
         try {
-            Xlog.setMaxFileSize(1024 * 10);
+            Xlog.setMaxFileSize(DEFAULT_MAX_LOG_PACKAGE_SIZE);//单个日志的最大size
             if (BuildConfig.DEBUG) {
                 Xlog.appenderOpen(Xlog.LEVEL_DEBUG, Xlog.AppednerModeAsync, LogConfig.getCacheLogFolder(), LogConfig.getLogFolder(), PREFIX + (PROCCESS_SUFFIX.length() > 0 ? "_" : "") + PROCCESS_SUFFIX, 0, PUB_KEY);
                 Xlog.setConsoleLogOpen(true);

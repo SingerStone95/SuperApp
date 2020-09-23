@@ -12,6 +12,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -90,6 +91,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         initData();
         initView(view);
         L.i(getTotalRam(getActivity()));
+        Log.d("yogachen","debug");
         return view;
     }
 

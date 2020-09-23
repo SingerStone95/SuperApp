@@ -49,7 +49,13 @@ android {
         main {
             jniLibs.srcDirs = ['libs']
             aidl.srcDirs = ['src/main/AIDL']
+            resources {
+                srcDir {
+                    "src/main/resources"
+                }
+            }
         }
+
     }
     buildTypes {
         debug {

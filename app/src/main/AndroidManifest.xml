@@ -23,6 +23,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/laboratory"
         android:supportsRtl="true"
+        android:debuggable="true"
         android:theme="@style/SupperAppTheme">
         <activity
             android:name=".MainActivity"
