@@ -15,4 +15,39 @@ public class Test {
             }
         }).start();
     }
+
+    public static void main(String[] args) {
+        new C().setColor();
+    }
+
+
+    public static class A {
+        public void print() {
+            System.out.print("A");
+        }
+
+        public void setColor() {
+        }
+    }
+
+    public static class B extends A {
+        @Override
+        public void setColor() {
+            super.print();
+        }
+    }
+
+    public static class C extends B {
+        @Override
+        public void print() {
+            System.out.print("C");
+        }
+
+        @Override
+        public void setColor() {
+            super.setColor();
+        }
+    }
+
+
 }
