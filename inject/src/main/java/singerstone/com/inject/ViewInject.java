@@ -4,12 +4,12 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 
 import android.os.Build;
-import android.support.v4.app.Fragment;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.view.View;
 
 
+import androidx.fragment.app.Fragment;
 import singerstone.com.inject.provider.ActivityProvider;
 import singerstone.com.inject.provider.FragmentProvider;
 import singerstone.com.inject.provider.Provider;

@@ -1,16 +1,10 @@
 package singerstone.com.superapp.TouchEvent;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
-import android.os.Message;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
-import android.widget.SeekBar;
-
 import singerstone.com.superapp.Dialog.DialogItemAdapter;
 import singerstone.com.superapp.utils.L;
 

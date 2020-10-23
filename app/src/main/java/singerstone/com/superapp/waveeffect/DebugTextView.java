@@ -2,10 +2,10 @@ package singerstone.com.superapp.waveeffect;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.TextView;
+import androidx.annotation.Nullable;
 
 
 @SuppressLint("AppCompatCustomView")

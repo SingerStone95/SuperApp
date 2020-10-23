@@ -9,7 +9,6 @@ import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 
-
+import androidx.annotation.RequiresApi;
 import singerstone.com.superapp.R;
 
 /**

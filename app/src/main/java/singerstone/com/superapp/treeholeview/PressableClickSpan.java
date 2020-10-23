@@ -1,9 +1,9 @@
 package singerstone.com.superapp.treeholeview;
 
 import android.graphics.Color;
-import android.support.annotation.CallSuper;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
+import androidx.annotation.CallSuper;
 
 public abstract class PressableClickSpan extends ClickableSpan {
 

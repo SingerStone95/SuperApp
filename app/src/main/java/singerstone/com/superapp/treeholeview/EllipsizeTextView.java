@@ -3,12 +3,13 @@ package singerstone.com.superapp.treeholeview;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Build;
-import android.support.annotation.Nullable;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.util.AttributeSet;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
 
-public class EllipsizeTextView extends android.support.v7.widget.AppCompatTextView {
+public class EllipsizeTextView extends AppCompatTextView {
     private static final String THREE_DOTS = "...";
     private static final int THREE_DOTS_LENGTH = THREE_DOTS.length();
 

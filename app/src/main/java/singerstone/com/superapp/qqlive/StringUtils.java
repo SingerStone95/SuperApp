@@ -1,7 +1,7 @@
 package singerstone.com.superapp.qqlive;
 
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 public class StringUtils {
 

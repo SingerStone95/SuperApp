@@ -6,6 +6,6 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    api 'com.android.support:recyclerview-v7:26.0.0'
-    api 'com.android.support:appcompat-v7:26.0.0'
+    api 'androidx.recyclerview:recyclerview:1.0.0'
+    api 'androidx.appcompat:appcompat:1.0.0'
 }

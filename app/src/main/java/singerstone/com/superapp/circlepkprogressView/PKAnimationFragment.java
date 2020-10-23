@@ -3,8 +3,6 @@ package singerstone.com.superapp.circlepkprogressView;
 import android.os.Build;
 import android.os.Bundle;
 
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import singerstone.com.superapp.R;
 import singerstone.com.superapp.base.BaseFragment;
 import singerstone.com.superapp.utils.L;

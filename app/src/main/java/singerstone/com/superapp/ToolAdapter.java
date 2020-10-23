@@ -1,26 +1,21 @@
 package singerstone.com.superapp;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
-
-
-
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-
 import singerstone.com.superapp.waveeffect.DebugTextView;
 
 /**
- * Created by chenbinhao on 2017/7/5.
- * YY:909075276
+ * Created by chenbinhao on 2017/7/5. YY:909075276
  */
 
 public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ToolHolder> {
+
     private Context mContext;
     private ArrayList<ToolItem> items;
     private OnItemClickListener listener;
@@ -34,7 +29,8 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ToolHolder> {
     @Override
     public ToolHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //这种写法能保证xml中的layoutparam有效
-        View rootView = LayoutInflater.from(mContext).inflate(R.layout.layout_tool_item, parent, false);
+        View rootView = LayoutInflater.from(mContext)
+                .inflate(R.layout.layout_tool_item, parent, false);
         ToolHolder toolHolder = new ToolHolder(rootView);
         return toolHolder;
     }
@@ -42,8 +38,8 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ToolHolder> {
     @Override
     public void onBindViewHolder(final ToolHolder holder, final int position) {
         holder.tv_tool.setText(items.get(position).getText());
-        new Thread(() -> holder.iv_tool.setImageResource(items.get(position).getResourseId())).start();
-
+        new Thread(() -> holder.iv_tool.setImageResource(items.get(position).getResourseId()))
+                .start();
 
         holder.tv_tool.index = position;
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +67,7 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ToolHolder> {
     }
 
     public class ToolHolder extends RecyclerView.ViewHolder {
+
         public ImageView iv_tool;
         public DebugTextView tv_tool;
         public View itemView;
@@ -84,6 +81,7 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ToolHolder> {
     }
 
     public interface OnItemClickListener {
+
         public void onItemClick(int position, View itemView);
     }
 

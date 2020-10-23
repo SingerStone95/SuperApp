@@ -23,7 +23,7 @@
             android:layout_marginLeft="10dp"
             >
 
-            <android.support.v4.widget.CircleImageView
+            <androidx.core.widget.CircleImageView
                 android:id="@+id/iv_pk_head_us_4"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
@@ -55,7 +55,7 @@
             android:layout_marginLeft="10dp"
             >
 
-            <android.support.v4.widget.CircleImageView
+            <androidx.core.widget.CircleImageView
                 android:id="@+id/iv_pk_head_us_3"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
@@ -87,7 +87,7 @@
             android:layout_marginLeft="10dp"
             >
 
-            <android.support.v4.widget.CircleImageView
+            <androidx.core.widget.CircleImageView
                 android:id="@+id/iv_pk_head_us_2"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
@@ -118,7 +118,7 @@
             android:layout_marginLeft="10dp"
             >
 
-            <android.support.v4.widget.CircleImageView
+            <androidx.core.widget.CircleImageView
                 android:id="@+id/iv_pk_head_us_1"
                 android:layout_width="33dp"
                 android:layout_height="33dp"
@@ -160,7 +160,7 @@
             android:layout_marginRight="10dp"
             >
 
-            <android.support.v4.widget.CircleImageView
+            <androidx.core.widget.CircleImageView
                 android:id="@+id/iv_pk_head_them_1"
                 android:layout_width="33dp"
                 android:layout_height="33dp"
@@ -192,7 +192,7 @@
 
             >
 
-            <android.support.v4.widget.CircleImageView
+            <androidx.core.widget.CircleImageView
                 android:id="@+id/iv_pk_head_them_2"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
@@ -223,7 +223,7 @@
             android:layout_marginRight="10dp"
             >
 
-            <android.support.v4.widget.CircleImageView
+            <androidx.core.widget.CircleImageView
                 android:id="@+id/iv_pk_head_them_3"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
@@ -254,7 +254,7 @@
             android:layout_marginRight="10dp"
             >
 
-            <android.support.v4.widget.CircleImageView
+            <androidx.core.widget.CircleImageView
                 android:id="@+id/iv_pk_head_them_4"
                 android:layout_width="28dp"
                 android:layout_height="28dp"

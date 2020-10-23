@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.Nullable;
 import android.text.Layout;
 import android.text.Selection;
 import android.text.Spannable;
@@ -12,9 +11,11 @@ import android.text.style.ClickableSpan;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
 
 
-public class FeedTouchTextView extends android.support.v7.widget.AppCompatTextView {
+public class FeedTouchTextView extends AppCompatTextView {
 
     private Spannable mSpannable;
 
