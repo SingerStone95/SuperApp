@@ -92,7 +92,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         initData();
         initView(view);
         L.i(getTotalRam(getActivity()));
-        Log.d("yogachen","debug");
+        Log.d("yogachen", "debug");
         return view;
     }
 
@@ -121,6 +121,8 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1,
                 RecyclerView.VERTICAL, false);
         //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        rv_tools = view.findViewById(R.id.rv_tools);
+
         rv_tools.setLayoutManager(layoutManager);
         toolAdapter = new ToolAdapter(getActivity(), items);
         rv_tools.setAdapter(toolAdapter);// 第二个参数
@@ -223,6 +225,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
             }
         });
         rv_tools.addOnScrollListener(scrollListener);
+        btnTest=view.findViewById(R.id.btn_test);
         btnTest.setOnClickListener(v -> rv_tools.scrollToPosition(position + 3));
     }
 
