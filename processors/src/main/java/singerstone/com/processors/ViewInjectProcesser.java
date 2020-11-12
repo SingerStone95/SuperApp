@@ -1,8 +1,8 @@
 package singerstone.com.processors;
 
 
-import com.google.auto.service.AutoService;
 
+import com.google.auto.service.AutoService;
 import java.io.IOException;
 import java.util.LinkedHashSet;
 import java.util.Map;

@@ -2,9 +2,10 @@ apply plugin: 'java-library'
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':annotations')
-    compile 'com.google.auto.service:auto-service:1.0-rc2'
-    compile 'com.squareup:javapoet:1.7.0'
+    api project(':annotations')
+    api 'com.google.auto.service:auto-service:1.0-rc6'
+    annotationProcessor "com.google.auto.service:auto-service:1.0-rc6"
+    api 'com.squareup:javapoet:1.10.0'
 }
 
 sourceCompatibility = "1.7"

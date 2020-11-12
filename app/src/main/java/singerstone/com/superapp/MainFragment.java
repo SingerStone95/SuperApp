@@ -15,19 +15,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
-
 import singerstone.com.annotations.BindView;
 import singerstone.com.inject.ViewInject;
 import singerstone.com.superapp.Accessbility.AccessbilityFragmrnt;
@@ -46,7 +43,6 @@ import singerstone.com.superapp.like.LikeViewFragment;
 import singerstone.com.superapp.log.AppLog;
 import singerstone.com.superapp.log.LogConfig;
 import singerstone.com.superapp.log.LogUtil;
-import singerstone.com.superapp.ndkinterface.NdkInterface;
 import singerstone.com.superapp.ndktest.NDKFragment;
 import singerstone.com.superapp.opengl.OpenGlFragment;
 import singerstone.com.superapp.qqlive.QQLiveTestFragment;
@@ -121,7 +117,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1,
                 RecyclerView.VERTICAL, false);
         //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        rv_tools = view.findViewById(R.id.rv_tools);
+        //rv_tools = view.findViewById(R.id.rv_tools);
 
         rv_tools.setLayoutManager(layoutManager);
         toolAdapter = new ToolAdapter(getActivity(), items);
@@ -225,7 +221,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
             }
         });
         rv_tools.addOnScrollListener(scrollListener);
-        btnTest=view.findViewById(R.id.btn_test);
+        // btnTest=view.findViewById(R.id.btn_test);
         btnTest.setOnClickListener(v -> rv_tools.scrollToPosition(position + 3));
     }
 
