@@ -42,7 +42,27 @@ JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterfac
 
     return (*env)->NewStringUTF(env, "创建一个 malloc OOM 3");
 }
+JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterface_genMallocOOMVM(JNIEnv *env, jclass jz)
+{
+    for (int i = 0; i < 200; i++)
+    {
+        char *p = (char *)malloc(1024 * 1024 * sizeof(char));
+        if (p == NULL)
+        {
+            __android_log_print(ANDROID_LOG_ERROR, "yogachen", "malloc failed!");
+        }
+        else
+        {
+            __android_log_print(ANDROID_LOG_ERROR, "yogachen", "malloc success %d!", (int)p);
+        }
+    }
 
+    //free(p);
+
+    __android_log_print(ANDROID_LOG_ERROR, "yogachen", "code is run here");
+
+    return (*env)->NewStringUTF(env, "创建一个 malloc OOM 3");
+}
 JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterface_genMmapOOM(JNIEnv *env, jclass jz)
 {
 

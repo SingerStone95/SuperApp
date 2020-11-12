@@ -12,6 +12,8 @@ public class NdkInterface {
 
     public static native String genMallocOOM();
 
+    public static native String genMallocOOMVM();
+
     public static native String genMmapOOM();
 
 }

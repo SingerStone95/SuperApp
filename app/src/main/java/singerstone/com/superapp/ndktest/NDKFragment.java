@@ -44,11 +44,18 @@ public class NDKFragment extends BaseFragment {
                                 , Toast.LENGTH_SHORT).show();
                     }
                 });
-        view.findViewById(R.id.btn_malloc_oom)
+        view.findViewById(R.id.btn_malloc_pss_oom)
                 .setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         NdkInterface.genMallocOOM();
+                    }
+                });
+        view.findViewById(R.id.btn_malloc_vm_oom)
+                .setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        NdkInterface.genMallocOOMVM();
                     }
                 });
         view.findViewById(R.id.btn_mmap_oom)

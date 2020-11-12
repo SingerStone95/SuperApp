@@ -12,11 +12,19 @@
         android:text="genNativeCrash" />
 
     <Button
-        android:id="@+id/btn_malloc_oom"
+        android:id="@+id/btn_malloc_pss_oom"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="genMallocOOM" />
+        android:text="genMallocOOM_PSS" />
+
+    <Button
+        android:id="@+id/btn_malloc_vm_oom"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="genMapOOM_VM" />
+
 
     <Button
         android:id="@+id/btn_mmap_oom"
