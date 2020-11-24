@@ -9,6 +9,7 @@ android {
         targetSdkVersion 27
         buildToolsVersion '27.0.0'
         versionCode 1
+        multiDexEnabled true
         versionName "1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         ndk {
@@ -142,16 +143,16 @@ project.tasks.whenTaskAdded { Task theTask ->
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    api 'androidx.recyclerview:recyclerview:1.0.0'
-    api 'androidx.appcompat:appcompat:1.0.0'
+    api 'androidx.recyclerview:recyclerview:1.1.0'
+    api 'androidx.appcompat:appcompat:1.2.0'
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api 'com.squareup.retrofit2:retrofit:2.8.1'
     api 'com.squareup.retrofit2:converter-gson:2.8.1'
     api 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
     api 'com.squareup.okhttp3:okhttp:3.14.7'
     api 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-    api 'io.reactivex.rxjava2:rxjava:2.1.5'
-    api 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    api 'io.reactivex.rxjava2:rxjava:2.2.10'
+    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
     api 'androidx.appcompat:appcompat:1.2.0'
     api 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
     api 'com.github.bumptech.glide:glide:4.9.0'
@@ -163,7 +164,7 @@ dependencies {
     annotationProcessor project(':processors')
     //api project(path: ':inject', configuration: 'default')
     api project(':inject')
-    api 'com.android.tools.build:gradle:4.0.2'
+    compileOnly 'com.android.tools.build:gradle:4.0.2'
     if (ENABLE_MAVEN_LOCAL) {
         api 'com.tencent.mtt:toolpluginsApi:0.0.1-SNAPSHOT'
     }
