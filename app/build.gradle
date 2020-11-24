@@ -164,7 +164,8 @@ dependencies {
     annotationProcessor project(':processors')
     //api project(path: ':inject', configuration: 'default')
     api project(':inject')
-    compileOnly 'com.android.tools.build:gradle:4.0.2'
+    compileOnly 'com.android.tools.build:gradle:3.1.4'
+    //compileOnly 'com.android.tools.build:gradle:4.0.2'
     if (ENABLE_MAVEN_LOCAL) {
         api 'com.tencent.mtt:toolpluginsApi:0.0.1-SNAPSHOT'
     }
