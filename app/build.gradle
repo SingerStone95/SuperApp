@@ -163,7 +163,17 @@ dependencies {
     annotationProcessor project(':processors')
     //api project(path: ':inject', configuration: 'default')
     api project(':inject')
+    api 'com.android.tools.build:gradle:4.0.2'
+    if (ENABLE_MAVEN_LOCAL) {
+        api 'com.tencent.mtt:toolpluginsApi:0.0.1-SNAPSHOT'
+    }
 }
 repositories {
     mavenCentral()
+}
+if (ENABLE_MAVEN_LOCAL) {
+    apply plugin: 'com.tencent.mtt.toolplugins'
+    systrace {
+        enable = true
+    }
 }

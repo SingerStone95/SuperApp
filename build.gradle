@@ -22,6 +22,9 @@ buildscript { //脚本的配置
         classpath "com.github.dcendents:android-maven-gradle-plugin:1.5"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+        if (ENABLE_MAVEN_LOCAL) {
+            classpath 'com.tencent.mtt:toolplugins:0.0.1-SNAPSHOT'
+        }
         classpath ('com.tencent.tinker:tinker-patch-gradle-plugin:1.9.1')
         //classpath 'com.singerstone.plugin:supergradle:1.0.0'
       //  classpath ("com.geektime.systrace:systrace-gradle-plugin:1.0") { changing = true }
@@ -36,6 +39,7 @@ allprojects { //项目的配置
             url uri("$rootDir/MavenLocal")
 
         }
+        mavenLocal()
         mavenCentral()
         google()
         jcenter()
