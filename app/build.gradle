@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-//apply plugin: 'com.singerstone.supergradle'
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -14,6 +13,11 @@ android {
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         ndk {
             abiFilters 'armeabi-v7a'
+        }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
         }
     }
 
@@ -178,4 +182,7 @@ if (ENABLE_MAVEN_LOCAL) {
     systrace {
         enable = true
     }
+}
+if (ENABLE_SUPERPLUGIN) {
+    apply plugin: 'com.singerstone.supergradle'
 }
