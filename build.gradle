@@ -23,7 +23,7 @@ buildscript { //脚本的配置
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'me.tatarka:gradle-retrolambda:3.2.5'
         if (ENABLE_MAVEN_LOCAL) {
-            classpath 'com.tencent.mtt:toolplugins:0.0.1-SNAPSHOT'
+            classpath 'com.tencent.mtt:toolplugins:0.0.2-SNAPSHOT'
         }
         classpath('com.tencent.tinker:tinker-patch-gradle-plugin:1.9.1')
         if (ENABLE_SUPERPLUGIN) {
