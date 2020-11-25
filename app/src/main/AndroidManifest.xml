@@ -23,8 +23,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/laboratory"
         android:supportsRtl="true"
-        android:debuggable="true"
         android:theme="@style/SupperAppTheme">
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="YOGACHEN_TEST" />
+        <meta-data
+            android:name="xposedminversion"
+            android:value="30" />
         <activity
             android:name=".MainActivity"
             android:hardwareAccelerated="true"

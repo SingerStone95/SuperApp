@@ -52,6 +52,7 @@ import singerstone.com.superapp.treeholeview.TreeholeViewFragment;
 import singerstone.com.superapp.upcoming.UpComingFragment;
 import singerstone.com.superapp.utils.L;
 import singerstone.com.superapp.waveeffect.WaveFragment;
+import singerstone.com.superapp.xposed.XposedFragment;
 
 /**
  * Created by chenbinhao on 2017/7/5. YY:909075276
@@ -216,6 +217,9 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
                 case 20:
                     ((MainActivity) getActivity())
                             .setFragmentAddToBackStack(UpComingFragment.newInstance());
+                case 21:
+                    ((MainActivity) getActivity())
+                            .setFragmentAddToBackStack(XposedFragment.newInstance());
                 default:
                     break;
             }
@@ -253,6 +257,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         items.add(new ToolItem(R.drawable.default_tool, "腾讯视频测试" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "XLog测试" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "即将上映demo" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "Xposed测试" + index++));
     }
 
     private RecyclerView.OnScrollListener scrollListener = new RecyclerView.OnScrollListener() {

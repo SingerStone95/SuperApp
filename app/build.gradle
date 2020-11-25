@@ -173,6 +173,9 @@ dependencies {
     if (ENABLE_MAVEN_LOCAL) {
         api 'com.tencent.mtt:toolpluginsApi:0.0.1-SNAPSHOT'
     }
+    //xposed
+    compileOnly 'de.robv.android.xposed:api:82'
+    compileOnly 'de.robv.android.xposed:api:82:sources'
 }
 repositories {
     mavenCentral()
