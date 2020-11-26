@@ -19,7 +19,7 @@ public class MttHookSet implements IMethodHook {
     private List<IMethodHook> methodHooks = new ArrayList<>();
 
     public MttHookSet(ClassLoader classLoader) {
-        registerMemRecordMethodHooks(classLoader);
+       // registerMemRecordMethodHooks(classLoader);
         registerKillProcessMethodHooks(classLoader);
 
     }
