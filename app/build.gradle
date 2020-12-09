@@ -170,7 +170,7 @@ dependencies {
     api project(':inject')
     compileOnly 'com.android.tools.build:gradle:3.1.4'
     //compileOnly 'com.android.tools.build:gradle:4.0.2'
-    if (ENABLE_MAVEN_LOCAL) {
+    if (enable_maven_local) {
         api 'com.tencent.mtt:toolpluginsApi:0.0.1-SNAPSHOT'
     }
     //xposed
@@ -180,12 +180,12 @@ dependencies {
 repositories {
     mavenCentral()
 }
-if (ENABLE_MAVEN_LOCAL) {
+if (ENABLE_MAVEN_LOCAL == true) {
     apply plugin: 'com.tencent.mtt.toolplugins'
     systrace {
         enable = true
     }
 }
-if (ENABLE_SUPERPLUGIN) {
+if (ENABLE_SUPERPLUGIN == true) {
     apply plugin: 'com.singerstone.supergradle'
 }

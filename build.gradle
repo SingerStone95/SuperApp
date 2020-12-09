@@ -2,6 +2,13 @@
 
 buildscript { //脚本的配置
     ext.kotlin_version = KOTLIN_VERSION
+    ext.enable_maven_local = ENABLE_MAVEN_LOCAL
+    ext.enable_supergradle = ENABLE_SUPERPLUGIN
+
+    println("kotlin_version=" + enable_maven_local)
+    println("enable_supergradle=" + enable_supergradle)
+    println("kotlin_version=" + kotlin_version)
+
     repositories {
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
@@ -22,7 +29,7 @@ buildscript { //脚本的配置
         classpath "com.github.dcendents:android-maven-gradle-plugin:1.5"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'me.tatarka:gradle-retrolambda:3.2.5'
-        if (ENABLE_MAVEN_LOCAL) {
+        if (ENABLE_MAVEN_LOCAL == true) {
             classpath 'com.tencent.mtt:toolplugins:0.0.2-SNAPSHOT'
         }
         classpath('com.tencent.tinker:tinker-patch-gradle-plugin:1.9.1')
