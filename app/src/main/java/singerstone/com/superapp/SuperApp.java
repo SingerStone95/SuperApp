@@ -66,7 +66,8 @@ public class SuperApp extends Application {
                 if (handler != null) {
                     Field fieldCallback = Handler.class.getDeclaredField("mCallback");
                     fieldCallback.setAccessible(true);
-                    ActivityThreadHCallBack activityThreadHCallBack = new ActivityThreadHCallBack();
+                    Handler.Callback oldCallBack = (Handler.Callback) fieldCallback.get(handler);
+                    ActivityThreadHCallBack activityThreadHCallBack = new ActivityThreadHCallBack(oldCallBack);
                     fieldCallback.set(handler, activityThreadHCallBack);
                 }
             }
@@ -83,6 +84,11 @@ public class SuperApp extends Application {
         private static final int SLEEPING = 137;
         private static final int STOP_ACTIVITY_SHOW = 103;
         private static final int STOP_ACTIVITY_HIDE = 104;
+        private Handler.Callback mCallback;
+
+        public ActivityThreadHCallBack(Handler.Callback oldCallBack) {
+            mCallback = oldCallBack;
+        }
 
 
         public boolean handleMessage(Message msg) {
@@ -101,6 +107,9 @@ public class SuperApp extends Application {
                 case STOP_ACTIVITY_HIDE:
                     SpBlockHelper.beforeSPBlock("STOP_ACTIVITY");
                     break;
+            }
+            if (mCallback != null) {
+                return mCallback.handleMessage(msg);
             }
             return false;
         }
