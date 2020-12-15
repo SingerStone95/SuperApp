@@ -170,8 +170,8 @@ dependencies {
     api project(':inject')
     compileOnly 'com.android.tools.build:gradle:3.1.4'
     //compileOnly 'com.android.tools.build:gradle:4.0.2'
-    if (enable_maven_local) {
-        api 'com.tencent.mtt:toolpluginsApi:0.0.1-SNAPSHOT'
+    if (enable_maven_local == true) {
+        api 'com.tencent.mtt:toolpluginsApi:' + TOOL_PLUGIN_VERSION
     }
     //xposed
     compileOnly 'de.robv.android.xposed:api:82'
