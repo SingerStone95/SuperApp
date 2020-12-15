@@ -5,7 +5,7 @@ buildscript { //脚本的配置
     ext.enable_maven_local = ENABLE_MAVEN_LOCAL
     ext.enable_supergradle = ENABLE_SUPERPLUGIN
 
-    println("kotlin_version=" + enable_maven_local)
+    println("kotlin_version=" + kotlin_version)
     println("enable_supergradle=" + enable_supergradle)
     println("kotlin_version=" + kotlin_version)
 
@@ -25,15 +25,17 @@ buildscript { //脚本的配置
         // google()
     }
     dependencies {
+        println("ENABLE_MAVEN_LOCAL=" + ENABLE_MAVEN_LOCAL)
         classpath 'com.android.tools.build:gradle:' + BUILD_TOOL_VERSION
         classpath "com.github.dcendents:android-maven-gradle-plugin:1.5"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'me.tatarka:gradle-retrolambda:3.2.5'
-        if (ENABLE_MAVEN_LOCAL == true) {
+        if (ENABLE_MAVEN_LOCAL == 'true') {
+            println("ENABLE_MAVEN_LOCAL^=" + ENABLE_MAVEN_LOCAL)
             classpath 'com.tencent.mtt:toolplugins:' + TOOL_PLUGIN_VERSION
         }
         classpath('com.tencent.tinker:tinker-patch-gradle-plugin:1.9.1')
-        if (ENABLE_SUPERPLUGIN) {
+        if (ENABLE_SUPERPLUGIN == 'true') {
             classpath 'com.singerstone.plugin:supergradle:1.0.0'
         }
 

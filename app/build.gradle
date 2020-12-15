@@ -180,12 +180,12 @@ dependencies {
 repositories {
     mavenCentral()
 }
-if (ENABLE_MAVEN_LOCAL == true) {
+if (ENABLE_MAVEN_LOCAL == 'true') {
     apply plugin: 'com.tencent.mtt.toolplugins'
     systrace {
         enable = true
     }
 }
-if (ENABLE_SUPERPLUGIN == true) {
+if (ENABLE_SUPERPLUGIN == 'true') {
     apply plugin: 'com.singerstone.supergradle'
 }
