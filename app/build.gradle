@@ -170,7 +170,7 @@ dependencies {
     api project(':inject')
     compileOnly 'com.android.tools.build:gradle:3.1.4'
     //compileOnly 'com.android.tools.build:gradle:4.0.2'
-    if (enable_maven_local == true) {
+    if (enable_maven_local == 'true') {
         api 'com.tencent.mtt:toolpluginsApi:' + TOOL_PLUGIN_VERSION
     }
     //xposed
@@ -184,6 +184,10 @@ if (ENABLE_MAVEN_LOCAL == 'true') {
     apply plugin: 'com.tencent.mtt.toolplugins'
     systrace {
         enable = true
+        mode = "white"
+        baseMethodMapFile = "${project.buildDir}/systrace_output/Debug.methodmap"
+        blackListFile = "${project.projectDir}/systrace/blackMethodList.txt"
+        //whiteListFile = "${project.projectDir}/systrace/whiteMethodList.txt"
     }
 }
 if (ENABLE_SUPERPLUGIN == 'true') {

@@ -1,9 +1,0 @@
-[package]
-# 可以将某个class加入白名单中
-#-keepclass com/sample/systrace/TestIgnoreFile
--keepclass singerstone/com/superapp/trace/TraceTag
-# 可以将某个package加入白名单中
-#-keeppackage com/sample/systrace/
-#-keeppackage com/squareup/
-#-keeppackage io/reactivex/
-#-keeppackage singerstone/com/
