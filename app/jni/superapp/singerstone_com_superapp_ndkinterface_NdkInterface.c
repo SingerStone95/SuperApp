@@ -6,6 +6,8 @@
 #include <android/log.h>
 #include <sys/mman.h>
 #include <string.h>
+#include <unistd.h>
+#include <time.h>
 #include "singerstone_com_superapp_ndkinterface_NdkInterface.h"
 
 JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterface_getServiceName(JNIEnv *env, jclass jz)
@@ -22,21 +24,31 @@ JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterfac
 
 JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterface_genMallocOOM(JNIEnv *env, jclass jz)
 {
-    for (int i = 0; i < 200; i++)
+    char* ps[2000];
+    int n;
+     n = rand()%100 + 1;
+      __android_log_print(ANDROID_LOG_ERROR,"yogachen", "random=%d", n);
+    for (int i = 0; i < 2000; i++)
     {
-        char *p = (char *)malloc(1024 * 1024 * sizeof(char));
-        if (p == NULL)
+
+        ps[i] = (char *)malloc(n*1024 * sizeof(char));
+        if (ps[i] == NULL)
         {
             __android_log_print(ANDROID_LOG_ERROR, "yogachen", "malloc failed!");
         }
         else
         {
-            __android_log_print(ANDROID_LOG_ERROR, "yogachen", "malloc success %d!", (int)p);
-            memset(p, 0, sizeof(char) * 1024 * 1024);
+            __android_log_print(ANDROID_LOG_ERROR, "yogachen", "malloc success %d!", (int)ps[i]);
+            memset(ps[i], 0, sizeof(char) * n*1024);
         }
+
+    }
+     sleep(1);
+    for(int i=0;i<2000;i++){
+    free(ps[i]);
     }
 
-    //free(p);
+
 
     __android_log_print(ANDROID_LOG_ERROR, "yogachen", "code is run here");
 
@@ -55,9 +67,10 @@ JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterfac
         {
             __android_log_print(ANDROID_LOG_ERROR, "yogachen", "malloc success %d!", (int)p);
         }
+        free(p);
     }
 
-    //free(p);
+
 
     __android_log_print(ANDROID_LOG_ERROR, "yogachen", "code is run here");
 

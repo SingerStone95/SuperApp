@@ -9,6 +9,9 @@ dependencies {
     implementation "org.powermock:powermock-module-junit4-rule:1.7.3"
     implementation "org.powermock:powermock-api-mockito2:1.7.3" //注意这里是mockito2
     implementation "org.powermock:powermock-classloading-xstream:1.7.3"
+
+    implementation 'org.ow2.asm:asm:6.0'
+    implementation 'org.ow2.asm:asm-commons:6.0'
 }
 
 tasks.withType(JavaCompile) {

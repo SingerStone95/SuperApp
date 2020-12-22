@@ -1,5 +1,5 @@
 [package]
 -keeppackage singerstone.com.superapp.BezierPaopao
--keeppackage leakcanary
+-keeppackage com.tencent.mtt
 [class]
 -keepclass singerstone.com.superapp.SuperApp
