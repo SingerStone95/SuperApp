@@ -3,7 +3,11 @@ package singerstone.com.superapp
 import android.app.Activity
 import android.os.Bundle
 import android.widget.Toast
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import singerstone.com.superapp.utils.L
+import javax.xml.bind.JAXBElement
 
 class KotlinActivity : Activity() {
 
@@ -15,7 +19,10 @@ class KotlinActivity : Activity() {
         val length:Int?=str?.length
         val xx:Boolean= length?:0>0
         L.i("$xx")
-
+        GlobalScope.launch {
+            delay(1000)
+            println("Hello")
+        }
 
     }
 
