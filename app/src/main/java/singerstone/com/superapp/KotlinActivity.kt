@@ -7,7 +7,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import singerstone.com.superapp.utils.L
-import javax.xml.bind.JAXBElement
 
 class KotlinActivity : Activity() {
 
@@ -16,8 +15,8 @@ class KotlinActivity : Activity() {
         setContentView(R.layout.activity_kotlin)
         showToast("hello")
         val str: String? = null
-        val length:Int?=str?.length
-        val xx:Boolean= length?:0>0
+        val length: Int? = str?.length
+        val xx: Boolean = length ?: 0 > 0
         L.i("$xx")
         GlobalScope.launch {
             delay(1000)

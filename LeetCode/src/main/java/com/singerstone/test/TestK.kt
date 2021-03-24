@@ -10,16 +10,18 @@ class TestK {
         fun main(args: Array<String>) {
             var testK = TestK()
             val scope = MainScope()
+            var beforeTime = System.currentTimeMillis()
             // 2. 启动协程
             scope.launch(Dispatchers.Unconfined) {
                 val one = async { testK.getResult(1000) }
                 val two = async { testK.getResult(2000) }
                 var before = System.currentTimeMillis()
-                //one.await()
+                one.await()
                 two.await()
-                System.out.println((System.currentTimeMillis() - before).toString() + "ms")
+                println("1->" + (System.currentTimeMillis() - before).toString() + "ms")
             }
             //保证程序不退出
+            println("2->" + (System.currentTimeMillis() - beforeTime).toString() + "ms")
             sleep(4000)
 
         }
@@ -27,7 +29,11 @@ class TestK {
     }
 
     private suspend fun getResult(delayT: Long): Int {
-        delay(delayT)
+        withContext(Dispatchers.IO) {
+            sleep(delayT)
+        }
+//        sleep(delayT)
+
         return 0
     }
 
