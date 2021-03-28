@@ -1,4 +1,6 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+ext {
+    sourceCompatibility = "1.8"
+}// Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript { //脚本的配置
     ext.kotlin_version = KOTLIN_VERSION

@@ -18,7 +18,7 @@ import singerstone.com.superapp.R;
 public class DialogItemAdapter extends RecyclerView.Adapter<DialogItemAdapter.DialogItemViewHolder> {
 
 
-    private List<IDialogItem> mItems = new ArrayList<>();
+    private List<IDialogItem> mItems = new ArrayList<IDialogItem>();
     private Context mContext;
     private OnItemClickListener mListener;
 

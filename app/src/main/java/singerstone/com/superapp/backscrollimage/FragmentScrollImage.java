@@ -40,7 +40,7 @@ public class FragmentScrollImage extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_scroll_image, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.id_recyclerview);
 
-        List<String> mockDatas = new ArrayList<>();
+        List<String> mockDatas = new ArrayList<String>();
         for (int i = 0; i < 14; i++) {
             mockDatas.add(i + "");
         }
