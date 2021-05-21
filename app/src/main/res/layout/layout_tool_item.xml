@@ -28,15 +28,15 @@
             android:layout_centerInParent="true"
             android:textSize="31dp" />
 
-        <TextView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="12dp"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
-            android:text="https://"
             android:gravity="center|top"
             android:layout_centerHorizontal="true"
-            android:background="@color/white"
+            android:src="@drawable/https_no_bkg"
+            android:background="@drawable/shape_fastcut_tag_bkg"
             android:textSize="9dp" />
 
     </RelativeLayout>

@@ -176,6 +176,7 @@ dependencies {
     if (enable_maven_local == 'true') {
         api 'com.tencent.mtt:toolpluginsApi:' + TOOL_PLUGIN_VERSION
     }
+    implementation "androidx.cardview:cardview:1.0.0"
     //xposed
     compileOnly 'de.robv.android.xposed:api:82'
     compileOnly 'de.robv.android.xposed:api:82:sources'
