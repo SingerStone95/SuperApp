@@ -46,6 +46,7 @@ import singerstone.com.superapp.log.LogUtil;
 import singerstone.com.superapp.ndktest.NDKFragment;
 import singerstone.com.superapp.opengl.OpenGlFragment;
 import singerstone.com.superapp.qqlive.QQLiveTestFragment;
+import singerstone.com.superapp.scroller.ScrollerFragment;
 import singerstone.com.superapp.socketretrofit.Singerstone;
 import singerstone.com.superapp.socketretrofit.SocketService;
 import singerstone.com.superapp.treeholeview.TreeholeViewFragment;
@@ -117,7 +118,8 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         ViewInject.inject(this, view);
         final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 1,
                 RecyclerView.VERTICAL, false);
-        //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        //LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,
+        // false);
         //rv_tools = view.findViewById(R.id.rv_tools);
 
         rv_tools.setLayoutManager(layoutManager);
@@ -220,6 +222,9 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
                 case 21:
                     ((MainActivity) getActivity())
                             .setFragmentAddToBackStack(XposedFragment.newInstance());
+                case 22:
+                    ((MainActivity) getActivity())
+                            .setFragmentAddToBackStack(ScrollerFragment.newInstance());
                 default:
                     break;
             }
@@ -258,6 +263,7 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         items.add(new ToolItem(R.drawable.default_tool, "XLog测试" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "即将上映demo" + index++));
         items.add(new ToolItem(R.drawable.default_tool, "Xposed测试" + index++));
+        items.add(new ToolItem(R.drawable.default_tool, "Fling Scroller测试" + index++));
     }
 
     private RecyclerView.OnScrollListener scrollListener = new RecyclerView.OnScrollListener() {

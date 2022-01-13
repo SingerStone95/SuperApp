@@ -8,6 +8,18 @@ class TestK {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
+            val list= mutableListOf<String>()
+
+            list.add("1")
+            list.add("2")
+
+            list.map {
+                it+"124"
+            }.forEach {
+                print(it)
+            }
+//            print(list)
+
             var testK = TestK()
             val scope = MainScope()
             var beforeTime = System.currentTimeMillis()
