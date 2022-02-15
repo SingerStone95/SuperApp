@@ -26,6 +26,7 @@ public class AutoClassVisitor extends ClassVisitor {
     private String mClassName
     private String mSuperName
     private String[] mInterfaces
+    //本质上是一个ClassWriter
     private ClassVisitor classVisitor
 
     AutoClassVisitor(final ClassVisitor classVisitor) {

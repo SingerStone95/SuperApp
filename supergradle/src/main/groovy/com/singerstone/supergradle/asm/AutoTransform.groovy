@@ -100,9 +100,12 @@ public class AutoTransform extends Transform {
                                 modifyMap.put(classFile.absolutePath.replace(srcDir.absolutePath, ""), modified)
                             }
                     }
+                    /*
+                     * 1.先全部拷贝过去 2.然后拷贝修改过的类，发现重复了，就删除原来拷贝的那个类
+                     */
                     FileUtils.copyDirectory(srcDir, dest)
                     //build\intermediates\transforms\AutoTrack\debug\folders\1\1\bbe24caec6165e3b53aef7fbf19549514e15f422
-                    modifyMap.entrySet().each {
+                    modifyMap.entrySet().each { //这里面放的是 temp 文件夹中修改后的类
                         Map.Entry<String, File> en ->
                             File target = new File(dest.absolutePath + en.getKey())
 //                            Logger.info(target.getAbsolutePath())

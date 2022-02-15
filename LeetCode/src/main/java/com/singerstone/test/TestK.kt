@@ -1,7 +1,6 @@
 package com.singerstone.test
 
 import kotlinx.coroutines.*
-import java.lang.Thread.sleep
 
 class TestK {
 
@@ -21,20 +20,19 @@ class TestK {
 //            print(list)
 
             var testK = TestK()
-            val scope = MainScope()
             var beforeTime = System.currentTimeMillis()
             // 2. 启动协程
-            scope.launch(Dispatchers.Unconfined) {
+            runBlocking {
                 val one = async { testK.getResult(1000) }
                 val two = async { testK.getResult(2000) }
                 var before = System.currentTimeMillis()
                 one.await()
                 two.await()
                 println("1->" + (System.currentTimeMillis() - before).toString() + "ms")
+                
             }
             //保证程序不退出
             println("2->" + (System.currentTimeMillis() - beforeTime).toString() + "ms")
-            sleep(4000)
 
         }
 
@@ -42,10 +40,8 @@ class TestK {
 
     private suspend fun getResult(delayT: Long): Int {
         withContext(Dispatchers.IO) {
-            sleep(delayT)
+            delay(delayT)
         }
-//        sleep(delayT)
-
         return 0
     }
 

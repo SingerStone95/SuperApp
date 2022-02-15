@@ -17,7 +17,13 @@ public class AutoMatchUtil {
                 className.contains('R2$') ||
                 className.endsWith('R') ||
                 className.endsWith('R2') ||
-                className.endsWith('BuildConfig')) {
+                className.endsWith('BuildConfig') ||
+                className.startsWith("kotlin") ||
+                className.startsWith("kotlinx") ||
+                className.startsWith("retrofit2") ||
+                className.startsWith("okhttp3") ||
+                className.startsWith("io/reactivex")||
+                className.startsWith("androidx")) {
             return false
         }
 
