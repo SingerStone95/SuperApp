@@ -1,7 +1,14 @@
 package com.singerstone.test
 
+import com.singerstone.cas.SleepUtil
 import kotlinx.coroutines.*
+import kotlin.concurrent.thread
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 
+/**
+ * 协程的测试写这里
+ */
 class TestK {
 
     companion object {
@@ -13,36 +20,65 @@ class TestK {
             list.add("2")
 
             list.map {
-                it+"124"
+                it + "124"
             }.forEach {
-                print(it)
+                println(it)
             }
-//            print(list)
+
 
             var testK = TestK()
             var beforeTime = System.currentTimeMillis()
             // 2. 启动协程
             runBlocking {
-                val one = async { testK.getResult(1000) }
-                val two = async { testK.getResult(2000) }
+                val one = async() { testK.getResult(1000) }
+                val two = async { testK.getResult(500) }
+                var three = async { testK.reqNetWorkSync() }
                 var before = System.currentTimeMillis()
-                one.await()
-                two.await()
+                println(one.await())
+                println(two.await())
+                println(three.await())
                 println("1->" + (System.currentTimeMillis() - before).toString() + "ms")
-                
             }
-            //保证程序不退出
-            println("2->" + (System.currentTimeMillis() - beforeTime).toString() + "ms")
+
 
         }
 
     }
 
-    private suspend fun getResult(delayT: Long): Int {
-        withContext(Dispatchers.IO) {
-            delay(delayT)
+    private fun reqNetWork(callBack: CallBack) {
+        thread {
+            SleepUtil.sleep(2000)
+            callBack.onFailure()
         }
-        return 0
+
     }
 
+    private suspend fun reqNetWorkSync(): Int {
+        var result = suspendCancellableCoroutine<Int> {
+            reqNetWork(object : CallBack {
+                override fun onSuccess() {
+                    it.resume(0)
+                }
+
+                override fun onFailure() {
+                    it.resumeWithException(RuntimeException("exception"))
+                }
+
+            })
+        }
+        println("reqNetWorkSync end")
+        return result
+    }
+
+    private suspend fun getResult(delayT: Long) = withContext(Dispatchers.IO) {
+        delay(delayT)
+        println("getResult $delayT")
+        return@withContext delayT
+    }
+
+
+    interface CallBack {
+        fun onSuccess()
+        fun onFailure()
+    }
 }
