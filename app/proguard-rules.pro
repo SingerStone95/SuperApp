@@ -60,3 +60,15 @@
 
 #{*;} 内部类
 -keep class singerstone.com.superapp.inke.**{*;}
+
+-dontwarn javax.xml.bind.**
+-dontwarn module-info
+-dontwarn java.lang.management.**
+-dontwarn java.lang.instrument.**
+-dontwarn com.mmc.lamandys.**
+-dontwarn kotlin.**
+-dontwarn kotlin.jvm.**
+-dontwarn com.sun.**
+-dontwarn singerstone.com.superapp.**
+-dontwarn com.google.**
+-dontwarn javassist.**

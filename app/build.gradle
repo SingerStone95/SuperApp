@@ -26,6 +26,10 @@ android {
         sourceCompatibility "1.8"
     }
 
+    packagingOptions {
+        exclude "**/module-info.class"
+    }
+
     // 一定放在buildTypes上面，否则不生效
     signingConfigs {
         debug {
@@ -180,6 +184,7 @@ dependencies {
     //xposed
     compileOnly 'de.robv.android.xposed:api:82'
     compileOnly 'de.robv.android.xposed:api:82:sources'
+    implementation "com.bytedance.btrace:rhea-core:1.0.2"
 }
 repositories {
     mavenCentral()
@@ -196,4 +201,28 @@ if (ENABLE_MAVEN_LOCAL == 'true') {
 }
 if (ENABLE_SUPERPLUGIN == 'true') {
     apply plugin: 'com.singerstone.supergradle'
+}
+
+if (ENABLE_BTRACE == 'true') {
+    apply plugin: 'com.bytedance.rhea-trace'
+    rheaTrace {
+
+        compilation {
+            //为减少 APK 体积, 你可以为 App 中需要跟踪的方法设置 id 以此来跟踪此自定义事件, 默认值 false。
+            traceWithMethodID = false
+            //该文件配置决定哪些方法您不希望跟踪, 默认值 null。
+            traceFilterFilePath = "${project.rootDir}/rhea-trace/traceFilter.txt"
+            //用特指定方法 id 来设置自定义事件名称, 默认值 null。
+            applyMethodMappingFilePath = "${project.rootDir}/rhea-trace/keep-method-id.txt"
+        }
+
+        runtime {
+            //仅在主线程抓取跟踪事件, 默认值 false。
+            mainThreadOnly true
+            //在 App 启动之初开始抓取跟踪事件, 默认值 true。
+            startWhenAppLaunch true
+            //指定内存存储 atrace 数据 ring buffer 的大小。
+            atraceBufferSize "500000"
+        }
+    }
 }

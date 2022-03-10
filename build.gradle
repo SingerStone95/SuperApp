@@ -15,6 +15,7 @@ buildscript { //脚本的配置
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
         mavenLocal()
+        mavenCentral()
         jcenter()
         maven {//本地Maven仓库地址
             url uri("$rootDir/MavenLocal")
@@ -39,6 +40,9 @@ buildscript { //脚本的配置
         classpath('com.tencent.tinker:tinker-patch-gradle-plugin:1.9.1')
         if (ENABLE_SUPERPLUGIN == 'true') {
             classpath 'com.singerstone.plugin:supergradle:1.0.0'
+        }
+        if (ENABLE_BTRACE == 'true') {
+            classpath 'com.bytedance.btrace:rhea-gradle-plugin:1.0.2'
         }
 
     }
@@ -69,5 +73,12 @@ project.tasks.whenTaskAdded { Task theTask ->
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+//根工程文件路径
+println getRootDir().absolutePath
+//build文件地址
+println getBuildDir().absolutePath
+//当前文件根目录
+println getProjectDir().absolutePath
 
 
