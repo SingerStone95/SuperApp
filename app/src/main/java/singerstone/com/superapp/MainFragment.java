@@ -25,6 +25,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import kotlinx.coroutines.CoroutineScope;
 import singerstone.com.annotations.BindView;
 import singerstone.com.inject.ViewInject;
 import singerstone.com.superapp.Accessbility.AccessbilityFragmrnt;

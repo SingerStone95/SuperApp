@@ -10,10 +10,14 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.TextView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import singerstone.com.superapp.R
 import singerstone.com.superapp.base.BaseFragment
 import singerstone.com.superapp.utils.DimentionUtils
 import singerstone.com.superapp.utils.L
+import kotlin.coroutines.CoroutineContext
 
 
 /**
@@ -30,6 +34,9 @@ class OpenGlFragment : BaseFragment(), View.OnClickListener {
         var rootView = inflater?.inflate(R.layout.fragment_layout_opengl, null)
         tv_getScreenWH?.findViewById<TextView>(R.id.tv_getScreenWH)
         lvTest?.findViewById<ListView>(R.id.lvTest)
+        CoroutineScope(Dispatchers.Main).launch() {
+            
+        }
         return rootView
     }
 
