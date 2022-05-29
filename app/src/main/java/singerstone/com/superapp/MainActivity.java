@@ -37,7 +37,7 @@ public class MainActivity extends FragmentActivity implements ILife {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }*/
         setContentView(R.layout.activity_main);
-        setFragment(MainFragment.newInstance());
+        setFragment(MainFragmentKt.newInstance());
         startService(new Intent(MainActivity.this, LiveService.class));
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("one");
