@@ -41,36 +41,7 @@ public class Test {
     }
 
     public static void main(String[] args) {
-
-        X x = getX();
-        x.getClass().isInstance(x);
-        if (x instanceof Y) {
-            System.out.println("yes");
-        }
+       A.test();
     }
 
-    public static X getX() {
-        return new Demo();
-    }
-
-
-    static abstract class X {
-
-        abstract void x();
-    }
-
-   interface Y {
-
-        void y() ;
-    }
-
-    static class Demo extends X {
-
-        @Override
-        public void x() {
-
-        }
-
-
-    }
 }

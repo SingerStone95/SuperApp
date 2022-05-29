@@ -9,7 +9,7 @@ import kotlin.coroutines.resumeWithException
 /**
  * 协程的测试写这里
  */
-class TestK {
+class TestK_协程 {
 
     companion object {
         @JvmStatic
@@ -26,7 +26,7 @@ class TestK {
             }
 
 
-            var testK = TestK()
+            var testK = TestK_协程()
             var beforeTime = System.currentTimeMillis()
             // 2. 启动协程
             runBlocking {
