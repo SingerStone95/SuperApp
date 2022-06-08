@@ -5,7 +5,7 @@ package com.singerstone.test;
  * Created by chenbinhao on 2018/7/12. YY:909075276
  */
 
-public class Test {
+public class Test_类加载死锁 {
 
 
     public static class A {

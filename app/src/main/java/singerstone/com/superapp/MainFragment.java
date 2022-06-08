@@ -363,5 +363,11 @@ public class MainFragment extends BaseFragment implements GestureDetector.OnGest
         L.i("GestureDetector onFling " + velocityX);
         return false;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        L.d(this.toString());
+    }
 }
 
