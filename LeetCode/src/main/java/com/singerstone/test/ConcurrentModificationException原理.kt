@@ -1,6 +1,6 @@
 package com.singerstone.test
 
-class TestK2_ConcurrentModificationException {
+class ConcurrentModificationException原理 {
 
     companion object {
         @JvmStatic
