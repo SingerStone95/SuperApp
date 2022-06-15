@@ -5,14 +5,14 @@ package com.singerstone.cas;
  * YY:909075276
  */
 
-public class Test_无锁链表 {
+public class 无锁链表 {
 
     Stack<Integer> stack = new UnSafeLinkedListStack<>();
     //Stack<Integer> stack = new Stack<>();
 
 
     public static void main(String[] args) {
-        new Test_无锁链表().test();
+        new 无锁链表().test();
     }
 
     public void test() {
