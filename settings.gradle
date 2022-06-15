@@ -1,4 +1,4 @@
-include ':app', ':processors', ':annotations', ':inject', ':supergradle', ':LeetCode', ':antlr4'
+include ':app', ':processors', ':annotations', ':inject', ':supergradle', ':Interview', ':antlr4'
 
 // 1.初始化阶段
 gradle.settingsEvaluated {

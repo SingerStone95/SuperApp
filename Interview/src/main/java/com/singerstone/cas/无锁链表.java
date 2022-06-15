@@ -5,24 +5,26 @@ package com.singerstone.cas;
  * YY:909075276
  */
 
-public class Test_无锁链表 {
+public class 无锁链表 {
 
+//    Stack<Integer> stack = new SafeLinkedListStack<>();
     Stack<Integer> stack = new UnSafeLinkedListStack<>();
-    //Stack<Integer> stack = new Stack<>();
 
 
     public static void main(String[] args) {
-        new Test_无锁链表().test();
+        new 无锁链表().test();
     }
 
+    /**
+     * 模拟并行插入两条记录
+     */
     public void test() {
-        TestThread a = new TestThread("a", 1);
-        TestThread b = new TestThread("b", 2);
+        TestThread a = new TestThread("thread_1", 1);
+        TestThread b = new TestThread("thread_2", 2);
         a.start();
         b.start();
         SleepUtil.sleep(1000);
         System.out.println(stack);
-
     }
 
     class TestThread extends Thread {
