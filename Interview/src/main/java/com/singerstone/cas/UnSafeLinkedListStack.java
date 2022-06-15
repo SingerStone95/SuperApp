@@ -56,13 +56,13 @@ public class UnSafeLinkedListStack<E> implements Stack<E> {
 
     @Override
     public String toString() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         Node temp = mHead.next;
         while (temp != null) {
-            result += temp.element;
+            result.append(temp.element);
             temp = temp.next;
 
         }
-        return result;
+        return result.toString();
     }
 }

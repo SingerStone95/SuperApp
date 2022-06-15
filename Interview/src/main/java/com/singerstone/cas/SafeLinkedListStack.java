@@ -2,6 +2,13 @@ package com.singerstone.cas;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * 模拟获取锁的原理
+ * 当一个线程把 lock 从 false 切换到 true 就认为已经获取到了锁
+ * 获取锁的这个过程一定要是原子的操作
+ * 释放锁的过程不一定要是原子的操作
+ *
+ */
 public class SafeLinkedListStack<E> implements Stack<E> {
     private volatile AtomicBoolean lock = new AtomicBoolean(false);
 
@@ -30,7 +37,6 @@ public class SafeLinkedListStack<E> implements Stack<E> {
                 lock.set(false);
                 return mSize == 0;
             }
-
         } while (true);
 
 
@@ -63,6 +69,7 @@ public class SafeLinkedListStack<E> implements Stack<E> {
                 E result = p.element;
                 mHead.next = p.next;
                 mSize--;
+                // 这里其实没有必要 compareAndSet
                 lock.set(false);
                 return result;
             }
