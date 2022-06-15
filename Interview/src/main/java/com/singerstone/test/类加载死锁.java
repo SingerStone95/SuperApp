@@ -1,6 +1,8 @@
 package com.singerstone.test;
 
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by chenbinhao on 2018/7/12. YY:909075276
  */
@@ -12,10 +14,13 @@ public class 类加载死锁 {
 
         static {
             System.out.println("class A init.");
-
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            B.test();
         }
-
-        static B b = new B();
 
         public static void test() {
             System.out.println("method test called in class A");
@@ -26,13 +31,7 @@ public class 类加载死锁 {
 
         static {
             System.out.println("class B init.");
-
-        }
-
-        static A a = new A();
-
-        private void test_mem_method() {
-            A a = new A();
+            A.test();
         }
 
         public static void test() {
@@ -41,7 +40,18 @@ public class 类加载死锁 {
     }
 
     public static void main(String[] args) {
-       A.test();
+        new Thread() {
+            @Override
+            public void run() {
+                A.test();
+            }
+        }.start();
+        new Thread() {
+            @Override
+            public void run() {
+                B.test();
+            }
+        }.start();
     }
 
 }
