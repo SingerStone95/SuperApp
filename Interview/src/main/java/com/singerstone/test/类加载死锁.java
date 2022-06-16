@@ -4,7 +4,9 @@ package com.singerstone.test;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by chenbinhao on 2018/7/12. YY:909075276
+ * 必须在多线程环境下执行
+ * 根本原因是类加载时候 虚拟机会对静态块的执行加锁
+ * 单线程环境下不会有问题
  */
 
 public class 类加载死锁 {
