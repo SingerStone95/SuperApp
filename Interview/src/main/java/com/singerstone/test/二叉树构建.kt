@@ -29,7 +29,8 @@ class 二叉树构建 {
         /**
          * 层序遍历二叉树
          */
-        private fun visitTree(root: TreeNode?) {
+        @JvmStatic
+         fun visitTree(root: TreeNode?) {
             if (root == null) {
                 return
             }

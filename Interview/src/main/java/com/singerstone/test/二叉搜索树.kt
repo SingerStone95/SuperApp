@@ -1,6 +1,6 @@
 package com.singerstone.test
 
-class 组合 {
+class 二叉搜索树 {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
