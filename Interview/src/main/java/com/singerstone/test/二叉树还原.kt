@@ -17,7 +17,7 @@ class 二叉树还原 {
             if (il > ir || pl > pr) {
                 return null
             }
-            val rootV = postOrder[ir]
+            val rootV = postOrder[pr]
             val root = 二叉树构建.TreeNode()
             root.value = rootV
             var pi = il
