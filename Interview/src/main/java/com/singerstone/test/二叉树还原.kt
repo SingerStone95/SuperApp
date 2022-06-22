@@ -1,5 +1,6 @@
 package com.singerstone.test
 
+import com.singerstone.test.二叉树构建.Companion.visitTree
 import org.mockito.InOrder
 
 class 二叉树还原 {
@@ -9,16 +10,16 @@ class 二叉树还原 {
             val inOrder = arrayOf(9, 3, 15, 20, 7)
             val postOrder = arrayOf(9, 15, 7, 20, 3)
             val node = buildTree(inOrder, postOrder, 0, inOrder.size - 1, 0, postOrder.size - 1)
-            二叉树构建.visitTree(node)
+            visitTree(node)
         }
 
 
-        private fun buildTree(inOrder: Array<Int>, postOrder: Array<Int>, il: Int, ir: Int, pl: Int, pr: Int): 二叉树构建.TreeNode? {
+        private fun buildTree(inOrder: Array<Int>, postOrder: Array<Int>, il: Int, ir: Int, pl: Int, pr: Int): TreeNode? {
             if (il > ir || pl > pr) {
                 return null
             }
             val rootV = postOrder[pr]
-            val root = 二叉树构建.TreeNode()
+            val root = TreeNode()
             root.value = rootV
             var pi = il
             for (i in il..ir) {

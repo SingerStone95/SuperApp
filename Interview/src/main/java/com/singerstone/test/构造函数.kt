@@ -1,5 +1,8 @@
 package com.singerstone.test
 
+/**
+ * 父类成员变量初始化-父类构造函数-子类成员变量-子类构造函数
+ */
 class 构造函数 {
 
     companion object {

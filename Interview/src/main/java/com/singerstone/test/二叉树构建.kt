@@ -25,6 +25,12 @@ class 二叉树构建 {
             return node
         }
 
+        /**
+         * 构建二叉搜索树
+         */
+        private fun buildSearchTree(){
+
+        }
 
         /**
          * 层序遍历二叉树
@@ -52,9 +58,13 @@ class 二叉树构建 {
     }
 
 
-    class TreeNode {
-        var value: Int = -1
-        var left: TreeNode? = null
-        var right: TreeNode? = null
-    }
+
+
+}
+
+
+class TreeNode {
+    var value: Int = -1
+    var left: TreeNode? = null
+    var right: TreeNode? = null
 }

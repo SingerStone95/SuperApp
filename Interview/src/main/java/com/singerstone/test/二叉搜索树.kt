@@ -9,6 +9,7 @@ class 二叉搜索树 {
             println(isSearchTree(array, 0, array.size - 1))
         }
 
+        //是否是二叉搜索树
         private fun isSearchTree(array: Array<Int>, start: Int, end: Int): Boolean {
             if (start >= end) {
                 return true
@@ -31,4 +32,6 @@ class 二叉搜索树 {
             return isSearchTree(array, start, leftEnd - 1) && isSearchTree(array, leftEnd, end - 1)
         }
     }
+
+
 }
