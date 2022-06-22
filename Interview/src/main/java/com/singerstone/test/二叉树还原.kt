@@ -13,7 +13,7 @@ class 二叉树还原 {
         }
 
 
-        fun buildTree(inOrder: Array<Int>, postOrder: Array<Int>, il: Int, ir: Int, pl: Int, pr: Int): 二叉树构建.TreeNode? {
+        private fun buildTree(inOrder: Array<Int>, postOrder: Array<Int>, il: Int, ir: Int, pl: Int, pr: Int): 二叉树构建.TreeNode? {
             if (il > ir || pl > pr) {
                 return null
             }
