@@ -1,4 +1,4 @@
-package com.singerstone.test
+package com.singerstone.jojo
 
 class 二叉搜索树 {
     companion object {

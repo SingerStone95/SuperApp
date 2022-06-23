@@ -1,4 +1,4 @@
-package com.singerstone.test
+package com.singerstone.jojo
 
 /**
  * 父类成员变量初始化-父类构造函数-子类成员变量-子类构造函数

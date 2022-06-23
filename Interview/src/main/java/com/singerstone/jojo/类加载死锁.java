@@ -1,4 +1,4 @@
-package com.singerstone.test;
+package com.singerstone.jojo;
 
 
 import java.util.concurrent.TimeUnit;

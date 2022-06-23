@@ -1,4 +1,4 @@
-package com.singerstone.test
+package com.singerstone.jojo
 
 class 全排列 {
     companion object {

@@ -1,7 +1,6 @@
-package com.singerstone.test
+package com.singerstone.jojo
 
-import com.singerstone.test.二叉树构建.Companion.visitTree
-import org.mockito.InOrder
+import com.singerstone.jojo.二叉树构建.Companion.visitTree
 
 class 二叉树还原 {
     companion object {

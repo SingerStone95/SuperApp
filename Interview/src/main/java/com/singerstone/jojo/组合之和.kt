@@ -1,4 +1,4 @@
-package com.singerstone.test
+package com.singerstone.jojo
 
 class 组合之和 {
     companion object {

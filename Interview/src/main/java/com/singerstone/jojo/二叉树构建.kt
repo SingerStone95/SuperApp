@@ -1,6 +1,4 @@
-package com.singerstone.test
-
-import com.singerstone.cas.Queue
+package com.singerstone.jojo
 
 class 二叉树构建 {
     companion object {
