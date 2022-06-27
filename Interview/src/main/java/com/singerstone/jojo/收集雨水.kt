@@ -15,13 +15,16 @@ class 收集雨水 {
         fun main(args: Array<String>) {
 
 //            val water = arrayOf(0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1)
-            val water = arrayOf(0, 1, 0, 2,3)
+            val water = arrayOf(1, 8, 6, 2, 5, 4, 8, 3, 7)
 
 
             print(collectWater(water))
+            println()
+            print(maxWater(water))
 
         }
 
+        // 接雨水，能接多少接多少
         private fun collectWater(water: Array<Int>): Int {
             var left = 0
             var right = water.size - 1
@@ -50,6 +53,24 @@ class 收集雨水 {
             return res
 
         }
+
+        //接雨水，算最大面积,栅栏
+        private fun maxWater(water: Array<Int>): Int {
+            var left = 0
+            var right = water.size - 1
+            var max = 0
+            while (left < right) {
+                max = kotlin.math.max(max, (right - left) * min(water[left], water[right]))
+                if (water[left] < water[right]) {
+                    left++
+                } else {
+                    right--
+                }
+
+            }
+            return max
+        }
     }
+
 
 }
