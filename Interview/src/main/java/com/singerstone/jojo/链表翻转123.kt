@@ -33,7 +33,6 @@ class 链表 {
                 return head
             }
             val node = revertLinkedList2(head.next)
-
             head.next?.next = head
             head.next = null
 
@@ -60,19 +59,19 @@ class 链表 {
             return stub?.next
         }
 
-        fun printLinkList(head: Node?) {
-            var node = head
-            while (node != null) {
-                print(node.value)
-                node = node.next
-            }
-
-        }
 
     }
 
 
 }
 
+fun printLinkList(head: Node?) {
+    var node = head
+    while (node != null) {
+        print(node.value)
+        node = node.next
+    }
+
+}
 
 class Node(var value: Int? = -1, var next: Node? = null)
