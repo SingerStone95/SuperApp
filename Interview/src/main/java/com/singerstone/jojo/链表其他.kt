@@ -21,7 +21,6 @@ class 链表其他 {
                 if (l1 == null) {
                     if (head == null) {
                         head = l2
-                        tail = head
                     } else {
                         tail?.next = l2
                     }
@@ -29,7 +28,6 @@ class 链表其他 {
                 } else if (l2 == null) {
                     if (head == null) {
                         head = l1
-                        tail = head
                     } else {
                         tail?.next = l1
                     }
