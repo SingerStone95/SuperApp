@@ -4,8 +4,8 @@ class 字符串转换 {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val input = "    -2149asds"
-            println(atoi(input))
+            val input = "    -21492222222222222asds"
+            println(atoi2(input))
         }
 
         fun atoi(input: String): Int {
@@ -46,9 +46,10 @@ class 字符串转换 {
         }
 
         // 正则解法
-        fun atoi2(input: String): Int {
-
-            return 0
+        fun atoi2(input: String): Long {
+            val trim = input.trim()
+            val r1 = "^[+-]?[0-9]+".toRegex()
+            return r1.find(trim)?.value?.toLong() ?: 0
         }
     }
 }
