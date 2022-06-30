@@ -2,7 +2,7 @@ package com.singerstone.jojo
 
 import java.util.*
 
-class 全排列 {
+class 排列问题 {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
@@ -20,7 +20,9 @@ class 全排列 {
             // 不包含重复
             Arrays.sort(array)
             permutations2(array, result, visit, arrayListOf<Int>())
-            print(result)
+            println(result)
+
+            println(phoneNum("23"))
         }
 
 
@@ -75,6 +77,44 @@ class 全排列 {
                 tmp.removeLast()
             }
         }
+
+
+        fun phoneNum(input: String): MutableList<String> {
+            val phoneMap = mapOf(
+                0 to "",
+                1 to "",
+                2 to "abc",
+                3 to "def",
+                4 to "ghi",
+                5 to "jkl",
+                6 to "mno",
+                7 to "pqrs",
+                8 to "tuv",
+                9 to "wxyz"
+            )
+            val result = arrayListOf<String>()
+            phoneNumDfs(phoneMap, result, "", input, 0)
+            return result
+        }
+
+        //235
+        private fun phoneNumDfs(
+            phoneMap: Map<Int, String>,
+            result: ArrayList<String>,
+            tmp: String,
+            input: String,
+            level_: Int
+        ) {
+            var level = level_
+            if (level >= input.length) {
+                result.add(tmp)
+                return
+            }
+            for (c in phoneMap[input[level] - '0']!!) {
+                phoneNumDfs(phoneMap, result, tmp + c, input, level + 1)
+            }
+        }
+
 
     }
 }
