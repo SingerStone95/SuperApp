@@ -39,10 +39,6 @@ public class MainActivity extends FragmentActivity implements ILife {
         setContentView(R.layout.activity_main);
         setFragment(MainFragmentKt.newInstance());
         startService(new Intent(MainActivity.this, LiveService.class));
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("one");
-        arrayList.add("two");
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
