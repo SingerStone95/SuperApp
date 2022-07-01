@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin:'kotlin-android-extensions'
+apply plugin: 'kotlin-android-extensions'
 android {
-    compileSdkVersion 28
+    compileSdkVersion Integer.valueOf(BUILD_SDK_VERSION)
     defaultConfig {
         applicationId "singerstone.com.superapp"
-        minSdkVersion 16
-        targetSdkVersion 27
-        buildToolsVersion '27.0.0'
+        minSdkVersion Integer.valueOf(MIN_SDK_VERSION)
+        targetSdkVersion Integer.valueOf(TARGET_SDK_VERSION)
+        buildToolsVersion BUILD_TOOL_SDK_VERSION
         versionCode 1
         multiDexEnabled true
         versionName "1.0"
