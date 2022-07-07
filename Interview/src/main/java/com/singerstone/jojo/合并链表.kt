@@ -1,6 +1,6 @@
 package com.singerstone.jojo
 
-class 链表其他 {
+class 合并链表 {
 
     companion object {
         @JvmStatic
