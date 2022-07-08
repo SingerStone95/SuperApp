@@ -4,4 +4,4 @@
 ## 如何运行?
 - 安装NDK环境 version >= android-ndk-r18b
 - SuperApp/app/jni 执行 ndk-build
-
+- 切回根目录 执行 ./gradlew assembleDebug
