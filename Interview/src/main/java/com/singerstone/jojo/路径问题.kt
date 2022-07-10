@@ -26,6 +26,11 @@ class 路径问题 {
 
         }
 
+        fun uniquePath2(m: Int, n: Int): Int {
+
+            return 0
+
+        }
 
     }
 }
