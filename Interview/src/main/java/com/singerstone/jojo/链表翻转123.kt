@@ -71,7 +71,7 @@ fun printLinkList(head: Node?) {
         print(node.value)
         node = node.next
     }
-
+    println()
 }
 
 class Node(var value: Int? = -1, var next: Node? = null)

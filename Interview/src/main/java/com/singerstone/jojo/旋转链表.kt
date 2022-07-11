@@ -6,7 +6,9 @@ class 旋转链表 {
         fun main(args: Array<String>) {
             Node(0, Node(1, Node(2, Node(3, Node(4, Node(5, null)))))).let {
 
-                printLinkList(roteList(4, it))
+                //printLinkList(roteList(4, it))
+
+                println(lastKNode(1, it))
 
 
             }
@@ -37,6 +39,24 @@ class 旋转链表 {
 
             return tmp
 
+        }
+
+        /**
+         * 倒数第K个
+         */
+        fun lastKNode(k: Int, head: Node?): Int? {
+            head ?: return null
+            var k = k - 1
+            var p1 = head
+            var p2 = head
+            while (p1?.next != null) {
+                p1 = p1.next
+                if (k <= 0) {
+                    p2 = p2?.next
+                }
+                k--
+            }
+            return p2?.value
         }
 
     }
