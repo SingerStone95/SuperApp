@@ -13,6 +13,9 @@ class 二叉树还原 {
         }
 
 
+        /**
+         * 根据中序和后序还原二叉树
+         */
         private fun buildTree(inOrder: Array<Int>, postOrder: Array<Int>, il: Int, ir: Int, pl: Int, pr: Int): TreeNode? {
             if (il > ir || pl > pr) {
                 return null
