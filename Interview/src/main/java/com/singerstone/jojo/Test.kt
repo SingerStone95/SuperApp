@@ -9,13 +9,57 @@ class Test {
             val array = arrayOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
             val root = makeTreeRecursion(array, 0, array.size)
             visitTree(root)
-            Thread(
-                object:Runnable{
-                    override fun run(){
-                        print("yogachen")
+            println()
+            // Thread(
+            //     object:Runnable{
+            //         override fun run(){
+            //             print("yogachen")
+            //             println()
                 
-                    }}).start()    
-             Thread.sleep(1000)
+            //         }}).start()    
+            //  Thread.sleep(1000)
+            preOrderTree(root)
+            println()
+            postOrderTree(root)
+        }
+
+        fun preOrderTree(head:TreeNode?){
+            head?:return
+            var p=head
+          var mutableList = mutableListOf<TreeNode>()
+          mutableList.add(head)
+          while(mutableList.size>0||p!=null){
+            if(p!=null){
+                print(p.value)
+                mutableList.add(p)
+                p=p.left
+            }else{
+                var node=mutableList.removeAt(mutableList.size-1)
+                if(node.right!=null){
+                p=node.right
+                }
+            }
+          }
+
+        }
+
+        fun postOrderTree(head:TreeNode?){
+            head?:return
+            var p=head
+          var mutableList = mutableListOf<TreeNode>()
+          mutableList.add(head)
+          while(mutableList.size>0||p!=null){
+            if(p!=null){
+                mutableList.add(p)
+                p=p.left
+            }else{
+                var node=mutableList.removeAt(mutableList.size-1)
+                if(node.right!=null){
+                p=node.right
+                print(p!!.value)
+                }
+            }
+          }
 
         }
       
