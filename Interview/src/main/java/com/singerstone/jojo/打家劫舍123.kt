@@ -32,5 +32,10 @@ class 打家劫舍123 {
             return 0
         }
 
+        fun cashDp3(array: Array<Int>): Int {
+
+
+            return 0
+        }
     }
 }
