@@ -1,5 +1,8 @@
 package com.singerstone.jojo
 
+import com.singerstone.jojo.二叉树构建.Companion.makeTreeRecursion
+import com.singerstone.jojo.二叉树构建.Companion.visitTree
+
 class Test {
     companion object {
         @JvmStatic
@@ -28,6 +31,8 @@ class Test {
             postOrderTree(makeTreeRecursion(array, 0, array.size))
             println()
             postOrderTree2(makeTreeRecursion(array, 0, array.size))
+
+            val input = arrayOf(1, 2, 3, 4, 5)
         }
 
         /**
@@ -148,27 +153,27 @@ class Test {
 
 
 // 下面是环境搭建公式电脑需要打开注释
+/*
+        class TreeNode {
+            var value: Int = -1
+            var left: TreeNode? = null
+            var right: TreeNode? = null
+        }
 
-//class TreeNode {
-//    var value: Int = -1
-//    var left: TreeNode? = null
-//    var right: TreeNode? = null
-//}
-//
-//class Node(var value: Int? = -1, var next: Node? = null)
-//
-//fun printLinkList(head: Node?) {
-//    var node = head
-//    while (node != null) {
-//        print(node.value)
-//        node = node.next
-//    }
-//    println()
-//}
+        class Node(var value: Int? = -1, var next: Node? = null)
 
-        /**
+        fun printLinkList(head: Node?) {
+            var node = head
+            while (node != null) {
+                print(node.value)
+                node = node.next
+            }
+            println()
+        }
+
+        *//**
          * 递归创建二叉树，层序
-         */
+         *//*
         fun makeTreeRecursion(array: Array<Int>, nodeIndex: Int, len: Int): TreeNode? {
             if (nodeIndex >= len) {
                 return null
@@ -201,6 +206,6 @@ class Test {
                 }
             }
 
-        }
+        }*/
     }
 }

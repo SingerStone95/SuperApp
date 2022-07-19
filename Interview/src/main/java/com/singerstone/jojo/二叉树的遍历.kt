@@ -1,22 +1,24 @@
 package com.singerstone.jojo
 
+import com.singerstone.jojo.二叉树构建.Companion.makeTreeRecursion
+
 class 二叉树的遍历 {
 
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
             val array = arrayOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-            preOrderTree(Test.makeTreeRecursion(array, 0, array.size))
+            preOrderTree(makeTreeRecursion(array, 0, array.size))
             println()
 
-            preOrderTree2(Test.makeTreeRecursion(array, 0, array.size))
+            preOrderTree2(makeTreeRecursion(array, 0, array.size))
             println()
 
-            inOderTree(Test.makeTreeRecursion(array, 0, array.size))
+            inOderTree(makeTreeRecursion(array, 0, array.size))
             println()
-            postOrderTree(Test.makeTreeRecursion(array, 0, array.size))
+            postOrderTree(makeTreeRecursion(array, 0, array.size))
             println()
-            postOrderTree2(Test.makeTreeRecursion(array, 0, array.size))
+            postOrderTree2(makeTreeRecursion(array, 0, array.size))
 
 
         }
