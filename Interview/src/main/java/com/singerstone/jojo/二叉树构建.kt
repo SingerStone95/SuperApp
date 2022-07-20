@@ -13,10 +13,10 @@ class 二叉树构建 {
             println()
             visitTree(mirrorTree2(root))
         }
-
         /**
          * 递归创建二叉树，层序
          */
+        @JvmStatic
         fun makeTreeRecursion(array: Array<Int>, nodeIndex: Int, len: Int): TreeNode? {
             if (nodeIndex >= len) {
                 return null
@@ -28,11 +28,13 @@ class 二叉树构建 {
             return node
         }
 
+
         /**
          * todo
          * 构建二叉搜索树
          */
-        private fun buildSearchTree() {
+        private fun buildSearchTree(array: Array<Int>) {
+
         }
 
         /**
@@ -110,6 +112,8 @@ class 二叉树构建 {
     }
 
 }
+
+
 
 
 class TreeNode {

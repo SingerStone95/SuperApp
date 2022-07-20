@@ -10,6 +10,9 @@ class 打家劫舍123 {
             val input = arrayOf(1, 2, 3, 4, 5)
             println(cashDp1(input))
             println(cashDp2(input))
+            val array = arrayOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+            println(cashDp3(二叉树构建.makeTreeRecursion(array, 0, array.size), hashMapOf()))
+
         }
 
         // 打家劫舍 1
@@ -40,16 +43,40 @@ class 打家劫舍123 {
 
         /**
          * 现在村民是树形结构
-         *     1
-         *   2   3
-         * 4  5 6 7
+         *       1
+         *     2   3
+         *   4  5 6 7
+         * 8  9
          *
          *
          */
-        fun cashDp3(array: Array<Int>): Int {
-
-
-            return 0
+        fun cashDp3(head: TreeNode?, record: HashMap<TreeNode, Int>): Int {
+            if (head == null) {
+                return 0
+            }
+            if (record.containsKey(head)) {
+                return record[head]!!
+            }
+            var ll = 0
+            var lr = 0
+            var rl = 0
+            var rr = 0
+            head.left?.left?.let {
+                ll = cashDp3(it, record)
+            }
+            head.left?.right?.let {
+                lr = cashDp3(it, record)
+            }
+            head.right?.left?.let {
+                rl = cashDp3(it, record)
+            }
+            head.right?.right?.let {
+                rr = cashDp3(it, record)
+            }
+            val cur = max(head.value + ll + lr + rl + rr, cashDp3(head.left, record) + cashDp3(head.right, record))
+            record[head] = cur
+            return cur
         }
+
     }
 }
