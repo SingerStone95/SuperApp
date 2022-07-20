@@ -59,7 +59,7 @@ public class 多线程打印 {
     }
 
 
-    private int curPrintThreadIndex = 0;
+    private volatile int curPrintThreadIndex = 1;
     private Object lock = new Object();
 
     /**
@@ -92,8 +92,8 @@ public class 多线程打印 {
         public void run() {
             super.run();
             synchronized (lock) {
-                while (curPrintThreadIndex < 100) {
-                    if (curPrintThreadIndex % maxCount == index) {
+                while (curPrintThreadIndex <= 100) {
+                    if (curPrintThreadIndex % maxCount == index-1) {
                         int p = curPrintThreadIndex % 3;
                         String print;
                         if (p == 0) {
