@@ -7,7 +7,7 @@ class 字符串子序列问题 {
         @JvmStatic
         fun main(args: Array<String>) {
             println(longestSubStr("a"))
-            println(longestConSubStr(arrayOf(100, 4, 200, 1, 3, 2, 5, 6)))
+            println(longestConSubStr(arrayOf(100, 4, 200, 1, 3, 2, 5, 8)))
 
         }
 
@@ -23,20 +23,20 @@ class 字符串子序列问题 {
                     continue
                 }
                 set.remove(input[i])
-                var left = i - 1
-                var right = i + 1
-                while (left >= 0) {
+                var left = input[i]
+                var right = input[i]
+                while (true) {
+                    left--
                     if (set.contains(left)) {
-                        set.remove(input[left])
-                        left--
+                        set.remove(left)
                     } else {
                         break
                     }
                 }
-                while (right < input.size) {
+                while (true) {
+                    right++
                     if (set.contains(right)) {
-                        set.remove(input[right])
-                        right++
+                        set.remove(right)
                     } else {
                         break
                     }
