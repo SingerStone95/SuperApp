@@ -1,5 +1,10 @@
 package com.singerstone.jojo
 
+import kotlin.math.min
+
+/**
+ * 连续子串按之前的规律，通常都是DP问题 ，一般转化为以 array[i] 结尾的子串问题
+ */
 class 连续子串子数组问题 {
     companion object {
 
@@ -7,6 +12,28 @@ class 连续子串子数组问题 {
         @JvmStatic
         fun main(args: Array<String>) {
             println(longestSubStr("a"))
+            println(shortSumSubArray(arrayOf(2, 3, 1, 2, 4, 3), 7))
+        }
+
+        /**
+         * 最短子数组之和
+         * 滑动窗口
+         */
+        fun shortSumSubArray(array: Array<Int>, sum: Int): Int {
+            var result = Int.MAX_VALUE
+            var tmp = 0
+            var left = 0
+            var right = 0
+            while (right < array.size) {
+                while (tmp < sum && right < array.size) {
+                    tmp += array[right++]
+                }
+                while (tmp >= sum) {
+                    result = min(result, right - left)
+                    tmp -= array[left++]
+                }
+            }
+            return if (result == array.size + 1) 0 else result
         }
 
         /**
