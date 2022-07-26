@@ -11,7 +11,7 @@ class 连续子串子数组问题 {
 
         @JvmStatic
         fun main(args: Array<String>) {
-            println(longestSubStr("a"))
+            println(longestSubStr("aaaabbbcfse"))
             println(shortSumSubArray(arrayOf(2, 3, 1, 2, 4, 3), 7))
         }
 
