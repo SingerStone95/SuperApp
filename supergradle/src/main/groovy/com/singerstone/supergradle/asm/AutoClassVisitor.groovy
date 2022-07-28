@@ -26,12 +26,9 @@ public class AutoClassVisitor extends ClassVisitor {
     private String mClassName
     private String mSuperName
     private String[] mInterfaces
-    //本质上是一个ClassWriter
-    private ClassVisitor classVisitor
 
     AutoClassVisitor(final ClassVisitor classVisitor) {
         super(Opcodes.ASM6, classVisitor)
-        this.classVisitor = classVisitor
     }
 
     /**
@@ -121,7 +118,7 @@ public class AutoClassVisitor extends ClassVisitor {
                     continue
                 }
                 Logger.info("||Hooked class:injected method:" + methodCell.agentName)
-                mv = classVisitor.visitMethod(Opcodes.ACC_PUBLIC, methodCell.name, methodCell.desc, null, null)
+                mv = cv.visitMethod(Opcodes.ACC_PUBLIC, methodCell.name, methodCell.desc, null, null)
                 mv.visitCode()
                 // call super
                 LogAnalyticsUtil.visitMethodWithLoadedParams(mv, Opcodes.INVOKESPECIAL, mSuperName, methodCell.name, methodCell.desc, methodCell.paramsStart, methodCell.paramsCount, methodCell.opcodes)
