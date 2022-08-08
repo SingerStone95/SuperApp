@@ -1,14 +1,21 @@
 package com.singerstone.jojo
 
-class 归并排序 {
+class 链表排序 {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
             val head = Node(3, Node(1, Node(4, Node(2, Node(5, null)))))
-            printLinkList(mergeSort(head))
+
+            printLinkList(head)
+            printLinkList(insertSort(head))
+//            printLinkList(mergeSort(head))
 
         }
 
+        /**
+         * 归并排序
+         * nlogn
+         */
         private fun mergeSort(head: Node?): Node? {
             if (head?.next == null) {
                 return head
@@ -42,6 +49,27 @@ class 归并排序 {
             }
             if (head1 == null) cur.next = head2 else cur.next = head1
             return dummy.next
+
+        }
+
+        fun insertSort(head: Node?): Node? {
+            var head = head
+            var dummy = Node(-1)
+            var cur: Node? = dummy
+            while (head != null) {
+                var tmp = head?.next
+                cur = dummy
+                while (cur?.next != null && cur?.next?.value ?: 0 <= head?.value ?: 0) {
+                    cur = cur?.next
+                }
+                // head 插到cur后面
+                head?.next = cur?.next
+                cur?.next = head
+                head = tmp
+            }
+
+            return dummy.next
+
 
         }
 
