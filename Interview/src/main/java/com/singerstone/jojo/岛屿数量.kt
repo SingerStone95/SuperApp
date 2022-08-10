@@ -15,6 +15,19 @@ class 岛屿数量 {
             println(numOfIslands(input))
         }
 
+        /**
+         * todo
+         * bfs
+         */
+        private fun numOfIslandsB(input: Array<IntArray>): Int {
+
+            return 0
+
+        }
+
+        /**
+         * dfs
+         */
         private fun numOfIslands(input: Array<IntArray>): Int {
             val visited = arrayOf(intArrayOf(0, 0, 0, 0, 0), intArrayOf(0, 0, 0, 0, 0), intArrayOf(0, 0, 0, 0, 0), intArrayOf(0, 0, 0, 0, 0))
             var result = 0
@@ -31,6 +44,9 @@ class 岛屿数量 {
 
         }
 
+        /**
+         * dfs
+         */
         private fun visitIsland(input: Array<IntArray>, visited: Array<IntArray>, i: Int, j: Int) {
             if (i < 0 || i >= input.size || j < 0 || j >= input.size
                     || visited[i][j] == 1 || input[i][j] == 0) {
