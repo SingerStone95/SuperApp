@@ -6,11 +6,14 @@ class 滑动窗口 {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            var input = arrayOf<Int>()
+            var input = arrayOf<Int>(1,2,2,1,4,5)
             printArray(maxSlideWindow(input, 2))
 
         }
 
+        /**
+         * 滑动窗口最大值
+         */
         fun maxSlideWindow(input: Array<Int>, k: Int): Array<Int> {
             val result = arrayListOf<Int>()
             val list = LinkedList<Int>()
@@ -24,7 +27,7 @@ class 滑动窗口 {
                 }
                 list.add(i)
                 if (i >= k - 1) {
-                    result.add(list.first)
+                    result.add(input[list.first])
                 }
             }
             return result.toArray(arrayOf())
