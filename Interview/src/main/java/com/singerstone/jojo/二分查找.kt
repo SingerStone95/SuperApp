@@ -10,6 +10,8 @@ class 二分查找 {
 
             var roteArray = arrayOf(4, 5, 6, 7, 8, 1, 2, 3)
             println(findRoteArray(roteArray, 3))
+
+            println(findRoteArrayMin(roteArray))
         }
 
 
@@ -114,9 +116,23 @@ class 二分查找 {
 
         /**
          * 旋转数组查询最小值(Log n 解法)
+         * 561234
          */
-       fun findRoteArrayMin(array: Array<Int>): Int {
-           return 0
+        fun findRoteArrayMin(array: Array<Int>): Int {
+            var l = 0
+            var r = array.size - 1
+            if (array[l] < array[r]) {
+                return l
+            }
+            while (l < r) {
+                val mid = l + (r - l) / 2
+                if (array[mid] <= array[r]) {
+                    r = mid
+                } else {
+                    l = mid + 1
+                }
+            }
+            return l
         }
 
     }

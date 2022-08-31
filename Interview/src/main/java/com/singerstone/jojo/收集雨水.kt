@@ -1,5 +1,6 @@
 package com.singerstone.jojo
 
+import java.util.*
 import kotlin.math.min
 
 /**
@@ -55,9 +56,23 @@ class 收集雨水 {
         }
 
         // 接雨水，能接多少接多少 ,单调栈解法
+        // 1, 8, 6, 2, 5, 4, 8, 3, 7
         private fun collectWater2(water: Array<Int>): Int {
+            var i = 0
+            var result = 0
+            var stack = Stack<Int>()
+            while (i < water.size) {
+                if (stack.isEmpty() || water[stack.peek()] <= water[i]) {
+                    stack.push(i++)
+                } else {
+                    var top = stack.pop()
+                    if (stack.size <= 1) {
+                        continue
+                    }
+                }
+            }
 
-            return 0
+            return result
 
         }
 
