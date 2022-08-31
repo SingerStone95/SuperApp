@@ -19,9 +19,9 @@ class 收集雨水 {
             val water = arrayOf(1, 8, 6, 2, 5, 4, 8, 3, 7)
 
 
-            print(collectWater(water))
-            println()
-            print(maxWater(water))
+            println(collectWater(water))
+            println(collectWater2(water))
+            println(maxWater(water))
 
         }
 
@@ -56,19 +56,22 @@ class 收集雨水 {
         }
 
         // 接雨水，能接多少接多少 ,单调栈解法
-        // 1, 8, 6, 2, 5, 4, 8, 3, 7
+        // 1, 8, 6, 2, 2, 5, 4, 8, 3, 7
         private fun collectWater2(water: Array<Int>): Int {
             var i = 0
             var result = 0
             var stack = Stack<Int>()
             while (i < water.size) {
-                if (stack.isEmpty() || water[stack.peek()] <= water[i]) {
+                // 这里维持一个递减的栈
+                if (stack.isEmpty() || water[stack.peek()] >= water[i]) {
                     stack.push(i++)
                 } else {
                     var top = stack.pop()
-                    if (stack.size <= 1) {
+                    if (stack.isEmpty()) {
                         continue
                     }
+                    val left = stack.peek() //这里定义一个临时变量方便理解
+                    result += (min(water[i], water[left]) - water[top]) * (i - left - 1)
                 }
             }
 
