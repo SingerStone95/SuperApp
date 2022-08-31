@@ -112,6 +112,13 @@ class 二分查找 {
 
         }
 
+        /**
+         * 旋转数组查询最小值(Log n 解法)
+         */
+       fun findRoteArrayMin(array: Array<Int>): Int {
+           return 0
+        }
+
     }
 
 }

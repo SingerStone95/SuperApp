@@ -54,7 +54,15 @@ class 收集雨水 {
 
         }
 
-        //接雨水，算最大面积,栅栏
+        // 接雨水，能接多少接多少 ,单调栈解法
+        private fun collectWater2(water: Array<Int>): Int {
+
+            return 0
+
+        }
+
+
+        //接雨水，算最大面积,栅栏(最终是找到两条栅栏，中间能承载的雨水最多)
         private fun maxWater(water: Array<Int>): Int {
             var left = 0
             var right = water.size - 1
