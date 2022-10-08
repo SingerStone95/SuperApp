@@ -1,5 +1,8 @@
 package com.singerstone.jojo
 
+/**
+ * 已经记录在我的有道云笔记
+ */
 class ConcurrentModificationException原理 {
 
     companion object {
