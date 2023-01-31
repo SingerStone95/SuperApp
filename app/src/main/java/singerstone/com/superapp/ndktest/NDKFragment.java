@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 
 
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
+
 import singerstone.com.superapp.R;
 import singerstone.com.superapp.base.BaseFragment;
 import singerstone.com.superapp.ndkinterface.NdkInterface;
@@ -32,16 +34,25 @@ public class NDKFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_layout_ndk_test, container, false);
+
+
+        view.findViewById(R.id.btn_native_text)
+                .setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getActivity(),
+                                NdkInterface.getServiceName()
+                                , Toast.LENGTH_SHORT).show();
+                    }
+                });
         view.findViewById(R.id.btn_native_cash)
                 .setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        ///storage/emulated/0/Android/data/singerstone.com.superapp/files
                         NdkInterface.genCrash();
-                        Toast.makeText(getActivity(),
-                                NdkInterface.getServiceName()
-                                , Toast.LENGTH_SHORT).show();
                     }
                 });
         view.findViewById(R.id.btn_malloc_pss_oom)

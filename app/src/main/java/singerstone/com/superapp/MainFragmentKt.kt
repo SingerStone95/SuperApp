@@ -80,13 +80,10 @@ class MainFragmentKt : BaseFragment(), GestureDetector.OnGestureListener {
         MainScope().launch(start = CoroutineStart.UNDISPATCHED) {
             AppLog.i("yogachen", "2")
             initData()
-            delay(3000)
+            delay(0)
             initView(view)
         }
         AppLog.i("yogachen", "3")
-
-
-
         L.i(getTotalRam(activity))
 
     }
