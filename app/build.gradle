@@ -170,8 +170,8 @@ dependencies {
 
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     api 'org.javassist:javassist:3.25.0-GA'
-    debugApi 'com.squareup.leakcanary:leakcanary-android:2.4'
-    releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+/*    debugApi 'com.squareup.leakcanary:leakcanary-android:2.4'
+    releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'*/
     api project(':annotations')
     annotationProcessor project(':processors')
     //api project(path: ':inject', configuration: 'default')

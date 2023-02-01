@@ -8,6 +8,8 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.CalendarContract;
+import android.view.View;
+import android.widget.Toast;
 
 
 import androidx.annotation.RequiresApi;
@@ -15,10 +17,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import singerstone.com.superapp.keeplive.LiveService;
+import singerstone.com.superapp.log.AppLog;
 import singerstone.com.superapp.utils.L;
 
 public class MainActivity extends FragmentActivity implements ILife {
@@ -39,6 +42,12 @@ public class MainActivity extends FragmentActivity implements ILife {
         setContentView(R.layout.activity_main);
         setFragment(MainFragmentKt.newInstance());
         startService(new Intent(MainActivity.this, LiveService.class));
+        findViewById(R.id.tv_frida_hook_me).setOnClickListener(view -> onFridaHookMe(view));
+    }
+
+    public void onFridaHookMe(View view) {
+        AppLog.i("frida", "hello frida");
+        Toast.makeText(this, "hello frida", Toast.LENGTH_SHORT).show();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
