@@ -17,6 +17,7 @@ jscode_java = """
 
 
 var pth = Module.findExportByName(null,"open");
+// 打印启动的 so
     Interceptor.attach(ptr(pth),{
         onEnter:function(args){
             this.filename = args[0];
@@ -40,9 +41,9 @@ var pth = Module.findExportByName(null,"open");
 # sys.stdin.read()
 
 process = frida.get_usb_device()
-pid = process.spawn(['实验室']) # app包名
+pid = process.spawn(['']) # app包名
 session = process.attach(pid)  # 加载进程号
-script = session.create_script(jscode) #创建js脚本
+script = session.create_script(jscode_java) #创建js脚本
 script.on('message',on_message) #加载回调函数，也就是js中执行send函数规定要执行的python函数
 script.load() #加载脚本
 process.resume(pid)  ########### 重启app
