@@ -7,14 +7,15 @@ def on_message(message, data):
         print(message)
 
 jscode_java = """
-/*Java.perform(() => {
+Java.perform(() => {
 // 打印所有的内存中的 so
     var enumMoudle = Process.enumerateModules();
       for (var i = 0; i < enumMoudle.length; i++){
         console.log("", enumMoudle[i].name)
       }
-});*/
+});
 
+/*
 
 var pth = Module.findExportByName(null,"open");
 // 打印启动的 so
@@ -31,17 +32,21 @@ var pth = Module.findExportByName(null,"open");
             return retval;
         }
     })
+    */
 """
-
-# process = frida.get_usb_device().attach('实验室')
+###### attach
+#process = frida.get_usb_device().attach('实验室')
+# process = frida.get_device_manager().add_remote_device('127.0.0.1:27042').attach('实验室')
 # script = process.create_script(jscode_java)
 # script.on('message', on_message)
 # print('[*] Running CTF')
 # script.load()
 # sys.stdin.read()
 
-process = frida.get_usb_device()
-pid = process.spawn(['']) # app包名
+
+##### spawn
+process = frida.get_device_manager().add_remote_device('127.0.0.1:27042')
+pid = process.spawn(['singerstone.com.superapp']) # app包名
 session = process.attach(pid)  # 加载进程号
 script = session.create_script(jscode_java) #创建js脚本
 script.on('message',on_message) #加载回调函数，也就是js中执行send函数规定要执行的python函数
