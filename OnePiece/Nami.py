@@ -35,21 +35,21 @@ var pth = Module.findExportByName(null,"open");
     */
 """
 ###### attach
-#process = frida.get_usb_device().attach('实验室')
-# process = frida.get_device_manager().add_remote_device('127.0.0.1:27042').attach('实验室')
-# script = process.create_script(jscode_java)
-# script.on('message', on_message)
-# print('[*] Running CTF')
-# script.load()
-# sys.stdin.read()
+#process = frida.get_usb_device().attach('com.moutai.mall')
+process = frida.get_device_manager().add_remote_device('127.0.0.1:27042').attach('com.moutai.mall')
+script = process.create_script(jscode_java)
+script.on('message', on_message)
+print('[*] Running CTF')
+script.load()
+sys.stdin.read()
 
 
 ##### spawn
-process = frida.get_device_manager().add_remote_device('127.0.0.1:27042')
-pid = process.spawn(['singerstone.com.superapp']) # app包名
-session = process.attach(pid)  # 加载进程号
-script = session.create_script(jscode_java) #创建js脚本
-script.on('message',on_message) #加载回调函数，也就是js中执行send函数规定要执行的python函数
-script.load() #加载脚本
-process.resume(pid)  ########### 重启app
-sys.stdin.read()
+# process = frida.get_device_manager().add_remote_device('127.0.0.1:27042')
+# pid = process.spawn(['com.moutai.mall']) # app包名
+# session = process.attach(pid)  # 加载进程号
+# script = session.create_script(jscode_java) #创建js脚本
+# script.on('message',on_message) #加载回调函数，也就是js中执行send函数规定要执行的python函数
+# script.load() #加载脚本
+# process.resume(pid)  ########### 重启app
+# sys.stdin.read()

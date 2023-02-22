@@ -52,3 +52,30 @@ Java.perform(() => {
         console.log('Done: onFridaHookMe');
     };
 });
+
+
+Java.perform(() => {
+    // Function to hook is defined here
+    const class_a = Java.use('a.auu.a');
+
+    // Whenever button is clicked
+    const method_c = class_a.c;
+    console.log(method_c);
+    method_c.implementation = function (in_str) {
+        // Show a message to know that the function got called
+        //send('onFridaHookMe');
+
+        // Call the original onFridaHookMe handler
+        var result = method_c.call(this, in_str);
+        console.log("result="+result);
+        return result;
+
+        // Set our values after running the original onClick handler
+        // this.m.value = 0;
+        // this.n.value = 1;
+        // this.cnt.value = 999;
+
+        // Log to the console that it's done, and we should have the flag!
+       
+    };
+});

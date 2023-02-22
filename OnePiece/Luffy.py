@@ -9,16 +9,19 @@ def on_message(message, data):
 jscode_java = """
 Java.perform(() => {
     // Function to hook is defined here
-    const MainActivity = Java.use('singerstone.com.superapp.MainActivity');
+    const class_a = Java.use('a.auu.a');
 
     // Whenever button is clicked
-    const onFridaHookMe = MainActivity.onFridaHookMe;
-    onFridaHookMe.implementation = function (v) {
+    const method_c = class_a.c;
+    console.log(method_c);
+    method_c.implementation = function (in_str) {
         // Show a message to know that the function got called
-        send('onFridaHookMe');
+        //send('onFridaHookMe');
 
         // Call the original onFridaHookMe handler
-        onFridaHookMe.call(this, v);
+        var result = method_c.call(this, in_str);
+        console.log("result="+result);
+        return result;
 
         // Set our values after running the original onClick handler
         // this.m.value = 0;
@@ -26,7 +29,7 @@ Java.perform(() => {
         // this.cnt.value = 999;
 
         // Log to the console that it's done, and we should have the flag!
-        console.log('Done: onFridaHookMe');
+       
     };
 });
 """
@@ -73,9 +76,18 @@ Java.perform(function () {
 });
 """
 
-process = frida.get_usb_device().attach('实验室')
-script = process.create_script(jscode_ndk)
-script.on('message', on_message)
-print('[*] Running CTF')
-script.load()
+# process = frida.get_usb_device().attach('实验室')
+# script = process.create_script(jscode_java)
+# script.on('message', on_message)
+# print('[*] Running CTF')
+# script.load()
+# sys.stdin.read()
+
+process = frida.get_device_manager().add_remote_device('127.0.0.1:27042')
+pid = process.spawn(['com.moutai.mall']) # app包名
+session = process.attach(pid)  # 加载进程号
+script = session.create_script(jscode_java) #创建js脚本
+script.on('message',on_message) #加载回调函数，也就是js中执行send函数规定要执行的python函数
+script.load() #加载脚本
+process.resume(pid)  ########### 重启app
 sys.stdin.read()
