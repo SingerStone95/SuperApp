@@ -10,19 +10,33 @@ jscode_java = """
 Java.perform(() => {
     // Function to hook is defined here
     const class_a = Java.use('a.auu.a');
-
-    // Whenever button is clicked
     const method_c = class_a.c;
-    console.log(method_c);
+    console.log(class_a.c("LQoZSw8WESsEBwBPHQw9SwMXAAMVKxdaKBgyFT4JHQYABwwhCw=="));//com.netease.nis.wrapper.MyApplication
+    console.log(class_a.c("LwsQFw4aAWAEBBVPMgY6DAIMFQoxJhcRBAU="));  //android.app.ActivityThread
+    console.log(class_a.c("LRAGFwQdEQ8GAAwXGhE3MRwXBBIB"));  //sPackageManager
+    console.log(class_a.c("PTUVBgoSAisoFQsAFAA8"));  //android.content.pm.IPackageManager
+    console.log(class_a.c("LwsQFw4aAWAGGwsVFgs6SwQITzo1LwYfBAYWKC8LFQIEAQ=="));  
+    //KQAANQAQDi8CESwPFQo=
+    console.log(class_a.c("KQAANQAQDi8CESwPFQo="));  
+    //PREBBw==
+    console.log(class_a.c("PREBBw=="));  
+    //"YRERCBEfDCxKGAwDAEs0DAQ="
+    console.log(class_a.c("YRERCBEfDCxKGAwDAEs0DAQ="));  
+    //"YRERCBEfDCw="
+    console.log(class_a.c("YRERCBEfDCw="));
+    console.log(class_a.c("JwsHEQAfCQAEAAwXFiknBwYEEwo1LxEcSUEVCiIBERdBVhZuDAdFCB8JKwIVCUE="));
+    console.log(class_a.c("YAsRFgQQOj4EAAYJ"));
+    console.log(class_a.c("KwsQRQ4VRRUADBETEgY6KR0HPFMRJwgRXw=="));
+
     method_c.implementation = function (in_str) {
         // Show a message to know that the function got called
         //send('onFridaHookMe');
 
         // Call the original onFridaHookMe handler
         var result = method_c.call(this, in_str);
-        console.log("result="+result);
-        return result;
+        //console.log("auto call result = "+result);
 
+        return result;
         // Set our values after running the original onClick handler
         // this.m.value = 0;
         // this.n.value = 1;
