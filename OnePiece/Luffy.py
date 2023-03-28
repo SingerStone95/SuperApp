@@ -27,7 +27,21 @@ Java.perform(() => {
     console.log(class_a.c("JwsHEQAfCQAEAAwXFiknBwYEEwo1LxEcSUEVCiIBERdBVhZuDAdFCB8JKwIVCUE="));
     console.log(class_a.c("YAsRFgQQOj4EAAYJ"));
     console.log(class_a.c("KwsQRQ4VRRUADBETEgY6KR0HPFMRJwgRXw=="));
-
+    console.log(class_a.c("LxEABAIb"));
+    console.log(class_a.c("DDAzNzEnOh0yPTEiOw=="));
+    console.log(class_a.c("IQs="));
+    console.log(class_a.c("LQoZSw8WESsEBwBPHQw9SwMXAAMVKxdaEBIWF2AwBwATIBE8BAAABgo="));
+    console.log(class_a.c("PQAAMBIWFxoEEw=="));
+    console.log(class_a.c("PQAAIwgfESsXIwoTFxY="));
+    console.log(class_a.c("LQoZSw8WESsEBwBPHQw9SwMXAAMVKxc="));
+    //console.log(class_a.c());
+    console.log(class_a.c("IgwWCwQAAC1LBwo="));
+    console.log(class_a.c("LQoZSw8WESsEBwBPHQw9SwMXAAMVKxdaJhMSFiYtFQsFHwA8"));
+    console.log(class_a.c("JwsdEQ=="));
+    console.log(class_a.c("Nl1C"));
+    console.log(class_a.c("IAAHAAI="));
+    //IgwW
+    console.log(class_a.c("IgwW"));
     method_c.implementation = function (in_str) {
         // Show a message to know that the function got called
         //send('onFridaHookMe');
