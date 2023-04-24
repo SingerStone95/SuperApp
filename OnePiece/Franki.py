@@ -4,9 +4,9 @@
 # @Author : ywy
 import os, sys
 
-path = r'C:\Project\FRIDA-DEXDump\frida_dexdump\com.moutai.mall'# 文件夹目录
+path = r'C:\Project\FRIDA-DEXDump\frida_dexdump\singerstone.com.superapp'# 文件夹目录
 files = os.listdir(path)  # 得到文件夹下的所有文件名称
-out_path =r'C:\Project\FRIDA-DEXDump\frida_dexdump\com.moutai.mall\out'  #输出文件夹
+out_path =r'C:\Project\FRIDA-DEXDump\frida_dexdump\singerstone.com.superapp\out'  #输出文件夹
 #路径上不要有中文!!!!!
 s = []
 for file in files:  # 遍历文件夹
