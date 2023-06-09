@@ -10,10 +10,7 @@
 #include <time.h>
 #include "singerstone_com_superapp_ndkinterface_NdkInterface.h"
 
-JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterface_getServiceName(JNIEnv *env, jclass jz)
-{
-    return (*env)->NewStringUTF(env, "时间不在于你拥有多少，而在于你怎样使用");
-}
+
 
 JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterface_genCrash(JNIEnv *env, jclass jz)
 {
@@ -113,4 +110,34 @@ JNIEXPORT jstring JNICALL Java_singerstone_com_superapp_ndkinterface_NdkInterfac
     }
 
     return (*env)->NewStringUTF(env, "创建一个 mmap OOM");
+}
+
+ jstring GetServiceName(JNIEnv *env, jclass jz)
+{
+    return (*env)->NewStringUTF(env, "时间不在于你拥有多少，而在于你怎样使用(动态注册)");
+}
+
+
+jint RegisterNatives(JNIEnv *env) {
+    jclass clazz = (*env)->FindClass(env,"singerstone/com/superapp/ndkinterface/NdkInterface");
+    if (clazz == NULL) {
+        __android_log_print(ANDROID_LOG_ERROR, "yogachen", "class singerstone/com/superapp/ndkinterface/NdkInterface not found!");
+        return JNI_ERR;
+    }
+    JNINativeMethod methods_GetServiceName[] = {
+            {"getServiceName",           "()Ljava/lang/String;",                (void *) GetServiceName}
+    };
+    return (*env)->RegisterNatives(env,clazz, methods_GetServiceName,
+                                sizeof(methods_GetServiceName) / sizeof(methods_GetServiceName[0]));
+}
+
+
+jint JNI_OnLoad(JavaVM *vm, void *reserved) {
+    JNIEnv *env = NULL;
+    if ((*vm)->GetEnv(vm,(void **) &env, JNI_VERSION_1_6) != JNI_OK) {
+        return JNI_ERR;
+    }
+    jint result = RegisterNatives(env);
+     __android_log_print(ANDROID_LOG_ERROR, "yogachen", "RegisterNatives result: %d",result);
+    return JNI_VERSION_1_6;
 }
