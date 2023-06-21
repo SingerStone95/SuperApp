@@ -8,7 +8,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <time.h>
-#include "singerstone_com_superapp_ndkinterface_NdkInterface.h"
+
 
 
 
