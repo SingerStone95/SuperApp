@@ -1,0 +1,3 @@
+[submodule "FridaContainer"]
+	path = FridaContainer
+	url = https://github.com/SingerStone95/FridaContainer.git
