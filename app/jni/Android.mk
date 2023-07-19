@@ -20,8 +20,9 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE := NdkInterface
 #ollvm 参数
-LOCAL_CFLAGS += -mllvm -sub -mllvm -bcf -mllvm -fla
-LOCAL_SRC_FILES := superapp/singerstone_com_superapp_ndkinterface_NdkInterface.c
+# -mllvm -sub -mllvm -bcf -mllvm -fla 由于某种原因开启bcf（虚假控制流）会编译不过，因此去掉该参数
+LOCAL_CFLAGS += -mllvm -sub -mllvm -fla
+LOCAL_SRC_FILES := superapp/singerstone_com_superapp_ndkinterface_NdkInterface.cpp superapp/have_fun.cpp
 LOCAL_LDLIBS := -llog
 include $(BUILD_SHARED_LIBRARY)
 #暂时不要编译breakpad
