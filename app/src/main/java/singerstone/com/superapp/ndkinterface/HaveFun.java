@@ -1,9 +1,12 @@
 package singerstone.com.superapp.ndkinterface;
 
+import singerstone.com.superapp.log.AppLog;
+
 public class HaveFun {
-    public static java.lang.String GetSign(java.lang.String param) {
+    public static String GetSign(String param) {
 
-
-        return "";
+        AppLog.i("yogachen", param);
+//this is password
+        return "this is password";
     }
 }
