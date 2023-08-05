@@ -27,6 +27,7 @@ class IP地址 {
             }
         }
 
+
         private fun isValid(substring: String): Boolean {
             if (substring.isEmpty()) {
                 return false

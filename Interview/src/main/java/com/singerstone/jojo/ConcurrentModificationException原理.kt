@@ -12,6 +12,7 @@ class ConcurrentModificationException原理 {
             val listeners = arrayListOf<CallBack>()
             listeners.add(object : CallBack {
                 override fun callback() {
+                    // 如果在这个地方用迭代器进行移除，就不会crash
                     listeners.remove(this)
                 }
 
