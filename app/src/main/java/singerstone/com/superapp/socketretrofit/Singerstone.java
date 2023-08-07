@@ -72,8 +72,9 @@ public class Singerstone {
                             throws Throwable {
                         // If the method is a method from Object then defer to normal invocation.
                         if (method.getDeclaringClass() == Object.class) {
-                            return method.invoke(this, args);
+                            return method.invoke(proxy, args);
                         }
+                        //method.invoke(proxy, args); 直接死循环
                         ServiceMethod serviceMethod = loadServiceMethod(method);
 
                         return sendMessage(serviceMethod, args);
