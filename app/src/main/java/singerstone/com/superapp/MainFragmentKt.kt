@@ -68,7 +68,7 @@ class MainFragmentKt : BaseFragment(), GestureDetector.OnGestureListener {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
 
         return view
@@ -102,14 +102,14 @@ class MainFragmentKt : BaseFragment(), GestureDetector.OnGestureListener {
         }
         if (firstLine != null) {
             totalRam = Math
-                .ceil(java.lang.Float.valueOf(firstLine) / (1024 * 1024).toDouble()).toInt()
+                    .ceil(java.lang.Float.valueOf(firstLine) / (1024 * 1024).toDouble()).toInt()
         }
         return totalRam.toString() + "GB" //返回1GB/2GB/3GB/4GB
     }
 
     private fun initView(view: View) {
         val layoutManager = GridLayoutManager(activity, 1,
-            RecyclerView.VERTICAL, false)
+                RecyclerView.VERTICAL, false)
         //LinearLayoutManager layoutManager = new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,
         // false);
         //rv_tools = view.findViewById(R.id.rv_tools);
@@ -120,47 +120,47 @@ class MainFragmentKt : BaseFragment(), GestureDetector.OnGestureListener {
         toolAdapter!!.setOnItemClickListener { position: Int, itemView: View? ->
             when (position) {
                 0 -> (activity as MainActivity)
-                    .setFragmentAddToBackStack(StarFragment.newInstance())
+                        .setFragmentAddToBackStack(StarFragment.newInstance())
                 1 -> (activity as MainActivity)
-                    .setFragmentAddToBackStack(BezierPaopaoFragment.newInstance())
+                        .setFragmentAddToBackStack(BezierPaopaoFragment.newInstance())
                 2 -> Singerstone.getInstance().create(SocketService::class.java).commit2("cbh", "hello")
-                    .subscribe { s: String? -> Toast.makeText(activity, s, Toast.LENGTH_LONG) }
+                        .subscribe { s: String? -> Toast.makeText(activity, s, Toast.LENGTH_LONG) }
                 3 -> (activity as MainActivity)
-                    .setFragmentAddToBackStack(WaveFragment.newInstance())
+                        .setFragmentAddToBackStack(WaveFragment.newInstance())
                 4 -> (activity as MainActivity)
-                    .setFragmentAddToBackStack(TouchEventFragment.newInstance())
+                        .setFragmentAddToBackStack(TouchEventFragment.newInstance())
                 5 ->                     /*Toast.makeText(activity,
                             NdkInterface.genMallocOOM()
                             , Toast.LENGTH_SHORT).show();*/
                     // NdkInterface.genCrash();
                     (activity as MainActivity)
-                        .setFragmentAddToBackStack(NDKFragment.newInstance())
+                            .setFragmentAddToBackStack(NDKFragment.newInstance())
                 6 -> (activity as MainActivity)
-                    .setFragmentAddToBackStack(PKAnimationFragment.newInstance())
+                        .setFragmentAddToBackStack(PKAnimationFragment.newInstance())
                 7 -> (activity as MainActivity)
-                    .setFragmentAddToBackStack(AccessbilityFragmrnt.newInstance())
+                        .setFragmentAddToBackStack(AccessbilityFragmrnt.newInstance())
                 8 -> (activity as MainActivity)
-                    .setFragmentAddToBackStack(MarqueeFragment.newInstance())
+                        .setFragmentAddToBackStack(MarqueeFragment.newInstance())
                 9 -> (activity as MainActivity)
-                    .setFragmentAddToBackStack(TreeholeViewFragment.newInstance())
+                        .setFragmentAddToBackStack(TreeholeViewFragment.newInstance())
                 10 -> (activity as MainActivity)
-                    .setFragmentAddToBackStack(LikeViewFragment.newInstance())
+                        .setFragmentAddToBackStack(LikeViewFragment.newInstance())
                 11 -> startActivity(Intent(activity, ServiceIPCActivity::class.java))
                 12 -> (activity as MainActivity)
-                    .setFragmentAddToBackStack(FragmentScrollImage.newInstance())
+                        .setFragmentAddToBackStack(FragmentScrollImage.newInstance())
                 13 -> (activity as MainActivity)
-                    .setFragmentAddToBackStack(BookFragment.newInstance())
+                        .setFragmentAddToBackStack(BookFragment.newInstance())
                 14 -> (activity as MainActivity)
-                    .setFragmentAddToBackStack(InkeFragment.newInstance())
+                        .setFragmentAddToBackStack(InkeFragment.newInstance())
                 15 -> {
                     val uri = Uri.parse("content://com.singerstone.provider")
                     activity?.contentResolver?.call(uri, "test", null, null)
                 }
                 16 -> (activity as MainActivity)
-                    .setFragmentAddToBackStack(HttpsTestFragment.newInstance())
+                        .setFragmentAddToBackStack(HttpsTestFragment.newInstance())
                 17 -> (activity as MainActivity).setFragmentAddToBackStack(OpenGlFragment())
                 18 -> (activity as MainActivity)
-                    .setFragmentAddToBackStack(QQLiveTestFragment.newInstance())
+                        .setFragmentAddToBackStack(QQLiveTestFragment.newInstance())
                 19 -> {
                     AppLog.i("yogachen", "xlog 的log")
                     AppLog.flush(false)
@@ -172,21 +172,22 @@ class MainFragmentKt : BaseFragment(), GestureDetector.OnGestureListener {
                 }
                 20 -> {
                     (activity as MainActivity)
-                        .setFragmentAddToBackStack(UpComingFragment.newInstance())
+                            .setFragmentAddToBackStack(UpComingFragment.newInstance())
                     (activity as MainActivity)
-                        .setFragmentAddToBackStack(XposedFragment.newInstance())
+                            .setFragmentAddToBackStack(XposedFragment.newInstance())
                     (activity as MainActivity)
-                        .setFragmentAddToBackStack(ScrollerFragment.newInstance())
+                            .setFragmentAddToBackStack(ScrollerFragment.newInstance())
                 }
                 21 -> {
                     (activity as MainActivity)
-                        .setFragmentAddToBackStack(XposedFragment.newInstance())
+                            .setFragmentAddToBackStack(XposedFragment.newInstance())
                     (activity as MainActivity)
-                        .setFragmentAddToBackStack(ScrollerFragment.newInstance())
+                            .setFragmentAddToBackStack(ScrollerFragment.newInstance())
                 }
                 22 -> (activity as MainActivity)
-                    .setFragmentAddToBackStack(ScrollerFragment.newInstance())
-                else -> {}
+                        .setFragmentAddToBackStack(ScrollerFragment.newInstance())
+                else -> {
+                }
             }
         }
         rv_tools!!.addOnScrollListener(scrollListener)
@@ -223,6 +224,8 @@ class MainFragmentKt : BaseFragment(), GestureDetector.OnGestureListener {
         items!!.add(ToolItem(R.drawable.default_tool, "Xposed测试" + index++))
         items!!.add(ToolItem(R.drawable.default_tool, "Fling Scroller测试" + index++))
 
+        Singerstone.getInstance().init();
+
     }
 
     private val scrollListener: RecyclerView.OnScrollListener = object : RecyclerView.OnScrollListener() {
@@ -231,7 +234,7 @@ class MainFragmentKt : BaseFragment(), GestureDetector.OnGestureListener {
             L.i("onScrollStateChanged:>>>>>>>>>>>>>>$newState")
             if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                 val linearManager = recyclerView
-                    .layoutManager as LinearLayoutManager?
+                        .layoutManager as LinearLayoutManager?
                 val firstItemPosition = linearManager!!.findFirstVisibleItemPosition()
                 val lastItemPosition = linearManager.findLastVisibleItemPosition()
                 val firstView = linearManager.findViewByPosition(firstItemPosition)
@@ -242,8 +245,8 @@ class MainFragmentKt : BaseFragment(), GestureDetector.OnGestureListener {
                 if (getVisibilityPercents(lastView) > 50) {
                 }
                 L.i("onScrollStateChanged",
-                    "$firstItemPosition $lastItemPosition，" + getVisibilityPercents(
-                        firstView) + "   " + getVisibilityPercents(lastView))
+                        "$firstItemPosition $lastItemPosition，" + getVisibilityPercents(
+                                firstView) + "   " + getVisibilityPercents(lastView))
             }
         }
 
@@ -253,7 +256,7 @@ class MainFragmentKt : BaseFragment(), GestureDetector.OnGestureListener {
             val layoutManager = recyclerView.layoutManager
             if (layoutManager is LinearLayoutManager) {
                 val lastCompletelyVisibleItemPosition = layoutManager
-                    .findLastCompletelyVisibleItemPosition()
+                        .findLastCompletelyVisibleItemPosition()
                 if (layoutManager.getItemCount() - 1 == lastCompletelyVisibleItemPosition) {
                     L.i("onScrolled : scroller to bottom")
                 }

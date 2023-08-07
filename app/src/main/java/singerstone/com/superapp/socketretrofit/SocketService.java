@@ -10,9 +10,9 @@ import singerstone.com.superapp.socketretrofit.annotation.Stone;
  */
 
 public interface SocketService {
-    @Singer(ipAddr = "172.26.82.7",port = 8765)
+    @Singer(ipAddr = "127.0.0.1",port = 8899)
     public Observable<String> commit(@Stone(name ="name")String name,@Stone(name = "word")String word);
 
-    @Singer(ipAddr = "172.26.82.7",port = 8765)
+    @Singer(ipAddr = "127.0.0.1",port = 8899)
     public Observable<String> commit2(@Stone(name ="name")String name,@Stone(name = "word")String word);
 }

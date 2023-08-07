@@ -1,10 +1,12 @@
 package singerstone.com.superapp.socketretrofit;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -14,10 +16,11 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 /**
- * Created by chenbinhao on 2017/7/12.
- * YY:909075276
+ * Created by chenbinhao on 2017/7/12. YY:909075276
  */
 
 public class Singerstone {
@@ -29,6 +32,29 @@ public class Singerstone {
 
     // 构造函数私有化
     private Singerstone() {
+
+    }
+
+    public void init() {
+
+        //固定线程池来接收处理
+        Executor executor = Executors.newFixedThreadPool(3);
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                ServerSocket serverSocket = null;
+                try {
+                    serverSocket = new ServerSocket(8899);
+                    //死循环，保证主线程不退出
+                    while (true) {
+                        executor.execute(new SocketHandler(serverSocket.accept()));
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
 
     }
 
@@ -67,7 +93,8 @@ public class Singerstone {
         return result;
     }
 
-    private Observable<String> sendMessage(final ServiceMethod serviceMethod, final Object... args) {
+    private Observable<String> sendMessage(final ServiceMethod serviceMethod,
+            final Object... args) {
         return Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(ObservableEmitter<String> emitter) throws Exception {
@@ -75,7 +102,8 @@ public class Singerstone {
                 OutputStream out = socket.getOutputStream();
                 String writeString = "";
                 for (int i = 0; i < args.length; i++) {
-                    writeString += ((String) serviceMethod.paramsAnnoNames[0] + ":" + (String) args[i]+"\n");
+                    writeString += ((String) serviceMethod.paramsAnnoNames[0] + ":"
+                            + (String) args[i] + "\n");
                 }
                 out.write(writeString.getBytes("utf-8"));
                 InputStream in = socket.getInputStream();
