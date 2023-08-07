@@ -2,7 +2,7 @@ package com.singerstone.jojo
 
 import com.singerstone.jojo.二叉树构建.Companion.visitTree
 
-class 二叉树还原 {
+class 二叉树还原1 {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {

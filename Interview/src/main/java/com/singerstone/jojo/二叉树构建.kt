@@ -13,6 +13,7 @@ class 二叉树构建 {
             println()
             visitTree(mirrorTree2(root))
         }
+
         /**
          * 递归创建二叉树，层序
          */
@@ -21,14 +22,11 @@ class 二叉树构建 {
             if (nodeIndex >= len) {
                 return null
             }
-            val node = TreeNode()
-            node.value = array[nodeIndex]
+            val node = TreeNode(nodeIndex)
             node.left = makeTreeRecursion(array, nodeIndex * 2 + 1, len)
             node.right = makeTreeRecursion(array, nodeIndex * 2 + 2, len)
             return node
         }
-
-
 
 
         /**
@@ -54,7 +52,6 @@ class 二叉树构建 {
             }
 
         }
-
 
 
         /**
@@ -109,11 +106,9 @@ class 二叉树构建 {
 }
 
 
+class TreeNode(var value: Int) {
+    constructor() : this(-1)
 
-
-class TreeNode() {
-
-    var value: Int = -1
     var left: TreeNode? = null
     var right: TreeNode? = null
 }
