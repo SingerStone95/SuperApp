@@ -128,7 +128,6 @@ public class AutoClassVisitor extends ClassVisitor {
                 mv.visitInsn(Opcodes.RETURN)
                 mv.visitMaxs(methodCell.paramsCount, methodCell.paramsCount)
                 mv.visitEnd()
-                mv.visitAnnotation("Lcom/mmc/lamandys/liba_datapick/AutoDataInstrumented;", false)
             }
         }
        // Logger.info("||---结束扫描类：${mClassName}\n")

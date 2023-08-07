@@ -34,9 +34,7 @@ public class LogMethodVisitor extends AdviceAdapter {
         this.visitedFragMethods = visitedFragMethods
     }
 
-    boolean isAutoTrackViewOnClickAnnotation = false
     boolean isAutoTrackIgnoreTrackOnClick = false
-    boolean isHasInstrumented = false
     boolean isHasTracked = false
 
     @Override
@@ -57,13 +55,6 @@ public class LogMethodVisitor extends AdviceAdapter {
         }
 
         if (!(LogAnalyticsUtil.isPublic(access) && !LogAnalyticsUtil.isStatic(access))) {
-            return
-        }
-
-        /**
-         * 之前已经添加过埋点代码，忽略
-         */
-        if (isHasInstrumented) {
             return
         }
 
@@ -118,19 +109,12 @@ public class LogMethodVisitor extends AdviceAdapter {
  */
     @Override
     AnnotationVisitor visitAnnotation(String s, boolean b) {
-        if (s == 'Lsingerstone/com/annotations/AutoTrackDataViewOnClick;') {
-            isAutoTrackViewOnClickAnnotation = true
-            Logger.info("||发现 ${methodName}${methodDesc} 有注解 @AutoTrackDataViewOnClick")
-        }
 
         if (s == 'Lsingerstone/com/annotations/AutoIgnoreTrackDataOnClick;') {
             isAutoTrackIgnoreTrackOnClick = true
             Logger.info("||发现 ${methodName}${methodDesc} 有注解 @AutoIgnoreTrackDataOnClick")
         }
 
-        if (s == 'Lsingerstone/com/annotations/AutoDataInstrumented;') {
-            isHasInstrumented = true
-        }
 
         return super.visitAnnotation(s, b)
     }
