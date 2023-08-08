@@ -49,10 +49,10 @@ public class 二叉树的还原2J {
                 sub_left_preoder.add(preorder[i]);
 
             }
-            root.setLeft(
-                    buildTree(list2IntArray(sub_left_preoder), list2IntArray(sub_left_inoder)));
+            root.left =
+                    buildTree(list2IntArray(sub_left_preoder), list2IntArray(sub_left_inoder));
         } else {
-            root.setLeft(null);
+            root.left = (null);
         }
 
         List<Integer> sub_right_inoder = new ArrayList<>();
@@ -64,10 +64,10 @@ public class 二叉树的还原2J {
             for (int i = 1 + sub_left_inoder.size(); i < preorder.length; i++) {
                 sub_right_preoder.add(preorder[i]);
             }
-            root.setRight(
+            root.right = (
                     buildTree(list2IntArray(sub_right_preoder), list2IntArray(sub_right_inoder)));
         } else {
-            root.setRight(null);
+            root.right = (null);
         }
 
         return root;

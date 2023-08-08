@@ -11,7 +11,7 @@ public class 树的子结构 {
         if (A == null || B == null) {
             return false;
         }
-        return isSub(A, B) || isSubStructure(A.getLeft(), B) || isSubStructure(A.getRight(), B);
+        return isSub(A, B) || isSubStructure(A.left, B) || isSubStructure(A.right, B);
     }
 
     public static boolean isSub(TreeNode A, TreeNode B) {
@@ -21,10 +21,10 @@ public class 树的子结构 {
         if (A == null) {
             return false;
         }
-        if (A.getValue() != B.getValue()) {
+        if (A.value != B.value) {
             return false;
         }
-        return isSub(A.getLeft(), B.getLeft()) && isSub(A.getRight(), B.getRight());
+        return isSub(A.left, B.left) && isSub(A.right, B.right);
     }
 
 

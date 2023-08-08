@@ -55,7 +55,7 @@ class 二叉树构建 {
 
 
         /**
-         * 二叉树的镜像
+         * 二叉树的镜像 非递归
          * 0
          * 12
          * 34 56
@@ -103,12 +103,23 @@ class 二叉树构建 {
         }
     }
 
+
 }
 
 
-class TreeNode(var value: Int) {
+class TreeNode(@JvmField var value: Int) {
     constructor() : this(-1)
 
-    var left: TreeNode? = null
-    var right: TreeNode? = null
+    @JvmField
+    public var left: TreeNode? = null
+
+    @JvmField
+    public var right: TreeNode? = null
+
+    override fun equals(other: Any?): Boolean {
+        if (other is TreeNode) {
+            return other.value == value
+        }
+        return super.equals(other)
+    }
 }
