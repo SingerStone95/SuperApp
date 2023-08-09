@@ -1,0 +1,30 @@
+package com.singerstone.jojo;
+
+import static com.singerstone.jojo.二叉搜索树.buildSearchTree;
+import static com.singerstone.jojo.二叉树构建.makeTreeRecursion;
+
+public class 二叉树的直径 {
+    public static void main(String[] args) {
+        Integer[] values = {1, 2, 3, 4, 5};
+        TreeNode root = makeTreeRecursion(values, 0, values.length);
+        System.out.println(diameterOfBinaryTree(root));
+    }
+
+
+    public static int diameterOfBinaryTree(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int left = diameterOfBinaryTree(root.left);
+        int right = diameterOfBinaryTree(root.right);
+        return Math.max(Math.max(deep(root.left) + deep(root.right), left), right);
+    }
+
+    public static int deep(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        return Math.max(deep(root.left), deep(root.right)) + 1;
+    }
+
+}

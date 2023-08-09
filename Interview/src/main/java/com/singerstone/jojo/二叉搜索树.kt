@@ -53,7 +53,8 @@ class 二叉搜索树 {
          *
          *
          */
-        private fun buildSearchTree(array: Array<Int>, left: Int, right: Int): TreeNode? {
+        @JvmStatic
+        fun buildSearchTree(array: Array<Int>, left: Int, right: Int): TreeNode? {
             if (left > right) {
                 return null
             }

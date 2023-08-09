@@ -46,11 +46,9 @@ class 二叉树构建 {
                 node.left?.let {
                     queue.add(it)
                 }
-                node.right?.let {
-                    queue.add(it)
-                }
             }
 
+            println()
         }
 
 
