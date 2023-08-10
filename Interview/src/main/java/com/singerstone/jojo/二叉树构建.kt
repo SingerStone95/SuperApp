@@ -22,7 +22,7 @@ class 二叉树构建 {
             if (nodeIndex >= len) {
                 return null
             }
-            val node = TreeNode(nodeIndex)
+            val node = TreeNode(array[nodeIndex])
             node.left = makeTreeRecursion(array, nodeIndex * 2 + 1, len)
             node.right = makeTreeRecursion(array, nodeIndex * 2 + 2, len)
             return node
