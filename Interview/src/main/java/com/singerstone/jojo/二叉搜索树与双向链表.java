@@ -3,9 +3,13 @@ package com.singerstone.jojo;
 import static com.singerstone.jojo.二叉搜索树.buildSearchTree;
 
 public class 二叉搜索树与双向链表 {
+
     public static void main(String[] args) {
         Integer[] array = {1, 2, 3, 4, 5, 6};
-        buildSearchTree(array, 0, array.length - 1);
+        //buildSearchTree(array, 0, array.length - 1);
+        TreeNode node = new 二叉搜索树与双向链表()
+                .treeToDoublyList(buildSearchTree(array, 0, array.length - 1));
+        System.out.println(node);
 
     }
 
