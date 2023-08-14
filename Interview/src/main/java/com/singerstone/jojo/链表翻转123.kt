@@ -75,3 +75,5 @@ fun printLinkList(head: Node?) {
 }
 
 class Node(var value: Int? = -1, var next: Node? = null)
+
+class ListNode(@JvmField var value: Int? = -1, @JvmField var next: ListNode? = null)
