@@ -12,15 +12,19 @@ public class 验证二叉搜索树 {
     }
 
     public static boolean isValidBST(TreeNode root) {
+        return isValidBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+
+    }
+
+    public static boolean isValidBST(TreeNode root, int low, int high) {
         if (root == null) {
             return true;
         }
-        if (root.left != null && root.left.value >= root.value) {
-            return false;
-        } else if (root.right != null && root.right.value <= root.value) {
+
+        if (root.value <= low || root.value >= high) {
             return false;
         }
-        return isValidBST(root.left) && isValidBST(root.right);
+        return isValidBST(root.left, low, root.value) && isValidBST(root.right, root.value, high);
     }
 
 }
