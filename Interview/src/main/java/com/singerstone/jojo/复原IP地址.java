@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class 复原IP地址 {
+
     public static void main(String[] args) {
-        System.out.println(new 复原IP地址().restoreIpAddresses("19216811"));
+        System.out.println(new 复原IP地址().restoreIpAddresses("010010"));
     }
 
     public List<String> restoreIpAddresses(String s) {
+
         List<String> result = new ArrayList<>();
         restoreIpAddresses(s, 4, "", result);
         return result;
@@ -43,10 +45,10 @@ public class 复原IP地址 {
         if (s.isEmpty()) {
             return false;
         }
-        int ip = Integer.valueOf(s);
-        if (seg == 4 && ip == 0) {
+        if (s.length() > 1 && s.startsWith("0")) {
             return false;
         }
+        int ip = Integer.valueOf(s);
         return ip >= 0 && ip <= 255;
 
     }
