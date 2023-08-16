@@ -9,7 +9,7 @@ public class 分割回文字符串 {
 
 
     public static void main(String[] args) {
-        System.out.println(new 分割回文字符串().partition("abcd"));
+        System.out.println(new 分割回文字符串().partition("bb"));
 
     }
 
@@ -26,9 +26,9 @@ public class 分割回文字符串 {
 
         } else if (s.length() == 1) {
             temp.add(s);
-            result.add(temp);
+            result.add(new ArrayList<>(temp));
         } else {
-            for (int i = 1; i < s.length(); i++) {
+            for (int i = 1; i <= s.length(); i++) {
                 String str = s.substring(0, i);
                 if (isMirror(str)) {
                     List<String> next = new ArrayList<>(temp);
