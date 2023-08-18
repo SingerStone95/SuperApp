@@ -64,7 +64,7 @@ allprojects { //项目的配置
 }
 
 project.tasks.whenTaskAdded { Task theTask ->
-    println('add task->' + theTask.getName())
+    println('project.tasks.whenTaskAdded : task->' + theTask.getName())
     if (theTask.name == 'assembleDebug' || theTask.name == 'assembleRelease') {
         //theTask.dependsOn(check)
     }

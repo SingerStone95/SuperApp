@@ -9,8 +9,8 @@ gradle.projectsLoaded {
 }
  //2.配置阶段
 gradle.beforeProject { project ->
-    println '配置阶段前，配置:' + project
+    println '配置阶段前，>>>>>>>>>>:' + project
 }
 gradle.afterProject { project ->
-    println '配置阶段后，配置:' + project
+    println '配置阶段后，<<<<<<<<<<:' + project
 }

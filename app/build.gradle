@@ -29,6 +29,7 @@ android {
 
     packagingOptions {
         exclude "**/module-info.class"
+        exclude 'DebugProbesKt.bin'
     }
 
     // 一定放在buildTypes上面，否则不生效
@@ -118,29 +119,29 @@ task t1 {
 
 // 2.配置阶段
 gradle.projectsEvaluated { project ->
-    println '配置阶段 projectsEvaluated' + project
+    println '配置阶段 gradle.projectsEvaluated' + project
 }
 gradle.taskGraph.whenReady {
-    println '配置阶段 whenReady'
+    println '配置阶段 gradle.taskGraph.whenReady'
 }
 // 3.执行阶段
 gradle.taskGraph.beforeTask { task ->
-    println "执行阶段 beforeTask" + task
+    println "执行阶段 gradle.taskGraph.beforeTask >>>>>>>>>>" + task
 }
 gradle.taskGraph.afterTask { task ->
-    println "执行阶段 afterTask " + task
+    println "执行阶段 gradle.taskGraph.afterTask <<<<<<<<<<" + task
 }
 // 4.build结束
 gradle.buildFinished {
-    println '构建结束 buildFinished'
+    println '构建结束 radle.buildFinished'
 }
 
 project.beforeEvaluate {
-    println '配置阶段 beforeEvaluate'
+    println '配置阶段 project.beforeEvaluate >>>>>>>>>>'
 }
 
 project.afterEvaluate {
-    println '配置阶段 afterEvaluate'
+    println '配置阶段 project.afterEvaluate <<<<<<<<<<'
 }
 
 project.tasks.whenTaskAdded { Task theTask ->
