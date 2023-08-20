@@ -1,8 +1,17 @@
 package com.singerstone.jojo;
 
+import static com.singerstone.jojo.二叉树构建.makeTreeRecursion;
+
 public class 树的子结构 {
 
     public static void main(String[] args) {
+        Integer[] array = {1, 2, 3, 4, 5, 6};
+        TreeNode root = makeTreeRecursion(array, 0, array.length);
+
+        Integer[] array2 = {1, 2, 3};
+        TreeNode root2 = makeTreeRecursion(array, 0, array.length);
+
+        System.out.println(isSubStructure(root, root2));
 
     }
 
@@ -18,7 +27,7 @@ public class 树的子结构 {
         if (B == null) {
             return true;
         }
-        if (A == null) {
+        if (A == null) { //不能A为空B不为空
             return false;
         }
         if (A.value != B.value) {
