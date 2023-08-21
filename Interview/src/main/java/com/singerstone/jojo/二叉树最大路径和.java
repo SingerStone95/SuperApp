@@ -26,6 +26,7 @@ public class 二叉树最大路径和 {
         int left = maxPathSum(root.left);
         int right = maxPathSum(root.right);
         max = Math.max(max, root.value + Math.max(left, 0) + Math.max(right, 0));
+        //返回当前节点贡献值 ,必须是包含了当前节点
         return Math.max(0, Math.max(left, right)) + root.value;
     }
 }

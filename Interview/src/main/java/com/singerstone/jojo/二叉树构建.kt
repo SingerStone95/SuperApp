@@ -1,5 +1,8 @@
 package com.singerstone.jojo
 
+import java.util.*
+import kotlin.collections.ArrayList
+
 class 二叉树构建 {
     companion object {
         @JvmStatic
@@ -22,10 +25,28 @@ class 二叉树构建 {
             if (nodeIndex >= len) {
                 return null
             }
+            if (array[nodeIndex] == null) {
+                return null;
+            }
             val node = TreeNode(array[nodeIndex])
             node.left = makeTreeRecursion(array, nodeIndex * 2 + 1, len)
             node.right = makeTreeRecursion(array, nodeIndex * 2 + 2, len)
             return node
+        }
+
+        /**
+         * 先序遍历构造二叉树（包含 null 节点）
+         */
+        @JvmStatic
+        fun makeTreePreOrder(array: java.util.ArrayList<Int?>): TreeNode? {
+            if (array.isEmpty() || array[0] == null) {
+                return null;
+            }
+            var first = array.removeAt(0);
+            var root = TreeNode(first!!);
+            root.left = makeTreePreOrder(array)
+            root.right = makeTreePreOrder(array)
+            return root
         }
 
 

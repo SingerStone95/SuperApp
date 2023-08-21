@@ -14,7 +14,7 @@ public class 序列化二叉树 {
         String serialize = new 序列化二叉树().serialize(root);
         System.out.println(serialize);
 
-        TreeNode node=new 序列化二叉树().deserialize(serialize);
+        TreeNode node = new 序列化二叉树().deserialize(serialize);
         visitTree(node);
     }
 
@@ -26,6 +26,7 @@ public class 序列化二叉树 {
 
     String result = "";
 
+    // 先序遍历序列化
     public void dfs(TreeNode root) {
         if (root == null) {
             result += "null,";
@@ -52,6 +53,7 @@ public class 序列化二叉树 {
         return dfs2(arr);
     }
 
+    //中-左-右
     TreeNode dfs2(ArrayList<String> arr) {
         if (arr.get(0).equals("null")) {
             arr.remove(0);
@@ -62,7 +64,6 @@ public class 序列化二叉树 {
         root.left = dfs2(arr);
         root.right = dfs2(arr);
         return root;
-
     }
 
 }
