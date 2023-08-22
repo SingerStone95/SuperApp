@@ -1,10 +1,8 @@
 package com.singerstone.jojo;
 
-import static com.singerstone.jojo.二叉树构建.makeTreePreOrder;
 import static com.singerstone.jojo.二叉树构建.makeTreeRecursion;
 import static com.singerstone.jojo.二叉树构建.visitTree;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +11,7 @@ import java.util.Map;
 public class 寻找重复子树 {
 
     public static void main(String[] args) {
-        Integer[] values = {2,2,2,3,null,3,null};
+        Integer[] values = {2, 2, 2, 3, null, 3, null};
         TreeNode root = makeTreeRecursion(values, 0, values.length);
         List<TreeNode> result = new 寻找重复子树().findDuplicateSubtrees(root);
         for (TreeNode node : result) {
