@@ -175,13 +175,8 @@ dependencies {
     releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'*/
     api project(':annotations')
     annotationProcessor project(':processors')
-    //api project(path: ':inject', configuration: 'default')
     api project(':inject')
     compileOnly 'com.android.tools.build:gradle:'+BUILD_TOOL_VERSION
-    //compileOnly 'com.android.tools.build:gradle:4.0.2'
-    if (enable_maven_local == 'true') {
-        api 'com.tencent.mtt:toolpluginsApi:' + TOOL_PLUGIN_VERSION
-    }
     implementation "androidx.cardview:cardview:1.0.0"
     //xposed
     compileOnly 'de.robv.android.xposed:api:82'
@@ -192,16 +187,6 @@ dependencies {
 }
 repositories {
     mavenCentral()
-}
-if (ENABLE_MAVEN_LOCAL == 'true') {
-    apply plugin: 'com.tencent.mtt.toolplugins'
-    systrace {
-        enable = true
-        mode = "white"
-        baseMethodMapFile = "${project.buildDir}/systrace_output/Debug.methodmap"
-        blackListFile = "${project.projectDir}/systrace/blackMethodList.txt"
-        whiteListFile = "${project.projectDir}/systrace/whiteMethodList.txt"
-    }
 }
 if (ENABLE_SUPERPLUGIN == 'true') {
     apply plugin: 'com.singerstone.supergradle'

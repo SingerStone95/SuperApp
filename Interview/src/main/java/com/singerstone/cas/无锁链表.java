@@ -7,8 +7,8 @@ package com.singerstone.cas;
 
 public class 无锁链表 {
 
-//    Stack<Integer> stack = new SafeLinkedListStack<>();
-    Stack<Integer> stack = new UnSafeLinkedListStack<>();
+    Stack<Integer> stack = new SafeLinkedListStack<>();
+    //Stack<Integer> stack = new UnSafeLinkedListStack<>();
 
 
     public static void main(String[] args) {
