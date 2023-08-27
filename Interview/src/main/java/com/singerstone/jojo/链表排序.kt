@@ -52,6 +52,7 @@ class 链表排序 {
 
         }
 
+        // 插入排序
         fun insertSort(head: Node?): Node? {
             var head = head
             var dummy = Node(-1)

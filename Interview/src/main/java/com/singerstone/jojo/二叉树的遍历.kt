@@ -139,5 +139,16 @@ class 二叉树的遍历 {
 
         }
 
+        @JvmStatic
+        fun printArray(intArray: IntArray) {
+            for (num in intArray) {
+                print(num)
+            }
+            println()
+
+        }
+
     }
+
+
 }
