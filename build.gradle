@@ -13,11 +13,14 @@ buildscript { //脚本的配置
     println("kotlin_version=" + kotlin_version)
 
     repositories {
-        maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
-        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/google'
+            allowInsecureProtocol = true
+        }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'
+            allowInsecureProtocol = true}
+
         mavenLocal()
         mavenCentral()
-        jcenter()
         maven {//本地Maven仓库地址
             url uri("$rootDir/MavenLocal")
 
@@ -26,7 +29,6 @@ buildscript { //脚本的配置
             url "https://jitpack.io"
         }
         google()
-        // google()
     }
     dependencies {
         println("ENABLE_MAVEN_LOCAL=" + ENABLE_MAVEN_LOCAL)
@@ -45,9 +47,9 @@ buildscript { //脚本的配置
         // didi booster 相关
         classpath "com.didiglobal.booster:booster-gradle-plugin:$booster_version"
         classpath "com.didiglobal.booster:booster-transform-thread:$booster_version"
-        classpath "com.didiglobal.booster:booster-task-list-shared-library:$booster_version"
-        classpath "com.didiglobal.booster:booster-task-resource-deredundancy:$booster_version"
-        classpath "com.didiglobal.booster:booster-task-analyser:$booster_version"
+//        classpath "com.didiglobal.booster:booster-task-list-shared-library:$booster_version"
+//        classpath "com.didiglobal.booster:booster-task-resource-deredundancy:$booster_version"
+//        classpath "com.didiglobal.booster:booster-task-analyser:$booster_version"
 
     }
 }
