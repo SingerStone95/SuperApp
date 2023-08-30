@@ -6,6 +6,7 @@ buildscript { //脚本的配置
     ext.kotlin_version = KOTLIN_VERSION
     ext.enable_maven_local = ENABLE_MAVEN_LOCAL
     ext.enable_supergradle = ENABLE_SUPERPLUGIN
+    ext.booster_version = BOOSTER_VERSION
 
     println("kotlin_version=" + kotlin_version)
     println("enable_supergradle=" + enable_supergradle)
@@ -32,6 +33,7 @@ buildscript { //脚本的配置
         classpath 'com.android.tools.build:gradle:' + BUILD_TOOL_VERSION
         classpath "com.github.dcendents:android-maven-gradle-plugin:1.5"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
         classpath 'me.tatarka:gradle-retrolambda:3.2.5'
         classpath('com.tencent.tinker:tinker-patch-gradle-plugin:1.9.1')
         if (ENABLE_SUPERPLUGIN == 'true') {
@@ -40,6 +42,9 @@ buildscript { //脚本的配置
         if (ENABLE_BTRACE == 'true') {
             classpath 'com.bytedance.btrace:rhea-gradle-plugin:1.0.2'
         }
+        // didi booster 相关
+        classpath "com.didiglobal.booster:booster-gradle-plugin:$booster_version"
+        classpath "com.didiglobal.booster:booster-transform-thread:$booster_version"
 
     }
 }
