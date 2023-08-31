@@ -49,8 +49,8 @@ buildscript { //脚本的配置
         classpath "com.didiglobal.booster:booster-transform-thread:$booster_version"
         classpath "com.didiglobal.booster:booster-task-list-shared-library:$booster_version"
         classpath "com.didiglobal.booster:booster-task-resource-deredundancy:$booster_version"
-        classpath "com.didiglobal.booster:booster-task-analyser:$booster_version"
 
+       /* classpath "com.didiglobal.booster:booster-task-analyser:$booster_version"*/ // 需要研究以下这个打开为啥会报错
     }
 }
 
