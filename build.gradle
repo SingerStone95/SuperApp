@@ -56,8 +56,12 @@ buildscript { //脚本的配置
 
 allprojects { //项目的配置
     repositories {
-        maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
-        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/google'
+            allowInsecureProtocol = true
+        }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'
+            allowInsecureProtocol = true
+        }
         maven {//本地Maven仓库地址
             url uri("$rootDir/MavenLocal")
 

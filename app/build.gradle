@@ -16,11 +16,14 @@ android {
         ndk {
             abiFilters 'armeabi-v7a'
         }
-        javaCompileOptions {
-            annotationProcessorOptions {
-                includeCompileClasspath true
-            }
-        }
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                includeCompileClasspath true
+//            }
+//        }
+    }
+    lintOptions {
+        abortOnError false
     }
 
     compileOptions {

@@ -1,5 +1,5 @@
 apply plugin: 'groovy'
-apply plugin: 'maven'
+//apply plugin: 'maven'
 
 
 dependencies {
@@ -17,21 +17,21 @@ repositories {
 
 //group和version在后面使用自定义插件的时候会用到
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            //提交到远程服务器：
-            // repository(url: "http://www.xxx.com/repos") {
-            //    authentication(userName: "admin", password: "admin")
-            // }
-            //本地的Maven地址设置为D:/repos
-            pom.groupId = 'com.singerstone.plugin'
-            pom.version = '1.0.0'
-            pom.name = 'supergradle'
-            repository(url: uri("$rootDir/MavenLocal"))
-        }
-    }
-}
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            //提交到远程服务器：
+//            // repository(url: "http://www.xxx.com/repos") {
+//            //    authentication(userName: "admin", password: "admin")
+//            // }
+//            //本地的Maven地址设置为D:/repos
+//            pom.groupId = 'com.singerstone.plugin'
+//            pom.version = '1.0.0'
+//            pom.name = 'supergradle'
+//            repository(url: uri("$rootDir/MavenLocal"))
+//        }
+//    }
+//}
 
 sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
