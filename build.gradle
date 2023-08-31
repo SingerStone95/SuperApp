@@ -47,9 +47,9 @@ buildscript { //脚本的配置
         // didi booster 相关
         classpath "com.didiglobal.booster:booster-gradle-plugin:$booster_version"
         classpath "com.didiglobal.booster:booster-transform-thread:$booster_version"
-//        classpath "com.didiglobal.booster:booster-task-list-shared-library:$booster_version"
-//        classpath "com.didiglobal.booster:booster-task-resource-deredundancy:$booster_version"
-//        classpath "com.didiglobal.booster:booster-task-analyser:$booster_version"
+        classpath "com.didiglobal.booster:booster-task-list-shared-library:$booster_version"
+        classpath "com.didiglobal.booster:booster-task-resource-deredundancy:$booster_version"
+        classpath "com.didiglobal.booster:booster-task-analyser:$booster_version"
 
     }
 }
