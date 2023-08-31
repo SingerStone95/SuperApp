@@ -174,8 +174,6 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     api 'org.javassist:javassist:3.25.0-GA'
-/*    debugApi 'com.squareup.leakcanary:leakcanary-android:2.4'
-    releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'*/
     api project(':annotations')
     annotationProcessor project(':processors')
     api project(':inject')
@@ -187,6 +185,11 @@ dependencies {
     if (ENABLE_BTRACE == 'true') {
         implementation "com.bytedance.btrace:rhea-core:1.0.2"
     }
+    compileOnly "com.didiglobal.booster:booster-gradle-plugin:$booster_version"
+    compileOnly "com.didiglobal.booster:booster-transform-thread:$booster_version"
+    compileOnly "com.didiglobal.booster:booster-task-list-shared-library:$booster_version"
+    compileOnly "com.didiglobal.booster:booster-task-resource-deredundancy:$booster_version"
+
 }
 repositories {
     mavenCentral()
