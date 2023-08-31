@@ -1,5 +1,5 @@
 apply plugin: 'groovy'
-//apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 
 dependencies {
@@ -14,6 +14,34 @@ dependencies {
 repositories {
     mavenCentral()
 }
+// 这里查看的component就是publishing上传的产物
+task ShowComponents {
+    afterEvaluate {
+        println("Components: " + components*.name)
+    }
+}
+
+afterEvaluate {
+
+    publishing {
+
+        repositories {
+            mavenLocal()
+        }
+        publications {
+            // Creates a Maven publication called “debug”.
+            Archives(MavenPublication) {
+                // Applies the component for the debug build variant.
+                 from components.java
+                //from components.productionRelease
+                groupId = 'com.singerstone.plugin'
+                artifactId = 'supergradle'
+                version = '1.0.0'
+            }
+        }
+    }
+}
+
 
 //group和version在后面使用自定义插件的时候会用到
 

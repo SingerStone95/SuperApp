@@ -1,17 +1,17 @@
 package com.singerstone.supergradle.asm
 
-import com.android.annotations.NonNull
-import com.android.annotations.Nullable
+
 import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
 import com.singerstone.supergradle.util.AutoMatchUtil
 import com.singerstone.supergradle.util.AutoTextUtil
 import com.singerstone.supergradle.util.Logger
 import groovy.io.FileType
-import org.apache.commons.codec.digest.DigestUtils
-import org.apache.commons.io.FileUtils
-import org.apache.commons.io.IOUtils
+import org.gradle.internal.impldep.com.amazonaws.util.IOUtils
+import org.gradle.internal.impldep.org.apache.commons.codec.digest.DigestUtils
+import org.gradle.internal.impldep.org.eclipse.jgit.annotations.NonNull
 
+import javax.annotation.Nullable
 import java.util.jar.JarEntry
 import java.util.jar.JarFile
 import java.util.jar.JarOutputStream

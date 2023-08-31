@@ -69,7 +69,6 @@ allprojects { //项目的配置
         mavenLocal()
         mavenCentral()
         google()
-        jcenter()
     }
 }
 
