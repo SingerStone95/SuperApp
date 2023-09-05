@@ -3,6 +3,7 @@ package com.singerstone.jojo;
 public class 数组中数字出现的次数 {
 
 
+    // 找到只出现一次的两个数
     public static void main(String[] args) {
         int[] result = new 数组中数字出现的次数().singleNumbers(new int[]{1, 1, 2, 2, 3, 4});
 
