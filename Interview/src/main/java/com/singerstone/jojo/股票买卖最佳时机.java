@@ -60,8 +60,5 @@ public class 股票买卖最佳时机 {
             dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] + prices[i]);
         }
         return Math.max(dp[prices.length - 1][0], dp[prices.length - 1][1]);
-
-
-        return 0;
     }
 }
