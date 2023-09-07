@@ -31,6 +31,8 @@ public class 字符串转整数 {
         for (int i = start; i < str.length(); i++) {
             char c = str.charAt(i);
             if (c >= '0' && c <= '9') {
+                // 这个逻辑要好好理解 ，并记住
+                // 比如最大是123 ，每次乘以10之前判断 大于 12 就说明超过了，恰好等于12，就要判断当前的数是否大于3
                 if (result > board || result == board && c > '7') {
                     return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
                 }
