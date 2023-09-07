@@ -4,6 +4,8 @@ package com.singerstone.jojo;
 public class 字符串转整数 {
     public int strToInt(String str) {
 
+        return 0;
+
     }
 
 }
