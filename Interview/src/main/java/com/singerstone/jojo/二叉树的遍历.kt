@@ -8,7 +8,7 @@ class 二叉树的遍历 {
         @JvmStatic
         fun main(args: Array<String>) {
             val array = arrayOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-            preOrderTree(makeTreeRecursion(array, 0, array.size))
+/*            preOrderTree(makeTreeRecursion(array, 0, array.size))
             println()
 
             preOrderTree2(makeTreeRecursion(array, 0, array.size))
@@ -17,11 +17,64 @@ class 二叉树的遍历 {
             inOderTree(makeTreeRecursion(array, 0, array.size))
             println()
             postOrderTree(makeTreeRecursion(array, 0, array.size))
-            println()
+            println()*/
             postOrderTree2(makeTreeRecursion(array, 0, array.size))
+            println()
+            //preOrderTree2(makeTreeRecursion(array, 0, array.size))
 
 
         }
+
+
+
+        /**
+         * result 尾插 ，先右后左
+         */
+        private fun preOrderTree2(head: TreeNode?) {
+            head ?: return
+            val mutableList = mutableListOf<TreeNode>()
+            mutableList.add(head)
+            var result = mutableListOf<Int>()
+            while (mutableList.size > 0) {
+                val node = mutableList.removeAt(mutableList.size - 1)
+                result.add(node.value) // 尾插法
+                node.right?.let {// 先右后左
+                    mutableList.add(it)
+                }
+                node.left?.let {
+                    mutableList.add(it)
+                }
+            }
+            print(result)
+        }
+
+        /**
+         * result 头插 ，先左后右
+         */
+        fun postOrderTree2(head: TreeNode?) {
+            head ?: return
+            val mutableList = mutableListOf<TreeNode>()
+            mutableList.add(head)
+            var result = mutableListOf<Int>()
+            while (mutableList.size > 0) {
+                val node = mutableList.removeAt(mutableList.size - 1)
+                result.add(0, node.value)  // 头插法，相当于这个result也是一个辅助栈
+                // 先左后右
+                node.left?.let {
+                    mutableList.add(it)
+                }
+                node.right?.let {
+                    mutableList.add(it)
+                }
+            }
+            print(result)
+
+        }
+
+
+        /**
+         * ___________________________________________ 分割线 ____________________________________________________________
+         */
 
         /**
          *      1
@@ -48,24 +101,6 @@ class 二叉树的遍历 {
             }
         }
 
-        /**
-         * 进栈的顺序是先序遍历 1245367
-         */
-        private fun preOrderTree2(head: TreeNode?) {
-            head ?: return
-            val mutableList = mutableListOf<TreeNode>()
-            mutableList.add(head)
-            while (mutableList.size > 0) {
-                val node = mutableList.removeAt(mutableList.size - 1)
-                print(node.value)
-                node.right?.let {
-                    mutableList.add(it)
-                }
-                node.left?.let {
-                    mutableList.add(it)
-                }
-            }
-        }
 
         /**
          *      1
@@ -120,24 +155,6 @@ class 二叉树的遍历 {
             print(result)
         }
 
-        fun postOrderTree2(head: TreeNode?) {
-            head ?: return
-            val mutableList = mutableListOf<TreeNode>()
-            mutableList.add(head)
-            var result = mutableListOf<Int>()
-            while (mutableList.size > 0) {
-                val node = mutableList.removeAt(mutableList.size - 1)
-                result.add(0, node.value)
-                node.left?.let {
-                    mutableList.add(it)
-                }
-                node.right?.let {
-                    mutableList.add(it)
-                }
-            }
-            print(result)
-
-        }
 
         @JvmStatic
         fun printArray(intArray: IntArray) {
