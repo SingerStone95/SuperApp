@@ -1,21 +1,20 @@
 package com.singerstone.supergradle.asm
 
-
+import com.amazonaws.util.IOUtils
 import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
 import com.singerstone.supergradle.util.AutoMatchUtil
 import com.singerstone.supergradle.util.AutoTextUtil
 import com.singerstone.supergradle.util.Logger
 import groovy.io.FileType
-import org.gradle.internal.impldep.com.amazonaws.util.IOUtils
-import org.gradle.internal.impldep.org.apache.commons.codec.digest.DigestUtils
+import org.apache.commons.codec.digest.DigestUtils
 import org.gradle.internal.impldep.org.eclipse.jgit.annotations.NonNull
-
 import javax.annotation.Nullable
 import java.util.jar.JarEntry
 import java.util.jar.JarFile
 import java.util.jar.JarOutputStream
 import java.util.zip.ZipEntry
+import org.apache.commons.io.FileUtils
 
 /**
  * 自动埋点追踪，遍历所有文件更换字节码 然后生成systrace

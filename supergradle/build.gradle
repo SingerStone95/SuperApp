@@ -5,9 +5,12 @@ apply plugin: 'maven-publish'
 dependencies {
     implementation localGroovy()
     implementation gradleApi()
+    implementation 'commons-codec:commons-codec:1.16.0'
+    implementation 'commons-io:commons-io:2.13.0'
+    implementation group: 'com.amazonaws', name: 'aws-java-sdk-core', version: '1.11.236'
     implementation 'org.ow2.asm:asm:' + ASM_VERSION
     implementation 'org.ow2.asm:asm-commons:' + ASM_VERSION
-    compileOnly 'com.android.tools.build:gradle:' + BUILD_TOOL_VERSION
+    implementation 'com.android.tools.build:gradle:' + BUILD_TOOL_VERSION
 }
 
 
@@ -59,7 +62,4 @@ afterEvaluate {
 //            repository(url: uri("$rootDir/MavenLocal"))
 //        }
 //    }
-//}
-
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+//}ß
