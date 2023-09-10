@@ -1,7 +1,9 @@
 package com.singerstone.jojo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @des:
@@ -12,7 +14,7 @@ import java.util.List;
 public class 全排列 {
 
     public static void main(String[] args) {
-        int[] array = new int[]{1, 2, 3};
+        int[] array = new int[]{2, 2, 3};
         System.out.println(new 全排列().permute(array));
     }
 
@@ -29,10 +31,15 @@ public class 全排列 {
         if (tmp.size() == nums.length) {
             result.add(new ArrayList<>(tmp));
         }
+        Set<Integer> set = new HashSet<>(); // 处理题目中有重复元素的 case
         for (int i = 0; i < nums.length; i++) {
+            if (set.contains(nums[i])) {
+                continue;
+            }
             if (!used[i]) {
                 used[i] = true;
                 tmp.add(nums[i]);
+                set.add(nums[i]);
                 dfs(result, used, tmp, nums);
                 used[i] = false;
                 tmp.remove(tmp.size() - 1);

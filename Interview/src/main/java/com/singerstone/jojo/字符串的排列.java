@@ -37,7 +37,6 @@ public class 字符串的排列 {
             return;
         }
         Set<Character> set = new HashSet<>(); // 每一层的用到的元素不能重复
-
         for (int i = start; i < array.length; i++) {
             if (set.contains(array[i])) {
                 continue;
