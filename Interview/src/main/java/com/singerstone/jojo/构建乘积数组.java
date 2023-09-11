@@ -5,6 +5,7 @@ package com.singerstone.jojo;
  * @author: yogachen
  * @date: 2023/9/10 12:09
  * @see {@link }
+ * 不能用除法
  */
 public class 构建乘积数组 {
 
