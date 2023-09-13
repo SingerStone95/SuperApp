@@ -49,7 +49,7 @@ public class 子集 {
         }
         tmp.add(nums[n]);
         dfs(nums, n + 1);
-        tmp.remove(tmp.size() - 1);
+        tmp.remove(tmp.size() - 1); // 不选当前的数 选下一个数
         dfs(nums, n + 1);
     }
 }
