@@ -20,4 +20,12 @@ public class 路径总和 {
         return hasPathSum(root.left, targetSum - root.value) || hasPathSum(root.right, targetSum - root.value);
     }
 
+    //这么写因为没有处理 root 为空数的情况，不能ac
+    public static boolean hasPathSum2(TreeNode root, int targetSum) {
+        if (root == null) {
+            return targetSum == 0;
+        }
+        return hasPathSum2(root.left, targetSum - root.value) || hasPathSum2(root.right, targetSum - root.value);
+    }
+
 }

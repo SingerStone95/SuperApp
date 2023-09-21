@@ -14,6 +14,7 @@ public class 从上到下打印二叉树 {
         TreeNode root = makeTreeRecursion(values, 0, values.length);
         System.out.println(new 从上到下打印二叉树().levelOrder(root));
         System.out.println(new 从上到下打印二叉树().levelOrder2(root));
+        System.out.println(new 从上到下打印二叉树().levelOrder3(root));
 
     }
 
@@ -36,6 +37,7 @@ public class 从上到下打印二叉树 {
 
     }
 
+    //层序打印
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
         dfs(root, 0);
@@ -70,12 +72,50 @@ public class 从上到下打印二叉树 {
         dfs2(root.right, level + 1);
     }
 
+    /**
+     * Z 字形打印
+     * @param root
+     * @return
+     */
     public List<List<Integer>> levelOrder2(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
         dfs2(root, 0);
         for (int i = 0; i < map.size(); i++) {
             result.add(map.get(i));
         }
+        return result;
+    }
+
+    // 使用队列 Z 字形打印
+    public List<List<Integer>> levelOrder3(TreeNode root) {
+        if (root == null) {
+            return new ArrayList<>();
+        }
+        List<List<Integer>> result = new ArrayList<>();
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        boolean flag = true;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            ArrayList<Integer> array = new ArrayList<>();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                if (flag) {
+                    array.add(node.value);
+                } else {
+                    array.add(0, node.value);
+                }
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+            result.add(array);
+            flag = !flag;
+        }
+
         return result;
     }
 }
