@@ -10,10 +10,11 @@ public class 替换后的最大重复字符 {
 
     }
 
+    // 双指针+滑动窗口
     public int characterReplacement(String s, int k) {
         int start = 0;
         int result = 0;
-        int maxCount = 0;
+        int maxCount = 0; // 当前窗口里面的最大重复个数
         Map<Character, Integer> map = new HashMap<>();
         for (int end = 0; end < s.length(); end++) {
             Character c = s.charAt(end);
