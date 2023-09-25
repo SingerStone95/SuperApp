@@ -3,7 +3,7 @@ package com.singerstone.jojo;
 public class 剪绳子 {
 
     public static void main(String[] args) {
-        System.out.println(new 剪绳子().cuttingRope2(10));
+        System.out.println(new 剪绳子().cuttingRope(10));
 
     }
 
@@ -36,7 +36,7 @@ public class 剪绳子 {
         if (y == 0) {
             return (int) Math.pow(3, c);
         } else if (y == 1) {
-            return (int) Math.pow(3, c - 1) * 2;
+            return (int) Math.pow(3, c - 1) * 4;
         } else {
             return (int) Math.pow(3, c) * 2;
         }

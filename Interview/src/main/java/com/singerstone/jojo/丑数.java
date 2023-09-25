@@ -11,6 +11,7 @@ public class 丑数 {
 //输出: 12
 //解释: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 是前 10 个丑数。
     // 由 2, 3 ,5 相乘得到的数称为丑数
+    // dp[i] 代表第i个丑数
     public int nthUglyNumber(int n) {
         int c2 = 1;
         int c3 = 1;
@@ -29,7 +30,6 @@ public class 丑数 {
             if (dp[i] == q) {
                 c3++;
             }
-
             if (dp[i] == r) {
                 c5++;
             }
