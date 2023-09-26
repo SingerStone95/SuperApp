@@ -20,6 +20,7 @@ public class 括号生成 {
     public void generateParenthesis(int left, int right, List<String> result, String tmp) {
         if (left == 0 && right == 0) {
             result.add(tmp);
+            return;
         }
         if (left > right) {
             return;

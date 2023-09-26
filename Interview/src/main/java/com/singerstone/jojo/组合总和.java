@@ -25,9 +25,9 @@ public class 组合总和 {
         if (target == 0) {
             result.add(new ArrayList<Integer>(temp));
             return;
-        }else if (target<0){
+        } else if (target < 0) {
             return;
-        }else {
+        } else {
             for (int i = left; i < candidates.length; i++) {
                 List<Integer> next = new ArrayList<>(temp);
                 next.add(candidates[i]);

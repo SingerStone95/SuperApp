@@ -6,7 +6,8 @@ import java.util.Queue;
 
 public class 机器人的运动路径 {
 
-    // 该题 bfs dfs 都能做，关键在于当不满足条件的时候就停止搜索
+    //https://leetcode.cn/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/solutions/110056/mian-shi-ti-13-ji-qi-ren-de-yun-dong-fan-wei-dfs-b/
+    // dfs，bfs都可以做（dfs有个前置数学推导，保证可达解都是联通且不存在不可达的解，否则无法使用dfs，，这个题就当已知条件了） visited + dfs  ,只需要向右和向下dfs即可
     public static void main(String[] args) {
         System.out.println(new 机器人的运动路径().movingCount(16, 8, 4));
     }
@@ -30,9 +31,9 @@ public class 机器人的运动路径 {
         if ((getSum(i) + getSum(j)) <= k) { // 只有满足条件的时候才会继续向下搜索
             result++;
             movingCount(m, n, k, i + 1, j, visited);
-            movingCount(m, n, k, i - 1, j, visited); // 可以减枝
+//            movingCount(m, n, k, i - 1, j, visited); // 可以减枝
             movingCount(m, n, k, i, j + 1, visited);
-            movingCount(m, n, k, i, j - 1, visited); // 可以减枝
+//            movingCount(m, n, k, i, j - 1, visited); // 可以减枝
         }
 
     }
