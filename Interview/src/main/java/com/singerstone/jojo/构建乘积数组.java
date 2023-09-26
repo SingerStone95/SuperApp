@@ -17,6 +17,7 @@ public class 构建乘积数组 {
 
     }
 
+    // 排除第i个数后的乘积
     //输入: [1,2,3,4,5]
     //输出: [120,60,40,30,24]
     public int[] constructArr(int[] a) {
