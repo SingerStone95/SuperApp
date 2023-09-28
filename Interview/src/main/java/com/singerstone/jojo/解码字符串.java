@@ -17,7 +17,7 @@ public class 解码字符串 {
     //3[a2[c2[e]]]
 
     public String decodeString(String s) {
-        String res = "";
+        String curs= "";
         Stack<Integer> nums = new Stack<>();
         Stack<String> strings = new Stack<>();
         int num = 0;
@@ -28,23 +28,23 @@ public class 解码字符串 {
             } else if (c == '[') {
                 nums.push(num);
                 num = 0;
-                strings.push(res);
-                res = "";
+                strings.push(curs);
+                curs = "";
 
             } else if (c == ']') {
                 StringBuilder tmp = new StringBuilder();
                 int muti = nums.pop();
                 String pre = strings.pop();
                 for (int j = 0; j < muti; j++) {
-                    tmp.append(res);
+                    tmp.append(curs);
                 }
-                res = pre + tmp;
+                curs = pre + tmp;
             } else {
-                res += c;
+                curs += c;
             }
 
         }
-        return res;
+        return curs;
 
     }
 }
