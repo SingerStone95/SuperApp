@@ -8,23 +8,22 @@ class 二叉树的遍历 {
         @JvmStatic
         fun main(args: Array<String>) {
             val array = arrayOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-/*            preOrderTree(makeTreeRecursion(array, 0, array.size))
-            println()
+            /*            preOrderTree(makeTreeRecursion(array, 0, array.size))
+                        println()
 
-            preOrderTree2(makeTreeRecursion(array, 0, array.size))
-            println()
+                        preOrderTree2(makeTreeRecursion(array, 0, array.size))
+                        println()
 
-            inOderTree(makeTreeRecursion(array, 0, array.size))
-            println()
-            postOrderTree(makeTreeRecursion(array, 0, array.size))
-            println()*/
+                        inOderTree(makeTreeRecursion(array, 0, array.size))
+                        println()
+                        postOrderTree(makeTreeRecursion(array, 0, array.size))
+                        println()*/
             postOrderTree2(makeTreeRecursion(array, 0, array.size))
             println()
             //preOrderTree2(makeTreeRecursion(array, 0, array.size))
 
 
         }
-
 
 
         /**
@@ -118,7 +117,7 @@ class 二叉树的遍历 {
                 if (p != null) {
                     mutableList.add(p)
                     p = p.left
-                } else {
+                } else { // p==null , stack != null
                     val node = mutableList.removeAt(mutableList.size - 1)
                     print(node.value)
                     p = node.right
