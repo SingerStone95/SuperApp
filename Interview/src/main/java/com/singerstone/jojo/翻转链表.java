@@ -7,15 +7,33 @@ public class 翻转链表 {
     public static void main(String[] args) {
         ListNode head = new ListNode(4, new ListNode(2,
                 new ListNode(1, new ListNode(3, null))));
-        printListNode(new 翻转链表().reverseList2(head));
+        printListNode(new 翻转链表().reverseList(head));
     }
 
     // 递归解法
     public ListNode reverseList(ListNode head) {
-        dfs(head);
+        dfs2(head);
         return result;
 
     }
+
+    ListNode pre;
+
+    void dfs2(ListNode head) {
+        if (head == null) {
+            return;
+        }
+        dfs2(head.next);
+        if (pre == null) {
+            result = head;
+        } else {
+            pre.next = head;
+        }
+        pre = head;
+        head.next = null;
+
+    }
+
 
     ListNode result = null;
 

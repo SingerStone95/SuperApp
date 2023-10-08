@@ -6,7 +6,7 @@ public class 重排链表 {
 
     public static void main(String[] args) {
         ListNode head = new ListNode(1, new ListNode(2,
-                new ListNode(3, new ListNode(4, new ListNode(5,null)))));
+                new ListNode(3, new ListNode(4, new ListNode(5, null)))));
 
         new 重排链表().reorderList(head);
         printListNode(head);
@@ -43,7 +43,7 @@ public class 重排链表 {
             pre = slow;
             slow = slow.next;
         }
-        if (fast==slow){
+        if (fast == slow) {
             return;
         }
 
