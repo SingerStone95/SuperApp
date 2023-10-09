@@ -8,7 +8,6 @@ class 滑动窗口 {
         fun main(args: Array<String>) {
             var input = arrayOf<Int>(1,2,2,1,4,5)
             printArray(maxSlideWindow(input, 2))
-
         }
 
         /**
