@@ -8,7 +8,7 @@ public class 翻转链表2 {
     public static void main(String[] args) {
         ListNode head = new ListNode(4, new ListNode(2,
                 new ListNode(1, new ListNode(3, null))));
-        printListNode(reverseBetween(head,2,4));
+        printListNode(reverseBetween(head, 2, 4));
     }
 
     //-1->1->2->3->4->5
