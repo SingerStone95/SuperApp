@@ -10,7 +10,7 @@ public class 缺失的数字 {
     // 1 2 3 5 6
     public int missingNumber(int[] nums) {
         // 容易漏掉的case
-        if (nums[nums.length-1]==nums.length-1){
+        if (nums[nums.length - 1] == nums.length - 1) {
             return nums.length;
         }
         int left = 0;
