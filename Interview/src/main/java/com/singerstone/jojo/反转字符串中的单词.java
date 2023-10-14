@@ -1,8 +1,9 @@
 package com.singerstone.jojo;
 
 public class 反转字符串中的单词 {
+
     public static void main(String[] args) {
-        System.out.println(new 反转字符串中的单词().reverseWords("a good   example"));
+        System.out.println(new 反转字符串中的单词().reverseWords2("a good   example"));
 
     }
 
@@ -40,9 +41,27 @@ public class 反转字符串中的单词 {
 
     }
 
+    /**
+     * 面试的时候用这个版本，上面那个版本复杂度太高了
+     */
     public String reverseWords2(String s) {
+        s = s.trim();
+        int left = s.length() - 1;
+        int right = left;
+        StringBuilder builder = new StringBuilder();
+        while (left >= 0) {
+            while (left >= 0 && s.charAt(left) != ' ') {
+                left--;
+            }
+            builder.append(s, left + 1, right + 1).append(" ");
+            while (left >= 0 && s.charAt(left) == ' ') {
+                left--;
+            }
+            right = left;
 
 
+        }
 
+        return builder.toString().trim();
     }
 }
