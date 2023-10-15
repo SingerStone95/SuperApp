@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Stack;
 
 public class 栈的压入弹出序列 {
+
     public static void main(String[] args) {
 /*        LinkedList<Integer> stack = new LinkedList<>();
         stack.push(129);
@@ -13,8 +14,8 @@ public class 栈的压入弹出序列 {
         }*/
         //pushed = [1,2,3,4,5], popped = [4,3,5,1,2]
         int[] pushed = new int[]{1, 2, 3, 4, 5};
-        int[] popped = new int[]{4,3,5,1,2};
-        System.out.println(new 栈的压入弹出序列().validateStackSequences(pushed, popped));
+        int[] popped = new int[]{4, 3, 5, 1, 2};
+        System.out.println(new 栈的压入弹出序列().validateBookSequences(pushed, popped));
 
     }
 
@@ -45,6 +46,25 @@ public class 栈的压入弹出序列 {
 
         }
         return true;
+    }
+
+    /**
+     *
+     * 精简写法，面试的时候使用
+     */
+    public boolean validateBookSequences(int[] putIn, int[] takeOut) {
+
+        Stack<Integer> stack = new Stack();
+        int i = 0;
+        for (int put : putIn) {
+            stack.push(put);
+            while (!stack.isEmpty() && stack.peek() == takeOut[i]) {
+                stack.pop();
+                i++;
+            }
+        }
+        return stack.isEmpty();
+
     }
 
 }
