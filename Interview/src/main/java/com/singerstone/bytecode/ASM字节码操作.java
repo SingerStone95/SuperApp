@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
@@ -23,13 +24,18 @@ public class ASM字节码操作 {
 
     public static void main(String[] args) {
         String rootPath = System.getProperty("user.dir");
+//        String classFileName = "MainFragment.class";
+        String classFileName = "TestByteCode.class";
+
         String classFilePath =
-                rootPath + File.separator + "LeetCode" + File.separator + "MainFragment.class";
+                rootPath + File.separator + "others" + File.separator + "ByteCode" + File.separator + classFileName;
         String outClassFilePath =
-                rootPath + File.separator + "LeetCode" + File.separator + "MainFragmentOut.class";
+                rootPath + File.separator + "others" + File.separator + "ByteCode" + File.separator + "output" + File.separator + classFileName;
         System.out.println("yogachen->" + classFilePath);
         File classFile = new File(classFilePath);
         try {
+            // 三步：
+            // visiter(writer) ; reader.assept(visiter) ; write.toByteArray
             InputStream is = new FileInputStream(classFile);
             ClassReader classReader = new ClassReader(is);
             ClassWriter classWriter = new ClassWriter(ClassWriter.COMPUTE_MAXS);
@@ -59,8 +65,9 @@ public class ASM字节码操作 {
 
         @Override
         public void visit(int version, int access, String name, String signature,
-                String superName, String[] interfaces) {
+                          String superName, String[] interfaces) {
             super.visit(version, access, name, signature, superName, interfaces);
+            // 新增方法
             cv.visitMethod(ACC_PRIVATE, "empty", "()V", null, null);
             cv.visitMethod(ACC_PRIVATE | ACC_STATIC, "emptyStatic", "()V", null, null);
             cv.visitMethod(ACC_INTERFACE, "close", "()V", null,
@@ -69,7 +76,7 @@ public class ASM字节码操作 {
 
         @Override
         public MethodVisitor visitMethod(int access, String name, String desc,
-                String signature, String[] exceptions) {
+                                         String signature, String[] exceptions) {
             MethodVisitor methodVisitor = cv.visitMethod(access, name, desc, signature, exceptions);
             return new TraceMethodAdapter(api, methodVisitor, access, name, desc);
         }
@@ -84,19 +91,25 @@ public class ASM字节码操作 {
 
 
         protected TraceMethodAdapter(int api, MethodVisitor mv, int access, String name,
-                String desc) {
+                                     String desc) {
             super(api, mv, access, name, desc);
         }
 
         @Override
         protected void onMethodEnter() {
             System.out.println(methodDesc);
-
+            mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+            mv.visitLdcInsn("start");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
             super.onMethodEnter();
         }
 
         @Override
         protected void onMethodExit(int opcode) {
+            System.out.println(methodDesc);
+            mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+            mv.visitLdcInsn("end");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
             super.onMethodExit(opcode);
         }
     }

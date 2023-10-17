@@ -47,5 +47,11 @@ public class TestByteCode {
         return a + 1;
 
     }
+    String throwAnError(String input){
+        if (input.isEmpty()){
+            throw new RuntimeException("error");
+        }
+        return input.substring(0,1);
+    }
 
 }

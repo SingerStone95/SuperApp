@@ -8,11 +8,12 @@ public class 多线程打印 {
     /**
      * 思路就是每个线程要打印的数其实是明确的，就是限制条件让它它打印 模板就是
      * if(能打印){
-     *   打印
-     *   lock.notifyAll()
+     * 打印
+     * lock.notifyAll()
      * }else{
-     *   lock.wait()
+     * lock.wait()
      * }
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -43,7 +44,7 @@ public class 多线程打印 {
             while (num <= 100) {
                 synchronized (object) {
                     if (num % 3 == step) {
-                        System.out.println(num + " print-thread" + (step == 0 ? 3 : step));
+                        System.out.println(num + " print-thread" + (step == 0 ? 3 : step) + " 线程优先级:" + getPriority());
                         num++;
                         object.notifyAll();
                     } else {
@@ -93,7 +94,7 @@ public class 多线程打印 {
             super.run();
             synchronized (lock) {
                 while (curPrintThreadIndex <= 100) {
-                    if (curPrintThreadIndex % maxCount == index-1) {
+                    if (curPrintThreadIndex % maxCount == index - 1) {
                         int p = curPrintThreadIndex % 3;
                         String print;
                         if (p == 0) {
@@ -103,7 +104,7 @@ public class 多线程打印 {
                         } else {
                             print = "C";
                         }
-                        System.out.println("thread " + index + " print " + print);
+                        System.out.println("thread " + index + " print " + print+ " 线程优先级:" + getPriority());
                         curPrintThreadIndex++;
                         lock.notifyAll();
                     } else {
