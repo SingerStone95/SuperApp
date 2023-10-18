@@ -14,7 +14,14 @@ public class TestByteCode {
 
     // 非静态方法调用，a.b() 字节码层面就是 b(a) 会把调用的对象作为第一个参数放进操作数栈
     public static void main(String[] args) {
-        // 拆箱装箱字节码
+
+        Runnable runnable = () -> {
+            System.out.println("runnable");
+        };
+        new TestByteCode().handleRunnable(runnable);
+        runnable.run();
+
+      /*  // 拆箱装箱字节码
         Integer num1 = 127;
         Integer num2 = 128;
         System.out.println(num1 == num2);
@@ -23,7 +30,12 @@ public class TestByteCode {
 
         //
         System.out.println(new TestByteCode().level1(1, 2));
-        System.out.println(getStaticNum(10));
+        System.out.println(getStaticNum(10));*/
+    }
+
+    void handleRunnable(Runnable runnable) {
+        runnable.run();
+
     }
 
     int mA = 10;
@@ -47,11 +59,12 @@ public class TestByteCode {
         return a + 1;
 
     }
-    String throwAnError(String input){
-        if (input.isEmpty()){
+
+    String throwAnError(String input) {
+        if (input.isEmpty()) {
             throw new RuntimeException("error");
         }
-        return input.substring(0,1);
+        return input.substring(0, 1);
     }
 
 }
