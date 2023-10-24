@@ -15,7 +15,8 @@ public class 把数组排成最小的数 {
     }
 
     public String minNumber(int[] nums) {
-        ArrayList<Integer> array = new ArrayList<>(); for (int num : nums) {
+        ArrayList<Integer> array = new ArrayList<>();
+        for (int num : nums) {
             array.add(num);
         }
         Collections.sort(array, new Comparator<Integer>() {
