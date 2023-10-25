@@ -28,7 +28,6 @@ public class 数组中第K个最大元素 {
             // k-pk-1 从 0 开始计数
             return findKthLargest(nums, k - pk - 1, part + 1, right);
         }
-
     }
 
     int getPart(int[] arr, int start, int end) {
@@ -47,7 +46,6 @@ public class 数组中第K个最大元素 {
 
 
     void swap(int[] arr, int i, int j) {
-
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;

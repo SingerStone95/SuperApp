@@ -12,6 +12,7 @@ public class TestByteCode {
         return "12345678";
     }
 
+
     // 非静态方法调用，a.b() 字节码层面就是 b(a) 会把调用的对象作为第一个参数放进操作数栈
     public static void main(String[] args) {
 
@@ -36,6 +37,11 @@ public class TestByteCode {
     void handleRunnable(Runnable runnable) {
         runnable.run();
 
+    }
+
+    void testlambdaparam(){
+        Runnable runnable = () -> System.out.println("runnable");
+        runnable.run();
     }
 
     int mA = 10;
