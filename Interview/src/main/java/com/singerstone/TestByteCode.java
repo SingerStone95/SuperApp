@@ -1,5 +1,11 @@
 package com.singerstone;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 /**
  * 安装 ASM ByteCode Viewer
  * 在 .class 文件右键查看即可
@@ -39,7 +45,11 @@ public class TestByteCode {
 
     }
 
-    void testlambdaparam(){
+    void format() {
+
+    }
+
+    void testlambdaparam() {
         Runnable runnable = () -> System.out.println("runnable");
         runnable.run();
     }
