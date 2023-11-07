@@ -6,13 +6,13 @@ public class 删除链表中的重复元素2 {
 
     public static void main(String[] args) {
         ListNode head = new ListNode(1, new ListNode(1,
-                new ListNode(2, new ListNode(7, new ListNode(3, new ListNode(3, new ListNode(4, new ListNode(4, new ListNode(5, null)))))))));
+                new ListNode(2, new ListNode(5, new ListNode(3, new ListNode(3, new ListNode(4, new ListNode(4, new ListNode(7, null)))))))));
         printListNode(new 删除链表中的重复元素2().deleteDuplicates(head));
     }
 
 
-    //输入：head = [1,1,2,7,3,3,4,4,5]
-    //输出：[2,5]
+    //输入：head = [1,1,2,5,3,3,4,4,7]
+    //输出：[2,5,7]
     public ListNode deleteDuplicates(ListNode head) {
         ListNode dummy = new ListNode(-1, head);
         ListNode pre = dummy;
