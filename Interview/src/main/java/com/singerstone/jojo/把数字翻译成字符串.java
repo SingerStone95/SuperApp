@@ -24,7 +24,7 @@ public class 把数字翻译成字符串 {
         //为了方便写代码，这里的i表示第i个数
         for (int i = 2; i <= s.length(); i++) {
             int pre = (s.charAt(i - 2) - '0') * 10 + (s.charAt(i - 1) - '0');
-            if (pre > 9 && pre < 26) {
+            if (pre > 9 && pre < 26) { // pre > 9 就排除了 01 这种组合
                 dp[i] = dp[i - 1] + dp[i - 2];
 
             } else {
@@ -56,11 +56,7 @@ public class 把数字翻译成字符串 {
         dfs(s, left + 1);
         if (left + 2 <= s.length()) {
             String sub2 = s.substring(left, left + 2);
-            if (sub2.startsWith("0")) {
-                // 也可以替换下面一句 sub2.compareTo("9") > 0 && sub2.compareTo("26") 达到同样的效果
-                return;
-            }
-            if (sub2.compareTo("0") >= 0 && sub2.compareTo("26") < 0) {
+            if (sub2.compareTo("9") >= 0 && sub2.compareTo("26") < 0) { // 字符串比较大小
                 left += 2;
                 dfs(s, left);
             }

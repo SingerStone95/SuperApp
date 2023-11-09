@@ -24,6 +24,8 @@ public class 解码方法 {
     // nums[i] 不合法，只能联合nums[i-1]成字母  比如：10
     // 其余情况直接返回0就行了
 
+    // 比简单版本难在 0 不映射 字符，就会多出 0 不合法， 10 合法这种case
+    // 简单版本单个数字是必定合法的
 
     public int numDecodings(String s) {
         int[] dp = new int[s.length() + 1];

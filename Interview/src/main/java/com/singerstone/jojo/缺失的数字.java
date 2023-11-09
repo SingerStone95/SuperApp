@@ -2,6 +2,7 @@ package com.singerstone.jojo;
 
 public class 缺失的数字 {
 
+    // 0-n-1 中缺失的数字
     public static void main(String[] args) {
         int[] array = new int[]{0};
         System.out.println(new 缺失的数字().missingNumber(array));
