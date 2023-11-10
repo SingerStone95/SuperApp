@@ -16,7 +16,7 @@ import java.util.Set;
 public class 全排列 {
 
     public static void main(String[] args) {
-        int[] array = new int[]{1, 2, 3};
+        int[] array = new int[]{1, 1, 2, 3};
         System.out.println(new 全排列().permute2(array));
     }
 
@@ -35,7 +35,8 @@ public class 全排列 {
             result.add(new ArrayList<>(tmp));
             return;
         }
-        Set<Integer> set = new HashSet<>(); // 处理题目中有重复元素的 case
+        Set<Integer> set = new HashSet<>(); // 处理题目中有重复元素的 case ，保证当前层级不要取到重复的元素
+        // 每一个位置都可以取所有的num ，要保证取下一个num的时候，上一个 num 的状态要清除掉
         for (int i = 0; i < nums.length; i++) {
             if (set.contains(nums[i])) {
                 continue;
@@ -69,8 +70,14 @@ public class 全排列 {
         if (start == src.size()) {
             result.add(new ArrayList<>(src));
         }
+        // 这里本质上和第一种写法一样，也尝试把后面的每一个值，交换到当前start为止,所以去重复和方法一是一样的
+        Set<Integer> set = new HashSet<>();
         for (int i = start; i < src.size(); i++) {
             // 起始是从 start 开始,保证start也参与与自己的交换（不交换），或者和其后面的元素交换
+            if (set.contains(src.get(i))) {
+                continue;
+            }
+            set.add(src.get(i));
             Collections.swap(src, start, i);
             dfs(src, start + 1, result);
             Collections.swap(src, start, i);

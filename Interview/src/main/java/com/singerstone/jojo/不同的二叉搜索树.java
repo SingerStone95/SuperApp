@@ -19,15 +19,14 @@ public class 不同的二叉搜索树 {
      * 4. 因此有递推公式： f（n）= ∑（i=0..n-1）f(i)*f(n-i-1) （i 表示左子树的个数）  f 的含义是 n 个节点不同二叉树的个数
      * 5. 比如 f(2) = f(0)*f(1) + f(1)*f(0)  f(3)= f(0)*f(2) + f(1)*f(1) + f(2)*f(0)
      * 6. f(0)=1 方便做乘法
-     *
      */
     public int numTrees(int n) {
         int[] dp = new int[n + 1];
         dp[0] = 1;
         dp[1] = 1;
         for (int i = 2; i <= n; i++) {
-            for (int j = 0; j < i; j++) {
-                dp[i] += dp[j] * dp[i - j - 1];
+            for (int j = 0; j < i; j++) { // i是左子树的长度
+                dp[i] += dp[j] * dp[i - 1 - j]; // 减1是减去根节点
             }
         }
         return dp[n];
