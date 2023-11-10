@@ -53,7 +53,7 @@ public class 全排列 {
     }
 
 
-    // 交换法
+    // 交换法 节省了一个visited空间
     public List<List<Integer>> permute2(int[] nums) {
         // 每次固定一个位置，分别和后面的每一个元素交换
         List<List<Integer>> result = new ArrayList<>();
