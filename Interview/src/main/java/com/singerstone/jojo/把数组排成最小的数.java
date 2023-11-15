@@ -19,12 +19,11 @@ public class 把数组排成最小的数 {
         for (int num : nums) {
             array.add(num);
         }
-        Collections.sort(array, new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return (String.valueOf(o1) + o2).compareTo(String.valueOf(o2)
-                        + o1);
-            }
+        Collections.sort(array, (o1, o2) -> {
+
+           return  (String.valueOf(o1) + o2).compareTo(String.valueOf(o2)
+                    + o1);
+
         });
 
         StringBuilder builder = new StringBuilder();
