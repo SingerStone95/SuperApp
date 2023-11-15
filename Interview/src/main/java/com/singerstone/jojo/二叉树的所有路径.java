@@ -21,11 +21,12 @@ public class 二叉树的所有路径 {
 
     List<String> result = new ArrayList<>();
 
+    // 先序遍历
     public void binaryTreePaths(TreeNode root, String tmp) {
         if (root == null) {
             return;
         }
-        if (tmp.equals("")) {
+        if (tmp.equals("")) { //区别根节点
             tmp = tmp + root.value;
         } else {
             tmp = tmp + "->" + root.value;
