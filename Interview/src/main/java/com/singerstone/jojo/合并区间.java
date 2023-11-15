@@ -32,12 +32,7 @@ public class 合并区间 {
         if (intervals.length <= 1) {
             return intervals;
         }
-        Arrays.sort(intervals, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return o1[0] - o2[0];
-            }
-        });
+        Arrays.sort(intervals, (o1, o2) -> o1[0] - o2[0]);
         ArrayList<int[]> result = new ArrayList<>();
         int[] temp = intervals[0];
         for (int i = 1; i < intervals.length; i++) {
