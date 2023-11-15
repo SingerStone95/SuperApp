@@ -1,6 +1,6 @@
 package com.singerstone.jojo;
 
-import static com.singerstone.jojo.排序链表.printListNode;
+import static com.singerstone.jojo.排序链表2023.printListNode;
 
 public class 两数相加链表2 {
     public static void main(String[] args) {

@@ -1,12 +1,12 @@
 package com.singerstone.jojo;
 
-public class 排序链表 {
+public class 排序链表2023 {
 
     public static void main(String[] args) {
         ListNode head = new ListNode(4, new ListNode(2,
                 new ListNode(1, new ListNode(3, null))));
 
-        printListNode(new 排序链表().sortList(head));
+        printListNode(new 排序链表2023().sortList(head));
 
     }
 

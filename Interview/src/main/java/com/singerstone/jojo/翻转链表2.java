@@ -1,6 +1,6 @@
 package com.singerstone.jojo;
 
-import static com.singerstone.jojo.排序链表.printListNode;
+import static com.singerstone.jojo.排序链表2023.printListNode;
 
 public class 翻转链表2 {
 

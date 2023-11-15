@@ -37,6 +37,7 @@ public class 最小的k个数 {
             return;
         }
         int part = getPart(arr, start, end);
+        // 这里用的是区间长度
         int len = part - start + 1;
         if (len == k) {
             return;

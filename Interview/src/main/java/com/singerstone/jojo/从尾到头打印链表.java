@@ -1,7 +1,6 @@
 package com.singerstone.jojo;
 
 import static com.singerstone.jojo.二叉树的遍历.printArray;
-import static com.singerstone.jojo.排序链表.printListNode;
 
 import java.util.ArrayList;
 

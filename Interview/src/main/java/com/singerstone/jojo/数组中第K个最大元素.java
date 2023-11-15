@@ -9,6 +9,7 @@ public class 数组中第K个最大元素 {
     }
 
     public int findKthLargest(int[] nums, int k) {
+        // 转化为第 k 小的元素 ，从 0 计数
         return findKthLargest(nums, nums.length - k, 0, nums.length - 1);
 
     }
@@ -25,7 +26,7 @@ public class 数组中第K个最大元素 {
         } else if (k < pk) {
             return findKthLargest(nums, k, left, part - 1);
         } else {
-            // k-pk-1 从 0 开始计数
+            // k-pk-1 从 0 开始计数 ，这里这个 -1 要注意
             return findKthLargest(nums, k - pk - 1, part + 1, right);
         }
     }
