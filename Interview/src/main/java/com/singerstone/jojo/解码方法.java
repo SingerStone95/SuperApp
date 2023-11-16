@@ -27,6 +27,9 @@ public class 解码方法 {
     // 比简单版本难在 0 不映射 字符，就会多出 0 不合法， 10 合法这种case
     // 简单版本单个数字是必定合法的
 
+    /**
+     * dp[n] 的含义是前 n 个数的解码个数
+     */
     public int numDecodings(String s) {
         int[] dp = new int[s.length() + 1];
         dp[0] = 1;
