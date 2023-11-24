@@ -1,5 +1,7 @@
 package com.singerstone.cas;
 
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 /**
  * Created by chenbinhao on 2018/7/12.
  * YY:909075276
@@ -13,6 +15,11 @@ public class 无锁链表 {
 
     public static void main(String[] args) {
         new 无锁链表().test();
+        ReentrantReadWriteLock lock=new ReentrantReadWriteLock();
+
+        lock.readLock().lock();
+        lock.writeLock().lock();
+
     }
 
     /**
