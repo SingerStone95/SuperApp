@@ -1,7 +1,6 @@
-package com.singerstone.jojo
+package com.singerstone.jojo.projects.cas
 
 import com.singerstone.InterfaceTest
-import com.singerstone.cas.SleepUtil
 import kotlinx.coroutines.*
 import java.util.concurrent.Executors
 import kotlin.concurrent.thread

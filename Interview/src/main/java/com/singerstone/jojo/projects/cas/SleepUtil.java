@@ -1,4 +1,4 @@
-package com.singerstone.cas;
+package com.singerstone.jojo.projects.cas;
 
 public class SleepUtil {
     public static void sleep(long mill){

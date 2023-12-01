@@ -1,7 +1,5 @@
 package com.singerstone.jojo;
 
-import com.singerstone.cas.Stack;
-
 public class 包含min函数的栈 {
 
     public static void main(String[] args) {

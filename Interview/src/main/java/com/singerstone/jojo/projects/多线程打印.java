@@ -1,4 +1,4 @@
-package com.singerstone.jojo;
+package com.singerstone.jojo.projects;
 
 public class 多线程打印 {
 

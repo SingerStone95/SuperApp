@@ -1,7 +1,5 @@
 package com.singerstone.jojo;
 
-import com.singerstone.cas.Stack;
-
 public class 有效括号 {
 
     public static void main(String[] args) {

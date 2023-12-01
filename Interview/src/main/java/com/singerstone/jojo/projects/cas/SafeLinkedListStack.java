@@ -1,4 +1,4 @@
-package com.singerstone.cas;
+package com.singerstone.jojo.projects.cas;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 

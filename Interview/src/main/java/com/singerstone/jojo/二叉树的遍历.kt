@@ -25,6 +25,7 @@ class 二叉树的遍历 {
 
 
         /**
+         * 先序遍历 中左右
          * result 尾插 ，先右后左
          */
         private fun preOrderTree2(head: TreeNode?) {
@@ -70,7 +71,7 @@ class 二叉树的遍历 {
 
 
         /**
-         * ___________________________________________ 分割线 ____________________________________________________________
+         * ___________________________________________ 分割线 下面的代码很好理解 ，建议面试用这个 ____________________________________________________________
          */
 
         /**
@@ -92,7 +93,7 @@ class 二叉树的遍历 {
                     mutableList.add(p)
                     p = p.left
                 } else {
-                    val node = mutableList.removeAt(mutableList.size - 1)
+                    val node = mutableList.removeLast()
                     p = node.right
                 }
             }
@@ -116,7 +117,7 @@ class 二叉树的遍历 {
                     mutableList.add(p)
                     p = p.left
                 } else { // p==null , stack != null
-                    val node = mutableList.removeAt(mutableList.size - 1)
+                    val node = mutableList.removeLast()
                     print(node.value)
                     p = node.right
                 }
@@ -144,7 +145,7 @@ class 二叉树的遍历 {
                     result.add(0, p.value) // 倒序
                     p = p.right //这里是向右
                 } else {
-                    val node = mutableList.removeAt(mutableList.size - 1)
+                    val node = mutableList.removeLast();
                     p = node.left // 向左
                 }
 

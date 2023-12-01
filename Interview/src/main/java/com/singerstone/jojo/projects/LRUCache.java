@@ -1,4 +1,4 @@
-package com.singerstone.jojo;
+package com.singerstone.jojo.projects;
 
 import java.util.HashMap;
 

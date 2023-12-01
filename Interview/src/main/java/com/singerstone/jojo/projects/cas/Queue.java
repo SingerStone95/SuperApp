@@ -1,4 +1,4 @@
-package com.singerstone.cas;
+package com.singerstone.jojo.projects.cas;
 
 /**
  * author : yogachen

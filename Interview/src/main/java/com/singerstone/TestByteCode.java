@@ -1,10 +1,12 @@
 package com.singerstone;
 
+import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 
 /**
  * 安装 ASM ByteCode Viewer
@@ -21,7 +23,13 @@ public class TestByteCode {
 
     // 非静态方法调用，a.b() 字节码层面就是 b(a) 会把调用的对象作为第一个参数放进操作数栈
     public static void main(String[] args) {
+        ArrayList<String> list=new ArrayList<>();
+        list.forEach(new Consumer<Object>() {
+            @Override
+            public void accept(Object s) {
 
+            }
+        });
         Runnable runnable = () -> {
             System.out.println("runnable");
         };
@@ -50,7 +58,7 @@ public class TestByteCode {
     }
 
     void testlambdaparam() {
-        Runnable runnable = () -> System.out.println("runnable");
+        Runnable runnable = () -> System.out.println("runnable"+mA);
         runnable.run();
     }
 
