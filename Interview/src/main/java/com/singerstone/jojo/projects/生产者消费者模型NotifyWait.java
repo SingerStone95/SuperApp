@@ -1,22 +1,23 @@
 package com.singerstone.jojo.projects;
 
-public class 生产者消费者模型 {
+public class 生产者消费者模型NotifyWait {
 
 
     public static void main(String[] args) {
-        生产者消费者模型 testMain = new 生产者消费者模型();
+        生产者消费者模型NotifyWait testMain = new 生产者消费者模型NotifyWait();
         new Thread(testMain.new Producer()).start();
-        new Thread(testMain.new Consumer()).start();
-        new Thread(testMain.new Producer()).start();
-        new Thread(testMain.new Consumer()).start();
-        new Thread(testMain.new Producer()).start();
-        new Thread(testMain.new Consumer()).start();
         new Thread(testMain.new Producer()).start();
         new Thread(testMain.new Consumer()).start();
     }
 
+    /**
+     * 1. notify wait 实现
+     * 2. lock unlock 实现
+     * 3. blockqueue 实现
+     */
 
-    private static int count = 0;
+
+    private static volatile int count = 0;
     private static final int FULL = 10;
     private static final Object LOCK = new Object();
 
@@ -25,7 +26,7 @@ public class 生产者消费者模型 {
         public void run() {
             for (int i = 0; i < 10; i++) {
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(500);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -50,7 +51,7 @@ public class 生产者消费者模型 {
         public void run() {
             for (int i = 0; i < 10; i++) {
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(250);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
