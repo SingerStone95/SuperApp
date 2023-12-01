@@ -6,7 +6,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class 生产者消费者模型ReentrantLock {
 
-    private static int count = 0;
+    private static volatile int count = 0;
     private static final int FULL = 10;
     //创建一个锁对象
     private final Lock lock = new ReentrantLock();
@@ -17,21 +17,17 @@ public class 生产者消费者模型ReentrantLock {
     public static void main(String[] args) {
         生产者消费者模型ReentrantLock testMain = new 生产者消费者模型ReentrantLock();
         new Thread(testMain.new Producer()).start();
-        new Thread(testMain.new Consumer()).start();
         new Thread(testMain.new Producer()).start();
         new Thread(testMain.new Consumer()).start();
-        new Thread(testMain.new Producer()).start();
-        new Thread(testMain.new Consumer()).start();
-        new Thread(testMain.new Producer()).start();
-        new Thread(testMain.new Consumer()).start();
+
     }
 
     class Producer implements Runnable {
         @Override
         public void run() {
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 6; i++) {
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(100);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -48,6 +44,7 @@ public class 生产者消费者模型ReentrantLock {
                     count++;
                     System.out.println(Thread.currentThread().getName()
                             + "生产者生产，目前总共有" + count);
+                    notEmpty.signalAll();
 
                 } finally {
                     lock.unlock();
@@ -62,7 +59,7 @@ public class 生产者消费者模型ReentrantLock {
         public void run() {
             for (int i = 0; i < 10; i++) {
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(2000);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -78,6 +75,7 @@ public class 生产者消费者模型ReentrantLock {
                     count--;
                     System.out.println(Thread.currentThread().getName() +
                             "消费者消费，目前总共有 " + count);
+                    notFull.signalAll();
                 } finally {
                     lock.unlock();//解锁
                 }
