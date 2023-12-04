@@ -1,5 +1,8 @@
 package com.singerstone;
 
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Test {
     public static void main(String[] args) {
         A a=new A();
@@ -9,6 +12,12 @@ public class Test {
         System.out.println("yogachen " + (a .equals(a1)));
         System.out.println("yogachen " + (a.hashCode()==a1.hashCode()));
 
+        ReentrantLock lock=new ReentrantLock();
+        try {
+            lock.newCondition().await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public static class A {
