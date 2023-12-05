@@ -27,13 +27,13 @@ public class 旋转数组最小数字 {
                 left = mid + 1;
             } else {
                 //right--;
-                int ret = left;
+                int pre = left;
                 for (int i = left + 1; i <= right; i++) {
-                    if (numbers[i] < numbers[ret]) {
-                        ret = i;
+                    if (numbers[i] < numbers[pre]) {
+                        pre = i;
                     }
                 }
-                return numbers[ret];
+                return numbers[pre];
             }
         }
         return numbers[left];

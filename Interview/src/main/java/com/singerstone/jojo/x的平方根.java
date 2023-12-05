@@ -3,7 +3,7 @@ package com.singerstone.jojo;
 public class x的平方根 {
 
     public static void main(String[] args) {
-        System.out.println(mySqrt(1));
+        System.out.println(mySqrt(16));
         
     }
 

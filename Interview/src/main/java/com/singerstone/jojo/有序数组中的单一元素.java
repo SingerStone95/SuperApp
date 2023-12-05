@@ -3,7 +3,7 @@ package com.singerstone.jojo;
 public class 有序数组中的单一元素 {
 
     public static void main(String[] args) {
-        System.out.println(new 有序数组中的单一元素().singleNonDuplicate(new int[]{1, 1, 2}));
+        System.out.println(new 有序数组中的单一元素().singleNonDuplicate(new int[]{1, 1, 2, 3, 3}));
     }
 
     public int singleNonDuplicate(int[] nums) {
