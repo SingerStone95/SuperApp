@@ -30,8 +30,6 @@ public class JavassistDemo {
         CtMethod[] declaredMethods = ctClass.getDeclaredMethods();
         for (CtMethod method : declaredMethods) {
             System.out.println("methodName = " + method.getName() + ", methodLongName = " + method.getLongName() + ", methodSign = " + method.getSignature() + ", returnType = " + method.getReturnType().getName());
-            MethodInfo methodInfo = method.getMethodInfo();
-            System.out.println("methodInfo = " + methodInfo);
         }
     }
 
