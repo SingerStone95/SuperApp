@@ -1,13 +1,9 @@
-package singerstone.com.superapp.javassist;
+package com.singerstone.bytecode.javassist;
 
-public class Demo2 {
+public class Demo {
 
     public static void main(String[] args) {
-//        System.out.println();
-//        Any any = new Any();
-//        any.show();
-//        System.out.println("my age is : " + any.getAge());
-
+        // 构造lanmbda表达式
         MathOperation addition = (int a, int b) -> a + b;
         System.out.println("10 + 5 = " + exe(10, 5, addition));
     }

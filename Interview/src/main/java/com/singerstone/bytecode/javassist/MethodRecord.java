@@ -1,4 +1,4 @@
-package singerstone.com.superapp.javassist;
+package com.singerstone.bytecode.javassist;
 
 /**
  * author : yogachen

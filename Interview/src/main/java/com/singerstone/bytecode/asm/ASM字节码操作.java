@@ -1,4 +1,4 @@
-package com.singerstone.bytecode;
+package com.singerstone.bytecode.asm;
 
 
 import static org.objectweb.asm.Opcodes.ACC_INTERFACE;

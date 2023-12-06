@@ -1,8 +1,7 @@
-package singerstone.com.superapp.javassist;
+package com.singerstone.bytecode.javassist;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import javassist.ClassPool;
 import javassist.CtClass;
@@ -15,7 +14,7 @@ import javassist.bytecode.MethodInfo;
 public class JavassistDemo {
     public static void main(String[] args) throws Exception {
         ClassPool pool = ClassPool.getDefault();
-        CtClass ctClass = pool.get("singerstone.com.superapp.javassist.Demo2");
+        CtClass ctClass = pool.get("com.singerstone.bytecode.javassist.Demo");
         ClassFile classFile = ctClass.getClassFile();
         List<AttributeInfo> attributes = classFile.getAttributes();
         for (AttributeInfo attributeInfo :
