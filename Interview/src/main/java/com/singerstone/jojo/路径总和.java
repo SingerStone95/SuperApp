@@ -20,7 +20,12 @@ public class 路径总和 {
         return hasPathSum(root.left, targetSum - root.value) || hasPathSum(root.right, targetSum - root.value);
     }
 
-    //这么写因为没有处理 root 为空数的情况，不能ac
+    /**
+     * 输入：root = [], targetSum = 0
+     * 输出：false
+     * 解释：由于树是空的，所以不存在根节点到叶子节点的路径。
+     */
+    //这么写因为没有处理 root 为空数的情况，不能ac , 主要是题目限制空树不为 0
     public static boolean hasPathSum2(TreeNode root, int targetSum) {
         if (root == null) {
             return targetSum == 0;
