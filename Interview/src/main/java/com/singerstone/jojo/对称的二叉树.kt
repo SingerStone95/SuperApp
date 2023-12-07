@@ -19,14 +19,10 @@ class 对称的二叉树 {
             if (A == null && B == null) {
                 return true
             }
-            if (A == null || B == null) {
+            if (A == null || B == null || A.value != B.value) {
                 return false
             }
-            if (A.value != B.value) {
-                return false;
-            }
             return isSymmetric(A.left, B.right) && isSymmetric(A.right, B.left)
-
         }
 
 

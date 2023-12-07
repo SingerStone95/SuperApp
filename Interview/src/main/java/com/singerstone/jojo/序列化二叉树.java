@@ -20,22 +20,29 @@ public class 序列化二叉树 {
 
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
-        dfs(root);
+        String result = dfs(root);
         return result.substring(0, result.length() - 1);
     }
 
-    String result = "";
-
     // 先序遍历序列化
-    public void dfs(TreeNode root) {
+    public String dfs(TreeNode root) {
         if (root == null) {
-            result += "null,";
-            return;
+            return "null,";
         }
-        result += root.value;
-        result += ",";
-        dfs(root.left);
-        dfs(root.right);
+        return root.value + "," + dfs(root.left) + dfs(root.right);
+    }
+
+    //中-左-右
+    TreeNode dfs2(ArrayList<String> arr) {
+        if (arr.get(0).equals("null")) {
+            arr.remove(0);
+            return null;
+        }
+        TreeNode root = new TreeNode(Integer.parseInt(arr.get(0)));
+        arr.remove(0);
+        root.left = dfs2(arr);
+        root.right = dfs2(arr);
+        return root;
     }
 
 
@@ -53,17 +60,5 @@ public class 序列化二叉树 {
         return dfs2(arr);
     }
 
-    //中-左-右
-    TreeNode dfs2(ArrayList<String> arr) {
-        if (arr.get(0).equals("null")) {
-            arr.remove(0);
-            return null;
-        }
-        TreeNode root = new TreeNode(Integer.valueOf(arr.get(0)));
-        arr.remove(0);
-        root.left = dfs2(arr);
-        root.right = dfs2(arr);
-        return root;
-    }
 
 }

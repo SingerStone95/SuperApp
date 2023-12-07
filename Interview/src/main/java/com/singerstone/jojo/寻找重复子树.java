@@ -45,7 +45,7 @@ public class 寻找重复子树 {
         } else {
             int new_count = count + 1;
             map.put(key, new_count);
-            if (new_count == 2) {
+            if (new_count == 2) { // 这里只在 count == 2 添加是为了只添加一次
                 result.add(root);
             }
         }
