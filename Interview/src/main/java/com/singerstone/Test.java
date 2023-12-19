@@ -1,36 +1,56 @@
 package com.singerstone;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.function.Consumer;
 
 public class Test {
     public static void main(String[] args) {
-        A a=new A();
-        a.str="1";
-        A a1=new A();
-        a1.str="1";
-        System.out.println("yogachen " + (a .equals(a1)));
-        System.out.println("yogachen " + (a.hashCode()==a1.hashCode()));
+        List<Child> children = new ArrayList<>();
+        List<Paren> parens = new ArrayList<>();
+        List<GrandPa> grandPas = new ArrayList<>();
 
-        ReentrantLock lock=new ReentrantLock();
-        try {
-            lock.newCondition().await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        List<Paren> list = new ArrayList<>();
+       list.forEach(new Consumer<GrandPa>() {
+           @Override
+           public void accept(GrandPa paren) {
+
+           }
+       });
+        YoGaList yoGaList=new YoGaList();
+        yoGaList.addAll(parens);
+        yoGaList.add(new Child());
+
     }
 
-    public static class A {
-
-        public String str = "";
-
-        @Override
-        public boolean equals(Object obj) {
-            if (obj instanceof A){
-                return str.equals(((A) obj).str);
-            }
-            return super.equals(obj);
-
-        }
-    }
 }
+
+class GrandPa {
+
+}
+
+class Paren extends GrandPa {
+
+}
+
+class Child extends Paren {
+
+}
+
+class YoGaList{
+
+    public void addAll(List<? super Paren> ts){
+        Object paren=ts.get(1);
+        ts.add(new Child());
+
+    }
+
+    public void add(Paren paren){
+
+    }
+
+
+}
+
