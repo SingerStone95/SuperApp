@@ -42,7 +42,7 @@ public class 反转字符串中的单词 {
     }
 
     /**
-     * 面试的时候用这个版本，上面那个版本复杂度太高了
+     * 面试的时候用这个版本，上面那个版本性能消耗，也不一定能让我用
      */
     public String reverseWords2(String s) {
         s = s.trim();
