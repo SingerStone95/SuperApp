@@ -18,6 +18,11 @@ public class 子集2 {
 
     }
 
+    /**
+     * 每个位置都有拿或者不拿两种状态
+     * n 表示的是当前访问到了第 n 个位置
+     *
+     */
     void dfs(int[] nums, int n) {
         if (n == nums.length) {
             result.add(new ArrayList<>(tmp));
@@ -26,7 +31,7 @@ public class 子集2 {
         tmp.add(nums[n]);
         dfs(nums, n + 1);
         tmp.remove(tmp.size() - 1);
-        // 当前位置已经取过并且回溯了，下一个位置和当前是一样的，就不用再取了，取就和上面是一样的了
+        // 当前位置已经拿过并且回溯了，下一个位置和当前是一样的，就不用再取了，取就和上面是一样的了
         while (n + 1 < nums.length && nums[n + 1] == nums[n]) {
             n++;
         }

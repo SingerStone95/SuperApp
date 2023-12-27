@@ -16,8 +16,11 @@ public class 最小的k个数 {
     }
 
 
-// 快选 推荐 面试写快选
-
+    /**
+     * 快选 推荐 面试写快选
+     *   1.快选出第k小的数
+     *   2.然后返回0-k
+     */
     public int[] getLeastNumbers2(int[] arr, int k) {
         QSelect(arr, 0, arr.length - 1, k);
         int[] result = new int[k];
