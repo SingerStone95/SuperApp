@@ -13,15 +13,19 @@ public class Test {
         List<GrandPa> grandPas = new ArrayList<>();
 
         List<Paren> list = new ArrayList<>();
-       list.forEach(new Consumer<GrandPa>() {
-           @Override
-           public void accept(GrandPa paren) {
+        list.forEach(new Consumer<GrandPa>() {
+            @Override
+            public void accept(GrandPa paren) {
 
-           }
-       });
-        YoGaList yoGaList=new YoGaList();
+            }
+        });
+        YoGaList yoGaList = new YoGaList();
         yoGaList.addAll(parens);
         yoGaList.add(new Child());
+
+
+        Paren paren = new Child();
+
 
     }
 
@@ -29,25 +33,35 @@ public class Test {
 
 class GrandPa {
 
+
 }
 
 class Paren extends GrandPa {
 
+    Paren(){
+
+    }
+    void dup() {
+
+    }
 }
 
 class Child extends Paren {
+    Child(){
 
+    }
+    void dup(String a) {
+
+    }
 }
 
-class YoGaList{
+class YoGaList {
 
-    public void addAll(List<? super Paren> ts){
-        Object paren=ts.get(1);
-        ts.add(new Child());
+    public void addAll(List<? super Paren> ts) {
 
     }
 
-    public void add(Paren paren){
+    public void add(Paren paren) {
 
     }
 
