@@ -25,11 +25,8 @@ public class 二叉树中和为某一值的路径 {
         if (root == null) {
             return;
         }
-
-        if (root.left == null && root.right == null) {
-            if (target == root.value) {
-                result.add(temp);
-            }
+        if (root.left == null && root.right == null && target == root.value) {
+            result.add(temp);
         }
         temp.add(root.value);
         pathSum(root.left, target - root.value, new ArrayList<>(temp), result);

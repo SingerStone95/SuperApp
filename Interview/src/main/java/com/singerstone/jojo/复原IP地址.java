@@ -23,7 +23,7 @@ public class 复原IP地址 {
             return;
         } else if (seg == 0) {
             if (s.isEmpty()) {
-                result.add(temp);
+                result.add(temp); // 字符串是值传递，不用new对象
             } else {
                 return;
             }
