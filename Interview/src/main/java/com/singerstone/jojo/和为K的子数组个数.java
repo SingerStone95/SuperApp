@@ -21,7 +21,7 @@ public class 和为K的子数组个数 {
         map.put(0, 1); // 如果 preSum == k 直接结果加1
         for (int num : nums) {
             preSum += num;
-            Integer other = map.get(preSum - k);
+            Integer other = map.get(preSum - k); // 可以和当前前缀数组相减构成和为K的子数组
             if (other != null) {
                 result += other;
             }

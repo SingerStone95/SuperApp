@@ -21,7 +21,7 @@ public class 序列化二叉树 {
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
         String result = dfs(root);
-        return result.substring(0, result.length() - 1);
+        return result.substring(0, result.length() - 1); //去掉末尾的,
     }
 
     // 先序遍历序列化

@@ -5,16 +5,16 @@ public class 岛屿最大面积 {
 
     public static void main(String[] args) {
         int[][] array = {
-                {0,0,1,0,0,0,0,1,0,0,0,0,0},
-                {0,0,0,0,0,0,0,1,1,1,0,0,0},
-                {0,1,1,0,1,0,0,0,0,0,0,0,0},
-                {0,1,0,0,1,1,0,0,1,0,1,0,0},
-                {0,1,0,0,1,1,0,0,1,1,1,0,0},
-                {0,0,0,0,0,0,0,0,0,0,1,0,0},
-                {0,0,0,0,0,0,0,1,1,1,0,0,0},
-                {0,0,0,0,0,0,0,1,1,0,0,0,0}
+                {0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+                {0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0},
+                {0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0}
         };
-        System.out.println(new  岛屿最大面积().maxAreaOfIsland(array));
+        System.out.println(new 岛屿最大面积().maxAreaOfIsland(array));
     }
 
     public int maxAreaOfIsland(int[][] grid) {
@@ -33,7 +33,8 @@ public class 岛屿最大面积 {
     int result = 0;
 
     int dfs(int i, int j, int[][] grid, boolean[][] visited) {
-        if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || visited[i][j]
+        if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length
+                || visited[i][j]
                 || grid[i][j] == 0) {
             return 0;
         }

@@ -25,7 +25,6 @@ public class 寻找重复子树 {
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
         dfs(root);
         return result;
-
     }
 
     Map<String, Integer> map = new HashMap<>();
@@ -35,10 +34,7 @@ public class 寻找重复子树 {
         if (root == null) {
             return " ";
         }
-        String cur = root.value + "-";
-        String left = dfs(root.left);
-        String right = dfs(root.right);
-        String key = cur + left + right;
+        String key =  root.value + "-" + dfs(root.left) + dfs(root.right);
         Integer count = map.get(key);
         if (count == null) {
             map.put(key, 1);
