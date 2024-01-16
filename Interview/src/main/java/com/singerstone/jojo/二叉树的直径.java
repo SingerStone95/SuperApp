@@ -29,6 +29,8 @@ public class 二叉树的直径 {
         return Math.max(deep(root.left), deep(root.right)) + 1;
     }
 
+
+    // 精简写法
     int max = Integer.MIN_VALUE;
 
     public int diameterOfBinaryTree2(TreeNode root) {

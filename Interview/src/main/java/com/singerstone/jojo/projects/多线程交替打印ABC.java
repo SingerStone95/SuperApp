@@ -33,7 +33,7 @@ public class 多线程交替打印ABC {
             super.run();
             synchronized (lock) {
                 while (curPrintThreadIndex <= 100) {
-                    if (curPrintThreadIndex % maxCount == index) {
+                    if (curPrintThreadIndex % maxCount == index) { // 是否由当前线程打印
                         int p = curPrintThreadIndex % 3;
                         String print;
                         if (p == 0) {

@@ -13,8 +13,8 @@ public class 剪绳子 {
             return n - 1;
         }
         int[] dp = new int[n + 1];
-        for (int i = 4; i <= n; i++) {
-            for (int j = 2; j <= i / 2; j++) {
+        for (int i = 4; i <= n; i++) { // 绳子长度
+            for (int j = 2; j <= i / 2; j++) { // 第一段剪多长
                 dp[i] = Math.max(dp[i], Math.max(j * (i - j), j * dp[i - j]));
             }
         }

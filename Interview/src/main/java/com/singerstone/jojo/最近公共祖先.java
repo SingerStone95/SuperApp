@@ -46,8 +46,8 @@ public class 最近公共祖先 {
         if (p == root || q == root) {
             return root;
         }
-        TreeNode left = lowestCommonAncestor2(root.left, p, q);
-        TreeNode right = lowestCommonAncestor2(root.right, p, q);
+        TreeNode left = lowestCommonAncestor2(root.left, p, q); // 在左子树就返回
+        TreeNode right = lowestCommonAncestor2(root.right, p, q); // 在右子树就返回
         if (left == null) {
             return right; //right 为公共节点会走到这个分支
         }
