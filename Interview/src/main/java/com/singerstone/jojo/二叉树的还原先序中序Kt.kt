@@ -1,12 +1,12 @@
 package com.singerstone.jojo
 
-class 二叉树还原2 {
+class 二叉树的还原先序中序Kt {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
             val inOrder = arrayOf(9, 3, 15, 20, 7)
             val preOrder = arrayOf(3, 9, 20, 15, 7)
-            二叉树构建.visitTree(二叉树还原2.buildTree(preOrder.toIntArray(), inOrder.toIntArray()))
+            二叉树构建.visitTree(二叉树的还原先序中序Kt.buildTree(preOrder.toIntArray(), inOrder.toIntArray()))
 
         }
 

@@ -20,7 +20,7 @@ public class Test {
             }
         });
         YoGaList yoGaList = new YoGaList();
-        yoGaList.addAll(parens);
+        yoGaList.addAll(new ArrayList<>());
         yoGaList.add(new Child());
 
 

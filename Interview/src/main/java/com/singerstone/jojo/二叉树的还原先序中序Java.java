@@ -3,9 +3,10 @@ package com.singerstone.jojo;
 import static com.singerstone.jojo.二叉树构建.visitTree;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class 二叉树的还原2J {
+public class 二叉树的还原先序中序Java {
 
     public static void main(String[] args) {
         int[] preorder = {3, 9, 20, 15, 7};
@@ -23,6 +24,7 @@ public class 二叉树的还原2J {
         return result;
     }
 
+    // TODO: 2024/1/16  用 index 改写 ，节省空间
     //preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
     public static TreeNode buildTree(int[] preorder, int[] inorder) {
         if (preorder.length == 0 || inorder.length == 0) {
@@ -31,6 +33,7 @@ public class 二叉树的还原2J {
         if (preorder.length == 1 || inorder.length == 1) {
             return new TreeNode(preorder[0]);
         }
+        // 在 inorder 里面找到根节点位置
         int index = 0;
         for (int i = 0; i < inorder.length; i++) {
             if (inorder[i] == preorder[0]) {
@@ -39,35 +42,38 @@ public class 二叉树的还原2J {
             }
         }
         TreeNode root = new TreeNode(preorder[0]);
-        List<Integer> sub_left_inoder = new ArrayList<>();
+        List<Integer> leftInOrder = new ArrayList<>();
+        // [0-index) 作为 leftInOrder
         for (int i = 0; i < index; i++) {
-            sub_left_inoder.add(inorder[i]);
+            leftInOrder.add(inorder[i]);
         }
-        if (sub_left_inoder.size() > 0) {
-            ArrayList<Integer> sub_left_preoder = new ArrayList<>();
-            for (int i = 1; i < 1 + sub_left_inoder.size(); i++) {
-                sub_left_preoder.add(preorder[i]);
-
+        // 用 leftOrder 的长度去取 leftPreOder [1:length]
+        if (leftInOrder.size() > 0) {
+            ArrayList<Integer> leftPreOrder = new ArrayList<>();
+            for (int i = 1; i < 1 + leftInOrder.size(); i++) {
+                leftPreOrder.add(preorder[i]);
             }
             root.left =
-                    buildTree(list2IntArray(sub_left_preoder), list2IntArray(sub_left_inoder));
+                    buildTree(list2IntArray(leftPreOrder), list2IntArray(leftInOrder));
         } else {
-            root.left = (null);
+            root.left = null;
         }
 
-        List<Integer> sub_right_inoder = new ArrayList<>();
+        //[index+1,len) 作为 rightInOrder
+        List<Integer> rightInOrder = new ArrayList<>();
         for (int i = index + 1; i < inorder.length; i++) {
-            sub_right_inoder.add(inorder[i]);
+            rightInOrder.add(inorder[i]);
         }
-        if (sub_right_inoder.size() > 0) {
-            ArrayList<Integer> sub_right_preoder = new ArrayList<>();
-            for (int i = 1 + sub_left_inoder.size(); i < preorder.length; i++) {
-                sub_right_preoder.add(preorder[i]);
+        // 用 leftOrder 的长度去取 rightPreOder [1+:end]
+        if (rightInOrder.size() > 0) {
+            ArrayList<Integer> rightPreOrder = new ArrayList<>();
+            for (int i = 1 + leftInOrder.size(); i < preorder.length; i++) {
+                rightPreOrder.add(preorder[i]);
             }
-            root.right = (
-                    buildTree(list2IntArray(sub_right_preoder), list2IntArray(sub_right_inoder)));
+            root.right =
+                    buildTree(list2IntArray(rightPreOrder), list2IntArray(rightInOrder));
         } else {
-            root.right = (null);
+            root.right = null;
         }
 
         return root;

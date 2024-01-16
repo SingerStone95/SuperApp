@@ -2,7 +2,7 @@ package com.singerstone.jojo
 
 import com.singerstone.jojo.二叉树构建.Companion.visitTree
 
-class 二叉树还原1 {
+class 二叉树还原中序后序Kt {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
@@ -13,6 +13,7 @@ class 二叉树还原1 {
         }
 
 
+        // TODO: java 改写
         /**
          * 根据中序和后序还原二叉树
          */
