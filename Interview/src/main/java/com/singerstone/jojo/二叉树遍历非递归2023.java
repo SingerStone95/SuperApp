@@ -23,6 +23,7 @@ public class 二叉树遍历非递归2023 {
 
     }
 
+    //中左右 入栈的时候添加结果
     public static List<Integer> preOrder(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
@@ -41,6 +42,7 @@ public class 二叉树遍历非递归2023 {
         return result;
     }
 
+    // 左中右 出栈的时候添加结果
     public static List<Integer> inOrder(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
@@ -52,14 +54,13 @@ public class 二叉树遍历非递归2023 {
                 TreeNode node = stack.pop();
                 result.add(node.value); // 关键代码
                 root = node.right;
-
             }
-
         }
         return result;
     }
 
 
+    // 左右中 由 中右左 变形而来
     public static List<Integer> postOrder(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
@@ -67,7 +68,7 @@ public class 二叉树遍历非递归2023 {
             if (root != null) {
                 result.add(0, root.value); // 关键代码
                 stack.push(root); // 关键代码
-                root = root.right;
+                root = root.right; // 先走右子树
             } else {
                 TreeNode node = stack.pop();
                 root = node.left;
