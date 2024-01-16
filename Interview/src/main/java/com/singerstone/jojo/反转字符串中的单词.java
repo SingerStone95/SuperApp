@@ -58,8 +58,6 @@ public class 反转字符串中的单词 {
                 left--;
             }
             right = left;
-
-
         }
 
         return builder.toString().trim();

@@ -32,7 +32,9 @@ public class 合并区间 {
         if (intervals.length <= 1) {
             return intervals;
         }
-        Arrays.sort(intervals, (o1, o2) -> o1[0] - o2[0]);
+        Arrays.sort(intervals, (o1, o2) -> {
+            return o1[0] - o2[0];
+        });
         ArrayList<int[]> result = new ArrayList<>();
         int[] temp = intervals[0];
         for (int i = 1; i < intervals.length; i++) {
@@ -43,11 +45,9 @@ public class 合并区间 {
                 result.add(temp);
                 temp = intervals[i];
             }
-            if (i==intervals.length-1){
-                result.add(temp);
-            }
         }
-
+        // 最后一个区间要自己加
+        result.add(temp);
         return result.toArray(new int[0][]); // 返回二维数组的惯用写法
     }
 

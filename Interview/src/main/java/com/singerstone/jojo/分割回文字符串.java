@@ -20,6 +20,11 @@ public class 分割回文字符串 {
 
     }
 
+    /**
+     *示例 1：
+     * 输入：s = "aab"
+     * 输出：[["a","a","b"],["aa","b"]]
+     */
     public void partition(String s, List<String> temp, List<List<String>> result) {
         if (s.isEmpty()) {
             result.add(temp);

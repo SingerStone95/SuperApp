@@ -31,21 +31,27 @@ public class 全排列 {
 
     // 使用 boolean[] used + dfs
     void dfs(List<List<Integer>> result, boolean[] used, List<Integer> tmp, int[] nums) {
+        // 取够数量了就结束递归，并记录结果
         if (tmp.size() == nums.length) {
             result.add(new ArrayList<>(tmp));
             return;
         }
         Set<Integer> set = new HashSet<>(); // 处理题目中有重复元素的 case ，保证当前层级不要取到重复的元素
-        // 每一个位置都可以取所有的num ，要保证取下一个num的时候，上一个 num 的状态要清除掉
+        // 每一层dfs代表取一个数，且每一层dfs必须取一个数，才能进入下一层
+        // 可以取所有的num ，要保证取下一个num的时候，上一个 num 的状态要清除掉
         for (int i = 0; i < nums.length; i++) {
             if (set.contains(nums[i])) {
                 continue;
             }
-            if (!used[i]) { // 每个数都可以选择在这一层拿或者不拿，在这一层不拿，就可能会在后面的轮次拿到
+            // 每个没有拿过的数数都可以选择在这一层dfs拿，在这一层不拿，就可能会在后面的轮次拿到
+            if (!used[i]) {
+                // 这一层dfs拿第i个数
                 used[i] = true;
                 tmp.add(nums[i]);
                 set.add(nums[i]);
+                // 进入下一层dfs
                 dfs(result, used, tmp, nums);
+                // 还原状态
                 used[i] = false;
                 tmp.remove(tmp.size() - 1);
             }
