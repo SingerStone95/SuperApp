@@ -12,6 +12,7 @@ public class 在排序数组中查找数字 {
     public int search(int[] nums, int target) {
         int left = 0;
         int right = nums.length - 1;
+        // 先找左边界 再遍历
         while (left < right) {
             int mid = (left + right) / 2;
             if (target <= nums[mid]) {

@@ -34,7 +34,6 @@ public class 子集 {
 
     // 回溯法
     public List<List<Integer>> subsets2(int[] nums) {
-
         dfs(nums, 0);
         return result;
     }

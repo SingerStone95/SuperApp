@@ -1,7 +1,5 @@
 package com.singerstone.jojo;
 
-import java.util.IdentityHashMap;
-
 public class 复杂链表的复制 {
 
     static class Node {
