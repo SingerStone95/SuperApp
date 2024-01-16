@@ -10,30 +10,15 @@ public class 翻转链表 {
         printListNode(new 翻转链表().reverseList(head));
     }
 
-    // 递归解法
+    /**
+     * 递归写法
+     * @param head
+     * @return
+     */
     public ListNode reverseList(ListNode head) {
-        dfs2(head);
+        dfs(head);
         return result;
-
     }
-
-    ListNode pre;
-
-    void dfs2(ListNode head) {
-        if (head == null) {
-            return;
-        }
-        dfs2(head.next);
-        if (pre == null) {
-            result = head;
-        } else {
-            pre.next = head;
-        }
-        pre = head;
-        head.next = null;
-
-    }
-
 
     ListNode result = null;
 
@@ -42,7 +27,7 @@ public class 翻转链表 {
             return null;
         }
         ListNode next = dfs(head.next); // 利用递归栈的性质
-        if (next == null) {
+        if (next == null) { //递归最后一个节点了，作为头结点记录一下
             result = head;
         } else {
             next.next = head;
@@ -51,14 +36,19 @@ public class 翻转链表 {
         return head;
     }
 
+    /**
+     * 迭代写法
+     *
+     * @param head
+     * @return
+     */
     public ListNode reverseList2(ListNode head) {
-
         ListNode pre = null;
         while (head != null) {
-            ListNode tmp = head.next;
+            ListNode next = head.next;
             head.next = pre;
             pre = head;
-            head = tmp;
+            head = next;
         }
         return pre;
     }

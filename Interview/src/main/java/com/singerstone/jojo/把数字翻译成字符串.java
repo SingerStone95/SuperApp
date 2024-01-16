@@ -1,8 +1,11 @@
 package com.singerstone.jojo;
 
+/**
+ * {@link 解码方法} 互为镜像问题
+ */
 public class 把数字翻译成字符串 {
     public static void main(String[] args) {
-        System.out.println(new 把数字翻译成字符串().translateNum2(12258));
+        System.out.println(new 把数字翻译成字符串().translateNum2(190258));
 
     }
 
