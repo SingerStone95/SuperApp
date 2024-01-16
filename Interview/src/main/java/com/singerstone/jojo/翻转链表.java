@@ -16,24 +16,16 @@ public class 翻转链表 {
      * @return
      */
     public ListNode reverseList(ListNode head) {
-        dfs(head);
-        return result;
-    }
-
-    ListNode result = null;
-
-    public ListNode dfs(ListNode head) {
         if (head == null) {
             return null;
         }
-        ListNode next = dfs(head.next); // 利用递归栈的性质
-        if (next == null) { //递归最后一个节点了，作为头结点记录一下
-            result = head;
-        } else {
-            next.next = head;
-            head.next = null;
+        if (head.next == null) {
+            return head;
         }
-        return head;
+        ListNode next = reverseList(head.next);
+        head.next.next = head; // 这里不能用 next ，因为 next 一直指向原链表的结尾
+        head.next = null;
+        return next; // next 属于透传参数一直指向原链表的结尾
     }
 
     /**
