@@ -29,14 +29,10 @@ public class 最大正方形 {
                     } else {
                         dp[i][j] = Math.min(Math.min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1]) + 1;
                     }
-
                 }
                 max = Math.max(max, dp[i][j]);
-
             }
-
         }
-
         return max * max;
     }
 

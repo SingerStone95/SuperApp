@@ -6,6 +6,11 @@ public class 有序数组中的单一元素 {
         System.out.println(new 有序数组中的单一元素().singleNonDuplicate(new int[]{1, 1, 2, 3, 3}));
     }
 
+    /**
+     * 题目应该是要求返回 index
+     * 返回 index 就不能够异或到底，只能用二分
+     */
+
     public int singleNonDuplicate(int[] nums) {
         if (nums.length == 1) {
             return nums[0];

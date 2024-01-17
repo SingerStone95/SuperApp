@@ -10,7 +10,7 @@ public class 多线程交替打印ABC {
      * n 个线程交替打印ABC
      */
 
-    private volatile int curPrintThreadIndex = 1;
+    private volatile int curPrintThreadIndex = 0;
     private Object lock = new Object();
 
     public void multiThreadPrintABC(int n) {

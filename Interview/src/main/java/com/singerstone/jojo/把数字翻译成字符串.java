@@ -22,15 +22,15 @@ public class 把数字翻译成字符串 {
             return 1;
         }
         int[] dp = new int[s.length() + 1];
-        dp[0] = 1;
+        dp[0] = 1;// 没有意义，方便计算
         dp[1] = 1;
 
         //为了方便写代码，这里的i表示第i个数
         for (int i = 2; i <= s.length(); i++) {
-            int pre = (s.charAt(i - 2) - '0') * 10 + (s.charAt(i - 1) - '0');
-            if (pre > 9 && pre < 26) { // pre > 9 就排除了 01 这种组合
+            int combo = (s.charAt(i - 2) - '0') * 10 + (s.charAt(i - 1) - '0');
+            // 当前数字必定合法，所以对比 解码方法 ，少了对当前是否合法的判断
+            if (combo > 9 && combo < 26) { // combo > 9 就排除了 01 这种组合
                 dp[i] = dp[i - 1] + dp[i - 2];
-
             } else {
                 dp[i] = dp[i - 1];
             }
