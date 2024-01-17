@@ -26,7 +26,7 @@ public class SafeLinkedListQueue<E> implements Queue<E> {
 
     @Override
     public void offer(E var1) {
-        do {
+        while (true) {
             if (lock.compareAndSet(false, true)) {
                 mTail.next = new Node<>(var1);
                 mTail = mTail.next;
@@ -35,7 +35,7 @@ public class SafeLinkedListQueue<E> implements Queue<E> {
                 break;
             }
 
-        } while (true);
+        }
 
     }
 
@@ -44,7 +44,7 @@ public class SafeLinkedListQueue<E> implements Queue<E> {
         if (isEmpty()) {
             throw new RuntimeException("Stank is Empty!");
         }
-        do {
+        while (true) {
             if (lock.compareAndSet(false, true)) {
                 Node<E> result = mHead.next;
                 mHead.next = result.next;
@@ -53,7 +53,7 @@ public class SafeLinkedListQueue<E> implements Queue<E> {
                 lock.set(false);
                 return result.element;
             }
-        } while (true);
+        }
     }
 
     @Override

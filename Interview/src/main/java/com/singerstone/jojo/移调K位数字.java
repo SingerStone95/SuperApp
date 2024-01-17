@@ -34,6 +34,7 @@ public class 移调K位数字 {
             }
             list.addLast(c);
         }
+        // 已经升序了 k 还没用完，就从末尾开始移除
         for (int i = 0; i < k; i++) {
             list.removeLast();
         }
