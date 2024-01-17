@@ -3,7 +3,6 @@ package com.singerstone.jojo;
 import static com.singerstone.jojo.二叉树构建.visitTree;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class 二叉树的还原先序中序Java {
@@ -13,6 +12,7 @@ public class 二叉树的还原先序中序Java {
         int[] inoder = {9, 3, 15, 20, 7};
 
         visitTree(buildTree(preorder, inoder));
+        visitTree(buildTree2(preorder, 0, preorder.length - 1, inoder, 0, preorder.length - 1));
 
     }
 
@@ -24,8 +24,30 @@ public class 二叉树的还原先序中序Java {
         return result;
     }
 
-    // TODO: 2024/1/16  用 index 改写 ，节省空间
-    //preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
+    /**
+     * int[] preorder = {3, 9, 20, 15, 7}; int[] inoder = {9, 3, 15, 20, 7};
+     */
+    public static TreeNode buildTree2(int[] preorder, int pl, int pr, int[] inorder, int il,
+            int ir) {
+
+        if (pl > pr) {
+            return null;
+        }
+        int im = il;
+        for (int i = il; i <= ir; i++) {
+            if (preorder[pl] == inorder[i]) {
+                im = i;
+            }
+        }
+        int left_len = im - il;
+        TreeNode root = new TreeNode(preorder[pl]);
+
+        root.left = buildTree2(preorder, pl + 1, pl + 1 + left_len, inorder, il, il + left_len);
+        root.right = buildTree2(preorder, pl + left_len + 1, pr, inorder, il + left_len + 1, ir);
+        return root;
+    }
+
+    //    preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
     public static TreeNode buildTree(int[] preorder, int[] inorder) {
         if (preorder.length == 0 || inorder.length == 0) {
             return null;
