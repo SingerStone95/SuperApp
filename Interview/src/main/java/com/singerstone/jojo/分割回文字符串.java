@@ -9,42 +9,39 @@ public class 分割回文字符串 {
 
 
     public static void main(String[] args) {
-        System.out.println(new 分割回文字符串().partition("bb"));
+        System.out.println(new 分割回文字符串().partition("abb"));
 
     }
 
+
     public List<List<String>> partition(String s) {
         List<List<String>> result = new ArrayList<>();
-        partition(s, new ArrayList<String>(), result);
+        partition2(s, 0, s.length() - 1, new ArrayList<String>(), result);
         return result;
 
     }
 
     /**
-     *示例 1：
+     * 示例 1：
      * 输入：s = "aab"
      * 输出：[["a","a","b"],["aa","b"]]
      */
-    public void partition(String s, List<String> temp, List<List<String>> result) {
-        if (s.isEmpty()) {
-            result.add(temp);
-
-        } else if (s.length() == 1) {
-            temp.add(s);
+    public void partition2(String s, int left, int right, List<String> temp, List<List<String>> result) {
+        if (left > right) {
             result.add(new ArrayList<>(temp));
-        } else {
-            for (int i = 1; i <= s.length(); i++) {
-                String str = s.substring(0, i);
-                if (isMirror(str)) {
-                    List<String> next = new ArrayList<>(temp);
-                    next.add(str);
-                    partition(s.substring(i), next, result);
-
-                }
+            return;
+        }
+        for (int i = left; i <= right; i++) {
+            String sub = s.substring(left, i + 1);
+            if (isMirror(sub)) {
+                temp.add(sub);
+                partition2(s, i + 1, right, temp, result);
+                temp.remove(temp.size() - 1);
             }
         }
 
     }
+
 
     Map<String, Boolean> record = new HashMap<>();
 
