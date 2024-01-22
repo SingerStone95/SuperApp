@@ -7,6 +7,11 @@ public class 数组排序之后相邻数的最大差值 {
 
     }
 
+    /**
+     * 1,3,5,5
+     * 区间长度 (5 - 1)/5 =0.8
+     * 每个区间范围： 1-1.8 \ 1.8-2.6 \ 2.6-3.4 \ 3.4-4.2 \ 4.2-5.0 （唯独最后一个数是左闭右闭区间）
+     */
     public int maxGap(int[] nums) {
         if (nums.length<=1) {
             return 0;
@@ -21,9 +26,12 @@ public class 数组排序之后相邻数的最大差值 {
             return 0;
         }
         int len = nums.length;
+        // 只需 3 个数组保存每个桶的状态：是否有值，最大值，最小值
         boolean[] bucketHasValue = new boolean[len + 1];
         int[] bucketMax = new int[len + 1];
         int[] bucketMin = new int[len + 1];
+        // 桶比数的个数多一个 保证一定有一个空桶 , 且最后一个桶一定放的是最后一个元素
+        // 每个桶的区间都是左闭右开区间，所以不包含最后一个元素，所以最后一个元素人为干预到最后一个桶（我目前的理解）
         for (int i = 0; i < nums.length; i++) {
             int index = calculateBucketIndex(max, min, nums[i], len);
             if (bucketHasValue[index]) {
@@ -35,7 +43,9 @@ public class 数组排序之后相邻数的最大差值 {
                 bucketHasValue[index] = true;
             }
         }
+        // 计算每两个有值的桶之间的差值
         int i = 0;
+        // 过滤掉前面的空桶
         for (; i <= len; i++) {
             if (bucketHasValue[i]) {
                 break;
@@ -43,6 +53,7 @@ public class 数组排序之后相邻数的最大差值 {
         }
         int preMax = bucketMax[i];
         i++;
+        // 从一个非空桶开始计算差值
         int result = 0;
         for (; i <= len; i++) {
             if (bucketHasValue[i]) {
@@ -56,7 +67,7 @@ public class 数组排序之后相邻数的最大差值 {
     }
 
     private int calculateBucketIndex(long max, long min, long num, long len) {
-        //(num-min)/((max-min)/len)
+        // 计算公式: (num - min)/(max - min)*len
         return (int) ((num - min) * len / (max - min));
     }
 
