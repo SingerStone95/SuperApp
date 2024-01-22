@@ -15,6 +15,9 @@ public class 寻找两个有序数组的中位数 {
 
     }
 
+    /**
+     * 根据数的个数是奇数 偶数转化为找两个数组的第 K 个数
+     */
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int len1 = nums1.length;
         int len2 = nums2.length;
