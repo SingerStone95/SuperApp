@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
-
+//# 进入工程目录，删除android目录
+// rm -rf android
+//
+// # 重新创建java语言的android目录
+// flutter create -a java .
+//
+// # 重新创建kotlin语言的android目录
+// flutter create -a kotlin .
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
