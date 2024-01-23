@@ -13,7 +13,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         ndk {
-            abiFilters 'armeabi-v7a'
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
         }
 //        javaCompileOptions {
 //            annotationProcessorOptions {
@@ -27,7 +27,8 @@ android {
 
     compileOptions {
         targetCompatibility 1.8 //表示生成的 java 类版本是1.8，只能在运行在 >=1.8 的虚拟机
-        sourceCompatibility "1.8" // 表示源代码里面可以应用 <= 1.8 版本的特性，sourceCompatibility无法高于targetCompatibility
+        sourceCompatibility "1.8"
+        // 表示源代码里面可以应用 <= 1.8 版本的特性，sourceCompatibility无法高于targetCompatibility
     }
 
     packagingOptions {
@@ -177,7 +178,8 @@ dependencies {
     api project(':annotations')
     annotationProcessor project(':processors')
     api project(':inject')
-    compileOnly 'com.android.tools.build:gradle:'+BUILD_TOOL_VERSION
+    api project(':flutter')
+    compileOnly 'com.android.tools.build:gradle:' + BUILD_TOOL_VERSION
     implementation "androidx.cardview:cardview:1.0.0"
     //xposed
     compileOnly 'de.robv.android.xposed:api:82'
