@@ -9,25 +9,8 @@ public class 颜色分类 {
         new 颜色分类().sortColors2(array);
         printArray(array);
 
-    }
 
-    /**
-     * 输入：nums = [2,0,2,1,1,0]
-     * 输出：[0,0,1,1,2,2]
-     */
-    public void sortColors(int[] nums) { // 非严格的一次遍历
-        int left = -1; // 最后一个 0 的位置
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] == 0) {
-                swap(nums, ++left, i);
-            }
-        }
-        int right = nums.length;
-        for (int j = nums.length - 1; j > left; j--) {
-            if (nums[j] == 2) {
-                swap(nums, --right, j);
-            }
-        }
+
     }
 
 
