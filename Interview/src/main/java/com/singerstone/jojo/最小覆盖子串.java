@@ -35,7 +35,7 @@ public class 最小覆盖子串 {
             return "";
         }
         String result = "";
-        // 还能被消耗的字符个数
+        // 记录还能被消耗的字符个数，当 t 中所有数字被消耗完毕，map 的 value 全部为 0
         Map<Character, Integer> map = new HashMap<>();
         for (Character c : t.toCharArray()) {
             map.put(c, map.getOrDefault(c, 0) + 1);
