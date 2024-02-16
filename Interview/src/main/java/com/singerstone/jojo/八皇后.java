@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class 八皇后 {
+
     public static void main(String[] args) {
-        System.out.println(new 八皇后().solveNQueens(4));
+        System.out.println(new 八皇后().solveNQueens(8).size());
 
     }
 
@@ -16,20 +17,10 @@ public class 八皇后 {
      * <p>
      * 示例:
      * <p>
-     * 输入：4
-     * 输出：[[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]]
-     * 解释: 4 皇后问题存在如下两个不同的解法。
-     * [
-     * [".Q..",  // 解法 1
-     * "...Q",
-     * "Q...",
-     * "..Q."],
+     * 输入：4 输出：[[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]] 解释: 4 皇后问题存在如下两个不同的解法。
+     * [ [".Q..",  // 解法 1 "...Q", "Q...", "..Q."],
      * <p>
-     * ["..Q.",  // 解法 2
-     * "Q...",
-     * "...Q",
-     * ".Q.."]
-     * ]
+     * ["..Q.",  // 解法 2 "Q...", "...Q", ".Q.."] ]
      */
 
     List<List<String>> result = new ArrayList<>();
@@ -54,7 +45,8 @@ public class 八皇后 {
             return;
         }
         for (int j = 0; j < n; j++) {
-            if (!isLeftTop(row, j, queen, n) && !isRightTop(row, j, queen, n)) {
+            if (!isLeftTop(row, j, queen, n) && !isRightTop(row, j, queen, n) && !isTop(row, j,
+                    queen, n)) {
                 queen[row][j] = true;
                 dfs(queen, row + 1, n);
                 queen[row][j] = false;
@@ -62,24 +54,41 @@ public class 八皇后 {
         }
     }
 
-    private boolean isRightTop(int row, int j, boolean[][] queen, int n) {
-        if (j + 1 >= n) {
-            return true;
+    private boolean isLeftTop(int row, int j, boolean[][] queen, int n) {
+        boolean hasQueue = false;
+        while (row >= 0 && j >= 0) {
+            if (queen[row][j]) {
+                return true;
+            }
+            row--;
+            j--;
         }
-        if (row - 1 < 0) {
-            return true;
-        }
-        return queen[row - 1][j + 1];
+        return hasQueue;
     }
 
-    private boolean isLeftTop(int row, int j, boolean[][] queen, int n) {
-        if (j - 1 < 0) {
-            return true;
+    private boolean isRightTop(int row, int j, boolean[][] queen, int n) {
+        boolean hasQueue = false;
+        while (row >= 0 && j < n) {
+            if (queen[row][j]) {
+                return true;
+            }
+            row--;
+            j++;
         }
-        if (row - 1 < 0) {
-            return true;
-        }
-        return queen[row - 1][j - 1];
+        return hasQueue;
     }
+
+    private boolean isTop(int row, int j, boolean[][] queen, int n) {
+        boolean hasQueue = false;
+        while (row >= 0) {
+            if (queen[row][j]) {
+                return true;
+            }
+            row--;
+        }
+        return hasQueue;
+
+    }
+
 
 }
