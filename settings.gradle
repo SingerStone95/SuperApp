@@ -7,15 +7,34 @@ evaluate(new File(                                                     // new
 
 // 1.初始化阶段
 gradle.settingsEvaluated {
-    println '初始化阶段 settingsEvaluated'
+    println '1.初始化阶段 settingsEvaluated'
 }
 gradle.projectsLoaded {
-    println '初始化阶段 projectsLoaded'
+    println '2.初始化阶段 projectsLoaded'
 }
- //2.配置阶段
+//2.配置阶段
 gradle.beforeProject { project ->
-    println '配置阶段前，>>>>>>>>>>:' + project
+    println "" + project + '开始配置'
 }
 gradle.afterProject { project ->
-    println '配置阶段后，<<<<<<<<<<:' + project
+    println "" + project + '结束配置'
+}
+
+// 2.配置阶段
+gradle.projectsEvaluated { project ->
+    println '配置阶段 gradle.projectsEvaluated' + project
+}
+gradle.taskGraph.whenReady {
+    println '配置阶段 gradle.taskGraph.whenReady'
+}
+// 3.执行阶段
+gradle.taskGraph.beforeTask { task ->
+    println "执行阶段 gradle.taskGraph.beforeTask >>>>>>>>>>" + task
+}
+gradle.taskGraph.afterTask { task ->
+    println "执行阶段 gradle.taskGraph.afterTask <<<<<<<<<<" + task
+}
+// 4.build结束
+gradle.buildFinished {
+    println '构建结束 radle.buildFinished'
 }

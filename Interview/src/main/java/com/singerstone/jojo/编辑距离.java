@@ -10,7 +10,7 @@ public class 编辑距离 {
 
     /**
      * dp 解法
-     * dp[i][j] 含义：word1[0-i] 到 word2[0-j] 的最短距离
+     * dp[i][j] 含义：word1前 i 个数 到 word2 前 j 个数的最短距离
      */
     public int minDistance2(String word1, String word2) {
         int dp[][] = new int[word1.length() + 1][word2.length() + 1];

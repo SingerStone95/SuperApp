@@ -121,24 +121,7 @@ task t1 {
     }
 }
 
-// 2.配置阶段
-gradle.projectsEvaluated { project ->
-    println '配置阶段 gradle.projectsEvaluated' + project
-}
-gradle.taskGraph.whenReady {
-    println '配置阶段 gradle.taskGraph.whenReady'
-}
-// 3.执行阶段
-gradle.taskGraph.beforeTask { task ->
-    println "执行阶段 gradle.taskGraph.beforeTask >>>>>>>>>>" + task
-}
-gradle.taskGraph.afterTask { task ->
-    println "执行阶段 gradle.taskGraph.afterTask <<<<<<<<<<" + task
-}
-// 4.build结束
-gradle.buildFinished {
-    println '构建结束 radle.buildFinished'
-}
+
 
 project.beforeEvaluate {
     println '配置阶段 project.beforeEvaluate >>>>>>>>>>'

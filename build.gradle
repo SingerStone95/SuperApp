@@ -37,7 +37,7 @@ buildscript { //脚本的配置
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         classpath 'me.tatarka:gradle-retrolambda:3.2.5'
-        classpath('com.tencent.tinker:tinker-patch-gradle-plugin:1.9.1')
+
         if (ENABLE_SUPERPLUGIN == 'true') {
             classpath 'com.singerstone.plugin:supergradle:1.0.0'
         }
@@ -73,7 +73,7 @@ allprojects { //项目的配置
 }
 
 project.tasks.whenTaskAdded { Task theTask ->
-    println('project.tasks.whenTaskAdded : task->' + theTask.getName())
+    println('Task 添加 project.tasks.whenTaskAdded : task->' + theTask.getName())
     if (theTask.name == 'assembleDebug' || theTask.name == 'assembleRelease') {
         //theTask.dependsOn(check)
     }
