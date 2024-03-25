@@ -2,6 +2,7 @@ package com.singerstone.jojo;
 
 /**
  * {@link 解码方法} 互为镜像问题
+ * 区别在于 0 能不能成为一个单独翻译
  */
 public class 把数字翻译成字符串 {
     public static void main(String[] args) {
