@@ -19,7 +19,8 @@ public class 后端第二题 {
      */
     public static void main(String[] args) {
         ListNode head1 = new ListNode(7, new ListNode(8,
-                new ListNode(9, new ListNode(8, null))));
+                new ListNode(9, new ListNode(2,
+                        new ListNode(3, new ListNode(4, new ListNode(1, null)))))));
         ListNode head2 = new ListNode(7, new ListNode(8,
                 new ListNode(1, new ListNode(2, null))));
         List<ListNode> input = new ArrayList<>();
@@ -39,7 +40,6 @@ public class 后端第二题 {
                 if (pre != null && head.value < pre.value) {
                     count++;
                     if (count > 1) {
-                        result.add(false);
                         break;
                     }
                 }
