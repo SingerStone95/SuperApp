@@ -26,8 +26,8 @@ public class 后端第四题 {
         for (int i = 0; i < n; i++) {
             array[i] = scanner.nextInt();
         }
-//        int k = 2;
-//        int[] array = new int[]{1, 1, 1, 2, 3, 4}; // 10
+/*        int k = 2;
+        int[] array = new int[]{1, 1, 1, 2, 3, 4}; // 10*/
         //int[] array = new int[]{1, 1, 1}; // 10
         int[] pre = new int[array.length];
         int tmp = 0;
@@ -44,9 +44,6 @@ public class 后端第四题 {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < i; j++) { // 用 j 分割 0-i 为 [0-j] (j-i]
                 for (int p = 2; p <= k; p++) { // 至少都是分 1 段
-                    if (j + 1 < p) {
-                        break;
-                    }
                     int cur = dp[j][p - 1] + (pre[j] ^ pre[i]);
                     dp[i][p] = Math.max(dp[i][p], cur);
                 }
