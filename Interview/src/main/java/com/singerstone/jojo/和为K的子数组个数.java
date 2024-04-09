@@ -14,6 +14,7 @@ public class 和为K的子数组个数 {
     // 用 pre[i] 表示从 0-i 的和
     // 在数组中 存在 pre[j]-pre[i](j>i) =k   区间长度:j-i+1
     // 所以该方法转化为在 pre 组书中寻找有 x 组差为 k 的组合
+    // key是前缀和 value是前缀和为 key 的个数
     public int subarraySum(int[] nums, int k) {
         int result = 0;
         int preSum = 0;
