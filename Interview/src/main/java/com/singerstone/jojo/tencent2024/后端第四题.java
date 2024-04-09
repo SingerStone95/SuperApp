@@ -19,17 +19,16 @@ public class 后端第四题 {
      * pre[j]^pre[i]=^[i+1~j] (j>i)
      */
     public static void main(String[] args) {
-/*        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         int k = scanner.nextInt();
         int[] array = new int[n];
         for (int i = 0; i < n; i++) {
             array[i] = scanner.nextInt();
-        }*/
-        // 5 3 , 1 0 1 1 0
-
-        int k = 2;
-        int[] array = new int[]{1, 1, 1, 2, 3, 4}; // 10
+        }
+//        int k = 2;
+//        int[] array = new int[]{1, 1, 1, 2, 3, 4}; // 10
+        //int[] array = new int[]{1, 1, 1}; // 10
         int[] pre = new int[array.length];
         int tmp = 0;
         for (int i = 0; i < array.length; i++) {
@@ -38,13 +37,18 @@ public class 后端第四题 {
         }
         int[][] dp = new int[array.length][k + 1]; // 以 i 结尾的子数组，分为 k 段的最大和
         for (int i = 0; i < array.length; i++) {
+            // 赋值分成一段的 case
             dp[i][1] = pre[i];
         }
 
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < i; j++) { // 用 j 分割 0-i 为 [0-j] (j-i]
                 for (int p = 2; p <= k; p++) { // 至少都是分 1 段
-                    dp[i][p] = Math.max(dp[i][p], dp[j][p - 1] + pre[j] ^ pre[i]);
+                    if (j + 1 < p) {
+                        break;
+                    }
+                    int cur = dp[j][p - 1] + (pre[j] ^ pre[i]);
+                    dp[i][p] = Math.max(dp[i][p], cur);
                 }
 
             }
