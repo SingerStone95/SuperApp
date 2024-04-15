@@ -14,18 +14,56 @@ public class 客户端第三题 {
 
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
-        Map<Integer, Set<Integer>> record = new LinkedHashMap<>();
+        Map<Integer, List<Integer>> record = new HashMap<>();
+        int root = -1;
         for (int i = 0; i < n - 1; i++) {
             int p = scanner.nextInt();
+            if (i == 0) {
+                root = p;
+            }
             int q = scanner.nextInt();
-            Set<Integer> set_p = record.get(p);
+            List<Integer> set_p = record.get(p);
             if (set_p == null) {
-                set_p = new HashSet<>();
+                set_p = new ArrayList<>();
             }
             set_p.add(q);
             record.put(p, set_p);
         }
+        dfs(root, -1, record);
+        System.out.println(result);
 
+    }
+
+    static int result = 0;
+
+    private static void dfs(int root, int parent, Map<Integer, List<Integer>> record) {
+        List<Integer> children = record.get(root);
+
+        for (int child : children) {
+
+        }
+        for (int i = 0; i < children.size(); i++) {
+            int child = children.get(i);
+            // 自己-儿子
+            if (root + child == 3) {
+                result++;
+            }
+            // 父亲-自己-儿子
+            if (parent != -1) {
+                if (parent + root + child == 3) {
+                    result++;
+                }
+            }
+            // 儿子-自己-儿子
+            for (int j = i + 1; j < children.size(); j++) {
+                int child2 = children.get(j);
+                if (child2 + child + root == 3) {
+                    result++;
+                }
+            }
+            dfs(child, root, record);
+
+        }
 
     }
 
