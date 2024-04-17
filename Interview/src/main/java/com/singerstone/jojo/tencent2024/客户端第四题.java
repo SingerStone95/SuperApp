@@ -1,8 +1,6 @@
 package com.singerstone.jojo.tencent2024;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class 客户端第四题 {
     /**
@@ -21,8 +19,13 @@ public class 客户端第四题 {
 
     }
 
-    static int maxLength = 0;
 
+    static int minDiff = Integer.MAX_VALUE;
+    public static int minDiff(Map<Integer, List<Integer>> record, int root) {
+
+
+    }
+    static int maxLength = 0;
     public static int treeLength(Map<Integer, List<Integer>> record, int root) {
         List<Integer> children = record.get(root);
         if (children == null) {
@@ -35,9 +38,13 @@ public class 客户端第四题 {
         }
         // 深度第一大和深度第二大的和
         int max_deep = 0;
+        List<Integer> deeps = new ArrayList<>();
         for (int child : children) {
             max_deep = Math.max(treeLength(record, child), max_deep);
+            deeps.add(max_deep);
         }
+        Collections.sort(deeps);
+        maxLength = Math.max(deeps.get(deeps.size() - 1) + deeps.get(deeps.size() - 2), maxLength);
         return max_deep + 1;
     }
 
