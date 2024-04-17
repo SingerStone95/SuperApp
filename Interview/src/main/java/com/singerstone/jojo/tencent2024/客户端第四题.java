@@ -1,5 +1,7 @@
 package com.singerstone.jojo.tencent2024;
 
+import java.util.Scanner;
+
 public class 客户端第四题 {
     /**
      * 小红非常喜欢一首叫做剪切线的歌，所以小红现在非常喜欢剪切各种东西。现在小红有—棵树，她需要剪切树上的一条边，将这棵树剪切成两棵树，
@@ -11,6 +13,9 @@ public class 客户端第四题 {
      * @param args
      */
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
 
     }
+
 }
