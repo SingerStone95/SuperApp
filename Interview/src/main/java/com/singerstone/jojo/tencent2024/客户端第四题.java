@@ -1,5 +1,7 @@
 package com.singerstone.jojo.tencent2024;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class 客户端第四题 {
@@ -10,12 +12,33 @@ public class 客户端第四题 {
      * 表示树的节点数。接下来n一1行，每行输入两个正整数u, v(1 ≤u,v≤n)表示树上的边。
      * 输出描述输出—个整数表示答案。
      * 点数n满足1<=n<=1e3
+     *
      * @param args
      */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
 
+    }
+
+    static int maxLength = 0;
+
+    public static int treeLength(Map<Integer, List<Integer>> record, int root) {
+        List<Integer> children = record.get(root);
+        if (children == null) {
+            return 0;
+        }
+        if (children.size() == 1) {
+            int deep = 1 + treeLength(record, children.get(0));
+            maxLength = Math.max(deep, maxLength);
+            return deep;
+        }
+        // 深度第一大和深度第二大的和
+        int max_deep = 0;
+        for (int child : children) {
+            max_deep = Math.max(treeLength(record, child), max_deep);
+        }
+        return max_deep + 1;
     }
 
 }
