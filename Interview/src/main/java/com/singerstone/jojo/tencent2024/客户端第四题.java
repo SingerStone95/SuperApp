@@ -16,19 +16,59 @@ public class 客户端第四题 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
+        Map<Integer, List<Integer>> record = new HashMap<>();
+        for (int i = 0; i < n - 1; i++) {
+            int p = scanner.nextInt();
+            int q = scanner.nextInt();
+            List<Integer> set_p = record.get(p);
+            if (set_p == null) {
+                set_p = new ArrayList<>();
+            }
+            set_p.add(q);
+            record.put(p, set_p);
+        }
+
+        minDiff(record, 0);
+        System.out.println(result);
+    }
+
+    /**
+     * 0
+     * 1 2 3
+     * (4 5) (6 7) (8 9)
+     */
+
+
+    static int result = Integer.MAX_VALUE;
+
+    public static void minDiff(Map<Integer, List<Integer>> record, int root) {
+        List<Integer> children = record.get(root);
+        if (children == null || children.isEmpty()) {
+            return;
+        }
+
+        List<Integer> copy = new ArrayList<>(children);
+        for (int child : copy) {
+            // 孩子作为根节点的直径
+            int child_length = treeLength(record, child);
+            // 删除当前分支，并计算根节点的直径
+            children.remove(Integer.valueOf(child));
+            int root_length = treeLength(record, 0);
+            result = Math.min(result, Math.abs(child_length - root_length));
+
+            //还原当前分支
+            children.add(child);
+            minDiff(record, child);
+        }
+
 
     }
 
-
-    static int minDiff = Integer.MAX_VALUE;
-    public static int minDiff(Map<Integer, List<Integer>> record, int root) {
-
-
-    }
     static int maxLength = 0;
+
     public static int treeLength(Map<Integer, List<Integer>> record, int root) {
         List<Integer> children = record.get(root);
-        if (children == null) {
+        if (children == null || children.isEmpty()) {
             return 0;
         }
         if (children.size() == 1) {
