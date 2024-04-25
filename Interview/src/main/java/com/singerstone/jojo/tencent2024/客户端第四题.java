@@ -28,7 +28,7 @@ public class 客户端第四题 {
             record.put(p, set_p);
         }
 
-        minDiff(record, 0);
+        treeDiameter(record, 0);
         System.out.println(result);
     }
 
@@ -41,7 +41,7 @@ public class 客户端第四题 {
 
     static int result = Integer.MAX_VALUE;
 
-    public static void minDiff(Map<Integer, List<Integer>> record, int root) {
+    public static void treeDiameter(Map<Integer, List<Integer>> record, int root) {
         List<Integer> children = record.get(root);
         if (children == null || children.isEmpty()) {
             return;
@@ -58,7 +58,7 @@ public class 客户端第四题 {
 
             //还原当前分支
             children.add(child);
-            minDiff(record, child);
+            treeDiameter(record, child);
         }
 
 
