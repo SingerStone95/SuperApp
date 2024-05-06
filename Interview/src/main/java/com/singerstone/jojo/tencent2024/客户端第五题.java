@@ -14,12 +14,12 @@ public class 客户端第五题 {
      * 1<=n,m<=1e3
      */
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+/*        Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         int m = scanner.nextInt();
         int value[][] = new int[n][m];
         char[][] color = new char[n][m];
-/*        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 value[i][j] = scanner.nextInt();
             }
@@ -31,8 +31,8 @@ public class 客户端第五题 {
                 color[i][j] = c;
             }
         }*/
-        value = new int[][]{{3, 2, 1}, {3, 3, 3}, {1, 2, 3}};
-        color = new char[][]{{'R', 'P', 'R'}, {'P', 'R', 'P'}, {'R', 'P', 'R'}};
+        int value[][] = new int[][]{{3, 2, 1}, {3, 3, 3}, {1, 2, 3}};
+        char[][] color = new char[][]{{'R', 'P', 'R'}, {'P', 'R', 'P'}, {'R', 'P', 'R'}};
         System.out.println(maxValue(value, color, 0, 0, ' '));
     }
 
