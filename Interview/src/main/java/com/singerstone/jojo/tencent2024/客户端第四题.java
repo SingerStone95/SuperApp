@@ -50,10 +50,14 @@ public class 客户端第四题 {
         List<Integer> copy = new ArrayList<>(children);
         for (int child : copy) {
             // 孩子作为根节点的直径
-            int child_length = treeLength(record, child);
+            maxLength = 0;
+            treeLength(record, child);
+            int child_length = maxLength;
             // 删除当前分支，并计算根节点的直径
             children.remove(Integer.valueOf(child));
-            int root_length = treeLength(record, 0);
+            maxLength = 0;
+            treeLength(record, 0);
+            int root_length = maxLength;
             result = Math.min(result, Math.abs(child_length - root_length));
 
             //还原当前分支
