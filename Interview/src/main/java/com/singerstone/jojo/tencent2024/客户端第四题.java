@@ -88,7 +88,7 @@ public class 客户端第四题 {
             deeps.add(max_deep);
         }
         Collections.sort(deeps);
-        maxLength = Math.max(deeps.get(deeps.size() - 1) + deeps.get(deeps.size() - 2), maxLength);
+        maxLength = Math.max(deeps.get(deeps.size() - 1) + deeps.get(deeps.size() - 2) + 2, maxLength);
         return max_deep + 1;
     }
 
