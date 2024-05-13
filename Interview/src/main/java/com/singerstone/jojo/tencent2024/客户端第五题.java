@@ -34,6 +34,7 @@ public class 客户端第五题 {
         int value[][] = new int[][]{{3, 2, 1}, {3, 3, 3}, {1, 2, 3}};
         char[][] color = new char[][]{{'R', 'P', 'R'}, {'P', 'R', 'P'}, {'R', 'P', 'R'}};
         System.out.println(maxValue(value, color, 0, 0, ' '));
+        System.out.println(maxValue_dp(value, color));
     }
 
 
@@ -52,5 +53,47 @@ public class 客户端第五题 {
             max_1 = value[i][j] + Math.max(maxValue(value, color, i + 1, j, color[i][j]), maxValue(value, color, i, j + 1, color[i][j]));
         }
         return Math.max(max_0, max_1);
+    }
+
+
+    public static int maxValue_dp(int[][] value, char[][] color) {
+        // 最后一个维度 dp[0] 代表不拿当前宝藏的最大值，dp[1] 表示拿当前宝藏的最大值
+        int dp[][][] = new int[value.length][value[0].length][2];
+        // 先赋值边界
+        for (int i = 0; i < value.length; i++) {
+            if (i == 0) {
+                dp[i][0][0] = 0;
+                dp[i][0][1] = value[i][0];
+            } else {
+                // 不拿有两种情况 1.颜色冲突拿不了 2.主动选择不拿 ，结果都一样
+                dp[i][0][0] = Math.max(dp[i - 1][0][0], dp[i - 1][0][1]);
+                // 拿也有两种case ，前一个格子不拿，前一个格子拿了 但是不冲突
+                dp[i][0][1] = Math.max(dp[i][0][0], color[i - 1][0] != color[i][0] ? dp[i - 1][0][1] : 0) + value[i][0];
+            }
+        }
+        for (int j = 0; j < value[0].length; j++) {
+            if (j == 0) {
+                dp[0][j][0] = 0;
+                dp[0][j][1] = value[0][j];
+            } else {
+                dp[0][j][0] = Math.max(dp[0][j - 1][0], dp[0][j - 1][1]);
+                dp[0][j][1] = Math.max(dp[0][j - 1][0], color[0][j - 1] != color[0][j] ? dp[0][j - 1][1] : 0) + value[0][j];
+            }
+        }
+        for (int i = 1; i < value.length; i++) {
+            for (int j = 1; j < value[0].length; j++) {
+                // 从上面过来
+                // 不拿有两种情况 1.颜色冲突拿不了 2.主动选择不拿 ，结果都一样
+                int from_top_0 = Math.max(dp[i - 1][j][0], dp[i - 1][j][1]);
+                // 拿也有两种case ，前一个格子不拿，前一个格子拿了 但是不冲突
+                int from_top_1 = Math.max(dp[i][j][0], color[i - 1][j] != color[i][j] ? dp[i - 1][j][1] : 0) + value[i][j];
+                // 从左边过来
+                int from_left_0 = Math.max(dp[i][j - 1][0], dp[i][j - 1][1]);
+                int from_left_1 = Math.max(dp[i][j - 1][0], color[i][j - 1] != color[i][j] ? dp[i][j - 1][1] : 0) + value[i][j];
+                dp[i][j][0] = Math.max(from_top_0, from_left_0);
+                dp[i][j][1] = Math.max(from_top_1, from_left_1);
+            }
+        }
+        return Math.max(dp[value.length - 1][value[0].length - 1][0], dp[value.length - 1][value[0].length - 1][1]);
     }
 }
