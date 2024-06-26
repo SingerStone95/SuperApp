@@ -44,6 +44,7 @@ public class 文本左右对齐 {
     }
 
     public List<String> fullJustify(String[] words, int maxWidth) {
+        return null;
 
     }
 }
