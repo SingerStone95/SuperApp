@@ -1,4 +1,7 @@
 include ':app', ':processors', ':annotations', ':inject', ':supergradle', ':Interview', ':antlr4'
+// install flutter
+// cd super_flutter_module
+// flutter create -a java .
 setBinding(new Binding([gradle: this]))                                // new
 evaluate(new File(                                                     // new
         settingsDir,                                              // new
