@@ -40,7 +40,7 @@ public class 文本左右对齐 {
      * ]
      */
     public static void main(String[] args) {
-
+//todo yogachen
     }
 
     public List<String> fullJustify(String[] words, int maxWidth) {

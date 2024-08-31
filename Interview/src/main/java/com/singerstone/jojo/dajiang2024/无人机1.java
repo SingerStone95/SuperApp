@@ -12,6 +12,7 @@ public class 无人机1 {
      * 依次输出存放飞机数量为1到15的机场各有多少台，中间以空格隔开
      */
     public static void main(String[] args) {
+        //todo yogachen
 
     }
 }
